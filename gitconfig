@@ -1,0 +1,7 @@
+[user]
+	name = Vladimir Bauer
+	email = vbauerster@gmail.com
+[color]
+	ui = auto
+[push]
+	default = simple
