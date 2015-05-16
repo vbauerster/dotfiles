@@ -1,0 +1,2 @@
+let g:kls_defaultInputSourceIndex = 5
+let g:kls_insertEnterRestoresLast = 1

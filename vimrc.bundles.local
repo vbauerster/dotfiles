@@ -1,0 +1,2 @@
+" Keyboard Layout Switcher (KLS) is plugin for Vim, which frees users from unnecessary actions
+Plugin 'cypok/KeyboardLayoutSwitcher'
