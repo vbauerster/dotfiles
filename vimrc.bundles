@@ -9,28 +9,36 @@ call vundle#begin()
 " Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 
-" Define bundles via Github repos
-Plugin 'christoomey/vim-run-interactive'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'kchmck/vim-coffee-script'
+" main plugins
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'pbrisbin/vim-mkdir'
+Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'slim-template/vim-slim'
 Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/ctags.vim'
-Plugin 'vim-scripts/matchit.zip'
-Plugin 'vim-scripts/tComment'
 Plugin 'Lokaltog/vim-easymotion'
-"Plugin 'joequery/Stupid-EasyMotion'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'marijnh/tern_for_vim'
+
+" colorschemes
+Plugin 'flazz/vim-colorschemes'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'chriskempson/base16-vim'
+
+" untested
+"Plugin 'christoomey/vim-run-interactive'
+"Plugin 'kchmck/vim-coffee-script'
+"Plugin 'pbrisbin/vim-mkdir'
+"Plugin 'slim-template/vim-slim'
+"Plugin 'tpope/vim-eunuch'
+"Plugin 'tpope/vim-repeat'
+"Plugin 'vim-scripts/ctags.vim'
+"Plugin 'vim-scripts/matchit.zip'
+"Plugin 'vim-scripts/tComment'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
 endif
 
 call vundle#end()
-filetype on
+filetype plugin indent on

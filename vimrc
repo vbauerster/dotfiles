@@ -1,5 +1,15 @@
-" Leader
-let mapleader = ","
+
+" Use before config if available {
+    if filereadable(expand("~/.vimrc.before"))
+        source ~/.vimrc.before
+    endif
+" }
+
+" Use bundles config {
+    if filereadable(expand("~/.vimrc.bundles"))
+        source ~/.vimrc.bundles
+    endif
+" }
 
 set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
@@ -18,17 +28,14 @@ set hlsearch      " Highlight search terms
 " toggle search highlighting
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
+" faster redrawing
+set ttyfast
+
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
-
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
-
-filetype plugin indent on
 
 augroup vimrcEx
   autocmd!
@@ -81,19 +88,32 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" Airline
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-let g:airline_theme='solarized'
-set t_Co=256
-
 " Color scheme
 colorscheme solarized
 set background=dark
 set encoding=utf-8
+set t_Co=256
+
+    " vim-airline {
+        " Set configuration options for the statusline plugin vim-airline.
+        " Use the powerline theme and optionally enable powerline symbols.
+        " To use the symbols , , , , , , and .in the statusline
+        " segments add the following to your .vimrc.before.local file:
+        "   let g:airline_powerline_fonts=1
+        " If the previous symbols do not render for you then install a
+        " powerline enabled font.
+
+        " See `:echo g:airline_theme_map` for some more choices
+        " Default in terminal vim is 'dark'
+        if !exists('g:airline_theme')
+          let g:airline_theme = 'solarized'
+        endif
+        if !exists('g:airline_powerline_fonts')
+          " Use the default set of separators with a few customizations
+          let g:airline_left_sep='›'  " Slightly fancier than '>'
+          let g:airline_right_sep='‹' " Slightly fancier than '<'
+        endif
+    " }
 
 " Highlight line number of where cursor currently is
 "hi CursorLineNr guifg=#050505
@@ -111,35 +131,11 @@ set colorcolumn=+1
 set number
 set numberwidth=5
 
-" Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
-set wildmode=list:longest,list:full
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <S-Tab> <c-n>
-
 " Index ctags from any project, including those outside Rails
 "map <Leader>ct :!ctags -R .<CR>
 
 " Switch between the last two files
-nnoremap <leader><leader> <c-^>
-
-" Get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
-
-" Run commands that require an interactive shell
-nnoremap <Leader>r :RunInInteractiveShell<space>
+nnoremap <leader>r <c-^>
 
 " Treat <li> and <p> tags like the block tags they are
 let g:html_indent_tags = 'li\|p'
@@ -153,6 +149,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+" open vimrc
+nnoremap <leader>v :e ~/.vimrc<CR>
+nnoremap <leader>V :tabnew ~/.vimrc<CR>
 
 " configure syntastic syntax checking to check on open as well as save
 let g:syntastic_check_on_open=1
