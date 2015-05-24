@@ -15,3 +15,5 @@
   dump = cat-file -p
 [credential]
 	helper = osxkeychain
+[core]
+	excludesfile = /Users/vbauer/.gitignore
