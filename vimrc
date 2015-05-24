@@ -5,7 +5,7 @@ set nocompatible " not compatible with vi
 
 " set a map leader for more key combos
 let mapleader = ','
-let g:mapleader = ','
+"let g:mapleader = ','
 
 " Use before config if available {
     if filereadable(expand("~/.vimrc.before"))
@@ -108,7 +108,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set so=7 " set 7 lines to the cursors - when moving vertical
+"set so=7 " set 7 lines to the cursors - when moving vertical
 set wildmenu " enhanced command line completion
 set hidden " current buffer can be put into background
 set showcmd " show incomplete commands
