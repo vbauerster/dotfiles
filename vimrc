@@ -152,10 +152,6 @@ set numberwidth=5
 " Treat <li> and <p> tags like the block tags they are
 "let g:html_indent_tags = 'li\|p'
 
-" configure syntastic syntax checking to check on open as well as save
-let g:syntastic_check_on_open=1
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
 "set spellfile=$HOME/.vim-spell-en.utf-8.add
@@ -179,32 +175,77 @@ set laststatus=2 " show the satus line all the time
 " General mappings/shortcuts for functionality
 " Additional, plugin-specific mappings are located under
 " the plugins section
-"
+
+" shortcut to save
+nmap <leader>ss :w<cr>
+
 " open vimrc
-nnoremap <leader>v :e ~/.vimrc<CR>
-nnoremap <leader>V :tabnew ~/.vimrc<CR>
+nnoremap <leader>ev :e ~/.vimrc<CR>
+nnoremap <leader>eV :tabnew ~/.vimrc<CR>
+" edit vim plugins
+nnoremap <leader>eb :e ~/.vimrc.bundles<CR>
+nnoremap <leader>eB :tabnew ~/.vimrc.bundles<CR>
+" edit gitconfig
+nnoremap <leader>eg :e ~/.gitconfig<CR>
+nnoremap <leader>eG :tabnew ~/.gitconfig<CR>
 
 " remove extra whitespace
-nmap <leader><space> :%s/\s\+$<cr>
+nmap <leader><space> :%s/\s\+$<CR>
 
 " toggle search highlighting
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
 " toggle invisible characters
-set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+"set list listchars=tab:»·,trail:·,nbsp:·
+"set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+set listchars=tab:▸\ ,eol:¬,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 "set listchars=tab:»\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
 set showbreak=↪
-nmap <leader>l :set list!<cr>
+nmap <leader>l :set list!<CR>
 
 " switch between current and last buffer
 nmap <leader>. <c-^>
 
 " Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-l> <C-w>l
+
+map <silent> <C-h> :call WinMove('h')<cr>
+map <silent> <C-j> :call WinMove('j')<cr>
+map <silent> <C-k> :call WinMove('k')<cr>
+map <silent> <C-l> :call WinMove('l')<cr>
+
+" scroll the viewport faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+" moving up and down work as you would expect
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+nnoremap <silent> ^ g^
+nnoremap <silent> $ g$
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Window movement shortcuts
+" move to the window in the direction shown, or create a new window
+function! WinMove(key)
+    let t:curwin = winnr()
+    exec "wincmd ".a:key
+    if (t:curwin == winnr())
+        if (match(a:key,'[jk]'))
+            wincmd v
+        else
+            wincmd s
+        endif
+        exec "wincmd ".a:key
+    endif
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Local config

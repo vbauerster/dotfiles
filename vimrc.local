@@ -1,6 +1,18 @@
-" configure syntastic syntax checking to check on open as well as save
-let g:syntastic_check_on_open=1
-let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+" Syntastic {
+    " toggle syntastic
+    nmap <leader>s :SyntasticToggleMode<cr>
+    " configure syntastic syntax checking to check on open as well as save
+    let g:syntastic_check_on_open=1
+    let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
+    " allow es5 mode when looking at TypeScript
+    let g:syntastic_typescript_tsc_args = '--module amd --target ES5 --noImplicitAny'
+    let g:syntastic_typescript_checkers = ['tslint']
+    let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+" }
+
+" javascript-libraries-syntax.vim {
+    let g:used_javascript_libs = 'jquery,underscore,angularjs'
+" }
 
 " vim-airline {
     " Set configuration options for the statusline plugin vim-airline.
@@ -25,11 +37,11 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 
 " NerdTree {
     map <C-e> <plug>NERDTreeTabsToggle<CR>
-    nnoremap <F5> :NERDTreeToggle<CR>
+    nmap <F5> :NERDTreeToggle<CR>
     nmap <leader>nt :NERDTreeFind<CR>
 
     let NERDTreeShowBookmarks=1
-    let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+    let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.sw[op]$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.js.map$']
     let NERDTreeChDirMode=0
     let NERDTreeQuitOnOpen=1
     let NERDTreeMouseMode=2

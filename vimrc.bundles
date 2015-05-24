@@ -9,20 +9,27 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive' " the ultimate git helper
 Plugin 'tpope/vim-surround'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'godlygeek/tabular'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'mbbill/undotree'
 
 " colorschemes
 Plugin 'flazz/vim-colorschemes'
 "Plugin 'altercation/vim-colors-solarized'
 "Plugin 'chriskempson/base16-vim'
 
-" JavaScript
+" JavaScript plugins
+Plugin 'pangloss/vim-javascript'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'burnettk/vim-angular'
+"Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'marijnh/tern_for_vim'
 
 " untested
