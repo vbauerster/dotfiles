@@ -1,3 +1,11 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible " not compatible with vi
+
+" set a map leader for more key combos
+let mapleader = ','
+let g:mapleader = ','
 
 " Use before config if available {
     if filereadable(expand("~/.vimrc.before"))
@@ -11,25 +19,45 @@
     endif
 " }
 
-set backspace=2   " Backspace deletes like most programs in insert mode
+set autoread " detect when a file is changed
+
+" make backspace behave in a sane manner
+set backspace=indent,eol,start
+"set backspace=2   " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=50
+set history=256
 set ruler         " show the cursor position all the time
-set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
-set laststatus=2  " Always display the status line
-set autowrite     " Automatically :write before running commands
-set ignorecase
-set smartcase
-set hlsearch      " Highlight search terms
-" toggle search highlighting
-nmap <silent> <leader>/ :set invhlsearch<CR>
+"set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+"set autowrite     " Automatically :write before running commands
+
+" Softtabs, 4 spaces
+set shiftround " round indent to a multiple of 'shiftwidth'
+set autoindent                  " Indent at the same level of the previous line
+set smartindent
+set shiftwidth=4                " Use indents of 4 spaces
+set expandtab                   " Tabs are spaces, not tabs
+set tabstop=4                   " An indentation every four columns
+set softtabstop=4               " Let backspace delete indent
+set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
+"set matchpairs+=<:>             " Match, to be used with %
+"set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+"set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+"set completeopt+=longest
+
+if has('clipboard')
+    if has('unnamedplus')  " When possible use + register for copy-paste
+        set clipboard=unnamed,unnamedplus
+    else         " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    endif
+endif
 
 " faster redrawing
 set ttyfast
+set t_Co=256
+
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -66,33 +94,44 @@ augroup vimrcEx
   autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
 
-" Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
-set shiftround
-set expandtab
-
-" Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
-
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\
-  let g:grep_cmd_opts = '--line-numbers --noheading'
+  let g:ackprg = 'ag --nogroup --column'
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  "let g:ctrlp_use_caching = 0
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => User Interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set so=7 " set 7 lines to the cursors - when moving vertical
+set wildmenu " enhanced command line completion
+set hidden " current buffer can be put into background
+set showcmd " show incomplete commands
+set noshowmode " don't show which mode disabled for PowerLine
+set wildmode=list:longest " complete files like a shell
+set scrolloff=3 " lines of text around cursor
+"set shell=$SHELL
+set cmdheight=1 " command bar height
+
+set title " set terminal title
+
+" Searching
+set ignorecase " case insensitive searching
+set smartcase " case-sensitive if expresson contains a capital letter
+set hlsearch      " Highlight search terms
+set incsearch " set incremental search, like modern browsers
+set nolazyredraw " don't redraw while executing macros
+
 
 " Color scheme
 colorscheme solarized
 set background=dark
 set encoding=utf-8
-set t_Co=256
 
 " Highlight line number of where cursor currently is
 "hi CursorLineNr guifg=#050505
@@ -110,28 +149,8 @@ set colorcolumn=+1
 set number
 set numberwidth=5
 
-" Index ctags from any project, including those outside Rails
-"map <Leader>ct :!ctags -R .<CR>
-
-" Switch between the last two files
-nnoremap <leader>r <c-^>
-
 " Treat <li> and <p> tags like the block tags they are
-let g:html_indent_tags = 'li\|p'
-
-" Open new split panes to right and bottom, which feels more natural
-set splitbelow
-set splitright
-
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-
-" open vimrc
-nnoremap <leader>v :e ~/.vimrc<CR>
-nnoremap <leader>V :tabnew ~/.vimrc<CR>
+"let g:html_indent_tags = 'li\|p'
 
 " configure syntastic syntax checking to check on open as well as save
 let g:syntastic_check_on_open=1
@@ -141,10 +160,57 @@ let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
 "set spellfile=$HOME/.vim-spell-en.utf-8.add
 
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
 " Always use vertical diffs
 set diffopt+=vertical
 
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
-endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => StatusLine
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set laststatus=2 " show the satus line all the time
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General mappings/shortcuts for functionality
+" Additional, plugin-specific mappings are located under
+" the plugins section
+"
+" open vimrc
+nnoremap <leader>v :e ~/.vimrc<CR>
+nnoremap <leader>V :tabnew ~/.vimrc<CR>
+
+" remove extra whitespace
+nmap <leader><space> :%s/\s\+$<cr>
+
+" toggle search highlighting
+nmap <silent> <leader>/ :set invhlsearch<CR>
+
+" toggle invisible characters
+set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+"set listchars=tab:»\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
+set showbreak=↪
+nmap <leader>l :set list!<cr>
+
+" switch between current and last buffer
+nmap <leader>. <c-^>
+
+" Quicker window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Local config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Local config if available {
+  if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
+  endif
+" }

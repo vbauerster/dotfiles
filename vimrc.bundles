@@ -1,7 +1,3 @@
-if &compatible
-  set nocompatible
-end
-
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
@@ -10,20 +6,24 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " main plugins
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'marijnh/tern_for_vim'
+Plugin 'godlygeek/tabular'
 
 " colorschemes
 Plugin 'flazz/vim-colorschemes'
 "Plugin 'altercation/vim-colors-solarized'
 "Plugin 'chriskempson/base16-vim'
+
+" JavaScript
+"Plugin 'marijnh/tern_for_vim'
 
 " untested
 "Plugin 'christoomey/vim-run-interactive'
