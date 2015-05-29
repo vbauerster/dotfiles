@@ -17,5 +17,12 @@ alias q='exit'
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
 
+# Empty the Trash on all mounted volumes and the main HDD
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
+
+# ps aux | grep [h]ttpd
+# Surrounding 1st letter with brackets, eliminates second instance of grep -v
+alias psgrep='ps aux | grep $(echo $1 | sed "s/^\(.\)/[\1]/g")'
+
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
