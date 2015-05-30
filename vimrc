@@ -2,6 +2,7 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible " not compatible with vi
+set encoding=utf-8
 
 " set a map leader for more key combos
 let mapleader = ','
@@ -99,7 +100,7 @@ if executable('ag')
   let g:ackprg = 'ag --nogroup --column'
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   "let g:ctrlp_use_caching = 0
@@ -131,7 +132,11 @@ set nolazyredraw " don't redraw while executing macros
 " Color scheme
 colorscheme solarized
 set background=dark
-set encoding=utf-8
+"let g:airline_theme="powerlineish"
+"let g:airline_theme="base16"
+
+"execute "set background=".$BACKGROUND
+"execute "colorscheme ".$THEME
 
 " Highlight line number of where cursor currently is
 "hi CursorLineNr guifg=#050505
@@ -176,8 +181,8 @@ set laststatus=2 " show the satus line all the time
 " Additional, plugin-specific mappings are located under
 " the plugins section
 
-" shortcut to save
-nmap <leader>ss :w<cr>
+" shortcut to save/write
+nmap <leader>w :w<cr>
 
 " open vimrc
 nnoremap <leader>ev :e ~/.vimrc<CR>
@@ -198,8 +203,7 @@ nmap <silent> <leader>/ :set invhlsearch<CR>
 " toggle invisible characters
 "set list listchars=tab:»·,trail:·,nbsp:·
 "set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
-set listchars=tab:▸\ ,eol:¬,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
-"set listchars=tab:»\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
+set listchars=tab:»·,trail:·,nbsp:·,eol:¬,extends:❯,precedes:❮
 highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
 set showbreak=↪
 nmap <leader>l :set list!<CR>

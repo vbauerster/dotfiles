@@ -2,7 +2,6 @@ set ignorecase
 set smartcase
 set hlsearch
 set showmode
-"set clipboard=unnamed
 set mps+=<:>
 nmap ,/ :nohlsearch<CR>
 nmap ,r :action ReformatCode<CR>

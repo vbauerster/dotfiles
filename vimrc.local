@@ -49,3 +49,42 @@
     let NERDTreeKeepTreeInNewTab=1
     let g:nerdtree_tabs_open_on_gui_startup=0
 " }
+
+" YouCompleteMe {
+        " Disable AutoComplPop.
+        let g:acp_enableAtStartup = 0
+
+        " enable completion from tags
+        let g:ycm_collect_identifiers_from_tags_files = 1
+
+        " remap Ultisnips for compatibility for YCM
+        let g:UltiSnipsExpandTrigger = '<C-j>'
+        let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+        let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+        " If you want :UltiSnipsEdit to split your window.
+        "let g:UltiSnipsEditSplit="vertical"
+
+        " Enable omni completion.
+        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+        autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+        " Haskell post write lint and check with ghcmod
+        " $ `cabal install ghcmod` if missing and ensure
+        " ~/.cabal/bin is in your $PATH.
+        if !executable("ghcmod")
+            autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+        endif
+
+        " For snippet_complete marker.
+        "if !exists("g:spf13_no_conceal")
+            "if has('conceal')
+                "set conceallevel=2 concealcursor=i
+            "endif
+        "endif
+" }
+
