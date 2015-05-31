@@ -27,10 +27,19 @@ Plugin 'mattn/emmet-vim'
 "Plugin 'tomtom/tlib_vim' " required by snipmate
 "Plugin 'garbas/vim-snipmate'
 
-" Track the engine.
+" Snippet Track the engine.
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine.
 Plugin 'honza/vim-snippets'
+
+" required by xolox/vim-easytags
+Plugin 'xolox/vim-misc'
+
+" Easy Exuberant Ctags
+Plugin 'xolox/vim-easytags'
+
+" Extended session management for Vim
+Plugin 'xolox/vim-session'
 
 " colorschemes
 Plugin 'flazz/vim-colorschemes'
