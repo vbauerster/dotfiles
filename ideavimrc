@@ -7,3 +7,5 @@ nmap ,/ :nohlsearch<CR>
 nmap ,r :action ReformatCode<CR>
 nmap ,, :action AceJumpAction<CR>
 nmap ,q :action CloseContent<CR>
+nmap csw' :action Macro.surround_with_single_quote<CR>
+nmap ds' :action Macro.surround_undo_single_quote<CR>
