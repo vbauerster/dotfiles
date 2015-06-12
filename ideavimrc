@@ -1,11 +1,19 @@
+let mapleader = ','
 set ignorecase
 set smartcase
 set hlsearch
 set showmode
 set mps+=<:>
-nmap ,/ :nohlsearch<CR>
-nmap ,r :action ReformatCode<CR>
-nmap ,, :action AceJumpAction<CR>
-nmap ,q :action CloseContent<CR>
+set undolevels=100
+nmap <leader>/ :nohlsearch<CR>
+nmap <leader>r :action ReformatCode<CR>
+nmap <leader>, :action AceJumpAction<CR>
+nmap <leader>q :action CloseContent<CR>
 nmap csw' :action Macro.surround_with_single_quote<CR>
+nmap csw" :action Macro.surround_with_double_quote<CR>
 nmap ds' :action Macro.surround_undo_single_quote<CR>
+nmap ds" :action Macro.surround_undo_double_quote<CR>
+nmap cs"' :action Macro.surround_double_to_single_quote<CR>
+" remove extra whitespace
+nmap <leader><space> :%s/\s\+$<CR>
+"nmap ,<space> :%s/\s\+$//e<CR>
