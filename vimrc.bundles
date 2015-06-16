@@ -27,6 +27,9 @@ Plugin 'mattn/emmet-vim'
 "Plugin 'tomtom/tlib_vim' " required by snipmate
 "Plugin 'garbas/vim-snipmate'
 
+" Auto keyboard switcher
+Plugin 'lyokha/vim-xkbswitch'
+
 " Snippet Track the engine.
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine.
