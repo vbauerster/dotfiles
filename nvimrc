@@ -1,6 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible " not compatible with vi
 set encoding=utf-8
 
 " set a map leader for more key combos
@@ -8,14 +9,14 @@ let mapleader = ','
 "let g:mapleader = ','
 
 " Use before config if available {
-    if filereadable(expand("~/.nvimrc.before"))
-        source ~/.nvimrc.before
+    if filereadable(expand("~/.vimrc.before"))
+        source ~/.vimrc.before
     endif
 " }
 
 " Use bundles config {
-    if filereadable(expand("~/.nvimrc.bundles"))
-        source ~/.nvimrc.bundles
+    if filereadable(expand("~/.vimrc.bundles"))
+        source ~/.vimrc.bundles
     endif
 " }
 
@@ -29,7 +30,7 @@ set nowritebackup
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 set history=256
 set ruler         " show the cursor position all the time
-set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+"set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 "set autowrite     " Automatically :write before running commands
 
 " Softtabs, 4 spaces
@@ -41,7 +42,7 @@ set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
 set softtabstop=4               " Let backspace delete indent
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
-set matchpairs+=<:>             " Match, to be used with %
+"set matchpairs+=<:>             " Match, to be used with %
 "set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 "set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 "set completeopt+=longest
@@ -57,7 +58,6 @@ endif
 " faster redrawing
 set ttyfast
 set t_Co=256
-
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -145,7 +145,7 @@ set cursorline                  " Highlight current line
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 
-" Make it obvious where 120 characters is
+" Make it obvious where 80 characters is
 set textwidth=120
 set colorcolumn=+1
 
@@ -172,6 +172,13 @@ set diffopt+=vertical
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set laststatus=2 " show the satus line all the time
+" Broken down into easily includeable segments
+set statusline=%<%f\    " Filename
+set statusline+=%w%h%m%r " Options
+set statusline+=%{fugitive#statusline()} "  Git Hotness
+set statusline+=\ [%{&ff}/%Y]            " filetype
+set statusline+=\ [%{getcwd()}]          " current dir
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
@@ -180,15 +187,18 @@ set laststatus=2 " show the satus line all the time
 " Additional, plugin-specific mappings are located under
 " the plugins section
 
+" reload ctags, --fields=+l needs by YCM
+nnoremap <leader>C :!ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+
 " shortcut to save/write
 nmap <leader>w :w<cr>
 
-" open nvimrc
+" open vimrc
 nnoremap <leader>ev :e ~/.nvimrc<CR>
 nnoremap <leader>eV :tabnew ~/.nvimrc<CR>
 " edit vim plugins
-nnoremap <leader>eb :e ~/.nvimrc.bundles<CR>
-nnoremap <leader>eB :tabnew ~/.nvimrc.bundles<CR>
+nnoremap <leader>eb :e ~/.vimrc.bundles<CR>
+nnoremap <leader>eB :tabnew ~/.vimrc.bundles<CR>
 " edit gitconfig
 nnoremap <leader>eg :e ~/.gitconfig<CR>
 nnoremap <leader>eG :tabnew ~/.gitconfig<CR>
@@ -254,7 +264,7 @@ endfunction
 " => Local config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Local config if available {
-  if filereadable(expand("~/.nvimrc.local"))
-    source ~/.nvimrc.local
+  if filereadable(expand("~/.vimrc.local"))
+    source ~/.vimrc.local
   endif
 " }
