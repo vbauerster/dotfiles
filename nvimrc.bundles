@@ -11,7 +11,7 @@ if has('vim_starting')
 endif
 
 " Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.nvim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
@@ -21,57 +21,57 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 " main plugins
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'rking/ag.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-fugitive' " the ultimate git helper
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'godlygeek/tabular'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'mbbill/undotree'
-Plugin 'mattn/emmet-vim'
-"Plugin 'MarcWeber/vim-addon-mw-utils' " required by snipmate
-"Plugin 'tomtom/tlib_vim' " required by snipmate
-"Plugin 'garbas/vim-snipmate'
+"NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'jistr/vim-nerdtree-tabs'
+NeoBundle 'Xuyuanp/nerdtree-git-plugin'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'tpope/vim-fugitive' " the ultimate git helper
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'mbbill/undotree'
+NeoBundle 'mattn/emmet-vim'
+"NeoBundle 'MarcWeber/vim-addon-mw-utils' " required by snipmate
+"NeoBundle 'tomtom/tlib_vim' " required by snipmate
+"NeoBundle 'garbas/vim-snipmate'
 
 " Auto keyboard switcher
-Plugin 'lyokha/vim-xkbswitch'
+NeoBundle 'lyokha/vim-xkbswitch'
 
 " Snippet Track the engine.
-Plugin 'SirVer/ultisnips'
+NeoBundle 'SirVer/ultisnips'
 " Snippets are separated from the engine.
-Plugin 'honza/vim-snippets'
+NeoBundle 'honza/vim-snippets'
 
 
 " colorschemes
-Plugin 'flazz/vim-colorschemes'
-"Plugin 'altercation/vim-colors-solarized'
-"Plugin 'chriskempson/base16-vim'
+NeoBundle 'flazz/vim-colorschemes'
+"NeoBundle 'altercation/vim-colors-solarized'
+"NeoBundle 'chriskempson/base16-vim'
 
 " JavaScript plugins
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'burnettk/vim-angular'
-"Plugin 'jelera/vim-javascript-syntax'
-"Plugin 'marijnh/tern_for_vim'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
+NeoBundle 'burnettk/vim-angular'
+"NeoBundle 'jelera/vim-javascript-syntax'
+"NeoBundle 'marijnh/tern_for_vim'
 
 " untested
-"Plugin 'christoomey/vim-run-interactive'
-"Plugin 'kchmck/vim-coffee-script'
-"Plugin 'pbrisbin/vim-mkdir'
-"Plugin 'slim-template/vim-slim'
-"Plugin 'tpope/vim-eunuch'
-"Plugin 'vim-scripts/ctags.vim'
-"Plugin 'vim-scripts/matchit.zip'
-"Plugin 'vim-scripts/tComment'
+"NeoBundle 'christoomey/vim-run-interactive'
+"NeoBundle 'kchmck/vim-coffee-script'
+"NeoBundle 'pbrisbin/vim-mkdir'
+"NeoBundle 'slim-template/vim-slim'
+"NeoBundle 'tpope/vim-eunuch'
+"NeoBundle 'vim-scripts/ctags.vim'
+"NeoBundle 'vim-scripts/matchit.zip'
+"NeoBundle 'vim-scripts/tComment'
 
 call neobundle#end()
 
