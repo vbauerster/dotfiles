@@ -50,6 +50,11 @@
     let g:nerdtree_tabs_open_on_gui_startup=0
 " }
 
+" UndoTree {
+    nnoremap <Leader>u :UndotreeToggle<CR>
+    let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
+" }
+
 " YouCompleteMe {
         " Disable AutoComplPop.
         let g:acp_enableAtStartup = 0
@@ -91,4 +96,18 @@
 " vim-xkbswitch {
     let g:XkbSwitchEnabled = 1
     let g:XkbSwitchLib = '/usr/local/lib/libInputSourceSwitcher.dylib'
+" }
+
+" tagbar {
+    nmap <F8> :TagbarToggle<CR>
+" }
+
+" Session List {
+    set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+    nmap <leader>sl :SessionList<CR>
+    nmap <leader>ss :SessionSave<CR>
+" }
+
+" JSON {
+    "nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
 " }

@@ -5,44 +5,48 @@ call vundle#begin()
 " Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 
-" main plugins
-Plugin 'Valloric/YouCompleteMe'
+" General
+Plugin 'lyokha/vim-xkbswitch' " Auto keyboard switcher
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rking/ag.vim'
-Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'bling/vim-airline'
-Plugin 'tpope/vim-fugitive' " the ultimate git helper
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'godlygeek/tabular'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'mbbill/undotree'
-Plugin 'mattn/emmet-vim'
+Plugin 'majutsushi/tagbar'
 "Plugin 'MarcWeber/vim-addon-mw-utils' " required by snipmate
 "Plugin 'tomtom/tlib_vim' " required by snipmate
 "Plugin 'garbas/vim-snipmate'
 
-" Auto keyboard switcher
-Plugin 'lyokha/vim-xkbswitch'
+" General Programming
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive' " the ultimate git helper
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
 
-" Snippet Track the engine.
-Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine.
+" Snippet & AutoComplete
+Plugin 'Valloric/YouCompleteMe' " Requires python
+Plugin 'SirVer/ultisnips' " Requires python
 Plugin 'honza/vim-snippets'
 
+" HTML
+Plugin 'amirh/HTML-AutoCloseTag'
+Plugin 'mattn/emmet-vim'
+
 " required by xolox/vim-easytags
-Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-misc'
 
 " Easy Exuberant Ctags
-Plugin 'xolox/vim-easytags'
+"Plugin 'xolox/vim-easytags'
 
 " Extended session management for Vim
-Plugin 'xolox/vim-session'
+"Plugin 'xolox/vim-session'
+Plugin 'vim-scripts/sessionman.vim'
 
 " colorschemes
 Plugin 'flazz/vim-colorschemes'
@@ -62,7 +66,6 @@ Plugin 'burnettk/vim-angular'
 "Plugin 'pbrisbin/vim-mkdir'
 "Plugin 'slim-template/vim-slim'
 "Plugin 'tpope/vim-eunuch'
-"Plugin 'tpope/vim-repeat'
 "Plugin 'vim-scripts/ctags.vim'
 "Plugin 'vim-scripts/matchit.zip'
 "Plugin 'vim-scripts/tComment'
