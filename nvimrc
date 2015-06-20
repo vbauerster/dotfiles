@@ -6,7 +6,8 @@ set encoding=utf-8
 
 " set a map leader for more key combos
 let mapleader = ','
-"let g:mapleader = ','
+
+"let g:python_host_prog = '/usr/local/opt/python/bin/python'
 
 " Use before config if available {
     if filereadable(expand("~/.vimrc.before"))
@@ -145,7 +146,7 @@ set cursorline                  " Highlight current line
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 
-" Make it obvious where 80 characters is
+" Make it obvious where 120 characters is
 set textwidth=120
 set colorcolumn=+1
 
@@ -173,12 +174,12 @@ set diffopt+=vertical
 
 set laststatus=2 " show the satus line all the time
 " Broken down into easily includeable segments
-set statusline=%<%f\    " Filename
-set statusline+=%w%h%m%r " Options
-set statusline+=%{fugitive#statusline()} "  Git Hotness
-set statusline+=\ [%{&ff}/%Y]            " filetype
-set statusline+=\ [%{getcwd()}]          " current dir
-set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+"set statusline=%<%f\    " Filename
+"set statusline+=%w%h%m%r " Options
+"set statusline+=%{fugitive#statusline()} "  Git Hotness
+"set statusline+=\ [%{&ff}/%Y]            " filetype
+"set statusline+=\ [%{getcwd()}]          " current dir
+"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
