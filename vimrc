@@ -76,7 +76,6 @@ set ruler           " show the cursor position all the time
 set shiftround      " round indent to a multiple of 'shiftwidth'
 set smartindent
 set nojoinspaces    " Prevents inserting two spaces after punctuation on a join (J)
-set matchpairs+=<:> " Match, to be used with %
 "set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 "set completeopt+=longest
 

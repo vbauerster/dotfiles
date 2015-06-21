@@ -61,6 +61,7 @@ Plugin 'burnettk/vim-angular'
 "Plugin 'marijnh/tern_for_vim'
 
 " untested
+Plugin 'ervandew/supertab'
 "Plugin 'christoomey/vim-run-interactive'
 "Plugin 'kchmck/vim-coffee-script'
 "Plugin 'pbrisbin/vim-mkdir'

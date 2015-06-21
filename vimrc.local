@@ -59,6 +59,8 @@
         " Disable AutoComplPop.
         let g:acp_enableAtStartup = 0
 
+        let g:ycm_path_to_python_interpreter = '/usr/local/opt/python/bin/python'
+
         " enable completion from tags
         let g:ycm_collect_identifiers_from_tags_files = 1
 
