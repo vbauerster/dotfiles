@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<root>
+  <inputsourcedef>
+    <name>PROGRAMMER_DVORAK</name>
+    <inputsourceid_prefix>com.apple.keyboardlayout.Programmer Dvorak</inputsourceid_prefix>
+  </inputsourcedef>
+
+  <item>
+    <name>Private</name>
+
+    <item>
+      <name>──────────────────────────────</name>
+      <appendix>For Programmer Dvorak Only</appendix>
+    </item>
+    <item>
+      <name>Make Cut, Copy, Paste, Quit and Undo behave same as on QWERTY</name>
+      <appendix></appendix>
+      <appendix>Change Command_L+Q to Command_L+X (X in DV - i.e. Cut) </appendix>
+      <appendix>Change Command_L+J to Command_L+C (C in DV - i.e. Copy) </appendix>
+      <appendix>Change Command_L+K to Command_L+V (V in DV - i.e. Paste) </appendix>
+      <appendix>Change Command_L+' to Command_L+Z (Z in DV - i.e. Undo) </appendix>
+      <appendix>Change Command_L+; to Command_L+Q (Q in DV - i.e. Quit) </appendix>
+
+      <identifier>private.cut_copy_paste_quit_undo_pdvorak_as_QWERTY</identifier>
+      <inputsource_only>PROGRAMMER_DVORAK</inputsource_only>
+
+      <autogen>__KeyToKey__
+        KeyCode::X, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
+        KeyCode::B, ModifierFlag::COMMAND_L
+      </autogen>
+      <autogen>__KeyToKey__
+        KeyCode::C, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
+        KeyCode::I, ModifierFlag::COMMAND_L
+      </autogen>
+      <autogen>__KeyToKey__
+        KeyCode::V, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
+        KeyCode::DOT, ModifierFlag::COMMAND_L
+      </autogen>
+      <autogen>__KeyToKey__
+        KeyCode::Q, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
+        KeyCode::X, ModifierFlag::COMMAND_L
+      </autogen>
+      <autogen>__KeyToKey__
+        KeyCode::Z, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
+        KeyCode::SLASH, ModifierFlag::COMMAND_L
+      </autogen>
+    </item>
+
+    <item>
+      <name>Retain BACKQUOTE while COMMAND pressed</name>
+      <appendix></appendix>
+      <appendix>Cycle through windows ⌘ ` (only if COMMAND_L is only modifier)</appendix>
+
+      <identifier>private.cycle_with_command_backquote</identifier>
+      <inputsource_only>PROGRAMMER_DVORAK</inputsource_only>
+
+      <autogen>__KeyToKey__
+        KeyCode::BACKQUOTE, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
+        KeyCode::EQUAL, ModifierFlag::COMMAND_L | ModifierFlag::SHIFT_L
+      </autogen>
+    </item>
+
+    <item>
+      <name>──────────────────────────────</name>
+      <appendix>Misc.</appendix>
+    </item>
+
+    <item>
+      <name>FN+CONTROL_L to CapsLock</name>
+      <identifier>fn_lctrl_to_capslock</identifier>
+      <autogen>__KeyToKey__ KeyCode::CONTROL_L, ModifierFlag::FN, KeyCode::CAPSLOCK</autogen>
+    </item>
+
+  </item>
+</root>
