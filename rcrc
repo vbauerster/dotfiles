@@ -1,2 +1,2 @@
-EXCLUDES="README.md LICENSE macros.xml"
+EXCLUDES="README.md LICENSE macros.xml private.xml"
 DOTFILES_DIRS="$HOME/dotfiles"
