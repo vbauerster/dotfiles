@@ -6,7 +6,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " General
-Plugin 'lyokha/vim-xkbswitch' " Auto keyboard switcher
+"Plugin 'lyokha/vim-xkbswitch' " Auto keyboard switcher
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'

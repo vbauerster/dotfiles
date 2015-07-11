@@ -28,8 +28,10 @@ if has('clipboard')
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => UI Settings
+" => Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" shorter escape delay
+set timeoutlen=1000 ttimeoutlen=100
 "set title " set terminal title
 "set so=7 " set 7 lines to the cursors - when moving vertical
 set wildmenu              " enhanced command line completion
@@ -41,7 +43,7 @@ set scrolloff=3           " lines of text around cursor
 set ttyfast               " faster redrawing
 set t_Co=256
 set cmdheight=1           " command bar height
-"set shell=$SHELL
+set shell=$SHELL
 
 set autoread " detect when a file is changed
 
@@ -88,8 +90,10 @@ set nolazyredraw " don't redraw while executing macros
 
 " Color scheme
 syntax on
-colorscheme solarized
+"colorscheme solarized
 set background=dark
+"colorscheme wombat
+colorscheme hybrid
 "let g:airline_theme="powerlineish"
 "let g:airline_theme="base16"
 
@@ -103,10 +107,13 @@ set cursorline                  " Highlight current line
 
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%121v.\+/
 
 " Make it obvious where 120 characters is
 set textwidth=120
-set colorcolumn=+1
+"set colorcolumn=+1
+"highlight colorcolumn ctermbg=gray guibg=orange
 
 " Numbers
 set number
@@ -163,6 +170,9 @@ nnoremap <leader>eL :tabnew ~/.vimrc.local<CR>
 " edit gitconfig
 nnoremap <leader>eg :e ~/.gitconfig<CR>
 nnoremap <leader>eG :tabnew ~/.gitconfig<CR>
+" edit tmux.conf
+nnoremap <leader>et :e ~/.tmux.conf<CR>
+nnoremap <leader>eT :tabnew ~/.tmux.conf<CR>
 
 " remove extra whitespace
 nmap <leader><space> :%s/\s\+$<CR>

@@ -26,7 +26,7 @@
     " See `:echo g:airline_theme_map` for some more choices
     " Default in terminal vim is 'dark'
     if !exists('g:airline_theme')
-      let g:airline_theme = 'solarized'
+      let g:airline_theme = 'wombat'
     endif
     if !exists('g:airline_powerline_fonts')
       " Use the default set of separators with a few customizations
@@ -96,8 +96,8 @@
 " }
 
 " vim-xkbswitch {
-    let g:XkbSwitchEnabled = 1
-    let g:XkbSwitchLib = '/usr/local/lib/libInputSourceSwitcher.dylib'
+    "let g:XkbSwitchEnabled = 1
+    "let g:XkbSwitchLib = '/usr/local/lib/libInputSourceSwitcher.dylib'
 " }
 
 " tagbar {
