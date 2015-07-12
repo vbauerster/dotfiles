@@ -90,15 +90,8 @@ set nolazyredraw " don't redraw while executing macros
 
 " Color scheme
 syntax on
-"colorscheme solarized
 set background=dark
-"colorscheme wombat
 colorscheme hybrid
-"let g:airline_theme="powerlineish"
-"let g:airline_theme="base16"
-
-"execute "set background=".$BACKGROUND
-"execute "colorscheme ".$THEME
 
 " Highlight line number of where cursor currently is
 "hi CursorLineNr guifg=#050505
@@ -107,6 +100,7 @@ set cursorline                  " Highlight current line
 
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
+" if textwidth > 120 highlight overlenght with reddish bg
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%121v.\+/
 
@@ -140,7 +134,7 @@ set laststatus=2 " show the satus line all the time
 " Broken down into easily includeable segments
 "set statusline=%<%f\    " Filename
 "set statusline+=%w%h%m%r " Options
-"set statusline+=%{fugitive#statusline()} "  Git Hotness
+set statusline+=%{fugitive#statusline()} "  Git Hotness
 "set statusline+=\ [%{&ff}/%Y]            " filetype
 "set statusline+=\ [%{getcwd()}]          " current dir
 "set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
