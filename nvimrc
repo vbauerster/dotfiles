@@ -44,6 +44,8 @@ set ttyfast               " faster redrawing
 set t_Co=256
 set cmdheight=1           " command bar height
 set shell=$SHELL
+set noerrorbells
+set novisualbell
 
 set autoread " detect when a file is changed
 
@@ -82,11 +84,11 @@ set nojoinspaces    " Prevents inserting two spaces after punctuation on a join 
 "set completeopt+=longest
 
 " Searching
-set ignorecase   " case insensitive searching
-set smartcase    " case-sensitive if expresson contains a capital letter
-set hlsearch     " Highlight search terms
-set incsearch    " set incremental search, like modern browsers
-set nolazyredraw " don't redraw while executing macros
+set ignorecase " case insensitive searching
+set smartcase  " case-sensitive if expresson contains a capital letter
+set hlsearch   " Highlight search terms
+set incsearch  " set incremental search, like modern browsers
+set lazyredraw " don't redraw while executing macros
 
 " Color scheme
 syntax on

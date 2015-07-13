@@ -113,3 +113,7 @@
 " JSON {
     "nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
 " }
+
+" emmet {
+    "let g:user_emmet_leader_key='<C-Z>'
+" }

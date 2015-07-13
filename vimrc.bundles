@@ -14,11 +14,14 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-repeat'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'mbbill/undotree'
-Plugin 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar' "ctags tagbar
+Plugin 'ervandew/supertab'
+Plugin 'vim-scripts/matchit.zip'
 "Plugin 'MarcWeber/vim-addon-mw-utils' " required by snipmate
 "Plugin 'tomtom/tlib_vim' " required by snipmate
 "Plugin 'garbas/vim-snipmate'
@@ -61,14 +64,12 @@ Plugin 'burnettk/vim-angular'
 "Plugin 'marijnh/tern_for_vim'
 
 " untested
-Plugin 'ervandew/supertab'
 "Plugin 'christoomey/vim-run-interactive'
 "Plugin 'kchmck/vim-coffee-script'
 "Plugin 'pbrisbin/vim-mkdir'
 "Plugin 'slim-template/vim-slim'
 "Plugin 'tpope/vim-eunuch'
 "Plugin 'vim-scripts/ctags.vim'
-"Plugin 'vim-scripts/matchit.zip'
 "Plugin 'vim-scripts/tComment'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
