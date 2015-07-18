@@ -92,8 +92,8 @@ set lazyredraw " don't redraw while executing macros
 
 " Color scheme
 syntax on
-set background=dark
-colorscheme hybrid
+set background=light
+colorscheme solarized
 
 " Highlight line number of where cursor currently is
 "hi CursorLineNr guifg=#050505
