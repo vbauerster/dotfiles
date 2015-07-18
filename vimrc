@@ -95,13 +95,9 @@ syntax on
 set background=light
 colorscheme solarized
 
-" Highlight line number of where cursor currently is
-"hi CursorLineNr guifg=#050505
+" Highlight current line
+set cursorline
 
-set cursorline                  " Highlight current line
-
-highlight clear SignColumn      " SignColumn should match background
-highlight clear LineNr          " Current line number row will have same background color in relative mode
 " if textwidth > 120 highlight overlenght with reddish bg
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%121v.\+/
@@ -180,7 +176,7 @@ nmap <silent> <leader>/ :set invhlsearch<CR>
 
 " toggle invisible characters
 "set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
-set listchars=tab:»·,trail:·,nbsp:·,eol:¬,extends:❯,precedes:❮
+set listchars=tab:»·,trail:·,nbsp:·,extends:❯,precedes:❮
 highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
 set showbreak=↪
 nmap <leader>l :set list!<CR>

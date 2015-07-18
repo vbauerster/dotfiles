@@ -65,9 +65,10 @@
         let g:ycm_collect_identifiers_from_tags_files = 1
 
         " remap Ultisnips for compatibility for YCM
-        let g:UltiSnipsExpandTrigger = '<C-v>'
-        "let g:UltiSnipsJumpForwardTrigger = '<C-k>' "supertab manages this
-        "let g:UltiSnipsJumpBackwardTrigger = '<C-j>' "supertab manages this
+        let g:UltiSnipsExpandTrigger = '<C-k>'
+        let g:UltiSnipsJumpForwardTrigger = '<C-k>'
+        let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
+        "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
         " If you want :UltiSnipsEdit to split your window.
         "let g:UltiSnipsEditSplit="vertical"
 
@@ -115,5 +116,5 @@
 " }
 
 " emmet {
-    "let g:user_emmet_leader_key='<C-Z>'
+    let g:user_emmet_leader_key='<C-D>'
 " }
