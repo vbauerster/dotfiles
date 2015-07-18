@@ -22,9 +22,7 @@ Plugin 'mbbill/undotree'
 Plugin 'majutsushi/tagbar' "ctags tagbar
 Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/matchit.zip'
-"Plugin 'MarcWeber/vim-addon-mw-utils' " required by snipmate
-"Plugin 'tomtom/tlib_vim' " required by snipmate
-"Plugin 'garbas/vim-snipmate'
+Plugin 'christoomey/vim-tmux-navigator'
 
 " General Programming
 Plugin 'scrooloose/syntastic'

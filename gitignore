@@ -2,3 +2,5 @@
 *.sw[nop]
 *~
 .idea
+.tags
+tags

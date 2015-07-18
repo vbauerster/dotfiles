@@ -36,6 +36,7 @@ set timeoutlen=1000 ttimeoutlen=100
 "set so=7 " set 7 lines to the cursors - when moving vertical
 set wildmenu              " enhanced command line completion
 set wildmode=list:longest " complete files like a shell
+set wildignore+=*.o,*.obj,.git,node_modules,_site,*.class,*.zip,*.aux
 set hidden                " current buffer can be put into background
 set showcmd               " show incomplete commands
 set noshowmode            " don't show which mode disabled for PowerLine
@@ -80,7 +81,6 @@ set ruler           " show the cursor position all the time
 set shiftround      " round indent to a multiple of 'shiftwidth'
 set smartindent
 set nojoinspaces    " Prevents inserting two spaces after punctuation on a join (J)
-"set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 "set completeopt+=longest
 
 " Searching
@@ -115,16 +115,16 @@ set textwidth=120
 set number
 set numberwidth=5
 
-" Treat <li> and <p> tags like the block tags they are
-"let g:html_indent_tags = 'li\|p'
-
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
 "set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Open new split panes to right and bottom, which feels more natural
+" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 set splitbelow
 set splitright
+
+set tags=./tags;/,~/.vimtags
 
 " Always use vertical diffs
 set diffopt+=vertical
@@ -137,7 +137,7 @@ set laststatus=2 " show the satus line all the time
 "set statusline=%<%f\    " Filename
 "set statusline+=%w%h%m%r " Options
 set statusline+=%{fugitive#statusline()} "  Git Hotness
-"set statusline+=\ [%{&ff}/%Y]            " filetype
+set statusline+=\ [%{&ff}/%Y]            " filetype
 "set statusline+=\ [%{getcwd()}]          " current dir
 "set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
@@ -145,11 +145,12 @@ set statusline+=%{fugitive#statusline()} "  Git Hotness
 " => Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General mappings/shortcuts for functionality
-" Additional, plugin-specific mappings are located under
-" the plugins section
+
+" exit without save
+map Q ZQ
 
 " reload ctags, --fields=+l needs by YCM
-nnoremap <leader>C :!ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
 " shortcut to save/write
 nmap <leader>w :w<cr>
@@ -178,7 +179,6 @@ nnoremap <leader><space> :%s/\s\+$//<cr>:let @/=''<cr>
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
 " toggle invisible characters
-"set list listchars=tab:»·,trail:·,nbsp:·
 "set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set listchars=tab:»·,trail:·,nbsp:·,eol:¬,extends:❯,precedes:❮
 highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
@@ -188,16 +188,12 @@ nmap <leader>l :set list!<CR>
 " switch between current and last buffer
 nmap <leader>. <c-^>
 
-" Quicker window movement
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-l> <C-w>l
-
-map <silent> <C-h> :call WinMove('h')<cr>
-map <silent> <C-j> :call WinMove('j')<cr>
-map <silent> <C-k> :call WinMove('k')<cr>
-map <silent> <C-l> :call WinMove('l')<cr>
+" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
+" Easier split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " scroll the viewport faster
 nnoremap <C-e> 3<C-e>
@@ -251,24 +247,6 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   "let g:ctrlp_use_caching = 0
 endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Window movement shortcuts
-" move to the window in the direction shown, or create a new window
-function! WinMove(key)
-    let t:curwin = winnr()
-    exec "wincmd ".a:key
-    if (t:curwin == winnr())
-        if (match(a:key,'[jk]'))
-            wincmd v
-        else
-            wincmd s
-        endif
-        exec "wincmd ".a:key
-    endif
-endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Local config
