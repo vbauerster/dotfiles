@@ -171,7 +171,8 @@ nnoremap <leader>et :e ~/.tmux.conf<CR>
 nnoremap <leader>eT :tabnew ~/.tmux.conf<CR>
 
 " remove extra whitespace
-nmap <leader><space> :%s/\s\+$<CR>
+"nmap <leader><space> :%s/\s\+$<CR>
+nnoremap <leader><space> :%s/\s\+$//<cr>:let @/=''<cr>
 
 " toggle search highlighting
 nmap <silent> <leader>/ :set invhlsearch<CR>
