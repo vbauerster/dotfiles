@@ -31,7 +31,7 @@ endif
 " => Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " shorter escape delay
-set timeoutlen=1000 ttimeoutlen=100
+set timeoutlen=600 ttimeoutlen=100
 "set title " set terminal title
 "set so=7 " set 7 lines to the cursors - when moving vertical
 set wildmenu              " enhanced command line completion
