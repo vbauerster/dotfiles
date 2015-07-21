@@ -36,6 +36,7 @@ set timeoutlen=600 ttimeoutlen=100
 "set so=7 " set 7 lines to the cursors - when moving vertical
 set wildmenu              " enhanced command line completion
 set wildmode=list:longest " complete files like a shell
+set wildignore+=*.o,*.obj,.git,node_modules,_site,*.class,*.zip,*.aux
 set hidden                " current buffer can be put into background
 set showcmd               " show incomplete commands
 set noshowmode            " don't show which mode disabled for PowerLine
@@ -175,7 +176,8 @@ nmap <silent> <leader>/ :set invhlsearch<CR>
 
 " toggle invisible characters
 "set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
-set listchars=tab:»·,trail:·,nbsp:·,extends:❯,precedes:❮
+"set listchars=tab:»·,trail:·,nbsp:·,extends:❯,precedes:❮
+set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
 set showbreak=↪
 nmap <leader>l :set list!<CR>

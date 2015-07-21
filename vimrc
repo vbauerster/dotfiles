@@ -176,7 +176,8 @@ nmap <silent> <leader>/ :set invhlsearch<CR>
 
 " toggle invisible characters
 "set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
-set listchars=tab:»·,trail:·,nbsp:·,extends:❯,precedes:❮
+"set listchars=tab:»·,trail:·,nbsp:·,extends:❯,precedes:❮
+set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
 set showbreak=↪
 nmap <leader>l :set list!<CR>
