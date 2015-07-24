@@ -21,7 +21,9 @@ alias path='echo $PATH | tr -s ":" "\n"'
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
 
 # ps aux | grep [h]ttpd
-# Surrounding 1st letter with brackets, eliminates second instance of grep -v
+# Eliminates second instance of grep -v (Inverted search)
+# http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
+# http://www.manpagez.com/info/grep/grep-2.5.4/grep_21.php#SEC21 paragraph 7
 alias psgrep='ps aux | grep $(echo $1 | sed "s/^\(.\)/[\1]/g")'
 
 # Include custom aliases

@@ -64,13 +64,7 @@
         " enable completion from tags
         let g:ycm_collect_identifiers_from_tags_files = 1
 
-        " remap Ultisnips for compatibility for YCM
-        let g:UltiSnipsExpandTrigger = '<C-k>'
-        let g:UltiSnipsJumpForwardTrigger = '<C-k>'
-        let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
-        "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-        " If you want :UltiSnipsEdit to split your window.
-        "let g:UltiSnipsEditSplit="vertical"
+"let g:endoscope_handle_quotes = 0
 
         " Enable omni completion.
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -96,9 +90,25 @@
         "endif
 " }
 
-" vim-xkbswitch {
-    "let g:XkbSwitchEnabled = 1
-    "let g:XkbSwitchLib = '/usr/local/lib/libInputSourceSwitcher.dylib'
+" Ultisnips {
+        "let g:UltiSnipsExpandTrigger = '<C-k>'
+        let g:UltiSnipsJumpForwardTrigger = '<space>'
+        let g:UltiSnipsJumpBackwardTrigger = '<C-@>'  " Ctrl-Space
+        "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+        " If you want :UltiSnipsEdit to split your window.
+        "let g:UltiSnipsEditSplit="vertical"
+
+        " Expand snippets or return cr
+        " http://www.reddit.com/r/vim/comments/2oeqrg/using_ultisnips_for_pair_completions/
+        function! ExpandSnippet()
+            call UltiSnips#ExpandSnippet()
+            if g:ulti_expand_res == 0
+                return "\<CR>"
+            endif
+            return ""
+        endfunction
+
+        inoremap <expr> <CR> "\<C-R>=ExpandSnippet()\<CR>"
 " }
 
 " tagbar {
@@ -111,10 +121,19 @@
     nmap <leader>ss :SessionSave<CR>
 " }
 
+" emmet {
+    let g:user_emmet_leader_key='<C-d>'
+" }
+
+" jiangmiao/auto-pairs {
+    let g:AutoPairsFlyMode = 1
+" }
+
 " JSON {
     "nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
 " }
 
-" emmet {
-    let g:user_emmet_leader_key='<C-D>'
+" vim-xkbswitch {
+    "let g:XkbSwitchEnabled = 1
+    "let g:XkbSwitchLib = '/usr/local/lib/libInputSourceSwitcher.dylib'
 " }
