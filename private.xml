@@ -2,7 +2,7 @@
 <root>
   <inputsourcedef>
     <name>PROGRAMMER_DVORAK</name>
-    <inputsourceid_prefix>com.apple.keyboardlayout.Programmer Dvorak</inputsourceid_prefix>
+    <inputsourceid_prefix>com.apple.keyboardlayout.ProgrammerDvorak</inputsourceid_prefix>
   </inputsourcedef>
 
   <item>

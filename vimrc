@@ -138,19 +138,8 @@ set statusline+=\ [%{&ff}/%Y]            " filetype
 "set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Mappings
+" => Quick edit Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General mappings/shortcuts for functionality
-
-" exit without save
-map Q ZQ
-
-" reload ctags, --fields=+l needs by YCM
-nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
-
-" shortcut to save/write
-nmap <leader>w :w<cr>
-
 " open vimrc
 nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>eV :tabnew ~/.vimrc<CR>
@@ -166,6 +155,20 @@ nnoremap <leader>eG :tabnew ~/.gitconfig<CR>
 " edit tmux.conf
 nnoremap <leader>et :e ~/.tmux.conf<CR>
 nnoremap <leader>eT :tabnew ~/.tmux.conf<CR>
+
+nnoremap <leader>ej :e ~/.vim/bundle/vim-snippets/UltiSnips/javascript.snippets<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General mappings/shortcuts for functionality
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" exit without save
+map Q ZQ
+
+" reload ctags, --fields=+l needs by YCM
+nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+
+" shortcut to save/write
+nmap <leader>w :w<cr>
 
 " remove extra whitespace
 "nmap <leader><space> :%s/\s\+$<CR>
@@ -192,6 +195,16 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+
+" resize panes
+nnoremap <silent> <Right> :vertical resize +5<cr>
+nnoremap <silent> <Left> :vertical resize -5<cr>
+nnoremap <silent> <Up> :resize +5<cr>
+nnoremap <silent> <Down> :resize -5<cr>
+
 " scroll the viewport faster
 "nnoremap <C-e> 3<C-e>
 "nnoremap <C-y> 3<C-y>
@@ -202,11 +215,17 @@ nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
+" bind K to Ag word under cursor
+nnoremap K :Ag! "<C-R><C-W>"<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COOL THINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup vimrcEx
   autocmd!
+
+  " automatically rebalance windows on vim resize
+  autocmd VimResized * :wincmd =
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when

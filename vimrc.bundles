@@ -42,6 +42,7 @@ Plugin 'jiangmiao/auto-pairs' "causes troble with ultisnip
 "Plugin 'kana/vim-smartinput'
 
 " HTML
+"Plugin 'docunext/closetag.vim' "close HTML tag
 Plugin 'amirh/HTML-AutoCloseTag'
 Plugin 'mattn/emmet-vim'
 
@@ -69,7 +70,6 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 
 " untested
 "Plugin 'christoomey/vim-run-interactive'
-"Plugin 'kchmck/vim-coffee-script'
 "Plugin 'pbrisbin/vim-mkdir'
 "Plugin 'slim-template/vim-slim'
 "Plugin 'tpope/vim-eunuch'
