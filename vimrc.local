@@ -99,6 +99,10 @@
         inoremap <expr> <CR> "\<C-R>=ExpandSnippet()\<CR>"
 " }
 
+" CtrlP {
+    let g:ctrlp_cmd = 'CtrlPBuffer'
+" }
+
 " tagbar {
     nmap <F8> :TagbarToggle<CR>
 " }

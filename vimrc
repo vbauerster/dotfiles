@@ -4,7 +4,7 @@
 " set a map leader for more key combos
 let mapleader = ','
 
-set nocompatible " not compatible with vi
+"set nocompatible " not compatible with vi
 set encoding=utf-8
 
 " Use before config if available {
@@ -41,14 +41,12 @@ set hidden                " current buffer can be put into background
 set showcmd               " show incomplete commands
 set noshowmode            " don't show which mode disabled for PowerLine
 set scrolloff=3           " lines of text around cursor
-set ttyfast               " faster redrawing
-set t_Co=256
+set foldlevelstart=99     " all folds open by default
 set cmdheight=1           " command bar height
-set shell=$SHELL
+set pastetoggle=<F4>      " F2 before pasting to preserve indentation
+set autoread              " detect when a file is changed
 set noerrorbells
-set novisualbell
-
-set autoread " detect when a file is changed
+set shell=$SHELL
 
 " backup/persistance settings
 set undodir=~/.vim/tmp/undo//
@@ -128,17 +126,24 @@ set tags=./tags;/,~/.vimtags
 " Always use vertical diffs
 set diffopt+=vertical
 
+" Whitespaces
+set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
+set showbreak=↪
+" show invisible chars by default
+set list
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => StatusLine
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set laststatus=2 " show the satus line all the time
+" show the satus line all the time
+set laststatus=2
 " Broken down into easily includeable segments
-set statusline=%<%f\                     " Filename
-set statusline+=%w%h%m%r                 " Options
-set statusline+=%{fugitive#statusline()} " Git Hotness
-set statusline+=\ [%{&ff}/%Y]            " filetype
-set statusline+=\ [%{getcwd()}]          " current dir
-set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+"set statusline=%<%f\                     " Filename
+"set statusline+=%w%h%m%r                 " Options
+"set statusline+=%{fugitive#statusline()} " Git Hotness
+"set statusline+=\ [%{&ff}/%Y]            " filetype
+"set statusline+=\ [%{getcwd()}]          " current dir
+"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Quick edit Mappings
@@ -164,34 +169,45 @@ nnoremap <leader>ej :e ~/.vim/bundle/vim-snippets/UltiSnips/javascript.snippets<
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General mappings/shortcuts for functionality
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" exit without save
-map Q ZQ
+" close current buffer without save
+nnoremap Q ZQ
+" quit all
+noremap <Leader>q :qa<cr>
 
 " reload ctags, --fields=+l needs by YCM
 nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
 " shortcut to save/write
-"nmap <leader>w :w<cr>
+nnoremap <leader>w :w!<cr>
 
 " Map Ctrl + S to save in any mode
-nnoremap <silent> <C-S> :update<CR>
-vnoremap <silent> <C-S> <C-C>:update<CR>
-inoremap <silent> <C-S> <C-O>:update<CR>
+"nnoremap <silent> <C-S> :update<CR>
+"vnoremap <silent> <C-S> <C-C>:update<CR>
+"inoremap <silent> <C-S> <C-O>:update<CR>
 
-" remove extra whitespace
-"nmap <leader><space> :%s/\s\+$<CR>
+" Swap implementations of ` and ' jump to markers
+" By default, ' jumps to the marked line, ` jumps to the marked line and
+" column, so swap them
+nnoremap ' `
+nnoremap ` '
+
+" g<c-]> is jump to tag if there's only one matching tag, but show list of
+" options when there is more than one definition
+nnoremap <leader>g g<c-]>
+
+" These create newlines like o and O but stay in normal mode
+nnoremap <silent> zj o<Esc>k
+nnoremap <silent> zk O<Esc>j
+
+" Switch to the directory of the open buffer
+noremap <leader>cd :cd %:p:h<cr>
+
 " remove trailing whitespace and clear the last search pattern
 nnoremap <leader><space> :%s/\s\+$//<CR>:let @/=''<CR>
 
 " toggle search highlighting
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
-"set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
-"set listchars=tab:»·,trail:·,nbsp:·,extends:❯,precedes:❮
-set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
-set showbreak=↪
-" show invisible chars by default
-set list
 " toggle invisible characters
 nmap <leader>c :set list!<CR>
 
@@ -227,7 +243,7 @@ nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
 " bind K to Ag word under cursor
-nnoremap K :Ag! "<C-R><C-W>"<CR>
+"nnoremap K :Ag! "<C-R><C-W>"<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COOL THINGS
