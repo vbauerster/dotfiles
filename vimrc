@@ -186,12 +186,13 @@ nnoremap <leader><space> :%s/\s\+$//<CR>:let @/=''<CR>
 " toggle search highlighting
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
-" toggle invisible characters
 "set listchars=tab:▸\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 "set listchars=tab:»·,trail:·,nbsp:·,extends:❯,precedes:❮
 set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
-"highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
 set showbreak=↪
+" show invisible chars by default
+set list
+" toggle invisible characters
 nmap <leader>c :set list!<CR>
 
 " switch between current and last buffer
