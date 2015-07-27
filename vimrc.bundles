@@ -6,7 +6,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " General
-"Plugin 'lyokha/vim-xkbswitch' " Auto keyboard switcher
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'
@@ -68,6 +67,9 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 "Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'marijnh/tern_for_vim'
 
+" Misc.
+Plugin 'lyokha/vim-xkbswitch' " Auto keyboard switcher
+
 " untested
 "Plugin 'christoomey/vim-run-interactive'
 "Plugin 'pbrisbin/vim-mkdir'
@@ -76,9 +78,9 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 "Plugin 'vim-scripts/ctags.vim'
 "Plugin 'vim-scripts/tComment'
 
-if filereadable(expand("~/.vimrc.bundles.local"))
-  source ~/.vimrc.bundles.local
-endif
+"if filereadable(expand("~/.vimrc.bundles.local"))
+  "source ~/.vimrc.bundles.local
+"endif
 
 call vundle#end()
 filetype plugin indent on

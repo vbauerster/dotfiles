@@ -133,12 +133,12 @@ set diffopt+=vertical
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2 " show the satus line all the time
 " Broken down into easily includeable segments
-set statusline=%<%f\    " Filename
-set statusline+=%w%h%m%r " Options
+"set statusline=%<%f\    " Filename
+"set statusline+=%w%h%m%r " Options
 "set statusline+=%{fugitive#statusline()} "  Git Hotness
-set statusline+=\ [%{&ff}/%Y]            " filetype
-set statusline+=\ [%{getcwd()}]          " current dir
-set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+"set statusline+=\ [%{&ff}/%Y]            " filetype
+"set statusline+=\ [%{getcwd()}]          " current dir
+"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Quick edit Mappings
@@ -192,17 +192,18 @@ nmap <silent> <leader>/ :set invhlsearch<CR>
 set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 "highlight SpecialKey ctermbg=none " make the highlighting of tabs less annoying
 set showbreak=↪
-nmap <leader>l :set list!<CR>
+nmap <leader>c :set list!<CR>
 
 " switch between current and last buffer
 nmap <leader>. <c-^>
 
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 " Easier split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" Looks like tmux.conf manages this
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
 
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
@@ -234,7 +235,7 @@ augroup vimrcEx
   autocmd!
 
   " automatically rebalance windows on vim resize
-  autocmd VimResized * :wincmd =
+  "autocmd VimResized * :wincmd =
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when
@@ -313,7 +314,7 @@ highlight search ctermfg=gray
 " => Local config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Local config if available {
-  if filereadable(expand("~/.vimrc.local"))
-    source ~/.vimrc.local
-  endif
+  "if filereadable(expand("~/.vimrc.local"))
+    "source ~/.vimrc.local
+  "endif
 " }

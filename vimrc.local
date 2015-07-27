@@ -5,8 +5,8 @@
     let g:syntastic_check_on_open=1
     let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
     " allow es5 mode when looking at TypeScript
-    let g:syntastic_typescript_tsc_args = '--module amd --target ES5 --noImplicitAny'
-    let g:syntastic_typescript_checkers = ['tslint']
+    "let g:syntastic_typescript_tsc_args = '--module amd --target ES5 --noImplicitAny'
+    "let g:syntastic_typescript_checkers = ['tslint']
     let g:syntastic_javascript_checkers = ['jshint', 'jscs']
 " }
 
@@ -92,8 +92,9 @@
 
 " Ultisnips {
         "let g:UltiSnipsExpandTrigger = '<C-k>'
-        let g:UltiSnipsJumpForwardTrigger = '<space>'
-        let g:UltiSnipsJumpBackwardTrigger = '<C-@>'  " Ctrl-Space
+        let g:UltiSnipsJumpForwardTrigger = '<C-@>'  " Ctrl-Space
+        let g:UltiSnipsJumpBackwardTrigger = '<C-b>'
+        "let g:UltiSnipsJumpBackwardTrigger = '<space>'
         "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
         " If you want :UltiSnipsEdit to split your window.
         "let g:UltiSnipsEditSplit="vertical"
@@ -135,6 +136,7 @@
 " }
 
 " vim-xkbswitch {
-    "let g:XkbSwitchEnabled = 1
+    let g:XkbSwitchEnabled = 1
+    let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
     "let g:XkbSwitchLib = '/usr/local/lib/libInputSourceSwitcher.dylib'
 " }
