@@ -56,15 +56,16 @@
 " }
 
 " YouCompleteMe {
-        " Disable AutoComplPop.
-        let g:acp_enableAtStartup = 0
+
+        " make YCM not use Tab key
+        " Don’t worry, you still be able to cycle through completion with <C-N> and <C-P> keys.
+        "let g:ycm_key_list_select_completion=[]
+        "let g:ycm_key_list_previous_completion=[]
 
         "let g:ycm_path_to_python_interpreter = '/usr/local/opt/python/bin/python'
 
         " enable completion from tags
         let g:ycm_collect_identifiers_from_tags_files = 1
-
-"let g:endoscope_handle_quotes = 0
 
         " Enable omni completion.
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -75,25 +76,11 @@
         autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
         autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-        " Haskell post write lint and check with ghcmod
-        " $ `cabal install ghcmod` if missing and ensure
-        " ~/.cabal/bin is in your $PATH.
-        if !executable("ghcmod")
-            autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-        endif
-
-        " For snippet_complete marker.
-        "if !exists("g:spf13_no_conceal")
-            "if has('conceal')
-                "set conceallevel=2 concealcursor=i
-            "endif
-        "endif
 " }
 
 " Ultisnips {
         "let g:UltiSnipsExpandTrigger = '<C-k>'
-        let g:UltiSnipsJumpForwardTrigger = '<C-@>'  " Ctrl-Space
-        let g:UltiSnipsJumpBackwardTrigger = '<C-b>'
+        "let g:UltiSnipsJumpForwardTrigger = '<C-@>'  " Ctrl-Space
         "let g:UltiSnipsJumpBackwardTrigger = '<space>'
         "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
         " If you want :UltiSnipsEdit to split your window.
@@ -129,10 +116,6 @@
 " jiangmiao/auto-pairs {
     let g:AutoPairsFlyMode = 1
     let g:AutoPairsShortcutBackInsert = '<C-b>'
-" }
-
-" JSON {
-    "nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
 " }
 
 " vim-xkbswitch {

@@ -11,7 +11,7 @@ Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'bling/vim-airline'
+"Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-repeat'
@@ -77,10 +77,6 @@ Plugin 'lyokha/vim-xkbswitch' " Auto keyboard switcher
 "Plugin 'tpope/vim-eunuch'
 "Plugin 'vim-scripts/ctags.vim'
 "Plugin 'vim-scripts/tComment'
-
-"if filereadable(expand("~/.vimrc.bundles.local"))
-  "source ~/.vimrc.bundles.local
-"endif
 
 call vundle#end()
 filetype plugin indent on
