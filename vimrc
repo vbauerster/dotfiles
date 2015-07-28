@@ -172,7 +172,7 @@ nnoremap <leader>ej :e ~/.vim/bundle/vim-snippets/UltiSnips/javascript.snippets<
 " close current buffer without save
 nnoremap Q ZQ
 " quit all
-noremap <Leader>q :qa<cr>
+nnoremap <Leader>q :qa<cr>
 
 " reload ctags, --fields=+l needs by YCM
 nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
@@ -181,9 +181,9 @@ nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclu
 nnoremap <leader>w :w!<cr>
 
 " Map Ctrl + S to save in any mode
-"nnoremap <silent> <C-S> :update<CR>
-"vnoremap <silent> <C-S> <C-C>:update<CR>
-"inoremap <silent> <C-S> <C-O>:update<CR>
+nnoremap <silent> <C-S> :update<CR>
+vnoremap <silent> <C-S> <C-C>:update<CR>
+inoremap <silent> <C-S> <C-O>:update<CR>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and

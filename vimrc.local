@@ -80,6 +80,8 @@
 
 " Ultisnips {
         "let g:UltiSnipsExpandTrigger = '<C-k>'
+        let g:UltiSnipsJumpForwardTrigger = '<C-k>'
+        let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
         "let g:UltiSnipsJumpForwardTrigger = '<C-@>'  " Ctrl-Space
         "let g:UltiSnipsJumpBackwardTrigger = '<space>'
         "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
