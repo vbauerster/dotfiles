@@ -43,7 +43,7 @@ set noshowmode            " don't show which mode disabled for PowerLine
 set scrolloff=3           " lines of text around cursor
 set foldlevelstart=99     " all folds open by default
 set cmdheight=1           " command bar height
-set pastetoggle=<F4>      " F2 before pasting to preserve indentation
+set pastetoggle=<F2>      " F2 before pasting to preserve indentation
 set autoread              " detect when a file is changed
 set noerrorbells
 set shell=$SHELL
@@ -213,6 +213,8 @@ nmap <leader>c :set list!<CR>
 
 " switch between current and last buffer
 nmap <leader>. <c-^>
+" closes the current buffer before switching to the previous one
+"noremap <leader>q <c-^> :bd #<cr>
 
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 " Easier split navigations

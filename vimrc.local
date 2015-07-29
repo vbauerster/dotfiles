@@ -37,7 +37,7 @@
 
 " NerdTree {
     "map <leader>n <plug>NERDTreeTabsToggle<CR>
-    nmap <F5> :NERDTreeToggle<CR>
+    nmap <F3> :NERDTreeToggle<CR>
     nmap <leader>nt :NERDTreeFind<CR>
 
     let NERDTreeShowBookmarks=1
@@ -79,7 +79,7 @@
 " }
 
 " Ultisnips {
-        "let g:UltiSnipsExpandTrigger = '<C-k>'
+        let g:UltiSnipsExpandTrigger = '<C-k>'
         let g:UltiSnipsJumpForwardTrigger = '<C-k>'
         let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
         "let g:UltiSnipsJumpForwardTrigger = '<C-@>'  " Ctrl-Space
