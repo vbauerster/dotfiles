@@ -327,7 +327,7 @@ hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
 "highlight search ctermfg=gray ctermbg=black
-highlight search ctermfg=gray
+"highlight search ctermfg=gray
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Local config
