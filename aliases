@@ -1,24 +1,32 @@
+# reload zsh config
+alias reload!='source ~/.zshrc'
+
 # Unix
 alias ln='ln -v'
 alias mkdir='mkdir -p'
 alias ...='../..'
-#alias tlf="tail -f"
-#alias l='ls'
-#alias ll='ls -al'
-#alias lh='ls -Alh'
-#alias -g G='| grep'
-#alias -g M='| less'
-#alias -g L='| wc -l'
-#alias -g ONE="| awk '{ print \$1}'"
-#alias e='$EDITOR'
-#alias v='$VISUAL'
+alias lld="ls -l | grep ^d"
+alias rmf="rm -rf"
 alias q='exit'
+
+# File size
+alias fs="stat -f \"%z bytes\""
+alias df='df -h' # disk free, in Gigabytes, not bytes
+alias du='du -h -c' # calculate disk usage for a folder
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
 
 # Empty the Trash on all mounted volumes and the main HDD
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# View HTTP traffic
+alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # ps aux | grep [h]ttpd
 # Eliminates second instance of grep -v (Inverted search)

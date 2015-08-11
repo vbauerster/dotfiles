@@ -93,7 +93,8 @@ set lazyredraw " don't redraw while executing macros
 
 " Color scheme
 syntax on
-set background=dark
+"set background=dark
+execute "set background=".$BACKGROUND
 colorscheme solarized
 
 " Highlight current line
