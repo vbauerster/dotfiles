@@ -176,7 +176,7 @@ nnoremap Q ZQ
 nnoremap <Leader>q :qa<cr>
 
 " reload ctags, --fields=+l needs by YCM
-nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+nnoremap <leader>c :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
 " shortcut to save/write
 nnoremap <leader>w :w!<cr>
@@ -210,7 +210,7 @@ nnoremap <leader><space> :%s/\s\+$//<CR>:let @/=''<CR>
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
 " toggle invisible characters
-nmap <leader>c :set list!<CR>
+nmap <leader>l :set list!<CR>
 
 " switch between current and last buffer
 nmap <leader>. <c-^>
@@ -251,6 +251,10 @@ nnoremap <silent> $ g$
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COOL THINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"create file in new subdirectories like :E spec/models/blog_spec.rb
+"http://stackoverflow.com/questions/10394707/create-file-inside-new-directory-in-vim-in-one-step
+command -nargs=1 E execute('silent! !mkdir -p "$(dirname "<args>")"') <Bar> e <args>
+
 augroup vimrcEx
   autocmd!
 
