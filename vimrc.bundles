@@ -71,6 +71,7 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'lyokha/vim-xkbswitch' " Auto keyboard switcher
 
 " untested
+Plugin 'rizzatti/dash.vim'
 "Plugin 'christoomey/vim-run-interactive'
 "Plugin 'pbrisbin/vim-mkdir'
 "Plugin 'slim-template/vim-slim'
