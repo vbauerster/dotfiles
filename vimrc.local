@@ -7,7 +7,7 @@
     " allow es5 mode when looking at TypeScript
     "let g:syntastic_typescript_tsc_args = '--module amd --target ES5 --noImplicitAny'
     "let g:syntastic_typescript_checkers = ['tslint']
-    let g:syntastic_javascript_checkers = ['jshint', 'jscs']
+    let g:syntastic_javascript_checkers = ['jshint']
 " }
 
 " javascript-libraries-syntax.vim {
@@ -117,6 +117,10 @@
 
 " emmet {
     let g:user_emmet_leader_key='<C-d>'
+" }
+
+" dash {
+    nmap <silent> <leader>d <Plug>DashSearch
 " }
 
 " jiangmiao/auto-pairs {
