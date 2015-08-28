@@ -30,13 +30,11 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" shorter escape delay
-set timeoutlen=700 ttimeoutlen=100
-"set title " set terminal title
-"set so=7 " set 7 lines to the cursors - when moving vertical
+set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
+set timeoutlen=800 ttimeoutlen=100   " shorter escape delay
+set wildignore+=*.o,*.obj,.git,node_modules,_site,*.class,*.zip,*.aux
 set wildmenu              " enhanced command line completion
 set wildmode=list:longest " complete files like a shell
-set wildignore+=*.o,*.obj,.git,node_modules,_site,*.class,*.zip,*.aux
 set hidden                " current buffer can be put into background
 set showcmd               " show incomplete commands
 set noshowmode            " don't show which mode disabled for PowerLine
@@ -69,17 +67,17 @@ set backspace=indent,eol,start
 "set autowrite     " Automatically :write before running commands
 
 " Softtabs, 4 spaces
-set expandtab       " Tabs are spaces, not tabs
-set smarttab        " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-set shiftwidth=4    " Use indents of 4 spaces
-set softtabstop=4   " Let backspace delete indent
-set tabstop=4       " An indentation every four columns
-set autoindent      " Indent at the same level of the previous line
-set ruler           " show the cursor position all the time
-set shiftround      " round indent to a multiple of 'shiftwidth'
+set expandtab            " Tabs are spaces, not tabs
+set smarttab             " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+set shiftwidth=4         " Use indents of 4 spaces
+set softtabstop=4        " Let backspace delete indent
+set tabstop=4            " An indentation every four columns
+set autoindent           " Indent at the same level of the previous line
+set ruler                " show the cursor position all the time
+set shiftround           " round indent to a multiple of 'shiftwidth'
 set smartindent
-set nojoinspaces    " Prevents inserting two spaces after punctuation on a join (J)
-"set completeopt+=longest
+set nojoinspaces         " Prevents inserting two spaces after punctuation on a join (J)
+set completeopt+=longest " Only insert the longest common text of the matches
 
 " Searching
 set ignorecase " case insensitive searching
@@ -87,9 +85,6 @@ set smartcase  " case-sensitive if expresson contains a capital letter
 set hlsearch   " Highlight search terms
 set incsearch  " set incremental search, like modern browsers
 set lazyredraw " don't redraw while executing macros
-
-"highlight search ctermfg=white ctermbg=3423513
-"highlight search ctermfg=white ctermbg=none
 
 " Color scheme
 syntax on
