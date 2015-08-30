@@ -182,7 +182,7 @@ nnoremap <leader>w :w!<cr>
 nnoremap <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
-
+	
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
 " column, so swap them
@@ -329,7 +329,9 @@ hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
 "custom search (*) hightlight
-highlight search ctermfg=16 ctermbg=137
+if $BACKGROUND == 'dark'
+	highlight search ctermfg=16 ctermbg=137
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Local config
