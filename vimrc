@@ -66,16 +66,18 @@ set backspace=indent,eol,start
 "set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 "set autowrite     " Automatically :write before running commands
 
-" Softtabs, 4 spaces
-set expandtab            " Tabs are spaces, not tabs
-set smarttab             " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-set shiftwidth=4         " Use indents of 4 spaces
-set softtabstop=4        " Let backspace delete indent
-set tabstop=4            " An indentation every four columns
-set autoindent           " Indent at the same level of the previous line
+" SPACES & TABS
+" Explanations from http://tedlogan.com/techblog3.html
+set tabstop=4     " How many columns a tab counts for
+set softtabstop=4 " How many columns vim uses when pressing TAB in insert mode
+set shiftwidth=4  " How many columns text is indented with << and >>
+set noexpandtab   " Don't insert spaces when pressing TAB
+set smarttab      " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+set autoindent    " Indent at the same level of the previous line
+set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
+"set shiftround    " round indent to a multiple of 'shiftwidth'
+
 set ruler                " show the cursor position all the time
-set shiftround           " round indent to a multiple of 'shiftwidth'
-set smartindent
 set nojoinspaces         " Prevents inserting two spaces after punctuation on a join (J)
 set completeopt+=longest " Only insert the longest common text of the matches
 
