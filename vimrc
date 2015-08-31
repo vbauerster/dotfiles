@@ -168,12 +168,12 @@ nnoremap <leader>ej :e ~/.vim/bundle/vim-snippets/UltiSnips/javascript.snippets<
 " => General mappings/shortcuts for functionality
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " close current buffer without save
-nnoremap Q ZQ
+nnoremap QQ ZQ
 " quit all
 nnoremap <Leader>q :qa<cr>
 
 " reload ctags, --fields=+l needs by YCM
-nnoremap <leader>c :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
 
 " shortcut to save/write
 nnoremap <leader>w :w!<cr>
@@ -182,7 +182,7 @@ nnoremap <leader>w :w!<cr>
 nnoremap <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
-	
+
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
 " column, so swap them
@@ -198,7 +198,7 @@ nnoremap <silent> zj o<Esc>k
 nnoremap <silent> zk O<Esc>j
 
 " Switch to the directory of the open buffer
-noremap <leader>cd :cd %:p:h<cr>
+noremap <silent> <leader>cd :cd %:p:h<cr>
 
 " remove trailing whitespace and clear the last search pattern
 nnoremap <leader><space> :%s/\s\+$//<CR>:let @/=''<CR>
@@ -212,7 +212,7 @@ nmap <leader>l :set list!<CR>
 " switch between current and last buffer
 nmap <leader>. <c-^>
 " closes the current buffer before switching to the previous one
-"noremap <leader>q <c-^> :bd #<cr>
+"noremap <leader>. <c-^> :bd #<cr>
 
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 " Easier split navigations
