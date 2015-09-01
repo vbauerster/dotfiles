@@ -34,7 +34,7 @@ set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
 set timeoutlen=800 ttimeoutlen=100   " shorter escape delay
 set wildignore+=*.o,*.obj,.git,node_modules,_site,*.class,*.zip,*.aux
 set wildmenu              " enhanced command line completion
-set wildmode=list:longest " complete files like a shell
+set wildmode=list:longest " TAB auto-completion for file paths
 set hidden                " current buffer can be put into background
 set showcmd               " show incomplete commands
 set noshowmode            " don't show which mode disabled for PowerLine
@@ -188,6 +188,9 @@ inoremap <silent> <C-S> <C-O>:update<CR>
 " column, so swap them
 nnoremap ' `
 nnoremap ` '
+
+" upercase previous word in insert mode
+map! <leader>f <Esc>gUiw']a
 
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
