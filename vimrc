@@ -235,10 +235,6 @@ nnoremap <silent> <Left> :vertical resize -5<cr>
 nnoremap <silent> <Up> :resize +5<cr>
 nnoremap <silent> <Down> :resize -5<cr>
 
-" scroll the viewport faster
-"nnoremap <C-e> 3<C-e>
-"nnoremap <C-y> 3<C-y>
-
 " moving up and down work as you would expect
 nnoremap <silent> j gj
 nnoremap <silent> k gk
