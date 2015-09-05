@@ -102,7 +102,24 @@
 " }
 
 " CtrlP {
-    let g:ctrlp_cmd = 'CtrlPBuffer'
+	let g:ctrlp_cmd = 'CtrlPBuffer'
+	"let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
+	let g:ctrlp_match_window = 'max:12'
+	"let g:ctrlp_match_window = 'results:12'
+	"let g:ctrlp_show_hidden = 1
+	let g:ctrlp_custom_ignore = {
+		\ 'dir':  '\v[\/]\.(git|hg|svn|idea)$',
+		\ 'file': '\v\.(exe|so|dll|class)$',
+	\ }
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+" or 'fallback': 'find %s -type f'
+	let g:ctrlp_user_command = {
+	\ 'types': {
+		\ 1: ['.git', 'cd %s && git ls-files'],
+		\ 2: ['.hg', 'hg --cwd %s locate -I .'],
+	\ },
+	\ 'fallback': 'ag %s -l --nocolor'
+	\ }
 " }
 
 " tagbar {
