@@ -30,9 +30,13 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Excluding version control directories
+"set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+" Excluding node_modules
+"set wildignore+=*/node_modules/*
+
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
 set timeoutlen=800 ttimeoutlen=100   " shorter escape delay
-set wildignore+=*.o,*.obj,.git,node_modules,_site,*.class,*.zip,*.aux
 set wildmenu              " enhanced command line completion
 set wildmode=list:longest " TAB auto-completion for file paths
 set hidden                " current buffer can be put into background
@@ -62,16 +66,15 @@ set undolevels=256
 
 " make backspace behave in a sane manner
 set backspace=indent,eol,start
-"set backspace=2   " Backspace deletes like most programs in insert mode
 "set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 "set autowrite     " Automatically :write before running commands
 
 " SPACES & TABS
 " Explanations from http://tedlogan.com/techblog3.html
-set tabstop=4     " How many columns a tab counts for
-set softtabstop=4 " How many columns vim uses when pressing TAB in insert mode
-set shiftwidth=4  " How many columns text is indented with << and >>
-set noexpandtab   " Don't insert spaces when pressing TAB
+set tabstop=2     " How many columns a tab counts for
+set softtabstop=2 " How many columns vim uses when pressing TAB in insert mode
+set shiftwidth=2  " How many columns text is indented with << and >>
+"set noexpandtab   " Don't insert spaces when pressing TAB
 set smarttab      " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set autoindent    " Indent at the same level of the previous line
 set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
@@ -125,10 +128,11 @@ set tags=./tags;/,~/.vimtags
 set diffopt+=vertical
 
 " Whitespaces
-set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
+set listchars=tab:‣\ ,eol:¬
+"set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 set showbreak=↪
 " show invisible chars by default
-set list
+"set list
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => StatusLine
@@ -249,7 +253,8 @@ nnoremap <silent> $ g$
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "create file in new subdirectories like :E spec/models/blog_spec.rb
 "http://stackoverflow.com/questions/10394707/create-file-inside-new-directory-in-vim-in-one-step
-command -nargs=1 E execute('silent! !mkdir -p "$(dirname "<args>")"') <Bar> e <args>
+"command -nargs=1 E execute('silent! !mkdir -p "$(dirname "<args>")"') <Bar> e <args>
+"above commented, because CTRLP plugin provides same functionality via <c-y>
 
 augroup vimrcEx
   autocmd!
@@ -282,17 +287,6 @@ augroup vimrcEx
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
-
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  let g:ackprg = 'ag --nogroup --column'
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  "let g:ctrlp_use_caching = 0
-endif
 
 " Text Highlighter = <leader>h[1-4]
 function! HiInterestingWord(n)
