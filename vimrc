@@ -31,24 +31,29 @@ endif
 " => Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Excluding version control directories
-"set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+" OS X
+set wildignore+=*.DS_Store
+" Binary images
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 " Excluding node_modules
 "set wildignore+=*/node_modules/*
 
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
 set timeoutlen=800 ttimeoutlen=100   " shorter escape delay
-set wildmenu              " enhanced command line completion
-set wildmode=list:longest " TAB auto-completion for file paths
-set hidden                " current buffer can be put into background
-set showcmd               " show incomplete commands
-set noshowmode            " don't show which mode disabled for PowerLine
-set scrolloff=3           " lines of text around cursor
-set foldlevelstart=99     " all folds open by default
-set cmdheight=1           " command bar height
-set pastetoggle=<F2>      " F2 before pasting to preserve indentation
-set autoread              " detect when a file is changed
+set wildmenu                         " enhanced command line completion
+set wildmode=list:longest            " TAB auto-completion for file paths
+set hidden                           " current buffer can be put into background
+set showcmd                          " show incomplete commands
+set noshowmode                       " don't show which mode disabled for PowerLine
+set scrolloff=3                      " lines of text around cursor
+set foldlevelstart=99                " all folds open by default
+set cmdheight=1                      " command bar height
+set autoread                         " detect when a file is changed
 set noerrorbells
 set shell=$SHELL
+
+set pastetoggle=<Leader>p
 
 " backup/persistance settings
 set undodir=~/.vim/tmp/undo//
@@ -194,7 +199,7 @@ nnoremap ' `
 nnoremap ` '
 
 " upercase previous word in insert mode
-map! <leader>f <Esc>gUiw']a
+map! <leader>t <Esc>gUiw']a
 
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
@@ -245,8 +250,13 @@ nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
-" bind K to Ag word under cursor
-"nnoremap K :Ag! "<C-R><C-W>"<CR>
+" ,f
+" Fast grep
+" Recursive search in current directory for matches with current word
+nnoremap <Leader>f :<C-u>execute "Ag " . expand("<cword>") <Bar> cw<CR>
+
+" toggle relativenumber
+nnoremap <Leader>rn :set rnu!<ENTER>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COOL THINGS
