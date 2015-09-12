@@ -111,15 +111,17 @@
 		\ 'dir':  '\v[\/]\.(git|hg|svn|idea)$',
 		\ 'file': '\v\.(exe|so|dll|class)$',
 	\ }
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-" or 'fallback': 'find %s -type f'
-	let g:ctrlp_user_command = {
-	\ 'types': {
-		\ 1: ['.git', 'cd %s && git ls-files'],
-		\ 2: ['.hg', 'hg --cwd %s locate -I .'],
-	\ },
-	\ 'fallback': 'ag %s -l --nocolor'
-	\ }
+
+	"let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --hidden -g ""'
+	" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+	if executable('ag')
+		" Use Ag over Grep
+		set grepprg=ag\ --nogroup\ --nocolor
+		" Use ag in CtrlP for listing files, unless root dir is under git
+		let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'ag %s -l --nocolor --hidden -g ""']
+	else
+		let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+	endif
 " }
 
 " tagbar {

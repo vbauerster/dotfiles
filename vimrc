@@ -256,6 +256,7 @@ nnoremap <silent> $ g$
 nnoremap <Leader>f :<C-u>execute "Ag " . expand("<cword>") <Bar> cw<CR>
 
 " toggle relativenumber
+" http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
 nnoremap <Leader>rn :set rnu!<ENTER>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
