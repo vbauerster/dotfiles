@@ -226,14 +226,6 @@ nmap <leader>. <c-^>
 " closes the current buffer before switching to the previous one
 "noremap <leader>. <c-^> :bd #<cr>
 
-" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
-" Easier split navigations
-" Looks like tmux.conf manages this
-"nnoremap <C-J> <C-W><C-J>
-"nnoremap <C-K> <C-W><C-K>
-"nnoremap <C-L> <C-W><C-L>
-"nnoremap <C-H> <C-W><C-H>
-
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>= :wincmd =<cr>

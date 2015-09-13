@@ -18,9 +18,11 @@ Plugin 'tpope/vim-repeat'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mbbill/undotree'
 Plugin 'majutsushi/tagbar' "ctags tagbar
-"Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'christoomey/vim-tmux-navigator'
+
+" Make gists easily from Vim
+Plugin 'mattn/gist-vim'
 
 " General Programming
 Plugin 'scrooloose/syntastic'
@@ -32,6 +34,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'Valloric/YouCompleteMe' " Requires python
 Plugin 'SirVer/ultisnips' " Requires python
 Plugin 'honza/vim-snippets'
+"Plugin 'ervandew/supertab'
 
 " Auto pairs
 Plugin 'jiangmiao/auto-pairs' "causes troble with ultisnip
@@ -69,15 +72,15 @@ Plugin 'othree/javascript-libraries-syntax.vim'
 
 " Misc.
 Plugin 'lyokha/vim-xkbswitch' " Auto keyboard switcher
+" Adds :Dash integration
+Plugin 'rizzatti/dash.vim'
 
 " untested
-Plugin 'rizzatti/dash.vim'
 "Plugin 'christoomey/vim-run-interactive'
 "Plugin 'pbrisbin/vim-mkdir'
 "Plugin 'slim-template/vim-slim'
 "Plugin 'tpope/vim-eunuch'
 "Plugin 'vim-scripts/ctags.vim'
-"Plugin 'vim-scripts/tComment'
 
 call vundle#end()
 filetype plugin indent on
