@@ -22,6 +22,7 @@ Plugin 'vim-scripts/matchit.zip'
 Plugin 'christoomey/vim-tmux-navigator'
 
 " Make gists easily from Vim
+Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 
 " General Programming
