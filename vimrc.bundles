@@ -67,6 +67,7 @@ Plugin 'flazz/vim-colorschemes'
 " JavaScript plugins
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'myhere/vim-nodejs-complete'
 "Plugin 'burnettk/vim-angular'
 "Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'marijnh/tern_for_vim'
