@@ -4,7 +4,6 @@ alias reload!='source ~/.zshrc'
 # Unix
 alias ln='ln -v'
 alias mkdir='mkdir -p'
-alias ...='../..'
 alias lld="ls -l | grep ^d"
 alias rmf="rm -rf"
 alias q='exit'
@@ -16,6 +15,9 @@ alias du='du -h -c' # calculate disk usage for a folder
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
+
+# Pretty print the path
+alias fpath='echo $FPATH | tr -s ":" "\n"'
 
 # Empty the Trash on all mounted volumes and the main HDD
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
