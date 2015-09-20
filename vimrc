@@ -21,11 +21,11 @@ set encoding=utf-8
 " }
 
 if has('clipboard')
-    if has('unnamedplus')  " When possible use + register for copy-paste
-        set clipboard=unnamed,unnamedplus
-    else         " On mac and Windows, use * register for copy-paste
-        set clipboard=unnamed
-    endif
+		if has('unnamedplus')  " When possible use + register for copy-paste
+				set clipboard=unnamed,unnamedplus
+		else         " On mac and Windows, use * register for copy-paste
+				set clipboard=unnamed
+		endif
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -54,8 +54,6 @@ set autoread                         " detect when a file is changed
 set noerrorbells
 set shell=$SHELL
 
-set pastetoggle=<Leader>p
-
 " backup/persistance settings
 set undodir=~/.vim/tmp/undo//
 set backupdir=~/.vim/tmp/backup//
@@ -67,8 +65,11 @@ set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitigno
 
 " persist (g)undo tree between sessions
 set undofile
-set history=256
-set undolevels=256
+if !has('nvim') " sets for vim only
+	set pastetoggle=<F2> " https://github.com/neovim/neovim/issues/2092
+	set history=1000     " nvim sets this to 1000 by default
+	set undolevels=1000  " nvim sets this to 1000 by default
+endif
 
 " make backspace behave in a sane manner
 set backspace=indent,eol,start
