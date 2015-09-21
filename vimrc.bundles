@@ -33,9 +33,10 @@ Plugin 'godlygeek/tabular'
 
 " Snippet & AutoComplete
 Plugin 'Valloric/YouCompleteMe' " Requires python
+Plugin 'myhere/vim-nodejs-complete'
 Plugin 'SirVer/ultisnips' " Requires python
 Plugin 'honza/vim-snippets'
-"Plugin 'ervandew/supertab'
+Plugin 'justinj/vim-react-snippets'
 
 " Auto pairs
 Plugin 'jiangmiao/auto-pairs' "causes troble with ultisnip
@@ -67,7 +68,7 @@ Plugin 'flazz/vim-colorschemes'
 " JavaScript plugins
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'myhere/vim-nodejs-complete'
+Plugin 'mxw/vim-jsx' " syntax highlighting for React's jsx, requires pangloss/vim-javascript
 "Plugin 'burnettk/vim-angular'
 "Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'marijnh/tern_for_vim'
@@ -78,8 +79,8 @@ Plugin 'lyokha/vim-xkbswitch' " Auto keyboard switcher
 Plugin 'rizzatti/dash.vim'
 
 " untested
+"Plugin 'ervandew/supertab' " kind of autocompletion
 "Plugin 'christoomey/vim-run-interactive'
-"Plugin 'pbrisbin/vim-mkdir'
 "Plugin 'slim-template/vim-slim'
 "Plugin 'tpope/vim-eunuch'
 "Plugin 'vim-scripts/ctags.vim'
