@@ -20,13 +20,13 @@ set encoding=utf-8
     endif
 " }
 
-if has('clipboard')
-		if has('unnamedplus')  " When possible use + register for copy-paste
-				set clipboard=unnamed,unnamedplus
-		else         " On mac and Windows, use * register for copy-paste
-				set clipboard=unnamed
-		endif
-endif
+"if has('clipboard')
+		"if has('unnamedplus')  " When possible use + register for copy-paste
+				"set clipboard=unnamed,unnamedplus
+		"else         " On mac and Windows, use * register for copy-paste
+				"set clipboard=unnamed
+		"endif
+"endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
@@ -81,7 +81,7 @@ set backspace=indent,eol,start
 set tabstop=2     " How many columns a tab counts for
 set softtabstop=2 " How many columns vim uses when pressing TAB in insert mode
 set shiftwidth=2  " How many columns text is indented with << and >>
-"set noexpandtab   " Don't insert spaces when pressing TAB
+set noexpandtab   " Use tabs, not spaces
 set smarttab      " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set autoindent    " Indent at the same level of the previous line
 set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
