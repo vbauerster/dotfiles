@@ -74,6 +74,7 @@
     <item>
         <name>Remap Left Control to Hyper</name>
         <appendix>OS X doesn't have a Hyper. This maps Left Control to Control + Shift + Option + Command.</appendix>
+				<appendix>http://stevelosh.com/blog/2012/10/a-modern-space-cadet</appendix>
 
         <identifier>space_cadet.left_control_to_hyper</identifier>
 
