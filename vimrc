@@ -81,7 +81,8 @@ set backspace=indent,eol,start
 set tabstop=2     " How many columns a tab counts for
 set softtabstop=2 " How many columns vim uses when pressing TAB in insert mode
 set shiftwidth=2  " How many columns text is indented with << and >>
-set noexpandtab   " Use tabs, not spaces
+"set noexpandtab   " Use tabs, not spaces
+set expandtab   " Use spaces
 set smarttab      " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set autoindent    " Indent at the same level of the previous line
 set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
@@ -135,8 +136,8 @@ set tags=./tags;/,~/.vimtags
 set diffopt+=vertical
 
 " Whitespaces
-set listchars=tab:‣\ ,eol:¬
-"set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
+"set listchars=tab:‣\ ,eol:¬
+set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 set showbreak=↪
 " show invisible chars by default
 "set list
