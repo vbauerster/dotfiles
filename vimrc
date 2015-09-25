@@ -108,12 +108,12 @@ colorscheme solarized
 " Highlight current line
 set cursorline
 
-" if textwidth > 120 highlight overlenght with reddish bg
+" if textwidth > 80 highlight overlenght with reddish bg
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%121v.\+/
+match OverLength /\%81v.\+/
 
-" Make it obvious where 120 characters is
-set textwidth=120
+" Make it obvious where 80 characters is
+set textwidth=80
 "set colorcolumn=+1
 "highlight colorcolumn ctermbg=gray guibg=orange
 
