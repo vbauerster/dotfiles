@@ -1,5 +1,3 @@
-let g:airline_powerline_fonts = 1
-
 " Get off my lawn
 "nnoremap <Left> :echoe "Use h"<CR>
 "nnoremap <Right> :echoe "Use l"<CR>
