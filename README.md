@@ -40,7 +40,7 @@ $ brew install caskroom/cask/brew-cask
 
 **iterm2**
 ```
-brew cask install iterm2
+$ brew cask install iterm2
 ```
 
 **solarized**
