@@ -119,7 +119,7 @@ set textwidth=80
 
 " Numbers
 set number
-set numberwidth=5
+"set numberwidth=5
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
