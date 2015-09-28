@@ -261,6 +261,12 @@ nnoremap <Leader>f :<C-u>execute "Ag " . expand("<cword>") <Bar> cw<CR>
 " http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
 nnoremap <Leader>rn :set rnu!<ENTER>
 
+" http://habrahabr.ru/post/183222/
+" spell check on
+nnoremap <Leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
+" spell check off
+nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COOL THINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -323,14 +329,14 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
   " Enable spellchecking for Markdown
-  autocmd FileType markdown setlocal spell
+  autocmd FileType markdown setlocal spell spelllang=ru_yo,en_us
 
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 
   " Automatically wrap at 72 characters and spell check git commit messages
   autocmd FileType gitcommit setlocal textwidth=72
-  autocmd FileType gitcommit setlocal spell
+  autocmd FileType gitcommit setlocal spell spelllang=ru_yo,en_us
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
