@@ -3,7 +3,7 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 " Let Vundle manage Vundle
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " General
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -13,7 +13,6 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'bling/vim-airline'
 Plugin 'tpope/vim-surround'
-"Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-repeat'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mbbill/undotree'
@@ -83,6 +82,7 @@ Plugin 'rizzatti/dash.vim'
 "Plugin 'christoomey/vim-run-interactive'
 "Plugin 'slim-template/vim-slim'
 "Plugin 'tpope/vim-eunuch'
+"Plugin 'tpope/vim-unimpaired'
 "Plugin 'vim-scripts/ctags.vim'
 
 call vundle#end()
