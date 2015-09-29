@@ -106,7 +106,10 @@ execute "set background=".$BACKGROUND
 colorscheme solarized
 
 " Highlight current line
+" http://stackoverflow.com/questions/8247243/highlighting-the-current-line-number-in-vim
 set cursorline
+" Highlight current line nr
+highlight cursorlinenr ctermbg=0 ctermfg=14
 
 " if textwidth > 80 highlight overlenght with reddish bg
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
