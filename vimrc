@@ -109,7 +109,8 @@ colorscheme solarized
 " http://stackoverflow.com/questions/8247243/highlighting-the-current-line-number-in-vim
 set cursorline
 " Highlight current line nr
-highlight cursorlinenr ctermbg=0 ctermfg=14
+"highlight cursorlinenr ctermbg=0 ctermfg=14
+highlight cursorlinenr ctermfg=14
 
 " if textwidth > 80 highlight overlenght with reddish bg
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
@@ -188,7 +189,8 @@ nnoremap QQ ZQ
 nnoremap <Leader>q :qa<cr>
 
 " reload ctags, --fields=+l needs by YCM
-nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+" http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
+nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
 
 " shortcut to save/write
 nnoremap <leader>w :w!<cr>
