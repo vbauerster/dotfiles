@@ -5,7 +5,6 @@
 let mapleader = ','
 let maplocalleader = ','
 
-"set nocompatible " not compatible with vi
 set encoding=utf-8
 
 " Use before config if available {
@@ -31,6 +30,12 @@ set encoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !has('nvim') " sets for vim only
+	set nocompatible
+	set pastetoggle=<F2> " https://github.com/neovim/neovim/issues/2092
+	set history=1000     " nvim sets this to 1000 by default
+	set undolevels=1000  " nvim sets this to 1000 by default
+endif
 " Excluding version control directories
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 " OS X
@@ -65,11 +70,6 @@ set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitigno
 
 " persist (g)undo tree between sessions
 set undofile
-if !has('nvim') " sets for vim only
-	set pastetoggle=<F2> " https://github.com/neovim/neovim/issues/2092
-	set history=1000     " nvim sets this to 1000 by default
-	set undolevels=1000  " nvim sets this to 1000 by default
-endif
 
 " make backspace behave in a sane manner
 set backspace=indent,eol,start
