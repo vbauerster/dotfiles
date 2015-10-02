@@ -66,6 +66,7 @@ set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitigno
 " persist (g)undo tree between sessions
 set undofile
 if !has('nvim') " sets for vim only
+  set nocompatible
 	set pastetoggle=<F2> " https://github.com/neovim/neovim/issues/2092
 	set history=1000     " nvim sets this to 1000 by default
 	set undolevels=1000  " nvim sets this to 1000 by default
