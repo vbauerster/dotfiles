@@ -262,7 +262,7 @@ nnoremap <Leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
 nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Externas cmd mappings
+" => External cmd mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
 nnoremap <leader>nn :write !node --harmony<CR>
