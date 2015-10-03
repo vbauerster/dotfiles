@@ -181,10 +181,6 @@ nnoremap QQ ZQ
 " quit all
 nnoremap <Leader>q :qa<cr>
 
-" reload ctags, --fields=+l needs by YCM
-" http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
-nnoremap <leader>ct :!ctags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
-
 " shortcut to save/write
 nnoremap <leader>w :w!<cr>
 
@@ -241,8 +237,8 @@ nnoremap <leader>= :wincmd =<cr>
 " resize panes
 nnoremap <silent> <Right> :vertical resize +5<cr>
 nnoremap <silent> <Left> :vertical resize -5<cr>
-nnoremap <silent> <Up> :resize +5<cr>
-nnoremap <silent> <Down> :resize -5<cr>
+"nnoremap <silent> <Up> :resize +5<cr>
+"nnoremap <silent> <Down> :resize -5<cr>
 
 " moving up and down work as you would expect
 nnoremap <silent> j gj
@@ -266,47 +262,22 @@ nnoremap <Leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
 nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Externas cmd mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
+nnoremap <leader>nn :write !node --harmony<CR>
+
+" reload ctags, --fields=+l needs by YCM
+" http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
+nnoremap <leader>ct :!ctags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COOL THINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Create directory if not exists
 " CTRLP plugin provides same functionality via <c-y>
 au! BufWritePre * :silent !mkdir -p %:h
-
-" http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
-let s:_ = ''
-
-function! s:ExecuteInShell(command, bang)
-	let _ = a:bang != '' ? s:_ : a:command == '' ? '' : join(map(split(a:command), 'expand(v:val)'))
-
-	if (_ != '')
-		let s:_ = _
-		let bufnr = bufnr('%')
-		let winnr = bufwinnr('^' . _ . '$')
-		silent! execute  winnr < 0 ? 'belowright new ' . fnameescape(_) : winnr . 'wincmd w'
-		setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile wrap number
-		silent! :%d
-		let message = 'Execute ' . _ . '...'
-		call append(0, message)
-		echo message
-		silent! 2d | resize 1 | redraw
-		silent! execute 'silent! %!'. _
-		silent! execute 'resize ' . line('$')
-		silent! execute 'syntax on'
-		silent! execute 'autocmd BufUnload <buffer> execute bufwinnr(' . bufnr . ') . ''wincmd w'''
-		silent! execute 'autocmd BufEnter <buffer> execute ''resize '' .  line(''$'')'
-		silent! execute 'nnoremap <silent> <buffer> <CR> :call <SID>ExecuteInShell(''' . _ . ''', '''')<CR>'
-		silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . _ . ''', '''')<CR>'
-		silent! execute 'nnoremap <silent> <buffer> <LocalLeader>g :execute bufwinnr(' . bufnr . ') . ''wincmd w''<CR>'
-		nnoremap <silent> <buffer> <C-W>_ :execute 'resize ' . line('$')<CR>
-		silent! syntax on
-	endif
-endfunction
-
-command! -complete=shellcmd -nargs=* -bang Shell call s:ExecuteInShell(<q-args>, '<bang>')
-cabbrev shell Shell
-
-nnoremap <leader>nn :Shell node --harmony %<CR>
 
 augroup vimrcEx
   autocmd!
