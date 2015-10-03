@@ -20,11 +20,11 @@ set encoding=utf-8
 " }
 
 "if has('clipboard')
-		"if has('unnamedplus')  " When possible use + register for copy-paste
-				"set clipboard=unnamed,unnamedplus
-		"else         " On mac and Windows, use * register for copy-paste
-				"set clipboard=unnamed
-		"endif
+    "if has('unnamedplus')  " When possible use + register for copy-paste
+        "set clipboard=unnamed,unnamedplus
+    "else         " On mac and Windows, use * register for copy-paste
+        "set clipboard=unnamed
+    "endif
 "endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -32,9 +32,9 @@ set encoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if !has('nvim') " sets for vim only
   set nocompatible
-	set pastetoggle=<F2> " https://github.com/neovim/neovim/issues/2092
-	set history=1000     " nvim sets this to 1000 by default
-	set undolevels=1000  " nvim sets this to 1000 by default
+  set pastetoggle=<F2> " https://github.com/neovim/neovim/issues/2092
+  set history=1000     " nvim sets this to 1000 by default
+  set undolevels=1000  " nvim sets this to 1000 by default
 endif
 " Excluding version control directories
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
@@ -151,13 +151,6 @@ set showbreak=↪
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " show the satus line all the time
 set laststatus=2
-" Broken down into easily includeable segments
-"set statusline=%<%f\                     " Filename
-"set statusline+=%w%h%m%r                 " Options
-"set statusline+=%{fugitive#statusline()} " Git Hotness
-"set statusline+=\ [%{&ff}/%Y]            " filetype
-"set statusline+=\ [%{getcwd()}]          " current dir
-"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Quick edit Mappings
@@ -190,7 +183,7 @@ nnoremap <Leader>q :qa<cr>
 
 " reload ctags, --fields=+l needs by YCM
 " http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
-nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
+nnoremap <leader>ct :!ctags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
 
 " shortcut to save/write
 nnoremap <leader>w :w!<cr>
