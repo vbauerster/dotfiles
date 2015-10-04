@@ -266,6 +266,7 @@ nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
 nnoremap <leader>nn :write !node --harmony<CR>
+nnoremap <leader>bb :write !babel-node<CR>
 
 " reload ctags, --fields=+l needs by YCM
 " http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
