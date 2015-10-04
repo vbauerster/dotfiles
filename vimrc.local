@@ -12,7 +12,7 @@
 " }
 
 " mxw/vim-jsx {
-		let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+    let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " }
 
 " javascript-libraries-syntax.vim {
@@ -61,72 +61,70 @@
 " }
 
 " YouCompleteMe {
+    " make YCM not use Tab key
+    " Don’t worry, you still be able to cycle through completion with <C-N> and <C-P> keys.
+    "let g:ycm_key_list_select_completion=[]
+    "let g:ycm_key_list_previous_completion=[]
 
-        " make YCM not use Tab key
-        " Don’t worry, you still be able to cycle through completion with <C-N> and <C-P> keys.
-        "let g:ycm_key_list_select_completion=[]
-        "let g:ycm_key_list_previous_completion=[]
+    "let g:ycm_path_to_python_interpreter = '/usr/local/opt/python/bin/python'
 
-        "let g:ycm_path_to_python_interpreter = '/usr/local/opt/python/bin/python'
+    " enable completion from tags
+    let g:ycm_collect_identifiers_from_tags_files = 1
 
-        " enable completion from tags
-        let g:ycm_collect_identifiers_from_tags_files = 1
-
-        " Enable omni completion.
-        autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-        autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-        autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-        autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-        autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-        autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-        autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
+    " Enable omni completion.
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " }
 
 " Ultisnips {
-        let g:UltiSnipsExpandTrigger = '<C-k>'
-        "let g:UltiSnipsJumpForwardTrigger = '<C-k>'
-        "let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
-        let g:UltiSnipsJumpForwardTrigger = '<C-@>'  " Ctrl-Space
-        "let g:UltiSnipsJumpBackwardTrigger = '<space>'
-        "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-        " If you want :UltiSnipsEdit to split your window.
-        "let g:UltiSnipsEditSplit="vertical"
+    let g:UltiSnipsExpandTrigger = '<C-k>'
+    "let g:UltiSnipsJumpForwardTrigger = '<C-k>'
+    "let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
+    let g:UltiSnipsJumpForwardTrigger = '<C-@>'  " Ctrl-Space
+    "let g:UltiSnipsJumpBackwardTrigger = '<space>'
+    "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+    " If you want :UltiSnipsEdit to split your window.
+    "let g:UltiSnipsEditSplit="vertical"
 
-        " Expand snippets or return cr
-        " http://www.reddit.com/r/vim/comments/2oeqrg/using_ultisnips_for_pair_completions/
-        function! ExpandSnippet()
-            call UltiSnips#ExpandSnippet()
-            if g:ulti_expand_res == 0
-                return "\<CR>"
-            endif
-            return ""
-        endfunction
+    " Expand snippets or return cr
+    " http://www.reddit.com/r/vim/comments/2oeqrg/using_ultisnips_for_pair_completions/
+    function! ExpandSnippet()
+        call UltiSnips#ExpandSnippet()
+        if g:ulti_expand_res == 0
+            return "\<CR>"
+        endif
+        return ""
+    endfunction
 
-        inoremap <expr> <CR> "\<C-R>=ExpandSnippet()\<CR>"
+    inoremap <expr> <CR> "\<C-R>=ExpandSnippet()\<CR>"
 " }
 
 " CtrlP {
-	let g:ctrlp_cmd = 'CtrlPBuffer'
-	"let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
-	let g:ctrlp_match_window = 'max:12'
-	"let g:ctrlp_match_window = 'results:12'
-	"let g:ctrlp_show_hidden = 1
-	let g:ctrlp_custom_ignore = {
-		\ 'dir':  '\v[\/]\.(git|hg|svn|idea)$',
-		\ 'file': '\v\.(exe|so|dll|class)$',
-	\ }
+  let g:ctrlp_cmd = 'CtrlPBuffer'
+  "let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
+  let g:ctrlp_match_window = 'max:12'
+  "let g:ctrlp_match_window = 'results:12'
+  "let g:ctrlp_show_hidden = 1
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|idea)$',
+    \ 'file': '\v\.(exe|so|dll|class)$',
+  \ }
 
-	"let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --hidden -g ""'
-	" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-	if executable('ag')
-		" Use Ag over Grep
-		set grepprg=ag\ --nogroup\ --nocolor
-		" Use ag in CtrlP for listing files, unless root dir is under git
-		let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'ag %s -l --nocolor --hidden -g ""']
-	else
-		let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
-	endif
+  "let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --hidden -g ""'
+  " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+  if executable('ag')
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+    " Use ag in CtrlP for listing files, unless root dir is under git
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'ag %s -l --nocolor --hidden -g ""']
+  else
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+  endif
 " }
 
 " tagbar {
@@ -155,5 +153,8 @@
 " vim-xkbswitch {
     let g:XkbSwitchEnabled = 1
     let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
-    "let g:XkbSwitchLib = '/usr/local/lib/libInputSourceSwitcher.dylib'
+" }
+
+" vim-gitgutter {
+    nmap <leader>gg :GitGutterToggle<CR>
 " }
