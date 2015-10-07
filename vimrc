@@ -271,7 +271,8 @@ nnoremap <leader>bb :exe "!babel-node " . shellescape(expand("%"))<CR>
 
 " reload ctags, --fields=+l needs by YCM
 " http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
-nnoremap <leader>ct :!ctags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
+" http://raygrasso.com/posts/2015/04/using-ctags-on-modern-javascript.html
+nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COOL THINGS
