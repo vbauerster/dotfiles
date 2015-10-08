@@ -69,6 +69,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'pangloss/vim-javascript'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'mxw/vim-jsx' " syntax highlighting for React's jsx, requires pangloss/vim-javascript
+Plugin 'kchmck/vim-coffee-script'
 "Plugin 'burnettk/vim-angular'
 "Plugin 'jelera/vim-javascript-syntax'
 "Plugin 'marijnh/tern_for_vim'
