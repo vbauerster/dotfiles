@@ -186,8 +186,8 @@ nnoremap <leader>w :w!<cr>
 
 " Map Ctrl + S to save in any mode
 nnoremap <silent> <C-S> :update<CR>
-vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
+"vnoremap <silent> <C-S> <C-C>:update<CR>
 
 " Retain visual mode after indentation shifts
 vnoremap < <gv
