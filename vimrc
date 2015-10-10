@@ -35,6 +35,9 @@ if !has('nvim') " sets for vim only
   set pastetoggle=<F2> " https://github.com/neovim/neovim/issues/2092
   set history=1000     " nvim sets this to 1000 by default
   set undolevels=1000  " nvim sets this to 1000 by default
+  set backspace=indent,eol,start
+else
+  tnoremap <Esc> <C-\><C-n>
 endif
 " Excluding version control directories
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
@@ -71,8 +74,6 @@ set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitigno
 " persist (g)undo tree between sessions
 set undofile
 
-" make backspace behave in a sane manner
-set backspace=indent,eol,start
 "set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 "set autowrite     " Automatically :write before running commands
 
