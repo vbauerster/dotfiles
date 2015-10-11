@@ -13,9 +13,9 @@ set encoding=utf-8
     endif
 " }
 
-" Use bundles config {
-    if filereadable(expand("~/.vimrc.bundles"))
-        source ~/.vimrc.bundles
+" Use plugin config {
+    if filereadable(expand("~/.vimrc.plug"))
+        source ~/.vimrc.plug
     endif
 " }
 
@@ -124,7 +124,6 @@ set textwidth=80
 
 " Numbers
 set number
-"set numberwidth=5
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
@@ -160,8 +159,8 @@ set laststatus=2
 nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>eV :tabnew ~/.vimrc<CR>
 " edit vim plugins
-nnoremap <leader>eb :e ~/.vimrc.bundles<CR>
-nnoremap <leader>eB :tabnew ~/.vimrc.bundles<CR>
+nnoremap <leader>ep :e ~/.vimrc.plug<CR>
+nnoremap <leader>eP :tabnew ~/.vimrc.plug<CR>
 " edit vim local
 nnoremap <leader>el :e ~/.vimrc.local<CR>
 nnoremap <leader>eL :tabnew ~/.vimrc.local<CR>

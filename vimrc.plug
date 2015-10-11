@@ -1,0 +1,90 @@
+call plug#begin('~/.vim/plugged')
+
+" General
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'mbbill/undotree'
+Plug 'majutsushi/tagbar' "ctags tagbar
+Plug 'vim-scripts/matchit.zip'
+Plug 'christoomey/vim-tmux-navigator'
+
+" Grep like search
+"Plug 'rking/ag.vim'
+Plug 'mhinz/vim-grepper'
+
+" Make gists easily from Vim
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+
+" General Programming
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-fugitive' " the ultimate git helper
+Plug 'scrooloose/nerdcommenter'
+Plug 'godlygeek/tabular'
+
+" Snippet & AutoComplete
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+" Group dependencies, vim-snippets depends on ultisnips
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'myhere/vim-nodejs-complete'
+Plug 'justinj/vim-react-snippets'
+
+" Auto pairs
+Plug 'jiangmiao/auto-pairs' "causes troble with ultisnip
+"Plug 'Raimondi/delimitMate'
+"Plug 'idbrii/vim-endoscope' "A single keystroke to end your scope with <C-s>
+"Plug 'Townk/vim-autoclose'
+"Plug 'kana/vim-smartinput'
+
+" HTML
+"Plug 'docunext/closetag.vim' "close HTML tag
+Plug 'amirh/HTML-AutoCloseTag'
+Plug 'mattn/emmet-vim'
+
+" required by xolox/vim-easytags
+"Plug 'xolox/vim-misc'
+
+" Easy Exuberant Ctags
+"Plug 'xolox/vim-easytags'
+
+" Extended session management for Vim
+"Plug 'xolox/vim-session'
+"Plug 'vim-scripts/sessionman.vim'
+Plug 'tpope/vim-obsession'
+
+" colorschemes
+Plug 'flazz/vim-colorschemes'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'chriskempson/base16-vim'
+
+" JavaScript plugins
+Plug 'pangloss/vim-javascript'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'mxw/vim-jsx' " syntax highlighting for React's jsx, requires pangloss/vim-javascript
+Plug 'kchmck/vim-coffee-script'
+"Plug 'burnettk/vim-angular'
+"Plug 'jelera/vim-javascript-syntax'
+"Plug 'marijnh/tern_for_vim'
+
+" Misc.
+Plug 'lyokha/vim-xkbswitch' " Auto keyboard switcher
+" Adds :Dash integration
+Plug 'rizzatti/dash.vim'
+
+" untested
+"Plug 'ervandew/supertab' " kind of autocompletion
+"Plug 'christoomey/vim-run-interactive'
+"Plug 'slim-template/vim-slim'
+"Plug 'tpope/vim-eunuch'
+"Plug 'tpope/vim-unimpaired'
+"Plug 'vim-scripts/ctags.vim'
+
+" Add plugins to &runtimepath
+call plug#end()
