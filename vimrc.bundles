@@ -58,7 +58,8 @@ Plugin 'mattn/emmet-vim'
 
 " Extended session management for Vim
 "Plugin 'xolox/vim-session'
-Plugin 'vim-scripts/sessionman.vim'
+"Plugin 'vim-scripts/sessionman.vim'
+Plugin 'tpope/vim-obsession'
 
 " colorschemes
 Plugin 'flazz/vim-colorschemes'

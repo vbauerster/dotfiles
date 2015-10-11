@@ -131,12 +131,6 @@
     nmap <F8> :TagbarToggle<CR>
 " }
 
-" Session List {
-    set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-    nmap <leader>sl :SessionList<CR>
-    nmap <leader>ss :SessionSave<CR>
-" }
-
 " emmet {
     let g:user_emmet_leader_key='<C-d>'
 " }
@@ -157,4 +151,10 @@
 
 " vim-gitgutter {
     nmap <leader>gg :GitGutterToggle<CR>
+" }
+
+" Session List {
+    "set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+    "nmap <leader>sl :SessionList<CR>
+    "nmap <leader>ss :SessionSave<CR>
 " }
