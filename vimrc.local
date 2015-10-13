@@ -42,7 +42,7 @@
 
 " NerdTree {
     "map <leader>n <plug>NERDTreeTabsToggle<CR>
-    nmap <F3> :NERDTreeToggle<CR>
+    nmap <F5> :NERDTreeToggle<CR>
     nmap <leader>nt :NERDTreeFind<CR>
 
     let NERDTreeShowBookmarks=1
@@ -150,7 +150,21 @@
 " }
 
 " vim-gitgutter {
-    nmap <leader>gg :GitGutterToggle<CR>
+    nmap <F4> :GitGutterToggle<CR>
+" }
+
+" vim-grepper {
+  " The default behaviour of :Grepper mimics |:grep|, so the quickfix window won't
+  " be opened and one jumps to the first found match.
+  " If you don't want to jump to the first match, again mimicking |:grep|, append
+  " a bang instead:
+  command! -nargs=* -complete=file GG Grepper! -tool git -open -switch -query <args>
+  command! -nargs=* -complete=file Ag Grepper! -tool ag -open -switch -query <args>
+
+  " Recursive search in current directory for matches with current word
+  nnoremap <Leader>* :<C-u>execute "GG " . expand("<cword>") <Bar> cw<CR>
+  nnoremap <Leader>fg :Grepper! -tool git -open -switch<CR>
+  nnoremap <Leader>fa :Grepper! -tool ag -open -switch<CR>
 " }
 
 " Session List {

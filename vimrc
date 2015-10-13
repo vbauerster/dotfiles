@@ -13,6 +13,7 @@ set encoding=utf-8
     endif
 " }
 
+" https://github.com/junegunn/vim-plug
 " Use plugin config {
     if filereadable(expand("~/.vimrc.plug"))
         source ~/.vimrc.plug
@@ -245,11 +246,6 @@ nnoremap <silent> j gj
 nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
-
-" ,f
-" Fast grep
-" Recursive search in current directory for matches with current word
-nnoremap <Leader>f :<C-u>execute "Ag " . expand("<cword>") <Bar> cw<CR>
 
 " toggle relativenumber
 " http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
