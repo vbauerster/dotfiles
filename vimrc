@@ -31,14 +31,17 @@ set encoding=utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if !has('nvim') " sets for vim only
+if has('nvim') " sets for nvim only
+  " https://github.com/neovim/neovim/issues/2048
+  " https://github.com/christoomey/vim-tmux-navigator/issues/71
+  nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+  tnoremap <C-b> <C-\><C-n>
+else " sets for vim only
   set nocompatible
   set pastetoggle=<F2> " https://github.com/neovim/neovim/issues/2092
   set history=1000     " nvim sets this to 1000 by default
   set undolevels=1000  " nvim sets this to 1000 by default
   set backspace=indent,eol,start
-else
-  tnoremap <Esc> <C-\><C-n>
 endif
 " Excluding version control directories
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
@@ -61,7 +64,7 @@ set foldlevelstart=99                " all folds open by default
 set cmdheight=1                      " command bar height
 set autoread                         " detect when a file is changed
 set noerrorbells
-set shell=$SHELL
+"set shell=$SHELL
 
 " backup/persistance settings
 set undodir=~/.vim/tmp/undo//
