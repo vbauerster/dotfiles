@@ -56,8 +56,8 @@ Plug 'mattn/emmet-vim'
 
 " Extended session management for Vim
 "Plug 'xolox/vim-session'
-"Plug 'vim-scripts/sessionman.vim'
-Plug 'tpope/vim-obsession'
+Plug 'vim-scripts/sessionman.vim'
+"Plug 'tpope/vim-obsession'
 
 " colorschemes
 Plug 'flazz/vim-colorschemes'
