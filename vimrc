@@ -214,8 +214,9 @@ map! <leader>t <Esc>gUiw']a
 nnoremap <leader>g g<c-]>
 
 " These create newlines like o and O but stay in normal mode
-nnoremap <silent> zj o<Esc>k
-nnoremap <silent> zk O<Esc>j
+" managed by tpope/vim-unimpaired
+"nnoremap <silent> zj o<Esc>k
+"nnoremap <silent> zk O<Esc>j
 
 " Switch to the directory of the open buffer
 noremap <silent> <leader>cd :cd %:p:h<cr>
