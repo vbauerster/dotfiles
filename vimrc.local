@@ -42,7 +42,7 @@
 
 " NerdTree {
     "map <leader>n <plug>NERDTreeTabsToggle<CR>
-    nmap <F5> :NERDTreeToggle<CR>
+    nmap <F3> :NERDTreeToggle<CR>
     nmap <leader>nt :NERDTreeFind<CR>
 
     let NERDTreeShowBookmarks=1
