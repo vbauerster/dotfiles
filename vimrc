@@ -312,6 +312,9 @@ augroup vimrcEx
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
+
+  " Reformat JSON
+  autocmd FileType json noremap <buffer> <leader>rff <Esc>:% !js-beautify -f - -s 2<CR>
 augroup END
 
 " Text Highlighter = <leader>h[1-4]
