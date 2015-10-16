@@ -20,13 +20,21 @@ set encoding=utf-8
     endif
 " }
 
-"if has('clipboard')
+if has('clipboard')
+  " easy system clipboard copy/paste
+  " non-recursive mapping
+  noremap <leader>y "*y
+  noremap <leader>Y "*Y
+  noremap <leader>p "*p
+  noremap <leader>P "*P
+  " recursive mapping
+  nmap <leader>yy <leader>Y
     "if has('unnamedplus')  " When possible use + register for copy-paste
         "set clipboard=unnamed,unnamedplus
     "else         " On mac and Windows, use * register for copy-paste
         "set clipboard=unnamed
     "endif
-"endif
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
