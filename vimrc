@@ -46,7 +46,8 @@ if has('nvim') " sets for nvim only
   tnoremap <C-b> <C-\><C-n>
 else " sets for vim only
   set nocompatible
-  set pastetoggle=<F2> " https://github.com/neovim/neovim/issues/2092
+  " https://github.com/neovim/neovim/issues/2092
+  "set pastetoggle=<F2> " vim-unimpaired provides 'yo' mapping
   set history=1000     " nvim sets this to 1000 by default
   set undolevels=1000  " nvim sets this to 1000 by default
   set backspace=indent,eol,start
