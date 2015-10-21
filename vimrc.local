@@ -1,14 +1,7 @@
-" Syntastic {
-    " toggle syntastic
-    nmap <leader>s :SyntasticToggleMode<cr>
-    " configure syntastic syntax checking to check on open as well as save
-    let g:syntastic_check_on_open=1
-    let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-    " allow es5 mode when looking at TypeScript
-    "let g:syntastic_typescript_tsc_args = '--module amd --target ES5 --noImplicitAny'
-    "let g:syntastic_typescript_checkers = ['tslint']
-    "let g:syntastic_javascript_checkers = ['jshint']
-    let g:syntastic_javascript_checkers = ['eslint']
+" Neomake {
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  " run neomake on the current file on every write
+  autocmd! BufWritePost * Neomake
 " }
 
 " mxw/vim-jsx {

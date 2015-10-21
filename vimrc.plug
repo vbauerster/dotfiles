@@ -25,7 +25,8 @@ Plug 'mattn/webapi-vim'
 Plug 'mattn/gist-vim'
 
 " General Programming
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive' " the ultimate git helper
 Plug 'scrooloose/nerdcommenter'
 Plug 'godlygeek/tabular'
@@ -66,10 +67,10 @@ Plug 'flazz/vim-colorschemes'
 "Plug 'chriskempson/base16-vim'
 
 " JavaScript plugins
-Plug 'pangloss/vim-javascript'
+" mxw/vim-jsx syntax highlighting for React's jsx, requires pangloss/vim-javascript
+Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'mxw/vim-jsx' " syntax highlighting for React's jsx, requires pangloss/vim-javascript
-Plug 'kchmck/vim-coffee-script'
+"Plug 'kchmck/vim-coffee-script'
 "Plug 'burnettk/vim-angular'
 "Plug 'jelera/vim-javascript-syntax'
 "Plug 'marijnh/tern_for_vim'
