@@ -183,16 +183,24 @@ nnoremap <leader>eG :tabnew ~/.gitconfig<CR>
 " edit tmux.conf
 nnoremap <leader>et :e ~/.tmux.conf<CR>
 nnoremap <leader>eT :tabnew ~/.tmux.conf<CR>
+" edit zshrc
+nnoremap <leader>ez :e ~/.zshrc<CR>
+nnoremap <leader>eZ :tabnew ~/.zshrc<CR>
 
-nnoremap <leader>ej :e ~/.vim/bundle/vim-snippets/UltiSnips/javascript.snippets<CR>
+nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/UltiSnips/javascript.snippets<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General mappings/shortcuts for functionality
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " close current buffer without save
 nnoremap QQ ZQ
+
+nnoremap <Leader>lo :lopen<cr>
+nnoremap <Leader>co :copen<cr>
 " quit all
 nnoremap <Leader>q :qa<cr>
+" quit all, ignore any changes
+nnoremap <Leader>qq :qa!<cr>
 
 " shortcut to save/write
 nnoremap <leader>w :w!<cr>
@@ -236,11 +244,11 @@ noremap <silent> <leader>cd :cd %:p:h<cr>
 " remove trailing whitespace and clear the last search pattern
 nnoremap <leader><space> :%s/\s\+$//<CR>:let @/=''<CR>
 
-" toggle search highlighting
-nmap <silent> <leader>/ :set invhlsearch<CR>
+" toggle search highlighting: coh by unimpaired
+"nmap <silent> <leader>/ :set invhlsearch<CR>
 
-" toggle invisible characters
-nmap <leader>l :set list!<CR>
+" toggle invisible characters: col by unimpaired
+"nmap <leader>l :set list!<CR>
 
 " switch between current and last buffer
 nmap <leader>. <c-^>
@@ -263,9 +271,9 @@ nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
-" toggle relativenumber
+" toggle relativenumber: cor by unimpaired
 " http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
-nnoremap <Leader>rn :set rnu!<ENTER>
+"nnoremap <Leader>rn :set rnu!<ENTER>
 
 " http://habrahabr.ru/post/183222/
 " spell check on
