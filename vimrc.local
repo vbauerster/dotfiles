@@ -1,7 +1,7 @@
 " Neomake {
   let g:neomake_javascript_enabled_makers = ['eslint']
   " run neomake on the current file on every write
-  autocmd! BufWritePost * Neomake
+  "autocmd! BufWritePost * Neomake
 " }
 
 " mxw/vim-jsx {
