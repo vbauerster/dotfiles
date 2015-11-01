@@ -197,6 +197,7 @@ nnoremap QQ ZQ
 
 nnoremap <Leader>lo :lopen<cr>
 nnoremap <Leader>co :copen<cr>
+nnoremap <Leader>cq :cclose<cr>
 " quit all
 nnoremap <Leader>q :qa<cr>
 " quit all, ignore any changes
@@ -335,6 +336,8 @@ augroup vimrcEx
 
   " Reformat JSON
   autocmd FileType json noremap <buffer> <leader>rff <Esc>:% !js-beautify -f - -s 2<CR>
+  autocmd FileType html noremap <buffer> <leader>rff <Esc>:% !html-beautify -f - -s 2<CR>
+  autocmd FileType css noremap <buffer> <leader>rff <Esc>:% !css-beautify -f - -s 2<CR>
 augroup END
 
 " Text Highlighter = <leader>h[1-4]
