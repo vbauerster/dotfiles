@@ -109,7 +109,7 @@
 				<identifier>space_cadet.left_control_to_hyper</identifier>
 
 				<autogen>
-					--KeyToKey-- KeyCode::F19, KeyCode::COMMAND_L, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L
+					__KeyToKey__ KeyCode::F19, KeyCode::COMMAND_L, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L
 				</autogen>
 			</item>
 
@@ -121,8 +121,8 @@
 
 				<not>TERMINAL, VI</not>
 
-				<autogen>--KeyOverlaidModifier-- KeyCode::SHIFT_R, ModifierFlag::SHIFT_R | ModifierFlag::NONE, KeyCode::SHIFT_R, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L</autogen>
-				<autogen>--KeyOverlaidModifier-- KeyCode::SHIFT_L, ModifierFlag::SHIFT_L | ModifierFlag::NONE, KeyCode::SHIFT_L, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
+				<autogen>__KeyOverlaidModifier__ KeyCode::SHIFT_R, ModifierFlag::SHIFT_R | ModifierFlag::NONE, KeyCode::SHIFT_R, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L</autogen>
+				<autogen>__KeyOverlaidModifier__ KeyCode::SHIFT_L, ModifierFlag::SHIFT_L | ModifierFlag::NONE, KeyCode::SHIFT_L, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
 			</item>
 
 			<item>
