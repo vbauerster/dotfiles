@@ -98,7 +98,8 @@
 " }
 
 " CtrlP {
-  let g:ctrlp_cmd = 'CtrlPBuffer'
+  "let g:ctrlp_cmd = 'CtrlPBuffer'
+  let g:ctrlp_cmd = 'CtrlPMRU'
   "let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
   let g:ctrlp_match_window = 'max:12'
   "let g:ctrlp_match_window = 'results:12'
@@ -125,7 +126,8 @@
 " }
 
 " emmet {
-    let g:user_emmet_leader_key='<C-d>'
+" ^d is default for down half page
+    "let g:user_emmet_leader_key='<C-d>'
 " }
 
 " dash {
