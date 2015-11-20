@@ -95,8 +95,8 @@ set undofile
 set tabstop=2     " How many columns a tab counts for
 set softtabstop=2 " How many columns vim uses when pressing TAB in insert mode
 set shiftwidth=2  " How many columns text is indented with << and >>
-"set noexpandtab   " Use tabs, not spaces
-set expandtab   " Use spaces
+set noexpandtab   " Use tabs, not spaces
+"set expandtab   " Use spaces
 set smarttab      " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set autoindent    " Indent at the same level of the previous line
 set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
@@ -154,7 +154,7 @@ set diffopt+=vertical
 
 " Whitespaces
 "set listchars=tab:‣\ ,eol:¬
-set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
+"set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 set showbreak=↪
 " show invisible chars by default
 "set list
@@ -335,9 +335,9 @@ augroup vimrcEx
   autocmd FileType css,scss,sass setlocal iskeyword+=-
 
   " Reformat JSON
-  autocmd FileType json noremap <buffer> <leader>rff <Esc>:% !js-beautify -f - -s 2<CR>
-  autocmd FileType html noremap <buffer> <leader>rff <Esc>:% !html-beautify -f - -s 2<CR>
-  autocmd FileType css noremap <buffer> <leader>rff <Esc>:% !css-beautify -f - -s 2<CR>
+  autocmd FileType json noremap <buffer> <leader>rff <Esc>:% !js-beautify -f - -t<CR>
+  autocmd FileType html noremap <buffer> <leader>rff <Esc>:% !html-beautify -f - -t<CR>
+  autocmd FileType css noremap <buffer> <leader>rff <Esc>:% !css-beautify -f - -t<CR>
 augroup END
 
 " Text Highlighter = <leader>h[1-4]
