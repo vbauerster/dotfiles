@@ -276,6 +276,9 @@ nnoremap <silent> $ g$
 " http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
 "nnoremap <Leader>rn :set rnu!<ENTER>
 
+" Buffer reload
+nnoremap <Leader>rr :e!<ENTER>
+
 " http://habrahabr.ru/post/183222/
 " spell check on
 nnoremap <Leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
@@ -334,9 +337,9 @@ augroup vimrcEx
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
 
-  " Reformat JSON
-  autocmd FileType json noremap <buffer> <leader>rff <Esc>:% !js-beautify -f - -t<CR>
-  autocmd FileType html noremap <buffer> <leader>rff <Esc>:% !html-beautify -f - -t<CR>
+  " js-beautify
+  autocmd FileType json,javascript noremap <buffer> <leader>rff <Esc>:% !js-beautify -f - -t<CR>
+  autocmd FileType html,xml noremap <buffer> <leader>rff <Esc>:% !html-beautify -f - -t<CR>
   autocmd FileType css noremap <buffer> <leader>rff <Esc>:% !css-beautify -f - -t<CR>
 augroup END
 
