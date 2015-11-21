@@ -230,7 +230,7 @@ map! <leader>t <Esc>gUiw']a
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
 nnoremap <leader>g g<c-]>
-nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gg :Gstatus<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
 
@@ -277,7 +277,10 @@ nnoremap <silent> $ g$
 "nnoremap <Leader>rn :set rnu!<ENTER>
 
 " Buffer reload
-nnoremap <Leader>rr :e!<ENTER>
+nnoremap <Leader>rr :e!<CR>
+nnoremap <Leader>bb :ls<CR>
+nnoremap <Leader>bn :bn<CR>
+nnoremap <Leader>bp :bp<CR>
 
 " http://habrahabr.ru/post/183222/
 " spell check on
@@ -289,9 +292,9 @@ nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 " => External cmd mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
-nnoremap <leader>nn :write !node --harmony<CR>
+nnoremap <leader>nh :write !node --harmony<CR>
 " see ':h :!'; '.' stands for concatination
-nnoremap <leader>bb :exe "!babel-node " . shellescape(expand("%"))<CR>
+nnoremap <leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
 
 " reload ctags, --fields=+l needs by YCM
 " http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
