@@ -230,9 +230,6 @@ map! <leader>t <Esc>gUiw']a
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
 nnoremap <leader>g g<c-]>
-nnoremap <Leader>gg :Gstatus<CR>
-nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gp :Gpush<CR>
 
 " These create newlines like o and O but stay in normal mode
 " managed by tpope/vim-unimpaired
