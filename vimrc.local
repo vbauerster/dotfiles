@@ -1,4 +1,4 @@
-" Neomake {
+"  'benekastah/neomake' {
   let g:neomake_javascript_enabled_makers = ['eslint']
   " run neomake on the current file on every write
   "autocmd! BufWritePost * Neomake
@@ -53,16 +53,19 @@
     let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
 " }
 
-" YouCompleteMe {
+" 'Valloric/YouCompleteMe' {
     " make YCM not use Tab key
     " Don’t worry, you still be able to cycle through completion with <C-N> and <C-P> keys.
     "let g:ycm_key_list_select_completion=[]
     "let g:ycm_key_list_previous_completion=[]
+		let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
+		let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
 
     "let g:ycm_path_to_python_interpreter = '/usr/local/opt/python/bin/python'
 
+		let g:ycm_complete_in_comments_and_strings=1
     " enable completion from tags
-    let g:ycm_collect_identifiers_from_tags_files = 1
+    let g:ycm_collect_identifiers_from_tags_files=1
 
     " Enable omni completion.
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -74,27 +77,31 @@
     autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " }
 
-" Ultisnips {
-    let g:UltiSnipsExpandTrigger = '<C-k>'
-    "let g:UltiSnipsJumpForwardTrigger = '<C-k>'
-    "let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
-    let g:UltiSnipsJumpForwardTrigger = '<C-@>'  " Ctrl-Space
-    "let g:UltiSnipsJumpBackwardTrigger = '<space>'
-    "let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-    " If you want :UltiSnipsEdit to split your window.
-    "let g:UltiSnipsEditSplit="vertical"
+" 'SirVer/ultisnips'  {
+	let g:UltiSnipsExpandTrigger="<tab>"
+	let g:UltiSnipsJumpForwardTrigger="<tab>"
+	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"let g:UltiSnipsSnippetsDir='~/.vim/snippets'
 
-    " Expand snippets or return cr
-    " http://www.reddit.com/r/vim/comments/2oeqrg/using_ultisnips_for_pair_completions/
-    function! ExpandSnippet()
-        call UltiSnips#ExpandSnippet()
-        if g:ulti_expand_res == 0
-            return "\<CR>"
-        endif
-        return ""
-    endfunction
+    "let g:UltiSnipsExpandTrigger = '<C-k>'
+    ""let g:UltiSnipsJumpForwardTrigger = '<C-k>'
+    ""let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
+    "let g:UltiSnipsJumpForwardTrigger = '<C-@>'  " Ctrl-Space
+    ""let g:UltiSnipsJumpBackwardTrigger = '<space>'
+    ""let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+    "" If you want :UltiSnipsEdit to split your window.
+    ""let g:UltiSnipsEditSplit="vertical"
 
-    inoremap <expr> <CR> "\<C-R>=ExpandSnippet()\<CR>"
+    "" Expand snippets or return cr
+    "" http://www.reddit.com/r/vim/comments/2oeqrg/using_ultisnips_for_pair_completions/
+    "function! ExpandSnippet()
+        "call UltiSnips#ExpandSnippet()
+        "if g:ulti_expand_res == 0
+            "return "\<CR>"
+        "endif
+        "return ""
+    "endfunction
+    "inoremap <expr> <CR> "\<C-R>=ExpandSnippet()\<CR>"
 " }
 
 " 'ctrlpvim/ctrlp.vim'  {
@@ -139,13 +146,17 @@
     nmap <F8> :TagbarToggle<CR>
 " }
 
-" emmet {
-" ^d is default for down half page
-    "let g:user_emmet_leader_key='<C-d>'
-" }
-
-" dash {
-    nmap <silent> <leader>d <Plug>DashSearch
+" 'mattn/emmet-vim' {
+"let g:user_emmet_leader_key='<C-y>'
+		function! s:zen_html_tab()
+			let line = getline('.')
+			if match(line, '<.*>') < 0
+				return "\<c-y>,"
+			endif
+			return "\<c-y>n"
+		endfunction
+		autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
+		autocmd FileType html imap <buffer><expr><tab> <sid>zen_html_tab()
 " }
 
 " jiangmiao/auto-pairs {
@@ -153,16 +164,11 @@
     let g:AutoPairsShortcutBackInsert = '<C-b>'
 " }
 
-" vim-xkbswitch {
-    let g:XkbSwitchEnabled = 1
-    let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
-" }
-
 " vim-gitgutter {
-	nnoremap <silent> <leader>gg :GitGutterToggle<CR>
+	nnoremap <silent> <leader>gt :GitGutterToggle<CR>
 " }
 " 'tpope/vim-fugitive' {
-	nnoremap <silent> <leader>gs :Gstatus<CR>
+	nnoremap <silent> <leader>gg :Gstatus<CR> " double same key for most used
 	nnoremap <silent> <leader>gd :Gdiff<CR>
 	nnoremap <silent> <leader>gc :Gcommit<CR>
 	nnoremap <silent> <leader>gb :Gblame<CR>
@@ -187,12 +193,21 @@
 
   " Recursive search in current directory for matches with current word
   nnoremap <Leader>* :<C-u>execute "GG " . expand("<cword>") <Bar> cw<CR>
-  nnoremap <Leader>fg :Grepper! -tool git -open -switch<CR>
-  nnoremap <Leader>fa :Grepper! -tool ag -open -switch<CR>
+  nnoremap <Leader>gs :Grepper! -tool git -open -switch<CR> " mnemonic is git search
+  nnoremap <Leader>ag :Grepper! -tool ag -open -switch<CR>
 " }
 
 " Session List {
     set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
     nmap <leader>sl :SessionList<CR>
     nmap <leader>ss :SessionSave<CR>
+" }
+
+" dash {
+    nmap <silent> <leader>d <Plug>DashSearch
+" }
+
+" vim-xkbswitch {
+    let g:XkbSwitchEnabled = 1
+    let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
 " }
