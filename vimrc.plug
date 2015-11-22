@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 " General
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 "Plug 'jistr/vim-nerdtree-tabs'
 Plug 'airblade/vim-gitgutter'
