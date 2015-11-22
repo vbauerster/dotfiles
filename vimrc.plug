@@ -2,9 +2,8 @@ call plug#begin('~/.vim/plugged')
 
 " General
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'jistr/vim-nerdtree-tabs'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -33,8 +32,9 @@ Plug 'mattn/gist-vim'
 " General Programming
 "Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
-Plug 'tpope/vim-fugitive' " the ultimate git helper
+Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
 Plug 'scrooloose/nerdcommenter'
+"http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plug 'godlygeek/tabular'
 
 " Snippet & AutoComplete
