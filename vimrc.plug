@@ -6,15 +6,21 @@ Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-Plug 'bling/vim-airline'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'mbbill/undotree'
-Plug 'majutsushi/tagbar' "ctags tagbar
+" ctags tagbar
+Plug 'majutsushi/tagbar'
+" matchit.zip : extended % matching for HTML, LaTeX, and many other languages
 Plug 'vim-scripts/matchit.zip'
 Plug 'christoomey/vim-tmux-navigator'
+
+" UI look and feel
+"Plug 'itchyny/lightline.vim'
+Plug 'bling/vim-airline'
+Plug 'edkolev/tmuxline.vim'
 
 " Grep like search
 "Plug 'rking/ag.vim'
