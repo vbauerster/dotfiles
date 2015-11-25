@@ -276,8 +276,8 @@ nnoremap <silent> $ g$
 " Buffer reload
 nnoremap <Leader>rr :e!<CR>
 nnoremap <Leader>bb :ls<CR>
-nnoremap <Leader>bn :bn<CR>
-nnoremap <Leader>bp :bp<CR>
+"nnoremap <Leader>bn :bn<CR> "provided by unimpaired ]b
+"nnoremap <Leader>bp :bp<CR> "provided by unimpaired [b
 
 " http://habrahabr.ru/post/183222/
 " spell check on
@@ -343,7 +343,7 @@ augroup vimrcEx
   autocmd FileType css noremap <buffer> <leader>rff <Esc>:% !css-beautify -f - -t<CR>
 augroup END
 
-" Text Highlighter = <leader>h[1-4]
+" Text Highlighter = <leader>h[1-4]b
 function! HiInterestingWord(n)
     " Save our location.
     normal! mz
