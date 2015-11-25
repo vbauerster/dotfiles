@@ -19,7 +19,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " UI look and feel
 "Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-airline'
-Plug 'edkolev/tmuxline.vim'
+"Plug 'edkolev/tmuxline.vim'
 
 " Grep like search
 "Plug 'rking/ag.vim'
