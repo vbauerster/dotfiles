@@ -7,11 +7,14 @@ let maplocalleader = ','
 
 set encoding=utf-8
 
-" Use before config if available {
-    if filereadable(expand("~/.vimrc.before"))
-        source ~/.vimrc.before
-    endif
-" }
+if has('gui_running') && filereadable(expand("~/.vimrc.gui"))
+	source ~/.vimrc.gui
+else
+	if &term == 'xterm' || &term == 'screen'
+		" Enable 256 colors to stop the CSApprox warning and make xterm vim shine
+		set t_Co=256
+	endif
+endif
 
 " https://github.com/junegunn/vim-plug
 " Use plugin config {
@@ -29,11 +32,33 @@ if has('clipboard')
   noremap <leader>P "*P
   " recursive mapping
   nmap <leader>yy <leader>Y
-    "if has('unnamedplus')  " When possible use + register for copy-paste
-        "set clipboard=unnamed,unnamedplus
-    "else         " On mac and Windows, use * register for copy-paste
-        "set clipboard=unnamed
-    "endif
+
+	if has('unnamedplus')  " When possible use + register for copy-paste
+		" http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
+		" copy current file name (relative/absolute) to system clipboard
+		" relative path (src/foo.txt)
+		nnoremap <leader>cf :let @+=expand("%")<CR>
+		" absolute path (/something/src/foo.txt)
+		nnoremap <leader>cF :let @+=expand("%:p")<CR>
+		" filename (foo.txt)
+		nnoremap <leader>ct :let @+=expand("%:t")<CR>
+		" directory name (/something/src)
+		nnoremap <leader>ch :let @+=expand("%:p:h")<CR>
+		"use system clipboard as default
+		"set clipboard=unnamed,unnamedplus
+	else         " On mac and Windows, use * register for copy-paste
+		" relative path  (src/foo.txt)
+		nnoremap <leader>cf :let @*=expand("%")<CR>
+		" absolute path  (/something/src/foo.txt)
+		nnoremap <leader>cF :let @*=expand("%:p")<CR>
+		" filename       (foo.txt)
+		nnoremap <leader>ct :let @*=expand("%:t")<CR>
+		" directory name (/something/src)
+		nnoremap <leader>ch :let @*=expand("%:p:h")<CR>
+		"use system clipboard as default
+		"set clipboard=unnamed
+	endif
+
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
