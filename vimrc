@@ -249,8 +249,8 @@ vnoremap ? <Esc>?\%V\%V<Left><Left><Left>
 nnoremap ' `
 nnoremap ` '
 
-" upercase previous word in insert mode
-map! <leader>t <Esc>gUiw']a
+" CapitalCase previous word in insert mode
+map! <leader>cc <Esc>gUiw']a
 
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
