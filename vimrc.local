@@ -139,7 +139,8 @@
 	nnoremap [ctrlp]T :CtrlPTag<cr>
 	nnoremap [ctrlp]l :CtrlPLine<cr>
 	nnoremap [ctrlp]o :CtrlPFunky<cr>
-	nnoremap [ctrlp]b :CtrlPBuffer<cr>
+	" nnoremap [ctrlp]b :CtrlPBuffer<cr>
+	nnoremap [ctrlp]<space> :CtrlPBuffer<cr>
 " }
 
 " tagbar {
