@@ -229,19 +229,25 @@ nnoremap <Leader>q :qa<cr>
 nnoremap <Leader>qq :qa!<cr>
 
 " shortcut to save/write
-nnoremap <leader>w :w!<cr>
+nnoremap <leader>w :w<cr>
 
 " Map Ctrl + S to save in any mode
 nnoremap <silent> <C-S> :update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
 "vnoremap <silent> <C-S> <C-C>:update<CR>
 
-" Retain visual mode after indentation shifts
+" reselect visual block after indent
 vnoremap < <gv
 vnoremap > >gv
+
+" reselect last paste
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
 " Search in visually selected block only
 vnoremap / <Esc>/\%V\%V<Left><Left><Left>
 vnoremap ? <Esc>?\%V\%V<Left><Left><Left>
+
+vmap <leader>s :sort<cr>
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
