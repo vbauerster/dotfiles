@@ -223,6 +223,7 @@ nnoremap QQ ZQ
 nnoremap <Leader>lo :lopen<cr>
 nnoremap <Leader>co :copen<cr>
 nnoremap <Leader>cq :cclose<cr>
+nnoremap <Leader>cp :pclose<cr> "<C-w>z
 " quit all
 nnoremap <Leader>q :qa<cr>
 " quit all, ignore any changes
