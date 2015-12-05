@@ -27,11 +27,10 @@ if has('clipboard')
   " easy system clipboard copy/paste
   " non-recursive mapping
   noremap <leader>y "*y
-  noremap <leader>Y "*Y
+  noremap <leader>yy "*yy
+  noremap <leader>Y "*y$
   noremap <leader>p "*p
   noremap <leader>P "*P
-  " recursive mapping
-  nmap <leader>yy <leader>Y
 
 	if has('unnamedplus')  " When possible use + register for copy-paste
 		" http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
@@ -87,7 +86,7 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 "set wildignore+=*/node_modules/*
 
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
-set timeoutlen=800 ttimeoutlen=100   " shorter escape delay
+set timeoutlen=500 ttimeoutlen=50   " shorter escape delay
 set wildmenu                         " enhanced command line completion
 set wildmode=list:longest            " TAB auto-completion for file paths
 set hidden                           " current buffer can be put into background
@@ -168,7 +167,7 @@ set number
 set splitbelow
 set splitright
 
-set tags=./tags;/,~/.vimtags
+set tags=tags;/,~/.vimtags
 
 " Always use vertical diffs
 set diffopt+=vertical
@@ -259,10 +258,8 @@ map! <leader>cc <Esc>gUiw']a
 " options when there is more than one definition
 nnoremap <leader>g g<c-]>
 
-" These create newlines like o and O but stay in normal mode
-" managed by tpope/vim-unimpaired
-"nnoremap <silent> zj o<Esc>k
-"nnoremap <silent> zk O<Esc>j
+" make Y consistent with C and D. See :help Y.
+nnoremap Y y$
 
 " Switch to the directory of the open buffer
 noremap <silent> <leader>cd :cd %:p:h<cr>
@@ -282,8 +279,8 @@ nmap <leader>. <c-^>
 "noremap <leader>. <c-^> :bd #<cr>
 
 " zoom a vim pane, <C-w>= to re-balance
-nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
-nnoremap <leader>= :wincmd =<cr>
+nnoremap <leader>_ :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>- :wincmd =<cr>
 
 " resize panes
 nnoremap <silent> <Right> :vertical resize +5<cr>
