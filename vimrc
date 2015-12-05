@@ -149,16 +149,12 @@ colorscheme solarized
 set cursorline
 " Highlight current line nr
 "highlight cursorlinenr ctermbg=0 ctermfg=14
-highlight cursorlinenr ctermfg=14
+" highlight cursorlinenr ctermfg=14
 
 " if textwidth > 80 highlight overlenght with reddish bg
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
-
-" Make it obvious where 80 characters is
 set textwidth=80
-"set colorcolumn=+1
-"highlight colorcolumn ctermbg=gray guibg=orange
+highlight OverLength ctermbg=223 guibg=#592929
+match OverLength /\%81v.\+/
 
 " Numbers
 set number
@@ -179,10 +175,10 @@ set diffopt+=vertical
 
 " Whitespaces
 "set listchars=tab:‣\ ,eol:¬
-"set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
+set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 set showbreak=↪
 " show invisible chars by default
-"set list
+"set list "use col by unimpaired
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => StatusLine
