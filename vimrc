@@ -66,8 +66,10 @@ endif
 if has('nvim') " sets for nvim only
   " https://github.com/neovim/neovim/issues/2048
   " https://github.com/christoomey/vim-tmux-navigator/issues/71
-  nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+  nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
   tnoremap <C-b> <C-\><C-n>
+	nnoremap <leader>te <C-w>v:te<CR>
+	nnoremap <leader>ts <C-w>s<C-w>J4<C-w>-:te<CR>
 else " sets for vim only
   set nocompatible
   " https://github.com/neovim/neovim/issues/2092
@@ -313,6 +315,10 @@ nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => External cmd mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" find current word in quickfix
+nnoremap <leader>fw :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
+" find last search in quickfix
+nnoremap <leader>ff :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
 " http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
 nnoremap <leader>nh :write !node --harmony<CR>
 " see ':h :!'; '.' stands for concatination
@@ -401,9 +407,11 @@ hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
-"custom search (*) hightlight
+"custom search (*) highlight
 if $BACKGROUND == 'dark'
 	highlight search ctermfg=16 ctermbg=137
+else
+	highlight search ctermfg=220 ctermbg=237
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
