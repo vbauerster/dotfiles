@@ -35,7 +35,7 @@
 
 " 'scrooloose/nerdtree' {
     "map <leader>n <plug>NERDTreeTabsToggle<CR>
-    nmap <F3> :NERDTreeToggle<CR>
+    nmap <F2> :NERDTreeToggle<CR>
     nmap <leader>nt :NERDTreeFind<CR>
 
     let NERDTreeShowBookmarks=1
@@ -105,8 +105,9 @@
 " }
 
 " 'ctrlpvim/ctrlp.vim' {
+	let g:ctrlp_map = '<F3>'
   "let g:ctrlp_cmd = 'CtrlPBuffer'
-  let g:ctrlp_cmd = 'CtrlPMRU'
+  let g:ctrlp_cmd = 'CtrlPFunky'
   "let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
   "let g:ctrlp_match_window = 'max:12'
   "let g:ctrlp_match_window = 'results:12'
@@ -132,19 +133,30 @@
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
   endif
 
-	nmap \ [ctrlp]
+	nmap ; [ctrlp]
 	nnoremap [ctrlp] <nop>
 
 	nnoremap [ctrlp]t :CtrlPBufTag<cr>
 	nnoremap [ctrlp]T :CtrlPTag<cr>
 	nnoremap [ctrlp]l :CtrlPLine<cr>
-	nnoremap [ctrlp]o :CtrlPFunky<cr>
-	" nnoremap [ctrlp]b :CtrlPBuffer<cr>
+	" nnoremap [ctrlp]o :CtrlPFunky<cr>
+	nnoremap [ctrlp]c :CtrlPChange<cr>
+	nnoremap [ctrlp]d :CtrlPDir<cr>
+	nnoremap [ctrlp]f :CtrlP<cr>
+	nnoremap [ctrlp]r :CtrlPMRU<cr>
+	nnoremap [ctrlp]m :CtrlPMixed<cr>
+	nnoremap [ctrlp]b :CtrlPBookmarkDir<cr>
+	nnoremap [ctrlp]u :CtrlPUndo<cr>
 	nnoremap [ctrlp]<space> :CtrlPBuffer<cr>
+
+	augroup CtrlPDirMRU
+		autocmd!
+		autocmd FileType * if &modifiable | execute 'silent CtrlPBookmarkDirAdd! %:p:h' | endif
+	augroup END
 " }
 
 " 'majutsushi/tagbar' {
-    nmap <F8> :TagbarToggle<CR>
+	nmap <F8> :TagbarToggle<CR>
 " }
 
 " 'mattn/emmet-vim' {
@@ -213,6 +225,14 @@
 
 	" hi link SneakPluginTarget ErrorMsg
 	" hi link SneakPluginScope  Comment
+" }
+
+" 'vim-scriptnnoremap ,yr :YRShow<CR>s/YankRing.vim' {
+	nnoremap <silent> <leader>p :YRShow<CR>
+
+	function! YRRunAfterMaps()
+		nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
+	endfunction
 " }
 
 " 'vim-scripts/sessionman.vim' {

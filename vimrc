@@ -24,14 +24,6 @@ endif
 " }
 
 if has('clipboard')
-  " easy system clipboard copy/paste
-  " non-recursive mapping
-  noremap <leader>y "*y
-  noremap <leader>yy "*yy
-  noremap <leader>Y "*y$
-  noremap <leader>p "*p
-  noremap <leader>P "*P
-
 	if has('unnamedplus')  " When possible use + register for copy-paste
 		" http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
 		" copy current file name (relative/absolute) to system clipboard
@@ -43,6 +35,13 @@ if has('clipboard')
 		nnoremap <leader>ct :let @+=expand("%:t")<CR>
 		" directory name (/something/src)
 		nnoremap <leader>ch :let @+=expand("%:p:h")<CR>
+
+		" easy system clipboard copy/paste
+		noremap <leader>y "+y
+		noremap <leader>yy "+yy
+		noremap <leader>Y "+y$
+		" noremap <leader>p "+p
+		" noremap <leader>P "+P
 		"use system clipboard as default
 		"set clipboard=unnamed,unnamedplus
 	else         " On mac and Windows, use * register for copy-paste
@@ -54,10 +53,16 @@ if has('clipboard')
 		nnoremap <leader>ct :let @*=expand("%:t")<CR>
 		" directory name (/something/src)
 		nnoremap <leader>ch :let @*=expand("%:p:h")<CR>
+
+		" easy system clipboard copy/paste
+		noremap <leader>y "*y
+		noremap <leader>yy "*yy
+		noremap <leader>Y "*y$
+		" noremap <leader>p "*p
+		" noremap <leader>P "*P
 		"use system clipboard as default
 		"set clipboard=unnamed
 	endif
-
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -298,7 +303,8 @@ map! <leader>cc <Esc>gUiw']a
 nnoremap <leader>g g<c-]>
 
 " make Y consistent with C and D. See :help Y.
-nnoremap Y y$
+" YRRunAfterMaps takes care of this
+" nnoremap Y y$
 
 " Switch to the directory of the open buffer
 noremap <silent> <leader>cd :cd %:p:h<cr>
