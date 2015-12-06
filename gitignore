@@ -1,6 +1,5 @@
 .DS_Store
 *.sw[nop]
-*.vim
 *~
 .idea
 .tags
