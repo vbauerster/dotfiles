@@ -1,18 +1,18 @@
-"  'benekastah/neomake' {
+" 'benekastah/neomake' {
   let g:neomake_javascript_enabled_makers = ['eslint']
   " run neomake on the current file on every write
   "autocmd! BufWritePost * Neomake
 " }
 
-" mxw/vim-jsx {
+" 'mxw/vim-jsx' {
     let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " }
 
-" javascript-libraries-syntax.vim {
+" 'javascript-libraries-syntax.vim' {
     let g:used_javascript_libs = 'jquery,underscore,react'
 " }
 
-" vim-airline {
+" 'bling/vim-airline' {
     " Set configuration options for the statusline plugin vim-airline.
     " Use the powerline theme and optionally enable powerline symbols.
     " To use the symbols , , , , , , and .in the statusline
@@ -33,7 +33,7 @@
     endif
 " }
 
-" NerdTree {
+" 'scrooloose/nerdtree' {
     "map <leader>n <plug>NERDTreeTabsToggle<CR>
     nmap <F3> :NERDTreeToggle<CR>
     nmap <leader>nt :NERDTreeFind<CR>
@@ -48,7 +48,7 @@
     let g:nerdtree_tabs_open_on_gui_startup=0
 " }
 
-" UndoTree {
+" 'mbbill/undotree' {
     nnoremap <Leader>u :UndotreeToggle<CR>
     let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
 " }
@@ -104,7 +104,7 @@
     "inoremap <expr> <CR> "\<C-R>=ExpandSnippet()\<CR>"
 " }
 
-" 'ctrlpvim/ctrlp.vim'  {
+" 'ctrlpvim/ctrlp.vim' {
   "let g:ctrlp_cmd = 'CtrlPBuffer'
   let g:ctrlp_cmd = 'CtrlPMRU'
   "let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
@@ -143,7 +143,7 @@
 	nnoremap [ctrlp]<space> :CtrlPBuffer<cr>
 " }
 
-" tagbar {
+" 'majutsushi/tagbar' {
     nmap <F8> :TagbarToggle<CR>
 " }
 
@@ -160,14 +160,15 @@
 		autocmd FileType html imap <buffer><expr><tab> <sid>zen_html_tab()
 " }
 
-" jiangmiao/auto-pairs {
+" 'jiangmiao/auto-pairs' {
     let g:AutoPairsFlyMode = 1
     let g:AutoPairsShortcutBackInsert = '<C-b>'
 " }
 
-" vim-gitgutter {
+" 'airblade/vim-gitgutter' {
 	nnoremap <silent> <leader>gt :GitGutterToggle<CR>
 " }
+
 " 'tpope/vim-fugitive' {
 	nnoremap <silent> <leader>gg :Gstatus<CR> " double same key for most used
 	nnoremap <silent> <leader>gd :Gdiff<CR>
@@ -179,12 +180,13 @@
 	nnoremap <silent> <leader>gr :Gremove<CR>
 	autocmd BufReadPost fugitive://* set bufhidden=delete
 " }
+
 " 'gregsexton/gitv' {
 	nnoremap <silent> <leader>gv :Gitv<CR>
 	nnoremap <silent> <leader>gV :Gitv!<CR>
 " }
 
-" vim-grepper {
+"  'mhinz/vim-grepper' {
   " The default behaviour of :Grepper mimics |:grep|, so the quickfix window won't
   " be opened and one jumps to the first found match.
   " If you don't want to jump to the first match, again mimicking |:grep|, append
@@ -198,17 +200,32 @@
   nnoremap <Leader>ag :Grepper! -tool ag -open -switch<CR>
 " }
 
-" Session List {
+" 'justinmk/vim-sneak' {
+	" To enable 'passive' or 'smart' streak-mode
+	let g:sneak#streak = 1
+	" Enable the 'clever-s' feature
+	let g:sneak#s_next = 1
+
+	" Note: If your mapleader is |,| then Sneak maps |\| instead of |,|.
+	" |\| mapped by ctrlp (see l:135), so using tab as previous
+	" |;| = SneakNext
+	" nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Tab>'
+
+	" hi link SneakPluginTarget ErrorMsg
+	" hi link SneakPluginScope  Comment
+" }
+
+" 'vim-scripts/sessionman.vim' {
     set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
     nmap <leader>sl :SessionList<CR>
     nmap <leader>ss :SessionSave<CR>
 " }
 
-" dash {
+" 'rizzatti/dash.vim' {
     nmap <silent> <leader>d <Plug>DashSearch
 " }
 
-" vim-xkbswitch {
+" 'lyokha/vim-xkbswitch' {
     let g:XkbSwitchEnabled = 1
     let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
 " }

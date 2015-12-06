@@ -8,13 +8,19 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'Lokaltog/vim-easymotion'
+Plug 'tpope/vim-speeddating'
 Plug 'mbbill/undotree'
+Plug 'qpkorr/vim-bufkill'
 " ctags tagbar
 Plug 'majutsushi/tagbar'
 " matchit.zip : extended % matching for HTML, LaTeX, and many other languages
 Plug 'vim-scripts/matchit.zip'
 Plug 'christoomey/vim-tmux-navigator'
+
+" Motions
+" Plug 'Lokaltog/vim-easymotion'
+Plug 'rhysd/clever-f.vim'
+Plug 'justinmk/vim-sneak'
 
 " UI look and feel
 "Plug 'itchyny/lightline.vim'

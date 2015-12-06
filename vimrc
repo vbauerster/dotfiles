@@ -61,6 +61,41 @@ if has('clipboard')
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! CloseWindowOrKillBuffer() "{{{
+	let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+
+	" never bdelete a nerd tree
+	if matchstr(expand("%"), 'NERD') == 'NERD'
+		wincmd c
+		return
+	endif
+
+	if number_of_windows_to_this_buffer > 1
+		wincmd c
+	else
+		bdelete
+	endif
+endfunction "}}}
+" Text Highlighter
+function! HiInterestingWord(n)
+    " Save our location.
+    normal! mz
+    " Yank the current word into the z register.
+    normal! "zyiw
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+    " Move back to our original location.
+    normal! `z
+endfunction
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('nvim') " sets for nvim only
@@ -215,7 +250,9 @@ nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/UltiSnips/javascript.snippets
 " => General mappings/shortcuts for functionality
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " close current buffer without save
-nnoremap QQ ZQ
+" nnoremap QQ ZQ
+" window killer
+nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
 
 nnoremap <Leader>lo :lopen<cr>
 nnoremap <Leader>co :copen<cr>
@@ -302,7 +339,7 @@ nnoremap <silent> $ g$
 
 " Buffer reload
 nnoremap <Leader>rr :e!<CR>
-nnoremap <Leader>bb :ls<CR>
+nnoremap <Leader>ll :ls<CR>
 "nnoremap <Leader>bn :bn<CR> "provided by unimpaired ]b
 "nnoremap <Leader>bp :bp<CR> "provided by unimpaired [b
 
@@ -332,7 +369,6 @@ nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => COOL THINGS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Create directory if not exists
 " CTRLP plugin provides same functionality via <c-y>
 au! BufWritePre * :silent !mkdir -p %:h
@@ -373,24 +409,6 @@ augroup vimrcEx
   autocmd FileType html,xml noremap <buffer> <leader>rff <Esc>:% !html-beautify -f - -t<CR>
   autocmd FileType css noremap <buffer> <leader>rff <Esc>:% !css-beautify -f - -t<CR>
 augroup END
-
-" Text Highlighter = <leader>h[1-4]b
-function! HiInterestingWord(n)
-    " Save our location.
-    normal! mz
-    " Yank the current word into the z register.
-    normal! "zyiw
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
-    " Move back to our original location.
-    normal! `z
-endfunction
 
 nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
 nnoremap <silent> <leader>h0 :call HiInterestingWord(0)<cr>
