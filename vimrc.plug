@@ -31,8 +31,8 @@ Plug 'bling/vim-airline'
 Plug 'kshenoy/vim-signature'
 
 " Grep like search
-"Plug 'rking/ag.vim'
-Plug 'mhinz/vim-grepper'
+Plug 'rking/ag.vim'
+" Plug 'mhinz/vim-grepper'
 
 " Make gists easily from Vim
 Plug 'mattn/webapi-vim'
