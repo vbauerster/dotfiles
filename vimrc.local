@@ -35,7 +35,7 @@
 
 " 'scrooloose/nerdtree' {
     "map <leader>n <plug>NERDTreeTabsToggle<CR>
-    nmap <F2> :NERDTreeToggle<CR>
+    nmap <F3> :NERDTreeToggle<CR>
     nmap <leader>nt :NERDTreeFind<CR>
 
     let NERDTreeShowBookmarks=1
@@ -49,7 +49,7 @@
 " }
 
 " 'mbbill/undotree' {
-    nnoremap <Leader>u :UndotreeToggle<CR>
+    nnoremap <Leader>ut :UndotreeToggle<CR>
     let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
 " }
 
@@ -105,7 +105,7 @@
 " }
 
 " 'ctrlpvim/ctrlp.vim' {
-	let g:ctrlp_map = '<F3>'
+	let g:ctrlp_map = '<F2>'
   "let g:ctrlp_cmd = 'CtrlPBuffer'
   let g:ctrlp_cmd = 'CtrlPFunky'
   "let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
@@ -143,8 +143,8 @@
 	nnoremap [ctrlp]c :CtrlPChange<cr>
 	nnoremap [ctrlp]d :CtrlPDir<cr>
 	nnoremap [ctrlp]f :CtrlP<cr>
-	nnoremap [ctrlp]r :CtrlPMRU<cr>
-	nnoremap [ctrlp]m :CtrlPMixed<cr>
+	nnoremap [ctrlp]m :CtrlPMRU<cr>
+	nnoremap [ctrlp]x :CtrlPMixed<cr>
 	nnoremap [ctrlp]b :CtrlPBookmarkDir<cr>
 	nnoremap [ctrlp]u :CtrlPUndo<cr>
 	nnoremap [ctrlp]<space> :CtrlPBuffer<cr>
@@ -207,7 +207,7 @@
   command! -nargs=* -complete=file Ag Grepper! -tool ag -open -switch -query <args>
 
   " Recursive search in current directory for matches with current word
-  nnoremap <Leader>* :<C-u>execute "GG " . expand("<cword>") <Bar> cw<CR>
+  nnoremap <Leader>, :<C-u>execute "GG " . expand("<cword>") <Bar> cw<CR>
   nnoremap <Leader>gs :Grepper! -tool git -open -switch<CR> " mnemonic is git search
   nnoremap <Leader>ag :Grepper! -tool ag -open -switch<CR>
 " }

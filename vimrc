@@ -109,7 +109,7 @@ if has('nvim') " sets for nvim only
   nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
   tnoremap <C-b> <C-\><C-n>
 	nnoremap <leader>te <C-w>v:te<CR>
-	nnoremap <leader>ts <C-w>s<C-w>J4<C-w>-:te<CR>
+	nnoremap <leader>tt <C-w>s<C-w>J4<C-w>-:te<CR>
 else " sets for vim only
   set nocompatible
   " https://github.com/neovim/neovim/issues/2092
@@ -266,7 +266,7 @@ nnoremap <Leader>cp :pclose<cr> "<C-w>z
 " quit all
 nnoremap <Leader>q :qa<cr>
 " quit all, ignore any changes
-nnoremap <Leader>qq :qa!<cr>
+" nnoremap <Leader>qq :qa!<cr>
 
 " shortcut to save/write
 nnoremap <leader>w :w<cr>
@@ -296,7 +296,7 @@ nnoremap ' `
 nnoremap ` '
 
 " CapitalCase previous word in insert mode
-map! <leader>cc <Esc>gUiw']a
+" map! <leader>uu <Esc>gUiw']a
 
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
@@ -435,7 +435,7 @@ hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 if $BACKGROUND == 'dark'
 	highlight search ctermfg=16 ctermbg=137
 else
-	highlight search ctermfg=220 ctermbg=237
+	highlight search ctermfg=228 ctermbg=240
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
