@@ -63,10 +63,11 @@
 
     "let g:ycm_path_to_python_interpreter = '/usr/local/opt/python/bin/python'
 
-		let g:ycm_complete_in_comments_and_strings=1
+		let g:ycm_complete_in_comments = 0
     " enable completion from tags
-    let g:ycm_collect_identifiers_from_tags_files=1
-
+    " let g:ycm_collect_identifiers_from_tags_files=1
+		let g:ycm_add_preview_to_completeopt = 1
+		let g:ycm_autoclose_preview_window_after_insertion = 1
 " }
 
 " 'ternjs/tern_for_vim' {
