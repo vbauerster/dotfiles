@@ -67,14 +67,6 @@
     " enable completion from tags
     let g:ycm_collect_identifiers_from_tags_files=1
 
-    " Enable omni completion.
-    "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    "autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    "autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-    "autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " }
 
 " 'ternjs/tern_for_vim' {
@@ -86,27 +78,6 @@
 	let g:UltiSnipsExpandTrigger="<tab>"
 	let g:UltiSnipsJumpForwardTrigger="<tab>"
 	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"let g:UltiSnipsSnippetsDir='~/.vim/snippets'
-
-    "let g:UltiSnipsExpandTrigger = '<C-k>'
-    ""let g:UltiSnipsJumpForwardTrigger = '<C-k>'
-    ""let g:UltiSnipsJumpBackwardTrigger = '<C-j>'
-    "let g:UltiSnipsJumpForwardTrigger = '<C-@>'  " Ctrl-Space
-    ""let g:UltiSnipsJumpBackwardTrigger = '<space>'
-    ""let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-    "" If you want :UltiSnipsEdit to split your window.
-    ""let g:UltiSnipsEditSplit="vertical"
-
-    "" Expand snippets or return cr
-    "" http://www.reddit.com/r/vim/comments/2oeqrg/using_ultisnips_for_pair_completions/
-    "function! ExpandSnippet()
-        "call UltiSnips#ExpandSnippet()
-        "if g:ulti_expand_res == 0
-            "return "\<CR>"
-        "endif
-        "return ""
-    "endfunction
-    "inoremap <expr> <CR> "\<C-R>=ExpandSnippet()\<CR>"
 " }
 
 " 'ctrlpvim/ctrlp.vim' {
