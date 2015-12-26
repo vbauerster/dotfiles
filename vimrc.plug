@@ -84,7 +84,7 @@ Plug 'flazz/vim-colorschemes'
 
 " JavaScript plugins
 " mxw/vim-jsx syntax highlighting for React's jsx, requires pangloss/vim-javascript
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' } "tern provided by ycm
 Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'leafgarland/typescript-vim'
