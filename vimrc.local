@@ -174,20 +174,6 @@
 	nnoremap <silent> <leader>gV :Gitv!<CR>
 " }
 
-"  'mhinz/vim-grepper' {
-  " The default behaviour of :Grepper mimics |:grep|, so the quickfix window won't
-  " be opened and one jumps to the first found match.
-  " If you don't want to jump to the first match, again mimicking |:grep|, append
-  " a bang instead:
-  command! -nargs=* -complete=file GG Grepper! -tool git -open -switch -query <args>
-  command! -nargs=* -complete=file Ag Grepper! -tool ag -open -switch -query <args>
-
-  " Recursive search in current directory for matches with current word
-  nnoremap <Leader>, :<C-u>execute "GG " . expand("<cword>") <Bar> cw<CR>
-  nnoremap <Leader>gs :Grepper! -tool git -open -switch<CR> " mnemonic is git search
-  nnoremap <Leader>ag :Grepper! -tool ag -open -switch<CR>
-" }
-
 " 'justinmk/vim-sneak' {
 	" To enable 'passive' or 'smart' streak-mode
 	let g:sneak#streak = 1
@@ -224,4 +210,22 @@
 " 'lyokha/vim-xkbswitch' {
     let g:XkbSwitchEnabled = 1
     let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
+" }
+
+" 'rking/ag.vim' {
+	nnoremap <Leader>* :Ag<CR>
+" }
+
+"  'mhinz/vim-grepper' {
+  " The default behaviour of :Grepper mimics |:grep|, so the quickfix window won't
+  " be opened and one jumps to the first found match.
+  " If you don't want to jump to the first match, again mimicking |:grep|, append
+  " a bang instead:
+  " command! -nargs=* -complete=file GG Grepper! -tool git -open -switch -query <args>
+  " command! -nargs=* -complete=file Ag Grepper! -tool ag -open -switch -query <args>
+
+  " Recursive search in current directory for matches with current word
+  " nnoremap <Leader>* :<C-u>execute "GG " . expand("<cword>") <Bar> cw<CR>
+  " nnoremap <Leader>gs :Grepper! -tool git -open -switch<CR> " mnemonic is git search
+  " nnoremap <Leader>ag :Grepper! -tool ag -open -switch<CR>
 " }
