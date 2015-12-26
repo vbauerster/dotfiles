@@ -3,15 +3,11 @@ alias reload!='source ~/.zshrc'
 
 # Unix
 alias ln='ln -v'
-alias mkdir='mkdir -p'
-alias lld="ls -l | grep ^d"
 alias rmf="rm -rf"
 alias q='exit'
 
 # File size
 alias fs="stat -f \"%z bytes\""
-alias df='df -h' # disk free, in Gigabytes, not bytes
-alias du='du -h -c' # calculate disk usage for a folder
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
