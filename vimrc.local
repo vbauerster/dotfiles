@@ -77,7 +77,12 @@
     "autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 " }
 
-" 'SirVer/ultisnips'  {
+" 'ternjs/tern_for_vim' {
+	let g:tern_show_argument_hints='on_hold'
+	let g:tern_map_keys=1
+" }
+
+" nSirVer/ultisnips'  {
 	let g:UltiSnipsExpandTrigger="<tab>"
 	let g:UltiSnipsJumpForwardTrigger="<tab>"
 	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"

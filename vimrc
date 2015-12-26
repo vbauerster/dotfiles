@@ -108,8 +108,8 @@ if has('nvim') " sets for nvim only
   " https://github.com/christoomey/vim-tmux-navigator/issues/71
   nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
   tnoremap <C-b> <C-\><C-n>
-	nnoremap <leader>te <C-w>v:te<CR>
-	nnoremap <leader>tt <C-w>s<C-w>J4<C-w>-:te<CR>
+	" nnoremap <leader>te <C-w>v:te<CR>
+	" nnoremap <leader>tt <C-w>s<C-w>J4<C-w>-:te<CR>
 else " sets for vim only
   set nocompatible
   " https://github.com/neovim/neovim/issues/2092
