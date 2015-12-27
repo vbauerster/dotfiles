@@ -99,9 +99,8 @@ Plug 'lyokha/vim-xkbswitch' " Auto keyboard switcher
 Plug 'rizzatti/dash.vim'
 
 " untested
-Plug 'vim-scripts/YankRing.vim'
+" Plug 'vim-scripts/YankRing.vim'
 "Plug 'ervandew/supertab' " kind of autocompletion
-"Plug 'christoomey/vim-run-interactive'
 "Plug 'slim-template/vim-slim'
 "Plug 'tpope/vim-eunuch'
 "Plug 'vim-scripts/ctags.vim'

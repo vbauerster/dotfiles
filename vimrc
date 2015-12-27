@@ -40,8 +40,8 @@ if has('clipboard')
 		noremap <leader>y "+y
 		noremap <leader>yy "+yy
 		noremap <leader>Y "+y$
-		" noremap <leader>p "+p
-		" noremap <leader>P "+P
+		noremap <leader>p "+p
+		noremap <leader>P "+P
 		"use system clipboard as default
 		"set clipboard=unnamed,unnamedplus
 	else         " On mac and Windows, use * register for copy-paste
@@ -58,8 +58,8 @@ if has('clipboard')
 		noremap <leader>y "*y
 		noremap <leader>yy "*yy
 		noremap <leader>Y "*y$
-		" noremap <leader>p "*p
-		" noremap <leader>P "*P
+		noremap <leader>p "*p
+		noremap <leader>P "*P
 		"use system clipboard as default
 		"set clipboard=unnamed
 	endif

@@ -190,12 +190,11 @@
 	" hi link SneakPluginScope  Comment
 " }
 
-" 'vim-scriptnnoremap ,yr :YRShow<CR>s/YankRing.vim' {
-	nnoremap <silent> <leader>p :YRShow<CR>
-
-	function! YRRunAfterMaps()
-		nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
-	endfunction
+" 'vim-scripts/YankRing.vim' {
+	" nnoremap <silent> <leader>, :YRShow<CR>
+	" function! YRRunAfterMaps()
+	" 	nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
+	" endfunction
 " }
 
 " 'vim-scripts/sessionman.vim' {
