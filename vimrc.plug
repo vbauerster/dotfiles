@@ -48,7 +48,7 @@ Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
 
 " Snippet & AutoComplete
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 " Group dependencies, vim-snippets depends on ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'myhere/vim-nodejs-complete'
