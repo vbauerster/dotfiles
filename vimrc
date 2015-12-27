@@ -348,6 +348,9 @@ nnoremap <Leader>rr :e!<CR>
 nnoremap <Leader>ll :ls<CR>
 "nnoremap <Leader>bn :bn<CR> "provided by unimpaired ]b
 "nnoremap <Leader>bp :bp<CR> "provided by unimpaired [b
+"
+" Show Registers
+nnoremap <Leader>rg :reg<CR>
 
 " http://habrahabr.ru/post/183222/
 " spell check on
