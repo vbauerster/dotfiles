@@ -362,9 +362,9 @@ nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 " => External cmd mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " find current word in quickfix
-nnoremap <leader>fw :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
+nnoremap <leader>f :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
 " find last search in quickfix
-nnoremap <leader>ff :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
+nnoremap <leader>/ :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
 " http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
 nnoremap <leader>nh :write !node --harmony<CR>
 " see ':h :!'; '.' stands for concatination
@@ -413,10 +413,10 @@ augroup vimrcEx
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
 
-  " js-beautify
-  autocmd FileType json,javascript noremap <buffer> <leader>rff <Esc>:% !js-beautify -f - -t<CR>
-  autocmd FileType html,xml noremap <buffer> <leader>rff <Esc>:% !html-beautify -f - -t<CR>
-  autocmd FileType css noremap <buffer> <leader>rff <Esc>:% !css-beautify -f - -t<CR>
+  " js-beautify; ri = re-indent
+  autocmd FileType json,javascript noremap <buffer> <leader>ri <Esc>:% !js-beautify -f - -t<CR>
+  autocmd FileType html,xml noremap <buffer> <leader>ri <Esc>:% !html-beautify -f - -t<CR>
+  autocmd FileType css noremap <buffer> <leader>ri <Esc>:% !css-beautify -f - -t<CR>
 augroup END
 
 nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
