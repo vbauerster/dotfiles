@@ -295,9 +295,6 @@ vmap <leader>s :sort<cr>
 nnoremap ' `
 nnoremap ` '
 
-" CapitalCase previous word in insert mode
-" map! <leader>uu <Esc>gUiw']a
-
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
 nnoremap <leader>g g<c-]>
