@@ -11,9 +11,8 @@
   st = status
   br = branch
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	stat = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
   last = cat-file commit HEAD
-  type = cat-file -t
-  dump = cat-file -p
 [credential]
 	helper = osxkeychain
 [core]
@@ -30,3 +29,7 @@
 [mergetool "sourcetree"]
 	cmd = /Users/vbauer/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
