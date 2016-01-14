@@ -28,11 +28,11 @@ if has('clipboard')
 		" http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
 		" copy current file name (relative/absolute) to system clipboard
 		" relative path (src/foo.txt)
-		nnoremap <leader>cf :let @+=expand("%")<CR>
+		nnoremap <leader>cp :let @+=expand("%")<CR>
 		" absolute path (/something/src/foo.txt)
-		nnoremap <leader>cF :let @+=expand("%:p")<CR>
+		nnoremap <leader>cP :let @+=expand("%:p")<CR>
 		" filename (foo.txt)
-		nnoremap <leader>ct :let @+=expand("%:t")<CR>
+		nnoremap <leader>cf :let @+=expand("%:t")<CR>
 		" directory name (/something/src)
 		nnoremap <leader>ch :let @+=expand("%:p:h")<CR>
 
@@ -46,11 +46,11 @@ if has('clipboard')
 		"set clipboard=unnamed,unnamedplus
 	else         " On mac and Windows, use * register for copy-paste
 		" relative path  (src/foo.txt)
-		nnoremap <leader>cf :let @*=expand("%")<CR>
+		nnoremap <leader>cp :let @*=expand("%")<CR>
 		" absolute path  (/something/src/foo.txt)
-		nnoremap <leader>cF :let @*=expand("%:p")<CR>
+		nnoremap <leader>cP :let @*=expand("%:p")<CR>
 		" filename       (foo.txt)
-		nnoremap <leader>ct :let @*=expand("%:t")<CR>
+		nnoremap <leader>cf :let @*=expand("%:t")<CR>
 		" directory name (/something/src)
 		nnoremap <leader>ch :let @*=expand("%:p:h")<CR>
 
@@ -128,7 +128,7 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 "set wildignore+=*/node_modules/*
 
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
-set timeoutlen=500 ttimeoutlen=50   " shorter escape delay
+set timeoutlen=600 ttimeoutlen=50    " shorter escape delay
 set wildmenu                         " enhanced command line completion
 set wildmode=list:longest            " TAB auto-completion for file paths
 set hidden                           " current buffer can be put into background
@@ -217,7 +217,7 @@ set diffopt+=vertical
 " Whitespaces
 "set listchars=tab:‣\ ,eol:¬
 set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
-set showbreak=↪
+" set showbreak=↪
 " show invisible chars by default
 "set list "use col by unimpaired
 
@@ -254,17 +254,16 @@ nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/UltiSnips/javascript.snippets
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General mappings/shortcuts for functionality
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" close current buffer without save
-" nnoremap QQ ZQ
 " window killer
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
 
 nnoremap <Leader>lo :lopen<cr>
 nnoremap <Leader>co :copen<cr>
-nnoremap <Leader>cq :cclose<cr>
-nnoremap <Leader>cp :pclose<cr> "<C-w>z
+" nnoremap <Leader>cl :close<cr> " same as <C-w> c
+nnoremap <Leader>cc :cclose<cr>
+nnoremap <Leader>pc :pclose<cr> " same as <C-w> z
 " quit all
-nnoremap <Leader>q :qa<cr>
+nnoremap <Leader>! :qa<cr>
 " quit all, ignore any changes
 " nnoremap <Leader>qq :qa!<cr>
 
@@ -297,11 +296,11 @@ nnoremap ` '
 
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
-nnoremap <leader>g g<c-]>
+nnoremap <leader>] g<c-]>
 
 " make Y consistent with C and D. See :help Y.
 " YRRunAfterMaps takes care of this
-" nnoremap Y y$
+nnoremap Y y$
 
 " Switch to the directory of the open buffer
 noremap <silent> <leader>cd :cd %:p:h<cr>
@@ -321,7 +320,7 @@ nmap <leader>. <c-^>
 "noremap <leader>. <c-^> :bd #<cr>
 
 " zoom a vim pane, <C-w>= to re-balance
-nnoremap <leader>_ :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>z :wincmd _<cr>:wincmd \|<cr>
 nnoremap <leader>- :wincmd =<cr>
 
 " resize panes
