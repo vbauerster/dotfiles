@@ -128,7 +128,7 @@ set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 "set wildignore+=*/node_modules/*
 
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
-set timeoutlen=600 ttimeoutlen=50    " shorter escape delay
+set timeoutlen=550 ttimeoutlen=50    " shorter escape delay
 set wildmenu                         " enhanced command line completion
 set wildmode=list:longest            " TAB auto-completion for file paths
 set hidden                           " current buffer can be put into background
