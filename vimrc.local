@@ -165,9 +165,12 @@
 	nnoremap <silent> <leader>gb :Gblame<CR>
 	nnoremap <silent> <leader>gl :Glog<CR>
 	nnoremap <silent> <leader>gp :Git push<CR>
-	nnoremap <silent> <leader>gw :Gwrite<CR> ":Git add %
-	nnoremap <silent> <leader>gr :Gremove<CR> ":Git rm %
-	nnoremap <silent> <leader>go :Gread<CR> ":Git checkout %
+	" Git add %
+	nnoremap <silent> <leader>gw :Gwrite<CR>
+	" Git rm %
+	nnoremap <silent> <leader>gr :Gremove<CR>
+	" Git checkout %
+	nnoremap <silent> <leader>go :Gread<CR>
 	autocmd BufReadPost fugitive://* set bufhidden=delete
 " }
 
