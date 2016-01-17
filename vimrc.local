@@ -195,7 +195,6 @@
 " }
 
 " 'vim-scripts/YankRing.vim' {
-	" nnoremap <silent> <leader>, :YRShow<CR>
 	" function! YRRunAfterMaps()
 	" 	nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
 	" endfunction

@@ -254,8 +254,8 @@ nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/UltiSnips/javascript.snippets
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General mappings/shortcuts for functionality
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" window killer
-nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
+" window killer | <Leader>bd used by qpkorr/vim-bufkill plugin
+nnoremap <silent> <Leader>bh :call CloseWindowOrKillBuffer()<cr>
 
 nnoremap <Leader>lo :lopen<cr>
 nnoremap <Leader>co :copen<cr>
@@ -296,7 +296,7 @@ nnoremap ` '
 
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
-nnoremap <leader>] g<c-]>
+nnoremap <leader>, g<c-]>
 
 " make Y consistent with C and D. See :help Y.
 " YRRunAfterMaps takes care of this
@@ -315,6 +315,7 @@ nnoremap <leader><space> :%s/\s\+$//<CR>:let @/=''<CR>
 "nmap <leader>l :set list!<CR>
 
 " switch between current and last buffer
+" qpkorr/vim-bufkill provides :BA
 nmap <leader>. <c-^>
 " closes the current buffer before switching to the previous one
 "noremap <leader>. <c-^> :bd #<cr>
