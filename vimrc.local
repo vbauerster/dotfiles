@@ -65,7 +65,7 @@
 
 		let g:ycm_complete_in_comments = 0
     " enable completion from tags
-    " let g:ycm_collect_identifiers_from_tags_files=1
+    let g:ycm_collect_identifiers_from_tags_files=1
 		let g:ycm_add_preview_to_completeopt = 1
 		let g:ycm_autoclose_preview_window_after_insertion = 1
 " }
@@ -88,7 +88,7 @@
   "let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
   "let g:ctrlp_match_window = 'max:12'
   "let g:ctrlp_match_window = 'results:12'
-	let g:ctrlp_max_height=38
+	let g:ctrlp_max_height=32
 	let g:ctrlp_show_hidden=0
 	let g:ctrlp_max_files=20000
 	let g:ctrlp_extensions=['funky']
