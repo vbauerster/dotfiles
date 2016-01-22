@@ -119,12 +119,12 @@
 	" nnoremap [ctrlp]o :CtrlPFunky<cr>
 	nnoremap [ctrlp]c :CtrlPChange<cr>
 	nnoremap [ctrlp]d :CtrlPDir<cr>
-	nnoremap [ctrlp]f :CtrlP<cr>
+	nnoremap [ctrlp]; :CtrlP<cr>
 	nnoremap [ctrlp]m :CtrlPMRU<cr>
 	nnoremap [ctrlp]x :CtrlPMixed<cr>
 	nnoremap [ctrlp]b :CtrlPBookmarkDir<cr>
 	nnoremap [ctrlp]u :CtrlPUndo<cr>
-	nnoremap [ctrlp]<space> :CtrlPBuffer<cr>
+	nnoremap [ctrlp]b :CtrlPBuffer<cr>
 
 	augroup CtrlPDirMRU
 		autocmd!
