@@ -89,6 +89,32 @@
 					<autogen>__KeyToKey__ KeyCode::P, KeyCode::CURSOR_RIGHT</autogen>
 				</block>
 			</item>
+
+			<item>
+				<name>Home Row Numbers Overlay</name>
+				<item>
+					<name>Home Row Numbers</name>
+					<appendix>Overlay 1234567890 onto the home row (ASDFGHJKL;)</appendix>
+					<identifier vk_config="true">notsave.homerow_numbersh</identifier>
+					<autogen>__KeyToKey__ KeyCode::A, KeyCode::2, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::S, KeyCode::3, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::D, KeyCode::4, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::F, KeyCode::5, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::G, KeyCode::6, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::H, KeyCode::7, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::J, KeyCode::8, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::K, KeyCode::9, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::L, KeyCode::0, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::SEMICOLON, KeyCode::MINUS, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::QUOTE, KeyCode::1, ModifierFlag::SHIFT_L</autogen>
+				</item>
+				<item>
+					<name>Hold Space aoeuidhtns- to 7531902468%</name>
+					<identifier>remap.space_to_homerow_numbersh</identifier>
+					<autogen>__KeyOverlaidModifier__ KeyCode::SPACE, KeyCode::VK_CONFIG_SYNC_KEYDOWNUP_notsave_homerow_numbersh, KeyCode::SPACE</autogen>
+				</item>
+			</item>
+
 		</item>
 
 		<item>
