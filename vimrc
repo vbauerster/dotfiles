@@ -127,7 +127,7 @@ set cmdheight=1                      " command bar height
 set autoread                         " detect when a file is changed
 set noerrorbells
 " set completeopt+=longest " Only insert the longest common text of the matches
-set completeopt=menuone,preview " test
+set completeopt=menuone,preview " to test
 
 "set autowrite     " Automatically :write before running commands
 
@@ -227,6 +227,18 @@ nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/UltiSnips/javascript.snippets
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General mappings/shortcuts for functionality
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Save
+inoremap <C-s>     <C-O>:update<cr>
+nnoremap <C-s>     :update<cr>
+nnoremap <leader>w :update<cr>
+
+" Quit
+inoremap <C-Q>     <esc>:q<cr>
+nnoremap <C-Q>     :q<cr>
+nnoremap <Leader>q :q<cr>
+nnoremap <Leader>Q :qa!<cr>
+
 " window killer | <Leader>bd used by qpkorr/vim-bufkill plugin
 nnoremap <silent> <Leader>bh :call CloseWindowOrKillBuffer()<cr>
 
@@ -235,18 +247,6 @@ nnoremap <Leader>co :copen<cr>
 " nnoremap <Leader>cl :close<cr> " same as <C-w> c
 nnoremap <Leader>cc :cclose<cr>
 nnoremap <Leader>pc :pclose<cr> " same as <C-w> z
-" quit all
-nnoremap <Leader>! :qa<cr>
-" quit all, ignore any changes
-" nnoremap <Leader>qq :qa!<cr>
-
-" shortcut to save/write
-nnoremap <leader>w :w<cr>
-
-" Map Ctrl + S to save in any mode
-nnoremap <silent> <C-S> :update<CR>
-inoremap <silent> <C-S> <C-O>:update<CR>
-"vnoremap <silent> <C-S> <C-C>:update<CR>
 
 " reselect visual block after indent
 vnoremap < <gv
