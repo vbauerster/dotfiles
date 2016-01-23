@@ -10,17 +10,6 @@ endif
 
 " }}}
 " ============================================================================
-" CORE BASIC SETTINGS {{{
-" ============================================================================
-
-" set a map leader for more key combos
-let mapleader = ','
-let maplocalleader = ','
-
-set encoding=utf-8
-
-" }}}
-" ============================================================================
 " GUI or TERM {{{
 " ============================================================================
 
@@ -87,10 +76,18 @@ if has('clipboard')
 endif
 
 " }}}
+" ============================================================================
+" BASIC SETTINGS {{{
+" ============================================================================
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader = ','
+let maplocalleader = ','
+
+" Color scheme
+syntax on
+execute "set background=".$BACKGROUND
+colorscheme solarized
+
 if has('nvim') " sets for nvim only
   " https://github.com/neovim/neovim/issues/2048
   " https://github.com/christoomey/vim-tmux-navigator/issues/71
@@ -106,17 +103,19 @@ else " sets for vim only
   set undolevels=1000  " nvim sets this to 1000 by default
   set backspace=indent,eol,start
 endif
+
 " Excluding version control directories
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 " OS X
 set wildignore+=*.DS_Store
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
-" Excluding node_modules
-"set wildignore+=*/node_modules/*
 
+set timeoutlen=500
+set encoding=utf-8
+set number
+set laststatus=2
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
-set timeoutlen=550 ttimeoutlen=50    " shorter escape delay
 set wildmenu                         " enhanced command line completion
 set wildmode=list:longest            " TAB auto-completion for file paths
 set hidden                           " current buffer can be put into background
@@ -127,21 +126,9 @@ set foldlevelstart=99                " all folds open by default
 set cmdheight=1                      " command bar height
 set autoread                         " detect when a file is changed
 set noerrorbells
-"set shell=$SHELL
+" set completeopt+=longest " Only insert the longest common text of the matches
+set completeopt=menuone,preview " test
 
-" backup/persistance settings
-set undodir=~/.vim/tmp/undo//
-set backupdir=~/.vim/tmp/backup//
-set directory=~/.vim/tmp/swap//
-set backupskip=/tmp/*,/private/tmp/*"
-set backup
-set writebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-
-" persist (g)undo tree between sessions
-set undofile
-
-"set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 "set autowrite     " Automatically :write before running commands
 
 " SPACES & TABS
@@ -158,7 +145,6 @@ set smartindent   " Normally 'autoindent' should also be on when using 'smartind
 
 set ruler                " show the cursor position all the time
 set nojoinspaces         " Prevents inserting two spaces after punctuation on a join (J)
-set completeopt+=longest " Only insert the longest common text of the matches
 
 " Searching
 set ignorecase " case insensitive searching
@@ -166,12 +152,6 @@ set smartcase  " case-sensitive if expresson contains a capital letter
 set hlsearch   " Highlight search terms
 set incsearch  " set incremental search, like modern browsers
 set lazyredraw " don't redraw while executing macros
-
-" Color scheme
-syntax on
-"set background=dark
-execute "set background=".$BACKGROUND
-colorscheme solarized
 
 " Highlight current line
 " http://stackoverflow.com/questions/8247243/highlighting-the-current-line-number-in-vim
@@ -184,9 +164,6 @@ set cursorline
 set textwidth=80
 highlight OverLength ctermbg=223 guibg=#592929
 match OverLength /\%81v.\+/
-
-" Numbers
-set number
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
@@ -210,11 +187,18 @@ set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 " show invisible chars by default
 "set list "use col by unimpaired
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => StatusLine
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" show the satus line all the time
-set laststatus=2
+" backup/persistance settings
+set undodir=~/.vim/tmp/undo//
+set backupdir=~/.vim/tmp/backup//
+set directory=~/.vim/tmp/swap//
+set backupskip=/tmp/*,/private/tmp/*"
+set backup " delete old backup, backup current file
+set undofile
+
+" }}}
+" ============================================================================
+" MAPPINGS {{{
+" ============================================================================
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Quick edit Mappings
@@ -352,6 +336,7 @@ nnoremap <silent> <leader>h3 :call HiInterestingWord(3)<cr>
 nnoremap <silent> <leader>h4 :call HiInterestingWord(4)<cr>
 nnoremap <silent> <leader>h5 :call HiInterestingWord(5)<cr>
 nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => External cmd mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -369,6 +354,7 @@ nnoremap <leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
 " http://raygrasso.com/posts/2015/04/using-ctags-on-modern-javascript.html
 nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
 
+" }}}
 " ============================================================================
 " AUTOCMD {{{
 " ============================================================================
@@ -420,10 +406,25 @@ augroup vimrcEx
   endif
 augroup END
 
+" ----------------------------------------------------------------------------
+" Help in new tabs
+" ----------------------------------------------------------------------------
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt call s:helptab()
+augroup END
+
 " }}}
 " ============================================================================
 " FUNCTIONS {{{
 " ============================================================================
+
+function! s:helptab()
+  if &buftype == 'help'
+    wincmd T
+    nnoremap <buffer> q :q<cr>
+  endif
+endfunction
 
 function! CloseWindowOrKillBuffer()
 	let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
