@@ -111,7 +111,7 @@ set wildignore+=*.DS_Store
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
-set timeoutlen=500
+set timeoutlen=550
 set encoding=utf-8
 set number
 set laststatus=2
