@@ -19,53 +19,6 @@ endif
 
 " }}}
 " ============================================================================
-" CLIPBOARD {{{
-" ============================================================================
-
-if has('clipboard')
-	if has('unnamedplus')  " When possible use + register for copy-paste
-		" http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
-		" copy current file name (relative/absolute) to system clipboard
-		" relative path (src/foo.txt)
-		nnoremap <leader>cp :let @+=expand("%")<CR>
-		" absolute path (/something/src/foo.txt)
-		nnoremap <leader>cP :let @+=expand("%:p")<CR>
-		" filename (foo.txt)
-		nnoremap <leader>cf :let @+=expand("%:t")<CR>
-		" directory name (/something/src)
-		nnoremap <leader>ch :let @+=expand("%:p:h")<CR>
-
-		" easy system clipboard copy/paste
-		noremap <leader>y "+y
-		noremap <leader>yy "+yy
-		noremap <leader>Y "+y$
-		noremap <leader>p "+p
-		noremap <leader>P "+P
-		"use system clipboard as default
-		"set clipboard=unnamed,unnamedplus
-	else         " On mac and Windows, use * register for copy-paste
-		" relative path  (src/foo.txt)
-		nnoremap <leader>cp :let @*=expand("%")<CR>
-		" absolute path  (/something/src/foo.txt)
-		nnoremap <leader>cP :let @*=expand("%:p")<CR>
-		" filename       (foo.txt)
-		nnoremap <leader>cf :let @*=expand("%:t")<CR>
-		" directory name (/something/src)
-		nnoremap <leader>ch :let @*=expand("%:p:h")<CR>
-
-		" easy system clipboard copy/paste
-		noremap <leader>y "*y
-		noremap <leader>yy "*yy
-		noremap <leader>Y "*y$
-		noremap <leader>p "*p
-		noremap <leader>P "*P
-		"use system clipboard as default
-		"set clipboard=unnamed
-	endif
-endif
-
-" }}}
-" ============================================================================
 " BASIC SETTINGS {{{
 " ============================================================================
 
@@ -124,6 +77,7 @@ set autoread                         " detect when a file is changed
 set noerrorbells
 " set completeopt+=longest " Only insert the longest common text of the matches
 set completeopt=menuone,preview " to test
+set foldlevelstart=99
 
 "set autowrite     " Automatically :write before running commands
 
@@ -190,15 +144,16 @@ set directory=~/.vim/tmp/swap//
 set backupskip=/tmp/*,/private/tmp/*"
 set backup " delete old backup, backup current file
 set undofile
+" set noswapfile
 
 " }}}
 " ============================================================================
 " MAPPINGS {{{
 " ============================================================================
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------
 " => Quick edit Mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------
 " open vimrc
 nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>eV :tabnew ~/.vimrc<CR>
@@ -220,10 +175,9 @@ nnoremap <leader>eZ :tabnew ~/.zshrc<CR>
 
 nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/UltiSnips/javascript.snippets<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -----------------------------------------------------------
 " => General mappings/shortcuts for functionality
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" -----------------------------------------------------------
 " Save
 inoremap <C-s>     <C-O>:update<cr>
 nnoremap <C-s>     :update<cr>
@@ -278,16 +232,15 @@ noremap <silent> <leader>cd :cd %:p:h<cr>
 nnoremap <leader><space> :%s/\s\+$//<CR>:let @/=''<CR>
 
 " toggle search highlighting: coh by unimpaired
-"nmap <silent> <leader>/ :set invhlsearch<CR>
-
+" nmap <silent> <leader>/ :set invhlsearch<CR>
 " toggle invisible characters: col by unimpaired
-"nmap <leader>l :set list!<CR>
+" nmap <leader>l :set list!<CR>
 
 " switch between current and last buffer
 " qpkorr/vim-bufkill provides :BA
 nmap <leader>. <c-^>
 " closes the current buffer before switching to the previous one
-"noremap <leader>. <c-^> :bd #<cr>
+" noremap <leader>. <c-^> :bd #<cr>
 
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>z :wincmd _<cr>:wincmd \|<cr>
@@ -296,8 +249,8 @@ nnoremap <leader>- :wincmd =<cr>
 " resize panes
 nnoremap <silent> <Right> :vertical resize +5<cr>
 nnoremap <silent> <Left> :vertical resize -5<cr>
-"nnoremap <silent> <Up> :resize +5<cr>
-"nnoremap <silent> <Down> :resize -5<cr>
+" nnoremap <silent> <Up> :resize +5<cr>
+" nnoremap <silent> <Down> :resize -5<cr>
 
 " moving up and down work as you would expect
 nnoremap <silent> j gj
@@ -333,9 +286,9 @@ nnoremap <silent> <leader>h4 :call HiInterestingWord(4)<cr>
 nnoremap <silent> <leader>h5 :call HiInterestingWord(5)<cr>
 nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -----------------------------------------------------------
 " => External cmd mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -----------------------------------------------------------
 " find current word in quickfix
 nnoremap <leader>f :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
 " find last search in quickfix
@@ -349,6 +302,46 @@ nnoremap <leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
 " http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
 " http://raygrasso.com/posts/2015/04/using-ctags-on-modern-javascript.html
 nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
+
+" }}}
+" ============================================================================
+" CLIPBOARDs {{{
+" ============================================================================
+
+" http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
+if has('clipboard')
+	if has('unnamedplus')  " When possible use + register for copy-paste
+		nnoremap <leader>cp :let @+=expand("%")<CR>
+		nnoremap <leader>cP :let @+=expand("%:p")<CR>
+		nnoremap <leader>cf :let @+=expand("%:t")<CR>
+		nnoremap <leader>ch :let @+=expand("%:p:h")<CR>
+
+		noremap <leader>y "+y
+		noremap <leader>yy "+yy
+		noremap <leader>Y "+y$
+		noremap <leader>p "+p
+		noremap <leader>P "+P
+	else " On mac and Windows, use * register for copy-paste
+		" copy current file name (relative/absolute) to system clipboard
+		" relative path  (src/foo.txt)
+		nnoremap <leader>cp :let @*=expand("%")<CR>
+		" absolute path  (/something/src/foo.txt)
+		nnoremap <leader>cP :let @*=expand("%:p")<CR>
+		" filename       (foo.txt)
+		nnoremap <leader>cf :let @*=expand("%:t")<CR>
+		" directory name (/something/src)
+		nnoremap <leader>ch :let @*=expand("%:p:h")<CR>
+
+		" easy system clipboard copy/paste
+		noremap <leader>y "*y
+		noremap <leader>yy "*yy
+		noremap <leader>Y "*y$
+		noremap <leader>p "*p
+		noremap <leader>P "*P
+		"use system clipboard as default
+		"set clipboard=unnamed
+	endif
+endif
 
 " }}}
 " ============================================================================
