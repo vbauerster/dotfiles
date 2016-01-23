@@ -10,22 +10,11 @@ endif
 
 " }}}
 " ============================================================================
-" GUI or TERM {{{
+" GUI BLOCK {{{
 " ============================================================================
 
 if has('gui_running') && filereadable(expand("~/.vimrc.gui"))
 	source ~/.vimrc.gui
-else
-	if &term == 'xterm' || &term == 'screen'
-		" Enable 256 colors to stop the CSApprox warning and make xterm vim shine
-		set t_Co=256
-		"custom search (*) highlight
-		if $BACKGROUND == 'dark'
-			highlight search ctermfg=16 ctermbg=137
-		else
-			highlight search ctermfg=228 ctermbg=240
-		endif
-	endif
 endif
 
 " }}}
@@ -83,10 +72,16 @@ endif
 let mapleader = ','
 let maplocalleader = ','
 
-" Color scheme
 syntax on
-execute "set background=".$BACKGROUND
 colorscheme solarized
+
+execute "set background=".$BACKGROUND
+"custom search (*) highlight
+if $BACKGROUND == 'dark'
+	highlight search ctermfg=16 ctermbg=137
+else
+	highlight search ctermfg=228 ctermbg=240
+endif
 
 if has('nvim') " sets for nvim only
   " https://github.com/neovim/neovim/issues/2048
@@ -102,6 +97,7 @@ else " sets for vim only
   set history=1000     " nvim sets this to 1000 by default
   set undolevels=1000  " nvim sets this to 1000 by default
   set backspace=indent,eol,start
+	set t_Co=256
 endif
 
 " Excluding version control directories
