@@ -1,11 +1,28 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim: set foldmethod=marker foldlevel=0:
+" ============================================================================
+" VIM-PLUG BLOCK {{{
+" ============================================================================
+
+" https://github.com/junegunn/vim-plug
+if filereadable(expand("~/.vimrc.plug"))
+	source ~/.vimrc.plug
+endif
+
+" }}}
+" ============================================================================
+" CORE BASIC SETTINGS {{{
+" ============================================================================
+
 " set a map leader for more key combos
 let mapleader = ','
 let maplocalleader = ','
 
 set encoding=utf-8
+
+" }}}
+" ============================================================================
+" GUI or TERM {{{
+" ============================================================================
 
 if has('gui_running') && filereadable(expand("~/.vimrc.gui"))
 	source ~/.vimrc.gui
@@ -13,15 +30,19 @@ else
 	if &term == 'xterm' || &term == 'screen'
 		" Enable 256 colors to stop the CSApprox warning and make xterm vim shine
 		set t_Co=256
+		"custom search (*) highlight
+		if $BACKGROUND == 'dark'
+			highlight search ctermfg=16 ctermbg=137
+		else
+			highlight search ctermfg=228 ctermbg=240
+		endif
 	endif
 endif
 
-" https://github.com/junegunn/vim-plug
-" Use plugin config {
-    if filereadable(expand("~/.vimrc.plug"))
-        source ~/.vimrc.plug
-    endif
-" }
+" }}}
+" ============================================================================
+" CLIPBOARD {{{
+" ============================================================================
 
 if has('clipboard')
 	if has('unnamedplus')  " When possible use + register for copy-paste
@@ -65,41 +86,8 @@ if has('clipboard')
 	endif
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CloseWindowOrKillBuffer() "{{{
-	let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+" }}}
 
-	" never bdelete a nerd tree
-	if matchstr(expand("%"), 'NERD') == 'NERD'
-		wincmd c
-		return
-	endif
-
-	if number_of_windows_to_this_buffer > 1
-		wincmd c
-	else
-		bdelete
-	endif
-endfunction "}}}
-" Text Highlighter
-function! HiInterestingWord(n)
-    " Save our location.
-    normal! mz
-    " Yank the current word into the z register.
-    normal! "zyiw
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
-    " Move back to our original location.
-    normal! `z
-endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -209,7 +197,8 @@ set number
 set splitbelow
 set splitright
 
-set tags=tags;/,~/.vimtags
+" ctags
+set tags=./tags;/
 
 " Always use vertical diffs
 set diffopt+=vertical
@@ -355,6 +344,14 @@ nnoremap <Leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
 " spell check off
 nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
+" Text Highlighter
+nnoremap <silent> <leader>h0 :call HiInterestingWord(0)<cr>
+nnoremap <silent> <leader>h1 :call HiInterestingWord(1)<cr>
+nnoremap <silent> <leader>h2 :call HiInterestingWord(2)<cr>
+nnoremap <silent> <leader>h3 :call HiInterestingWord(3)<cr>
+nnoremap <silent> <leader>h4 :call HiInterestingWord(4)<cr>
+nnoremap <silent> <leader>h5 :call HiInterestingWord(5)<cr>
+nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => External cmd mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -372,58 +369,96 @@ nnoremap <leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
 " http://raygrasso.com/posts/2015/04/using-ctags-on-modern-javascript.html
 nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => COOL THINGS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Create directory if not exists
-" CTRLP plugin provides same functionality via <c-y>
-au! BufWritePre * :silent !mkdir -p %:h
+" ============================================================================
+" AUTOCMD {{{
+" ============================================================================
 
 augroup vimrcEx
   autocmd!
 
   " automatically rebalance windows on vim resize
-  "autocmd VimResized * :wincmd =
+  " au VimResized * :wincmd =
+
+	" Create directory if not exists
+	" CTRLP plugin provides same functionality via <c-y>
+	au BufWritePre * :silent !mkdir -p %:h
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when
   " inside an event handler (happens when dropping a file on gvim).
-  autocmd BufReadPost *
+  au BufReadPost *
     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
 
   " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  " au BufRead,BufNewFile Appraisals set filetype=ruby
+  au BufRead,BufNewFile *.md set filetype=markdown
 
   " Enable spellchecking for Markdown
-  autocmd FileType markdown setlocal spell spelllang=ru_yo,en_us
+  au FileType markdown setlocal spell spelllang=ru_yo,en_us
 
   " Automatically wrap at 80 characters for Markdown
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+  au BufRead,BufNewFile *.md setlocal textwidth=80
 
   " Automatically wrap at 72 characters and spell check git commit messages
-  autocmd FileType gitcommit setlocal textwidth=72
-  autocmd FileType gitcommit setlocal spell spelllang=ru_yo,en_us
+  au FileType gitcommit setlocal textwidth=72
+  au FileType gitcommit setlocal spell spelllang=ru_yo,en_us
 
   " Allow stylesheets to autocomplete hyphenated words
-  autocmd FileType css,scss,sass setlocal iskeyword+=-
+  au FileType css,scss,sass setlocal iskeyword+=-
 
   " js-beautify; ri = re-indent
-  autocmd FileType json,javascript noremap <buffer> <leader>ri <Esc>:% !js-beautify -f - -t<CR>
-  autocmd FileType html,xml noremap <buffer> <leader>ri <Esc>:% !html-beautify -f - -t<CR>
-  autocmd FileType css noremap <buffer> <leader>ri <Esc>:% !css-beautify -f - -t<CR>
+  au FileType json noremap <buffer> <leader>ri <Esc>:% !js-beautify -f - -t<CR>
+  au FileType html,xml noremap <buffer> <leader>ri <Esc>:% !html-beautify -f - -t<CR>
+  au FileType css noremap <buffer> <leader>ri <Esc>:% !css-beautify -f - -t<CR>
+
+  " Automatic rename of tmux window
+  if exists('$TMUX') && !exists('$NORENAME')
+    au BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
+    au VimLeave * call system('tmux set-window automatic-rename on')
+  endif
 augroup END
 
-nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
-nnoremap <silent> <leader>h0 :call HiInterestingWord(0)<cr>
-nnoremap <silent> <leader>h1 :call HiInterestingWord(1)<cr>
-nnoremap <silent> <leader>h2 :call HiInterestingWord(2)<cr>
-nnoremap <silent> <leader>h3 :call HiInterestingWord(3)<cr>
-nnoremap <silent> <leader>h4 :call HiInterestingWord(4)<cr>
-nnoremap <silent> <leader>h5 :call HiInterestingWord(5)<cr>
+" }}}
+" ============================================================================
+" FUNCTIONS {{{
+" ============================================================================
 
+function! CloseWindowOrKillBuffer()
+	let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+
+	" never bdelete a nerd tree
+	if matchstr(expand("%"), 'NERD') == 'NERD'
+		wincmd c
+		return
+	endif
+
+	if number_of_windows_to_this_buffer > 1
+		wincmd c
+	else
+		bdelete
+	endif
+endfunction
+" Text Highlighter
+function! HiInterestingWord(n)
+    " Save our location.
+    normal! mz
+    " Yank the current word into the z register.
+    normal! "zyiw
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+    " Move back to our original location.
+    normal! `z
+endfunction
+
+" Highlight colors constants
 hi def InterestingWord0 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
 hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
 hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
@@ -431,18 +466,13 @@ hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
 hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
 hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
-"custom search (*) highlight
-if $BACKGROUND == 'dark'
-	highlight search ctermfg=16 ctermbg=137
-else
-	highlight search ctermfg=228 ctermbg=240
+" }}}
+" ============================================================================
+" vimrc.local BLOCK {{{
+" ============================================================================
+
+if filereadable(expand("~/.vimrc.local"))
+	source ~/.vimrc.local
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Local config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Local config if available {
-  if filereadable(expand("~/.vimrc.local"))
-    source ~/.vimrc.local
-  endif
-" }
+" }}}
