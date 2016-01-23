@@ -14,11 +14,12 @@ HISTSIZE=2048              # stores the maximum number of events to save in the 
 
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
-bindkey "^R" history-incremental-search-backward
 bindkey "^P" history-search-backward
 bindkey "^Y" accept-and-hold
 bindkey "^N" insert-last-word
-#bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
+# bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
+# history-incremental is from editor module
+# bindkey "^R" history-incremental-search-backward
 
 if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="light"
