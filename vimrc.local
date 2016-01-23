@@ -1,235 +1,320 @@
-" 'benekastah/neomake' {
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  " run neomake on the current file on every write
-  "autocmd! BufWritePost * Neomake
-" }
+" vim: set foldmethod=marker foldlevel=0:
+" ============================================================================
+" 'benekastah/neomake' {{{
+" ============================================================================
 
-" 'mxw/vim-jsx' {
-    " let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-" }
+let g:neomake_javascript_enabled_makers = ['eslint']
+" run neomake on the current file on every write
+" autocmd! BufWritePost * Neomake
 
-" 'javascript-libraries-syntax.vim' {
-    let g:used_javascript_libs = 'jquery,underscore,react'
-" }
+" }}}
+" ============================================================================
+" 'othree/javascript-libraries-syntax.vim' {{{
+" ============================================================================
 
-" 'bling/vim-airline' {
-    " Set configuration options for the statusline plugin vim-airline.
-    " Use the powerline theme and optionally enable powerline symbols.
-    " To use the symbols , , , , , , and .in the statusline
-    " segments add the following to your .vimrc.before.local file:
-    let g:airline_powerline_fonts=1
-    " If the previous symbols do not render for you then install a
-    " powerline enabled font.
+let g:used_javascript_libs = 'jquery,underscore,react'
 
-    " See `:echo g:airline_theme_map` for some more choices
-    " Default in terminal vim is 'dark'
-    if !exists('g:airline_theme')
-      let g:airline_theme = 'solarized'
-    endif
-    if !exists('g:airline_powerline_fonts')
-      " Use the default set of separators with a few customizations
-      let g:airline_left_sep='›'  " Slightly fancier than '>'
-      let g:airline_right_sep='‹' " Slightly fancier than '<'
-    endif
-" }
+" }}}
+" ============================================================================
+" 'bling/vim-airline' {{{
+" ============================================================================
 
-" 'scrooloose/nerdtree' {
-    "map <leader>n <plug>NERDTreeTabsToggle<CR>
-    nmap <F3> :NERDTreeToggle<CR>
-    nmap <leader>nt :NERDTreeFind<CR>
+" Set configuration options for the statusline plugin vim-airline.
+" Use the powerline theme and optionally enable powerline symbols.
+" To use the symbols , , , , , , and .in the statusline
+" segments add the following to your .vimrc.before.local file:
+let g:airline_powerline_fonts=1
+" If the previous symbols do not render for you then install a
+" powerline enabled font.
 
-    let NERDTreeShowBookmarks=1
-    let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.sw[op]$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.js.map$']
-    let NERDTreeChDirMode=0
-    let NERDTreeQuitOnOpen=1
-    let NERDTreeMouseMode=2
-    let NERDTreeShowHidden=1
-    let NERDTreeKeepTreeInNewTab=1
-    let g:nerdtree_tabs_open_on_gui_startup=0
-" }
+" See `:echo g:airline_theme_map` for some more choices
+" Default in terminal vim is 'dark'
+if !exists('g:airline_theme')
+	let g:airline_theme = 'solarized'
+endif
+if !exists('g:airline_powerline_fonts')
+	" Use the default set of separators with a few customizations
+	let g:airline_left_sep='›'  " Slightly fancier than '>'
+	let g:airline_right_sep='‹' " Slightly fancier than '<'
+endif
 
-" 'mbbill/undotree' {
-    nnoremap <Leader>uu :UndotreeToggle<CR>
-    let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
-" }
+" }}}
+" ============================================================================
+" 'scrooloose/nerdtree' {{{
+" ============================================================================
 
-" 'Valloric/YouCompleteMe' {
-    " make YCM not use Tab key
-    " Don’t worry, you still be able to cycle through completion with <C-N> and <C-P> keys.
-    "let g:ycm_key_list_select_completion=[]
-    "let g:ycm_key_list_previous_completion=[]
-		let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
-		let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
+"map <leader>n <plug>NERDTreeTabsToggle<CR>
+nmap <F3> :NERDTreeToggle<CR>
+nmap <leader>nt :NERDTreeFind<CR>
 
-    "let g:ycm_path_to_python_interpreter = '/usr/local/opt/python/bin/python'
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.sw[op]$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.js.map$']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=1
+let NERDTreeMouseMode=2
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
+let g:nerdtree_tabs_open_on_gui_startup=0
 
-		let g:ycm_complete_in_comments = 0
-    " enable completion from tags
-    let g:ycm_collect_identifiers_from_tags_files=1
-		let g:ycm_add_preview_to_completeopt = 1
-		let g:ycm_autoclose_preview_window_after_insertion = 1
-" }
+" }}}
+" ============================================================================
+" 'mbbill/undotree' {{{
+" ============================================================================
 
-" 'ternjs/tern_for_vim' {
-	let g:tern_show_argument_hints='on_hold'
-	let g:tern_map_keys=1
-" }
+nnoremap <Leader>uu :UndotreeToggle<CR>
+let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
 
-" nSirVer/ultisnips'  {
-	let g:UltiSnipsExpandTrigger="<tab>"
-	let g:UltiSnipsJumpForwardTrigger="<tab>"
-	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" }
+" }}}
+" ============================================================================
+" 'Valloric/YouCompleteMe' {{{
+" ============================================================================
 
-" 'ctrlpvim/ctrlp.vim' {
-	let g:ctrlp_map = '<F2>'
-  "let g:ctrlp_cmd = 'CtrlPBuffer'
-  let g:ctrlp_cmd = 'CtrlPFunky'
-  "let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
-  "let g:ctrlp_match_window = 'max:12'
-  "let g:ctrlp_match_window = 'results:12'
-	let g:ctrlp_max_height=32
-	let g:ctrlp_show_hidden=0
-	let g:ctrlp_max_files=20000
-	let g:ctrlp_extensions=['funky']
-  let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn|idea)$',
-    \ 'file': '\v\.(exe|so|dll|class)$',
-  \ }
+" make YCM not use Tab key
+" Don’t worry, you still be able to cycle through completion with <C-N> and <C-P> keys.
+"let g:ycm_key_list_select_completion=[]
+"let g:ycm_key_list_previous_completion=[]
+let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
 
-  "let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --hidden -g ""'
-  " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-  if executable('ag')
-    " Use Ag over Grep
-    set grepprg=ag\ --nogroup\ --nocolor
-    " Use ag in CtrlP for listing files, unless root dir is under git
-		"let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
-    "let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'ag %s -l --nocolor --hidden -g ""']
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'ag %s -l --nocolor -g ""']
-  else
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
-  endif
+"let g:ycm_path_to_python_interpreter = '/usr/local/opt/python/bin/python'
 
-	nmap ; [ctrlp]
-	nnoremap [ctrlp] <nop>
+let g:ycm_complete_in_comments = 0
+" enable completion from tags
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 
-	nnoremap [ctrlp]t :CtrlPBufTag<cr>
-	nnoremap [ctrlp]T :CtrlPTag<cr>
-	nnoremap [ctrlp]l :CtrlPLine<cr>
-	" nnoremap [ctrlp]o :CtrlPFunky<cr>
-	nnoremap [ctrlp]c :CtrlPChange<cr>
-	nnoremap [ctrlp]d :CtrlPDir<cr>
-	nnoremap [ctrlp]; :CtrlP<cr>
-	nnoremap [ctrlp]m :CtrlPMRU<cr>
-	nnoremap [ctrlp]x :CtrlPMixed<cr>
-	nnoremap [ctrlp]b :CtrlPBookmarkDir<cr>
-	nnoremap [ctrlp]u :CtrlPUndo<cr>
-	nnoremap [ctrlp]b :CtrlPBuffer<cr>
+" }}}
+" ============================================================================
+" 'ternjs/tern_for_vim' {{{
+" ============================================================================
 
-	augroup CtrlPDirMRU
-		autocmd!
-		autocmd FileType * if &modifiable | execute 'silent CtrlPBookmarkDirAdd! %:p:h' | endif
-	augroup END
-" }
+let g:tern_show_argument_hints='on_hold'
+let g:tern_map_keys=1
 
-" 'majutsushi/tagbar' {
-	nmap <F8> :TagbarToggle<CR>
-" }
+" }}}
+" ============================================================================
+" 'SirVer/ultisnips'  {{{
+" ============================================================================
 
-" 'mattn/emmet-vim' {
-"let g:user_emmet_leader_key='<C-y>'
-		function! s:zen_html_tab()
-			let line = getline('.')
-			if match(line, '<.*>') < 0
-				return "\<c-y>,"
-			endif
-			return "\<c-y>n"
-		endfunction
-		autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
-		autocmd FileType html imap <buffer><expr><tab> <sid>zen_html_tab()
-" }
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-" 'jiangmiao/auto-pairs' {
-    let g:AutoPairsFlyMode = 1
-    let g:AutoPairsShortcutBackInsert = '<C-b>'
-" }
+" }}}
+" ============================================================================
+" 'ctrlpvim/ctrlp.vim' {{{
+" ============================================================================
 
-" 'airblade/vim-gitgutter' {
-	nnoremap <silent> <leader>gt :GitGutterToggle<CR>
-" }
+let g:ctrlp_map = '<F2>'
+"let g:ctrlp_cmd = 'CtrlPBuffer'
+let g:ctrlp_cmd = 'CtrlPFunky'
+"let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
+"let g:ctrlp_match_window = 'max:12'
+"let g:ctrlp_match_window = 'results:12'
+let g:ctrlp_max_height=32
+let g:ctrlp_show_hidden=0
+let g:ctrlp_max_files=20000
+let g:ctrlp_extensions=['funky']
+let g:ctrlp_custom_ignore = {
+			\ 'dir':  '\v[\/]\.(git|hg|svn|idea)$',
+			\ 'file': '\v\.(exe|so|dll|class)$',
+			\ }
 
-" 'tpope/vim-fugitive' {
-	nnoremap <silent> <leader>gg :Gstatus<CR> " double same key for most used
-	nnoremap <silent> <leader>gd :Gdiff<CR>
-	nnoremap <silent> <leader>gc :Gcommit<CR>
-	nnoremap <silent> <leader>gb :Gblame<CR>
-	nnoremap <silent> <leader>gl :Glog<CR>
-	nnoremap <silent> <leader>gp :Git push<CR>
-	" Git add %
-	nnoremap <silent> <leader>gw :Gwrite<CR>
-	" Git rm %
-	nnoremap <silent> <leader>gr :Gremove<CR>
-	" Git checkout %
-	nnoremap <silent> <leader>go :Gread<CR>
-	autocmd BufReadPost fugitive://* set bufhidden=delete
-" }
+"let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --hidden -g ""'
+" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
+if executable('ag')
+	" Use Ag over Grep
+	set grepprg=ag\ --nogroup\ --nocolor
+	" Use ag in CtrlP for listing files, unless root dir is under git
+	"let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
+	"let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'ag %s -l --nocolor --hidden -g ""']
+	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'ag %s -l --nocolor -g ""']
+else
+	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+endif
 
-" 'gregsexton/gitv' {
-	nnoremap <silent> <leader>gv :Gitv<CR>
-	nnoremap <silent> <leader>gV :Gitv!<CR>
-" }
+nmap ; [ctrlp]
+nnoremap [ctrlp] <nop>
 
-" 'justinmk/vim-sneak' {
-	" To enable 'passive' or 'smart' streak-mode
-	let g:sneak#streak = 1
-	" Enable the 'clever-s' feature
-	let g:sneak#s_next = 1
+nnoremap [ctrlp]t :CtrlPBufTag<cr>
+nnoremap [ctrlp]T :CtrlPTag<cr>
+nnoremap [ctrlp]l :CtrlPLine<cr>
+" nnoremap [ctrlp]o :CtrlPFunky<cr>
+nnoremap [ctrlp]c :CtrlPChange<cr>
+nnoremap [ctrlp]d :CtrlPDir<cr>
+nnoremap [ctrlp]; :CtrlP<cr>
+nnoremap [ctrlp]m :CtrlPMRU<cr>
+nnoremap [ctrlp]x :CtrlPMixed<cr>
+nnoremap [ctrlp]b :CtrlPBookmarkDir<cr>
+nnoremap [ctrlp]u :CtrlPUndo<cr>
+nnoremap [ctrlp]b :CtrlPBuffer<cr>
 
-	" Note: If your mapleader is |,| then Sneak maps |\| instead of |,|.
-	" |\| mapped by ctrlp (see l:135), so using tab as previous
-	" |;| = SneakNext
-	" nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Tab>'
+augroup CtrlPDirMRU
+	autocmd!
+	autocmd FileType * if &modifiable | execute 'silent CtrlPBookmarkDirAdd! %:p:h' | endif
+augroup END
 
-	" hi link SneakPluginTarget ErrorMsg
-	" hi link SneakPluginScope  Comment
-" }
+" }}}
+" ============================================================================
+" 'majutsushi/tagbar' {{{
+" ============================================================================
 
-" 'vim-scripts/YankRing.vim' {
-	" function! YRRunAfterMaps()
-	" 	nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
-	" endfunction
-" }
+nmap <F8> :TagbarToggle<CR>
 
-" 'vim-scripts/sessionman.vim' {
-    set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-    nmap <leader>sl :SessionList<CR>
-    nmap <leader>ss :SessionSave<CR>
-" }
+" }}}
+" ============================================================================
+" 'mattn/emmet-vim' {{{
+" ============================================================================
 
-" 'rizzatti/dash.vim' {
-    nmap <silent> <leader>d <Plug>DashSearch
-" }
+function! s:zen_html_tab()
+	let line = getline('.')
+	if match(line, '<.*>') < 0
+		return "\<c-y>,"
+	endif
+	return "\<c-y>n"
+endfunction
 
-" 'lyokha/vim-xkbswitch' {
-    let g:XkbSwitchEnabled = 1
-    let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
-		let g:XkbSwitchSkipFt = [ 'nerdtree' ]
-" }
+augroup EmmetZen
+	autocmd!
+	autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
+	autocmd FileType html imap <buffer><expr><tab> <sid>zen_html_tab()
+augroup END
 
-" 'rking/ag.vim' {
-	nnoremap <Leader>* :Ag<CR>
-" }
+" }}}
+" ============================================================================
+" 'jiangmiao/auto-pairs' {{{
+" ============================================================================
 
-"  'mhinz/vim-grepper' {
-  " The default behaviour of :Grepper mimics |:grep|, so the quickfix window won't
-  " be opened and one jumps to the first found match.
-  " If you don't want to jump to the first match, again mimicking |:grep|, append
-  " a bang instead:
-  " command! -nargs=* -complete=file GG Grepper! -tool git -open -switch -query <args>
-  " command! -nargs=* -complete=file Ag Grepper! -tool ag -open -switch -query <args>
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutBackInsert = '<C-b>'
 
-  " Recursive search in current directory for matches with current word
-  " nnoremap <Leader>* :<C-u>execute "GG " . expand("<cword>") <Bar> cw<CR>
-  " nnoremap <Leader>gs :Grepper! -tool git -open -switch<CR> " mnemonic is git search
-  " nnoremap <Leader>ag :Grepper! -tool ag -open -switch<CR>
-" }
+" }}}
+" ============================================================================
+" 'airblade/vim-gitgutter' {{{
+" ============================================================================
+
+nnoremap <silent> <leader>gt :GitGutterToggle<CR>
+
+" }}}
+" ============================================================================
+" 'tpope/vim-fugitive' {{{
+" ============================================================================
+
+nnoremap <silent> <leader>gg :Gstatus<CR> " double same key for most used
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+" Git add %
+nnoremap <silent> <leader>gw :Gwrite<CR>
+" Git rm %
+nnoremap <silent> <leader>gr :Gremove<CR>
+" Git checkout %
+nnoremap <silent> <leader>go :Gread<CR>
+
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" }}}
+" ============================================================================
+" 'gregsexton/gitv' {{{
+" ============================================================================
+
+nnoremap <silent> <leader>gv :Gitv<CR>
+nnoremap <silent> <leader>gV :Gitv!<CR>
+
+" }}}
+" ============================================================================
+" 'justinmk/vim-sneak' {{{
+" ============================================================================
+
+" To enable 'passive' or 'smart' streak-mode
+let g:sneak#streak = 1
+" Enable the 'clever-s' feature
+let g:sneak#s_next = 1
+
+" Note: If your mapleader is |,| then Sneak maps |\| instead of |,|.
+" |\| mapped by ctrlp (see l:135), so using tab as previous
+" |;| = SneakNext
+" nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Tab>'
+
+" hi link SneakPluginTarget ErrorMsg
+" hi link SneakPluginScope  Comment
+
+" }}}
+" ============================================================================
+" 'vim-scripts/sessionman.vim' {{{
+" ============================================================================
+
+set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+nmap <leader>ss :SessionList<CR>
+nmap <leader>sw :SessionSave<CR>
+
+" }}}
+" ============================================================================
+" 'rizzatti/dash.vim' {{{
+" ============================================================================
+
+nmap <silent> <leader>d <Plug>DashSearch
+
+" }}}
+" ============================================================================
+" 'lyokha/vim-xkbswitch' {{{
+" ============================================================================
+
+let g:XkbSwitchEnabled = 1
+let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
+let g:XkbSwitchSkipFt = [ 'nerdtree' ]
+
+" }}}
+" ============================================================================
+" 'rking/ag.vim' {{{
+" ============================================================================
+
+" nnoremap <Leader>* :Ag<CR>
+
+" }}}
+" ============================================================================
+" 'junegunn/fzf.vim' {{{
+" ============================================================================
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+imap <leader><tab> <plug>(fzf-maps-i)
+
+" }}}
+" ============================================================================
+" 'mhinz/vim-grepper' {{{
+" ============================================================================
+
+" The default behaviour of :Grepper mimics |:grep|, so the quickfix window won't
+" be opened and one jumps to the first found match.
+" If you don't want to jump to the first match, again mimicking |:grep|, append
+" a bang instead:
+" command! -nargs=* -complete=file GG Grepper! -tool git -open -switch -query <args>
+" command! -nargs=* -complete=file Ag Grepper! -tool ag -open -switch -query <args>
+
+" Recursive search in current directory for matches with current word
+" nnoremap <Leader>* :<C-u>execute "GG " . expand("<cword>") <Bar> cw<CR>
+" nnoremap <Leader>gs :Grepper! -tool git -open -switch<CR> " mnemonic is git search
+" nnoremap <Leader>ag :Grepper! -tool ag -open -switch<CR>
+
+" }}}
+" ============================================================================
+" 'mxw/vim-jsx' {{{
+" ============================================================================
+
+" let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+" }}}
+" ============================================================================
+" 'vim-scripts/YankRing.vim' {{{
+" ============================================================================
+
+" function! YRRunAfterMaps()
+" 	nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
+" endfunction
+
+" }}}
