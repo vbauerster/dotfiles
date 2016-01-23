@@ -15,6 +15,12 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'majutsushi/tagbar'
 " matchit.zip : extended % matching for HTML, LaTeX, and many other languages
 Plug 'vim-scripts/matchit.zip'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" Tmux
+Plug 'tpope/vim-tbone'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Motions
@@ -23,9 +29,9 @@ Plug 'rhysd/clever-f.vim'
 Plug 'justinmk/vim-sneak'
 
 " UI look and feel
-"Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-airline'
-"Plug 'edkolev/tmuxline.vim'
+" Plug 'itchyny/lightline.vim'
+" Plug 'edkolev/tmuxline.vim'
 
 " Marks
 Plug 'kshenoy/vim-signature'
