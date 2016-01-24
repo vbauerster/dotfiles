@@ -276,6 +276,15 @@ nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 imap <leader><tab> <plug>(fzf-maps-i)
 
+" Replace the default dictionary completion with fzf-based fuzzy completion
+" inoremap <expr> <c-x><c-k> fzf#complete('cat /usr/share/dict/words')
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+imap <c-x><c-x> <plug>(fzf-complete-file-ag)
+" Line completion (all open buffers)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+nnoremap <silent> <Leader>* :Ag <C-R><C-W><CR>
+
 " }}}
 " ============================================================================
 " 'mhinz/vim-grepper' {{{
