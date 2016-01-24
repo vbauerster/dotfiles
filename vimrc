@@ -339,7 +339,9 @@ nnoremap <Leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
 " spell check off
 nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
-" Text Highlighter
+" -----------------------------------------------------------
+" => Text Highlighter
+" -----------------------------------------------------------
 nnoremap <silent> <leader>h0 :call HiInterestingWord(0)<cr>
 nnoremap <silent> <leader>h1 :call HiInterestingWord(1)<cr>
 nnoremap <silent> <leader>h2 :call HiInterestingWord(2)<cr>
