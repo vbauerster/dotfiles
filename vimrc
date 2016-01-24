@@ -10,6 +10,68 @@ endif
 
 " }}}
 " ============================================================================
+" FUNCTIONS {{{
+" ============================================================================
+
+" for 'mattn/emmet-vim' 
+function! s:zen_html_tab()
+	let line = getline('.')
+	if match(line, '<.*>') < 0
+		return "\<c-y>,"
+	endif
+	return "\<c-y>n"
+endfunction
+
+function! s:helptab()
+  if &buftype == 'help'
+    wincmd T
+    nnoremap <buffer> q :q<cr>
+  endif
+endfunction
+
+function! CloseWindowOrKillBuffer()
+	let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+
+	" never bdelete a nerd tree
+	if matchstr(expand("%"), 'NERD') == 'NERD'
+		wincmd c
+		return
+	endif
+
+	if number_of_windows_to_this_buffer > 1
+		wincmd c
+	else
+		bdelete
+	endif
+endfunction
+" Text Highlighter
+function! HiInterestingWord(n)
+    " Save our location.
+    normal! mz
+    " Yank the current word into the z register.
+    normal! "zyiw
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+    " Move back to our original location.
+    normal! `z
+endfunction
+
+" Highlight colors constants
+hi def InterestingWord0 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+
+" }}}
+" ============================================================================
 " GUI BLOCK {{{
 " ============================================================================
 
@@ -402,59 +464,6 @@ augroup vimrc_help
   autocmd!
   autocmd BufEnter *.txt call s:helptab()
 augroup END
-
-" }}}
-" ============================================================================
-" FUNCTIONS {{{
-" ============================================================================
-
-function! s:helptab()
-  if &buftype == 'help'
-    wincmd T
-    nnoremap <buffer> q :q<cr>
-  endif
-endfunction
-
-function! CloseWindowOrKillBuffer()
-	let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
-
-	" never bdelete a nerd tree
-	if matchstr(expand("%"), 'NERD') == 'NERD'
-		wincmd c
-		return
-	endif
-
-	if number_of_windows_to_this_buffer > 1
-		wincmd c
-	else
-		bdelete
-	endif
-endfunction
-" Text Highlighter
-function! HiInterestingWord(n)
-    " Save our location.
-    normal! mz
-    " Yank the current word into the z register.
-    normal! "zyiw
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
-    " Move back to our original location.
-    normal! `z
-endfunction
-
-" Highlight colors constants
-hi def InterestingWord0 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
-hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
-hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
 " }}}
 " ============================================================================
