@@ -62,14 +62,6 @@ function! HiInterestingWord(n)
     normal! `z
 endfunction
 
-" Highlight colors constants
-hi def InterestingWord0 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
-hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
-hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
-
 " }}}
 " ============================================================================
 " GUI BLOCK {{{
@@ -348,7 +340,15 @@ nnoremap <silent> <leader>h2 :call HiInterestingWord(2)<cr>
 nnoremap <silent> <leader>h3 :call HiInterestingWord(3)<cr>
 nnoremap <silent> <leader>h4 :call HiInterestingWord(4)<cr>
 nnoremap <silent> <leader>h5 :call HiInterestingWord(5)<cr>
-nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
+nnoremap <leader>cm :call clearmatches()<CR>:noh<CR>
+
+" Highlight colors constants
+hi def InterestingWord0 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 
 " -----------------------------------------------------------
 " => External cmd mappings
