@@ -285,22 +285,20 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 nnoremap <silent> <Leader>* :Ag <C-R><C-W><CR>
 
+nnoremap <Leader>hh :History<CR>
+nnoremap <Leader>ww :Windows<CR>
+nnoremap <Leader>bb :Buffers<CR>
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>gf :GitFiles<CR>
+nnoremap <Leader>mm :Marks<CR>
+
 " }}}
 " ============================================================================
 " 'mhinz/vim-grepper' {{{
 " ============================================================================
 
-" The default behaviour of :Grepper mimics |:grep|, so the quickfix window won't
-" be opened and one jumps to the first found match.
-" If you don't want to jump to the first match, again mimicking |:grep|, append
-" a bang instead:
-" command! -nargs=* -complete=file GG Grepper! -tool git -open -switch -query <args>
-" command! -nargs=* -complete=file Ag Grepper! -tool ag -open -switch -query <args>
-
-" Recursive search in current directory for matches with current word
-" nnoremap <Leader>* :<C-u>execute "GG " . expand("<cword>") <Bar> cw<CR>
-" nnoremap <Leader>gs :Grepper! -tool git -open -switch<CR> " mnemonic is git search
-" nnoremap <Leader>ag :Grepper! -tool ag -open -switch<CR>
+nnoremap <leader>gi :Grepper -tool git -noswitch<cr>
+nnoremap <leader>ag  :Grepper -tool ag  -grepprg ag --vimgrep<cr>
 
 " }}}
 " ============================================================================

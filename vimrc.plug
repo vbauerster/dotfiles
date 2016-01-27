@@ -9,8 +9,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
-Plug 'mbbill/undotree'
-Plug 'qpkorr/vim-bufkill'
+Plug 'mbbill/undotree',             { 'on': 'UndotreeToggle'   }
+" Plug 'qpkorr/vim-bufkill'
 " ctags tagbar
 Plug 'majutsushi/tagbar'
 " matchit.zip : extended % matching for HTML, LaTeX, and many other languages
@@ -38,7 +38,7 @@ Plug 'kshenoy/vim-signature'
 
 " Grep like search
 " Plug 'rking/ag.vim'
-" Plug 'mhinz/vim-grepper'
+Plug 'mhinz/vim-grepper'
 
 " Make gists easily from Vim
 Plug 'mattn/webapi-vim'
@@ -77,10 +77,11 @@ Plug 'mattn/emmet-vim'
 
 " Easy Exuberant Ctags
 "Plug 'xolox/vim-easytags'
+"Plug 'vim-scripts/ctags.vim'
 
 " Extended session management for Vim
-"Plug 'xolox/vim-session'
 Plug 'vim-scripts/sessionman.vim'
+"Plug 'xolox/vim-session'
 "Plug 'tpope/vim-obsession'
 
 " colorschemes
@@ -100,16 +101,16 @@ Plug 'leafgarland/typescript-vim'
 "Plug 'maksimr/vim-jsbeautify'
 
 " Misc.
-Plug 'lyokha/vim-xkbswitch' " Auto keyboard switcher
-" Adds :Dash integration
-Plug 'rizzatti/dash.vim'
+Plug 'lyokha/vim-xkbswitch'
+if has('mac')
+  Plug 'rizzatti/dash.vim',  { 'on': 'Dash' }
+endif
 
 " untested
 " Plug 'vim-scripts/YankRing.vim'
 "Plug 'ervandew/supertab' " kind of autocompletion
 "Plug 'slim-template/vim-slim'
 "Plug 'tpope/vim-eunuch'
-"Plug 'vim-scripts/ctags.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
