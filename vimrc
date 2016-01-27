@@ -198,7 +198,7 @@ set directory=~/.vim/tmp/swap//
 set backupskip=/tmp/*,/private/tmp/*"
 set backup " delete old backup, backup current file
 set undofile
-" set noswapfile
+set noswapfile
 
 " }}}
 " ============================================================================
@@ -244,7 +244,7 @@ nnoremap <Leader>q :q<cr>
 nnoremap <Leader>Q :qa!<cr>
 
 " window killer | <Leader>bd used by qpkorr/vim-bufkill plugin
-nnoremap <silent> <Leader>bh :call CloseWindowOrKillBuffer()<cr>
+nnoremap <silent> <Leader>bd :call CloseWindowOrKillBuffer()<cr>
 
 nnoremap <Leader>lo :lopen<cr>
 nnoremap <Leader>co :copen<cr>
@@ -271,13 +271,32 @@ vmap <leader>s :sort<cr>
 nnoremap ' `
 nnoremap ` '
 
+" moving up and down work as you would expect
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+nnoremap <silent> ^ g^
+nnoremap <silent> $ g$
+
+" auto center
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+nnoremap <silent> g# g#zz
+nnoremap <silent> <C-o> <C-o>zz
+nnoremap <silent> <C-i> <C-i>zz
+
+" tab shortcuts
+map <leader>tn :tabnew<CR>
+map <leader>tc :tabclose<CR>
+
+" make Y consistent with C and D. See :help Y.
+nnoremap Y y$
+
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
 nnoremap <leader>, g<c-]>
-
-" make Y consistent with C and D. See :help Y.
-" YRRunAfterMaps takes care of this
-nnoremap Y y$
 
 " Switch to the directory of the open buffer
 noremap <silent> <leader>cd :cd %:p:h<cr>
@@ -305,12 +324,6 @@ nnoremap <silent> <Right> :vertical resize +5<cr>
 nnoremap <silent> <Left> :vertical resize -5<cr>
 " nnoremap <silent> <Up> :resize +5<cr>
 " nnoremap <silent> <Down> :resize -5<cr>
-
-" moving up and down work as you would expect
-nnoremap <silent> j gj
-nnoremap <silent> k gk
-nnoremap <silent> ^ g^
-nnoremap <silent> $ g$
 
 " toggle relativenumber: cor by unimpaired
 " http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
@@ -354,7 +367,7 @@ hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " => External cmd mappings
 " -----------------------------------------------------------
 " find current word in quickfix
-nnoremap <leader>f :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
+nnoremap <leader>b* :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
 " find last search in quickfix
 nnoremap <leader>/ :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
 " http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
