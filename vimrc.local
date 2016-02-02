@@ -167,6 +167,14 @@ nmap <F8> :TagbarToggle<CR>
 " 'mattn/emmet-vim' {{{
 " ============================================================================
 
+function! s:zen_html_tab()
+	let line = getline('.')
+	if match(line, '<.*>') < 0
+		return "\<c-y>,"
+	endif
+	return "\<c-y>n"
+endfunction
+
 augroup EmmetZen
 	autocmd!
 	autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
@@ -287,7 +295,7 @@ nnoremap <silent> <Leader>* :Ag <C-R><C-W><CR>
 
 nnoremap <Leader>hh :History<CR>
 nnoremap <Leader>ww :Windows<CR>
-nnoremap <Leader>bb :Buffers<CR>
+nnoremap <Leader>bl :Buffers<CR>
 nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>gf :GitFiles<CR>
 nnoremap <Leader>mm :Marks<CR>

@@ -13,15 +13,6 @@ endif
 " FUNCTIONS {{{
 " ============================================================================
 
-" for 'mattn/emmet-vim' 
-function! s:zen_html_tab()
-	let line = getline('.')
-	if match(line, '<.*>') < 0
-		return "\<c-y>,"
-	endif
-	return "\<c-y>n"
-endfunction
-
 function! s:helptab()
   if &buftype == 'help'
     wincmd T
@@ -44,6 +35,7 @@ function! CloseWindowOrKillBuffer()
 		bdelete
 	endif
 endfunction
+
 " Text Highlighter
 function! HiInterestingWord(n)
     " Save our location.
@@ -244,7 +236,7 @@ nnoremap <Leader>q :q<cr>
 nnoremap <Leader>Q :qa!<cr>
 
 " window killer | <Leader>bd used by qpkorr/vim-bufkill plugin
-nnoremap <silent> <Leader>bd :call CloseWindowOrKillBuffer()<cr>
+" nnoremap <silent> <Leader>bd :call CloseWindowOrKillBuffer()<cr>
 
 nnoremap <Leader>lo :lopen<cr>
 nnoremap <Leader>co :copen<cr>
