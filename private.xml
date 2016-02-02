@@ -96,6 +96,7 @@
 					<name>Home Row Numbers</name>
 					<appendix>Overlay 1234567890 onto the home row (ASDFGHJKL;)</appendix>
 					<identifier vk_config="true">notsave.homerow_numbersh</identifier>
+					<inputsource_only>PROGRAMMER_DVORAK</inputsource_only>
 					<autogen>__KeyToKey__ KeyCode::A, KeyCode::2, ModifierFlag::SHIFT_L</autogen>
 					<autogen>__KeyToKey__ KeyCode::S, KeyCode::3, ModifierFlag::SHIFT_L</autogen>
 					<autogen>__KeyToKey__ KeyCode::D, KeyCode::4, ModifierFlag::SHIFT_L</autogen>
