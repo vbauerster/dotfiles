@@ -68,8 +68,8 @@ endif
 " BASIC SETTINGS {{{
 " ============================================================================
 
-let mapleader = ','
-let maplocalleader = ','
+let mapleader = ' '
+let maplocalleader = ' '
 
 syntax on
 colorscheme solarized
@@ -178,11 +178,10 @@ set tags=./tags;/
 set diffopt+=vertical
 
 " Whitespaces
-"set listchars=tab:‣\ ,eol:¬
 set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 " set showbreak=↪
 " show invisible chars by default
-"set list "use col by unimpaired
+" set list "use col by unimpaired
 
 " backup/persistance settings
 set undodir=~/.vim/tmp/undo//
@@ -228,7 +227,7 @@ nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/UltiSnips/javascript.snippets
 " Save
 inoremap <C-s>     <C-O>:update<cr>
 nnoremap <C-s>     :update<cr>
-nnoremap <leader>w :update<cr>
+nnoremap <leader>u :update<cr>
 
 " Quit
 inoremap <C-Q>     <esc>:q<cr>
@@ -245,18 +244,25 @@ nnoremap <Leader>co :copen<cr>
 nnoremap <Leader>cc :cclose<cr>
 nnoremap <Leader>pc :pclose<cr> " same as <C-w> z
 
+nmap <Leader><Leader> V
 " reselect visual block after indent
 vnoremap < <gv
 vnoremap > >gv
 
 " reselect last paste
-nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+" nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+noremap gp `[v`]
 
 " Search in visually selected block only
 vnoremap / <Esc>/\%V\%V<Left><Left><Left>
 vnoremap ? <Esc>?\%V\%V<Left><Left><Left>
 
 vmap <leader>s :sort<cr>
+
+" paste multiple lines multiple times
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
 
 " Swap implementations of ` and ' jump to markers
 " By default, ' jumps to the marked line, ` jumps to the marked line and
@@ -295,7 +301,7 @@ nnoremap Y y$
 noremap <silent> <leader>cd :cd %:p:h<cr>
 
 " remove trailing whitespace and clear the last search pattern
-nnoremap <leader><space> :%s/\s\+$//<CR>:let @/=''<CR>
+nnoremap <leader>w :%s/\s\+$//<CR>:let @/=''<CR>
 
 " toggle search highlighting: coh by unimpaired
 " nmap <silent> <leader>/ :set invhlsearch<CR>
@@ -318,8 +324,8 @@ nmap <leader>j <C-W>j<C-W>_
 nmap <leader>k <C-W>k<C-W>_
 
 set winminwidth=0
-nmap <leader>h <C-W>h500<C-W>>             
-nmap <leader>l <C-W>l500<C-W>>  
+nmap <leader>h <C-W>h500<C-W>>
+nmap <leader>l <C-W>l500<C-W>>
 
 " resize panes
 nnoremap <silent> <Right> :vertical resize +5<cr>
