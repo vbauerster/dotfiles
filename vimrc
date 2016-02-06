@@ -106,7 +106,8 @@ set wildignore+=*.DS_Store
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
-set timeoutlen=550
+set timeoutlen=300                                  "mapping timeout
+set ttimeoutlen=50                                  "keycode timeout
 set encoding=utf-8
 set number
 set laststatus=2
@@ -139,7 +140,7 @@ set autoindent    " Indent at the same level of the previous line
 set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
 "set shiftround    " round indent to a multiple of 'shiftwidth'
 
-set ruler                " show the cursor position all the time
+set ruler                " show the cursor position a l the time
 set nojoinspaces         " Prevents inserting two spaces after punctuation on a join (J)
 
 " Searching
@@ -288,7 +289,7 @@ nnoremap Y y$
 
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
-nnoremap <leader>, g<c-]>
+" nnoremap <leader>g g<c-]>
 
 " Switch to the directory of the open buffer
 noremap <silent> <leader>cd :cd %:p:h<cr>
@@ -302,14 +303,23 @@ nnoremap <leader><space> :%s/\s\+$//<CR>:let @/=''<CR>
 " nmap <leader>l :set list!<CR>
 
 " switch between current and last buffer
-" qpkorr/vim-bufkill provides :BA
-nmap <leader>. <c-^>
-" closes the current buffer before switching to the previous one
-" noremap <leader>. <c-^> :bd #<cr>
+" qpkorr/vim-bufkill provides :BA ~ <c-^>
+nmap <silent> <leader>; :BB<cr>
+nmap <silent> <leader>, :BA<cr>
+nmap <silent> <leader>. :BF<cr>
 
 " zoom a vim pane, <C-w>= to re-balance
-nnoremap <leader>z :wincmd _<cr>:wincmd \|<cr>
-nnoremap <leader>- :wincmd =<cr>
+" nnoremap <leader>z :wincmd _<cr>:wincmd \|<cr>
+nmap <silent> <leader>- :wincmd =<cr>
+
+" http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
+set winminheight=0
+nmap <leader>j <C-W>j<C-W>_
+nmap <leader>k <C-W>k<C-W>_
+
+set winminwidth=0
+nmap <leader>h <C-W>h500<C-W>>             
+nmap <leader>l <C-W>l500<C-W>>  
 
 " resize panes
 nnoremap <silent> <Right> :vertical resize +5<cr>
@@ -323,10 +333,10 @@ nnoremap <silent> <Left> :vertical resize -5<cr>
 
 " Buffer reload
 nnoremap <Leader>rr :e!<CR>
-nnoremap <Leader>ll :ls<CR>
-"nnoremap <Leader>bn :bn<CR> "provided by unimpaired ]b
-"nnoremap <Leader>bp :bp<CR> "provided by unimpaired [b
-"
+" nnoremap <Leader>ll :ls<CR>
+" nnoremap <Leader>bn :bn<CR> "provided by unimpaired ]b
+" nnoremap <Leader>bp :bp<CR> "provided by unimpaired [b
+
 " Show Registers
 nnoremap <Leader>rg :reg<CR>
 
