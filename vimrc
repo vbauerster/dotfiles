@@ -13,27 +13,27 @@ endif
 " FUNCTIONS {{{
 " ============================================================================
 
+" function! CloseWindowOrKillBuffer()
+" 	let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
+
+" 	" never bdelete a nerd tree
+" 	if matchstr(expand("%"), 'NERD') == 'NERD'
+" 		wincmd c
+" 		return
+" 	endif
+
+" 	if number_of_windows_to_this_buffer > 1
+" 		wincmd c
+" 	else
+" 		bdelete
+" 	endif
+" endfunction
+
 function! s:helptab()
   if &buftype == 'help'
     wincmd T
     nnoremap <buffer> q :q<CR>
   endif
-endfunction
-
-function! CloseWindowOrKillBuffer()
-	let number_of_windows_to_this_buffer = len(filter(range(1, winnr('$')), "winbufnr(v:val) == bufnr('%')"))
-
-	" never bdelete a nerd tree
-	if matchstr(expand("%"), 'NERD') == 'NERD'
-		wincmd c
-		return
-	endif
-
-	if number_of_windows_to_this_buffer > 1
-		wincmd c
-	else
-		bdelete
-	endif
 endfunction
 
 " Text Highlighter
@@ -353,6 +353,20 @@ nnoremap <leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
 nnoremap <leader>spp :setlocal spell spelllang=<ENTER>
 
 " -----------------------------------------------------------
+" => Insert mode mappings
+" -----------------------------------------------------------
+" insert absolute current buffer path
+inoremap <F2> <C-R>=expand('%:p')<CR>
+
+" quick movements
+" http://vim.wikia.com/wiki/Quick_command_in_insert_mode
+inoremap II <Esc>I
+inoremap AA <Esc>A
+" <C-\> does not eat last char of the line
+inoremap CC <C-\><C-O>D
+inoremap SS <Esc>cc
+inoremap UU <C-O>u
+" -----------------------------------------------------------
 " => Text Highlighter
 " -----------------------------------------------------------
 nnoremap <silent> <leader>h0 :call HiInterestingWord(0)<CR>
@@ -396,10 +410,10 @@ nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules
 " http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
 if has('clipboard')
 	if has('unnamedplus')  " When possible use + register for copy-paste
-		nnoremap <leader>cp :let @+=expand("%")<CR>
-		nnoremap <leader>cP :let @+=expand("%:p")<CR>
-		nnoremap <leader>cf :let @+=expand("%:t")<CR>
-		nnoremap <leader>ch :let @+=expand("%:p:h")<CR>
+		nnoremap <leader>yp :let @+=expand('%')<CR>
+		nnoremap <leader>ya :let @+=expand('%:p')<CR>
+		nnoremap <leader>yf :let @+=expand('%:t')<CR>
+		nnoremap <leader>yd :let @+=expand('%:p:h')<CR>
 
 		noremap <leader>y "+y
 		noremap <leader>yy "+yy
@@ -409,13 +423,13 @@ if has('clipboard')
 	else " On mac and Windows, use * register for copy-paste
 		" copy current file name (relative/absolute) to system clipboard
 		" relative path  (src/foo.txt)
-		nnoremap <leader>cp :let @*=expand("%")<CR>
+		nnoremap <leader>yp :let @*=expand('%')<CR>
 		" absolute path  (/something/src/foo.txt)
-		nnoremap <leader>cP :let @*=expand("%:p")<CR>
+		nnoremap <leader>ya :let @*=expand('%:p')<CR>
 		" filename       (foo.txt)
-		nnoremap <leader>cf :let @*=expand("%:t")<CR>
+		nnoremap <leader>yf :let @*=expand('%:t')<CR>
 		" directory name (/something/src)
-		nnoremap <leader>ch :let @*=expand("%:p:h")<CR>
+		nnoremap <leader>yd :let @*=expand('%:p:h')<CR>
 
 		" easy system clipboard copy/paste
 		noremap <leader>y "*y
