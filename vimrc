@@ -251,7 +251,7 @@ vnoremap > >gv
 
 " reselect last paste
 " nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
-noremap gp `[v`]
+nnoremap gp `[v`]
 
 " Search in visually selected block only
 vnoremap / <Esc>/\%V\%V<Left><Left><Left>
@@ -298,7 +298,7 @@ nnoremap Y y$
 " nnoremap <leader>g g<c-]>
 
 " Switch to the directory of the open buffer
-noremap <silent> <leader>cd :cd %:p:h<CR>
+nnoremap <silent> <leader>cd :cd %:p:h<CR>
 
 " remove trailing whitespace and clear the last search pattern
 nnoremap <leader>w :%s/\s\+$//<CR>:let @/=''<CR>
@@ -345,6 +345,9 @@ nnoremap <leader>rr :e!<CR>
 
 " Show Registers
 nnoremap <leader>di :di<CR>
+
+" experimental: quickly access yank reg
+noremap "" "0
 
 " http://habrahabr.ru/post/183222/
 " spell check on
@@ -483,9 +486,9 @@ augroup vimrcEx
   au FileType css,scss,sass setlocal iskeyword+=-
 
   " js-beautify; ri = re-indent
-  au FileType json noremap <buffer> <leader>ri <Esc>:% !js-beautify -f - -t<CR>
-  au FileType html,xml noremap <buffer> <leader>ri <Esc>:% !html-beautify -f - -t<CR>
-  au FileType css noremap <buffer> <leader>ri <Esc>:% !css-beautify -f - -t<CR>
+  au FileType json nnoremap <buffer> <leader>ri <Esc>:% !js-beautify -f - -t<CR>
+  au FileType html,xml nnoremap <buffer> <leader>ri <Esc>:% !html-beautify -f - -t<CR>
+  au FileType css nnoremap <buffer> <leader>ri <Esc>:% !css-beautify -f - -t<CR>
 
   " Automatic rename of tmux window
   if exists('$TMUX') && !exists('$NORENAME')
