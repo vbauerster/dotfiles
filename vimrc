@@ -16,7 +16,7 @@ endif
 function! s:helptab()
   if &buftype == 'help'
     wincmd T
-    nnoremap <buffer> q :q<cr>
+    nnoremap <buffer> q :q<CR>
   endif
 endfunction
 
@@ -225,26 +225,26 @@ nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/UltiSnips/javascript.snippets
 " => General mappings/shortcuts for functionality
 " -----------------------------------------------------------
 " Save
-inoremap <C-s>     <C-O>:update<cr>
-nnoremap <C-s>     :update<cr>
-nnoremap <leader>u :update<cr>
+inoremap <C-s>     <C-O>:update<CR>
+nnoremap <C-s>     :update<CR>
+nnoremap <leader>u :update<CR>
 
 " Quit
-inoremap <C-Q>     <esc>:q<cr>
-nnoremap <C-Q>     :q<cr>
-nnoremap <Leader>q :q<cr>
-nnoremap <Leader>Q :qa!<cr>
+inoremap <C-Q>     <esc>:q<CR>
+nnoremap <C-Q>     :q<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :qa!<CR>
 
-" window killer | <Leader>bd used by qpkorr/vim-bufkill plugin
-" nnoremap <silent> <Leader>bd :call CloseWindowOrKillBuffer()<cr>
+" window killer | <leader>bd used by qpkorr/vim-bufkill plugin
+" nnoremap <silent> <leader>bd :call CloseWindowOrKillBuffer()<CR>
 
-nnoremap <Leader>lo :lopen<cr>
-nnoremap <Leader>co :copen<cr>
-" nnoremap <Leader>cl :close<cr> " same as <C-w> c
-nnoremap <Leader>cc :cclose<cr>
-nnoremap <Leader>pc :pclose<cr> " same as <C-w> z
+nnoremap <leader>lo :lopen<CR>
+nnoremap <leader>co :copen<CR>
+" nnoremap <leader>cl :close<CR> " same as <C-w> c
+nnoremap <leader>cc :cclose<CR>
+nnoremap <leader>pc :pclose<CR> " same as <C-w> z
 
-nmap <Leader><Leader> V
+nmap <leader><leader> V
 " reselect visual block after indent
 vnoremap < <gv
 vnoremap > >gv
@@ -257,7 +257,7 @@ noremap gp `[v`]
 vnoremap / <Esc>/\%V\%V<Left><Left><Left>
 vnoremap ? <Esc>?\%V\%V<Left><Left><Left>
 
-vmap <leader>s :sort<cr>
+vmap <leader>s :sort<CR>
 
 " paste multiple lines multiple times
 vnoremap <silent> y y`]
@@ -298,7 +298,7 @@ nnoremap Y y$
 " nnoremap <leader>g g<c-]>
 
 " Switch to the directory of the open buffer
-noremap <silent> <leader>cd :cd %:p:h<cr>
+noremap <silent> <leader>cd :cd %:p:h<CR>
 
 " remove trailing whitespace and clear the last search pattern
 nnoremap <leader>w :%s/\s\+$//<CR>:let @/=''<CR>
@@ -310,13 +310,13 @@ nnoremap <leader>w :%s/\s\+$//<CR>:let @/=''<CR>
 
 " switch between current and last buffer
 " qpkorr/vim-bufkill provides :BA ~ <c-^>
-nmap <silent> <leader>; :BB<cr>
-nmap <silent> <leader>, :BA<cr>
-nmap <silent> <leader>. :BF<cr>
+nmap <silent> <leader>; :BB<CR>
+nmap <silent> <leader>, :BA<CR>
+nmap <silent> <leader>. :BF<CR>
 
 " zoom a vim pane, <C-w>= to re-balance
-" nnoremap <leader>z :wincmd _<cr>:wincmd \|<cr>
-nmap <silent> <leader>- :wincmd =<cr>
+" nnoremap <leader>z :wincmd _<CR>:wincmd \|<CR>
+nmap <silent> <leader>- :wincmd =<CR>
 
 " http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
 set winminheight=0
@@ -328,39 +328,39 @@ nmap <leader>h <C-W>h500<C-W>>
 nmap <leader>l <C-W>l500<C-W>>
 
 " resize panes
-nnoremap <silent> <Right> :vertical resize +5<cr>
-nnoremap <silent> <Left> :vertical resize -5<cr>
-" nnoremap <silent> <Up> :resize +5<cr>
-" nnoremap <silent> <Down> :resize -5<cr>
+nnoremap <silent> <Right> :vertical resize +5<CR>
+nnoremap <silent> <Left> :vertical resize -5<CR>
+" nnoremap <silent> <Up> :resize +5<CR>
+" nnoremap <silent> <Down> :resize -5<CR>
 
 " toggle relativenumber: cor by unimpaired
 " http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
-"nnoremap <Leader>rn :set rnu!<ENTER>
+"nnoremap <leader>rn :set rnu!<ENTER>
 
 " Buffer reload
-nnoremap <Leader>rr :e!<CR>
-" nnoremap <Leader>ll :ls<CR>
-" nnoremap <Leader>bn :bn<CR> "provided by unimpaired ]b
-" nnoremap <Leader>bp :bp<CR> "provided by unimpaired [b
+nnoremap <leader>rr :e!<CR>
+" nnoremap <leader>ll :ls<CR>
+" nnoremap <leader>bn :bn<CR> "provided by unimpaired ]b
+" nnoremap <leader>bp :bp<CR> "provided by unimpaired [b
 
 " Show Registers
-nnoremap <Leader>rg :reg<CR>
+nnoremap <leader>di :di<CR>
 
 " http://habrahabr.ru/post/183222/
 " spell check on
-nnoremap <Leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
+nnoremap <leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
 " spell check off
-nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
+nnoremap <leader>spp :setlocal spell spelllang=<ENTER>
 
 " -----------------------------------------------------------
 " => Text Highlighter
 " -----------------------------------------------------------
-nnoremap <silent> <leader>h0 :call HiInterestingWord(0)<cr>
-nnoremap <silent> <leader>h1 :call HiInterestingWord(1)<cr>
-nnoremap <silent> <leader>h2 :call HiInterestingWord(2)<cr>
-nnoremap <silent> <leader>h3 :call HiInterestingWord(3)<cr>
-nnoremap <silent> <leader>h4 :call HiInterestingWord(4)<cr>
-nnoremap <silent> <leader>h5 :call HiInterestingWord(5)<cr>
+nnoremap <silent> <leader>h0 :call HiInterestingWord(0)<CR>
+nnoremap <silent> <leader>h1 :call HiInterestingWord(1)<CR>
+nnoremap <silent> <leader>h2 :call HiInterestingWord(2)<CR>
+nnoremap <silent> <leader>h3 :call HiInterestingWord(3)<CR>
+nnoremap <silent> <leader>h4 :call HiInterestingWord(4)<CR>
+nnoremap <silent> <leader>h5 :call HiInterestingWord(5)<CR>
 nnoremap <leader>cm :call clearmatches()<CR>:noh<CR>
 
 " Highlight colors constants
@@ -375,9 +375,9 @@ hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 " => External cmd mappings
 " -----------------------------------------------------------
 " find current word in quickfix
-nnoremap <leader>b* :execute "vimgrep ".expand("<cword>")." %"<cr>:copen<cr>
+nnoremap <leader>b* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR>
 " find last search in quickfix
-nnoremap <leader>/ :execute 'vimgrep /'.@/.'/g %'<cr>:copen<cr>
+nnoremap <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
 nnoremap <leader>nh :write !node --harmony<CR>
 " see ':h :!'; '.' stands for concatination
