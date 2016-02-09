@@ -29,29 +29,12 @@ endif
 " 	endif
 " endfunction
 
+" s: prefix means script local func
 function! s:helptab()
   if &buftype == 'help'
     wincmd T
     nnoremap <buffer> q :q<CR>
   endif
-endfunction
-
-" Text Highlighter
-function! HiInterestingWord(n)
-    " Save our location.
-    normal! mz
-    " Yank the current word into the z register.
-    normal! "zyiw
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
-    " Move back to our original location.
-    normal! `z
 endfunction
 
 " }}}
@@ -91,12 +74,22 @@ if has('nvim') " sets for nvim only
 	nnoremap <leader>tm <C-w>s<C-w>J4<C-w>-:te<CR>
 else " sets for vim only
   set nocompatible
+	set t_Co=256
+	set ttyfast
+	set encoding=utf-8
   " https://github.com/neovim/neovim/issues/2092
   "set pastetoggle=<F2> " vim-unimpaired provides 'yo' mapping
-  set history=1000     " nvim sets this to 1000 by default
-  set undolevels=1000  " nvim sets this to 1000 by default
+  set history=1000               " nvim sets this to 1000 by default
+  set undolevels=1000            " nvim sets this to 1000 by default
   set backspace=indent,eol,start
-	set t_Co=256
+	set autoindent                 " Indent at the same level of the previous line
+	set autoread                   " detect when a file is changed
+	set smarttab                   " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+	set hlsearch                   " Highlight search terms
+	set incsearch                  " set incremental search, like modern browsers
+	set laststatus=2
+	set wildmenu                   " enhanced command line completion
+	set tags=./tags;/
 endif
 
 " Excluding version control directories
@@ -106,13 +99,10 @@ set wildignore+=*.DS_Store
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
-set timeoutlen=300                                  "mapping timeout
+set timeoutlen=330                                  "mapping timeout
 set ttimeoutlen=50                                  "keycode timeout
-set encoding=utf-8
 set number
-set laststatus=2
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
-set wildmenu                         " enhanced command line completion
 set wildmode=list:longest            " TAB auto-completion for file paths
 set hidden                           " current buffer can be put into background
 set showcmd                          " show incomplete commands
@@ -120,11 +110,9 @@ set noshowmode                       " don't show which mode disabled for PowerL
 set scrolloff=3                      " lines of text around cursor
 set foldlevelstart=99                " all folds open by default
 set cmdheight=1                      " command bar height
-set autoread                         " detect when a file is changed
 set noerrorbells
 " set completeopt+=longest " Only insert the longest common text of the matches
 set completeopt=menuone,preview " to test
-set foldlevelstart=99
 
 "set autowrite     " Automatically :write before running commands
 
@@ -135,8 +123,6 @@ set softtabstop=2 " How many columns vim uses when pressing TAB in insert mode
 set shiftwidth=2  " How many columns text is indented with << and >>
 set noexpandtab   " Use tabs, not spaces
 "set expandtab   " Use spaces
-set smarttab      " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-set autoindent    " Indent at the same level of the previous line
 set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
 "set shiftround    " round indent to a multiple of 'shiftwidth'
 
@@ -144,10 +130,9 @@ set ruler                " show the cursor position a l the time
 set nojoinspaces         " Prevents inserting two spaces after punctuation on a join (J)
 
 " Searching
+set gdefault   " global search by default
 set ignorecase " case insensitive searching
 set smartcase  " case-sensitive if expresson contains a capital letter
-set hlsearch   " Highlight search terms
-set incsearch  " set incremental search, like modern browsers
 set lazyredraw " don't redraw while executing macros
 
 " Highlight current line
@@ -170,9 +155,6 @@ match OverLength /\%81v.\+/
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 set splitbelow
 set splitright
-
-" ctags
-set tags=./tags;/
 
 " Always use vertical diffs
 set diffopt+=vertical
@@ -201,23 +183,17 @@ set noswapfile
 " => Quick edit Mappings
 " ----------------------------------------------------------
 " open vimrc
-nnoremap <leader>ev :e ~/.vimrc<CR>
-nnoremap <leader>eV :tabnew ~/.vimrc<CR>
+nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 " edit vim plugins
 nnoremap <leader>ep :e ~/.vimrc.plug<CR>
-nnoremap <leader>eP :tabnew ~/.vimrc.plug<CR>
 " edit vim local
 nnoremap <leader>el :e ~/.vimrc.local<CR>
-nnoremap <leader>eL :tabnew ~/.vimrc.local<CR>
 " edit gitconfig
 nnoremap <leader>eg :e ~/.gitconfig<CR>
-nnoremap <leader>eG :tabnew ~/.gitconfig<CR>
 " edit tmux.conf
 nnoremap <leader>et :e ~/.tmux.conf<CR>
-nnoremap <leader>eT :tabnew ~/.tmux.conf<CR>
 " edit zshrc
 nnoremap <leader>ez :e ~/.zshrc<CR>
-nnoremap <leader>eZ :tabnew ~/.zshrc<CR>
 
 nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/UltiSnips/javascript.snippets<CR>
 
@@ -238,13 +214,18 @@ nnoremap <leader>Q :qa!<CR>
 " window killer | <leader>bd used by qpkorr/vim-bufkill plugin
 " nnoremap <silent> <leader>bd :call CloseWindowOrKillBuffer()<CR>
 
+nnoremap <tab> %
+vnoremap <tab> %
+
+" make Y consistent with C and D. See :help Y.
+nnoremap Y y$
+
 nnoremap <leader>lo :lopen<CR>
 nnoremap <leader>co :copen<CR>
 " nnoremap <leader>cl :close<CR> " same as <C-w> c
 nnoremap <leader>cc :cclose<CR>
 nnoremap <leader>pc :pclose<CR> " same as <C-w> z
 
-nmap <leader><leader> V
 " reselect visual block after indent
 vnoremap < <gv
 vnoremap > >gv
@@ -253,9 +234,12 @@ vnoremap > >gv
 " nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 nnoremap gp `[v`]
 
+" Search in normal mode with very magic on
+nnoremap / /\v
+nnoremap ? ?\v
 " Search in visually selected block only
-vnoremap / <Esc>/\%V\%V<Left><Left><Left>
-vnoremap ? <Esc>?\%V\%V<Left><Left><Left>
+vnoremap / <Esc>/\%V\v
+vnoremap ? <Esc>?\%V\v
 
 vmap <leader>s :sort<CR>
 
@@ -283,15 +267,13 @@ nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
-nnoremap <silent> <C-o> <C-o>zz
-nnoremap <silent> <C-i> <C-i>zz
 
 " tab shortcuts
 map <leader>tn :tabnew<CR>
 map <leader>tc :tabclose<CR>
 
-" make Y consistent with C and D. See :help Y.
-nnoremap Y y$
+" fold a html tag
+nnoremap <leader>ft Vatzf
 
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
@@ -301,7 +283,7 @@ nnoremap Y y$
 nnoremap <silent> <leader>cd :cd %:p:h<CR>
 
 " remove trailing whitespace and clear the last search pattern
-nnoremap <leader>w :%s/\s\+$//<CR>:let @/=''<CR>
+nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " toggle search highlighting: coh by unimpaired
 " nmap <silent> <leader>/ :set invhlsearch<CR>
@@ -326,6 +308,8 @@ nmap <leader>k <C-W>k<C-W>_
 set winminwidth=0
 nmap <leader>h <C-W>h500<C-W>>
 nmap <leader>l <C-W>l500<C-W>>
+
+nnoremap <leader>v <C-w>v
 
 " resize panes
 nnoremap <silent> <Right> :vertical resize +5<CR>
@@ -369,24 +353,9 @@ inoremap AA <Esc>A
 inoremap CC <C-\><C-O>D
 inoremap SS <Esc>cc
 inoremap UU <C-O>u
-" -----------------------------------------------------------
-" => Text Highlighter
-" -----------------------------------------------------------
-nnoremap <silent> <leader>h0 :call HiInterestingWord(0)<CR>
-nnoremap <silent> <leader>h1 :call HiInterestingWord(1)<CR>
-nnoremap <silent> <leader>h2 :call HiInterestingWord(2)<CR>
-nnoremap <silent> <leader>h3 :call HiInterestingWord(3)<CR>
-nnoremap <silent> <leader>h4 :call HiInterestingWord(4)<CR>
-nnoremap <silent> <leader>h5 :call HiInterestingWord(5)<CR>
-nnoremap <leader>cm :call clearmatches()<CR>:noh<CR>
+inoremap hh <Esc>
 
-" Highlight colors constants
-hi def InterestingWord0 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
-hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
-hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+nnoremap <silent> <leader><leader> :call clearmatches()<CR>:noh<CR>
 
 " -----------------------------------------------------------
 " => External cmd mappings

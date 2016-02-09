@@ -102,15 +102,13 @@ Plug 'leafgarland/typescript-vim'
 
 " Misc.
 Plug 'lyokha/vim-xkbswitch'
+
 if has('mac')
   Plug 'rizzatti/dash.vim',  { 'on': 'Dash' }
 endif
 
-" untested
-" Plug 'vim-scripts/YankRing.vim'
-"Plug 'ervandew/supertab' " kind of autocompletion
-"Plug 'slim-template/vim-slim'
-"Plug 'tpope/vim-eunuch'
+" my plugins
+Plug 'vbauerster/vim-highlighter'
 
 " Add plugins to &runtimepath
 call plug#end()
