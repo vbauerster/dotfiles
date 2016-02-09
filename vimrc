@@ -163,6 +163,10 @@ set noswapfile
 " MAPPINGS {{{
 " ============================================================================
 
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
 " ----------------------------------------------------------
 " => Quick edit Mappings
 " ----------------------------------------------------------
@@ -337,6 +341,10 @@ inoremap UU <C-O>u
 inoremap hh <Esc>
 
 nnoremap <silent> <leader><leader> :call clearmatches()<CR>:noh<CR>
+
+" quick access to cmd mode
+" conflicts with CtrlP at the moment
+" nnoremap ; :
 
 " -----------------------------------------------------------
 " => External cmd mappings
