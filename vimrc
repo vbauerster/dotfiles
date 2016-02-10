@@ -324,6 +324,13 @@ nnoremap <leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
 " spell check off
 nnoremap <leader>spp :setlocal spell spelllang=<ENTER>
 
+nnoremap <leader>hi :Highlight<CR>
+nnoremap <silent> <leader><leader> :call clearmatches()<CR>:noh<CR>
+
+" quick access to cmd mode
+" conflicts with CtrlP at the moment
+" nnoremap ; :
+
 " -----------------------------------------------------------
 " => Insert mode mappings
 " -----------------------------------------------------------
@@ -339,12 +346,6 @@ inoremap CC <C-\><C-O>D
 inoremap SS <Esc>cc
 inoremap UU <C-O>u
 inoremap hh <Esc>
-
-nnoremap <silent> <leader><leader> :call clearmatches()<CR>:noh<CR>
-
-" quick access to cmd mode
-" conflicts with CtrlP at the moment
-" nnoremap ; :
 
 " -----------------------------------------------------------
 " => External cmd mappings
