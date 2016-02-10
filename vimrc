@@ -105,8 +105,7 @@ set completeopt=menuone,preview " to test
 set tabstop=2     " How many columns a tab counts for
 set softtabstop=2 " How many columns vim uses when pressing TAB in insert mode
 set shiftwidth=2  " How many columns text is indented with << and >>
-set noexpandtab   " Use tabs, not spaces
-"set expandtab   " Use spaces
+set expandtab     " Use spaces
 set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
 "set shiftround    " round indent to a multiple of 'shiftwidth'
 
@@ -199,6 +198,9 @@ nnoremap <C-Q>     :q<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :qa!<CR>
 
+" Enter visual line mode
+nmap <leader><leader> V
+
 nnoremap <tab> %
 vnoremap <tab> %
 
@@ -212,8 +214,8 @@ nnoremap <leader>cc :cclose<CR>
 nnoremap <leader>pc :pclose<CR> " same as <C-w> z
 
 " reselect visual block after indent
-vnoremap < <gv
-vnoremap > >gv
+vnoremap <silent> < <gv
+vnoremap <silent> > >gv
 
 " reselect last paste
 " nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -234,10 +236,8 @@ vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
 " Swap implementations of ` and ' jump to markers
-" By default, ' jumps to the marked line, ` jumps to the marked line and
-" column, so swap them
-nnoremap ' `
-nnoremap ` '
+nnoremap <silent> ' `
+nnoremap <silent> ` '
 
 " moving up and down work as you would expect
 nnoremap <silent> j gj
@@ -325,7 +325,7 @@ nnoremap <leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
 nnoremap <leader>spp :setlocal spell spelllang=<ENTER>
 
 nnoremap <leader>hi :Highlight<CR>
-nnoremap <silent> <leader><leader> :call clearmatches()<CR>:noh<CR>
+nnoremap <silent> <leader>hc :call clearmatches()<CR>:noh<CR>
 
 " quick access to cmd mode
 " conflicts with CtrlP at the moment
