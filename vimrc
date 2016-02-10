@@ -332,6 +332,12 @@ nnoremap <silent> <leader>hc :call clearmatches()<CR>:noh<CR>
 " nnoremap ; :
 
 " -----------------------------------------------------------
+" => Command mode mappings
+" -----------------------------------------------------------
+" refer to the directory of the current file, regardless of pwd
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
+
+" -----------------------------------------------------------
 " => Insert mode mappings
 " -----------------------------------------------------------
 " insert absolute current buffer path
