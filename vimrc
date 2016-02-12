@@ -10,19 +10,6 @@ endif
 
 " }}}
 " ============================================================================
-" FUNCTIONS {{{
-" ============================================================================
-
-" s: prefix means script local func
-function! s:helptab()
-  if &buftype == 'help'
-    wincmd T
-    nnoremap <buffer> q :q<CR>
-  endif
-endfunction
-
-" }}}
-" ============================================================================
 " GUI BLOCK {{{
 " ============================================================================
 
@@ -419,52 +406,59 @@ augroup vimrcEx
   autocmd!
 
   " automatically rebalance windows on vim resize
-  " au VimResized * :wincmd =
+  " autocmd VimResized * :wincmd =
 
 	" Create directory if not exists
 	" CTRLP plugin provides same functionality via <c-y>
-	au BufWritePre * :silent !mkdir -p %:h
+	autocmd BufWritePre * :silent !mkdir -p %:h
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when
   " inside an event handler (happens when dropping a file on gvim).
-  au BufReadPost *
+  autocmd BufReadPost *
     \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
 
   " Set syntax highlighting for specific file types
-  " au BufRead,BufNewFile Appraisals set filetype=ruby
-  au BufRead,BufNewFile *.md set filetype=markdown
+  " autocmd BufRead,BufNewFile Appraisals set filetype=ruby
+  autocmd BufRead,BufNewFile *.md set filetype=markdown
 
   " Enable spellchecking for Markdown
-  au FileType markdown setlocal spell spelllang=ru_yo,en_us
+  autocmd FileType markdown setlocal spell spelllang=ru_yo,en_us
 
   " Automatically wrap at 80 characters for Markdown
-  au BufRead,BufNewFile *.md setlocal textwidth=80
+  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 
   " Automatically wrap at 72 characters and spell check git commit messages
-  au FileType gitcommit setlocal textwidth=72
-  au FileType gitcommit setlocal spell spelllang=ru_yo,en_us
+  autocmd FileType gitcommit setlocal textwidth=72
+  autocmd FileType gitcommit setlocal spell spelllang=ru_yo,en_us
 
   " Allow stylesheets to autocomplete hyphenated words
-  au FileType css,scss,sass setlocal iskeyword+=-
+  autocmd FileType css,scss,sass setlocal iskeyword+=-
 
-  " js-beautify; ri = re-indent
-  au FileType json nnoremap <buffer> <leader>ri <Esc>:% !js-beautify -f - -t<CR>
-  au FileType html,xml nnoremap <buffer> <leader>ri <Esc>:% !html-beautify -f - -t<CR>
-  au FileType css nnoremap <buffer> <leader>ri <Esc>:% !css-beautify -f - -t<CR>
+  " js-beautify
+  autocmd FileType json nnoremap <buffer> <leader>ii <Esc>:% !js-beautify -f - -t<CR>
+  autocmd FileType html,xml nnoremap <buffer> <leader>ii <Esc>:% !html-beautify -f - -t<CR>
+  autocmd FileType css nnoremap <buffer> <leader>ii <Esc>:% !css-beautify -f - -t<CR>
 
   " Automatic rename of tmux window
   if exists('$TMUX') && !exists('$NORENAME')
-    au BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
-    au VimLeave * call system('tmux set-window automatic-rename on')
+    autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
+    autocmd VimLeave * call system('tmux set-window automatic-rename on')
   endif
 augroup END
 
 " ----------------------------------------------------------------------------
 " Help in new tabs
 " ----------------------------------------------------------------------------
+function! s:helptab()
+  if &buftype == 'help'
+    wincmd T
+    nnoremap <buffer> q :q<CR>
+  endif
+endfunction
+
 augroup vimrc_help
   autocmd!
   autocmd BufEnter *.txt call s:helptab()
