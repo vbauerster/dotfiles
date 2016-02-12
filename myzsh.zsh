@@ -12,14 +12,23 @@ setopt HIST_IGNORE_SPACE   # does not record an event starting with a space
 SAVEHIST=2048              # stores the maximum number of events to save in the history file
 HISTSIZE=2048              # stores the maximum number of events to save in the internal history
 
-bindkey "^A" beginning-of-line
-bindkey "^E" end-of-line
-bindkey "^P" history-search-backward
-bindkey "^Y" accept-and-hold
-bindkey "^N" insert-last-word
-# bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
+# http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
+# http://zsh.sourceforge.net/Guide/zshguide04.html
+# http://www.geekmind.net/2011/01/shortcuts-to-improve-your-bash-zsh.html
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+# ctrl + enter = accept-and-hold
+bindkey '^[[13;5u' accept-and-hold
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
+# ^U aborts the history-substring search
+# in vi mode use j/k for history-substring search
+
 # history-incremental is from editor module
-# bindkey "^R" history-incremental-search-backward
+# in vi mode / = history-incremental-search-forward
+# in vi mode ? = history-incremental-search-backward
+
+bindkey '^S' insert-last-word
 
 if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="light"
