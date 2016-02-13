@@ -5,7 +5,7 @@
 
 " https://github.com/junegunn/vim-plug
 if filereadable(expand("~/.vimrc.plug"))
-	source ~/.vimrc.plug
+  source ~/.vimrc.plug
 endif
 
 " }}}
@@ -14,7 +14,7 @@ endif
 " ============================================================================
 
 if has('gui_running') && filereadable(expand("~/.vimrc.gui"))
-	source ~/.vimrc.gui
+  source ~/.vimrc.gui
 endif
 
 " }}}
@@ -31,9 +31,9 @@ colorscheme solarized
 execute "set background=".$BACKGROUND
 "custom search (*) highlight
 if $BACKGROUND == 'dark'
-	highlight search ctermfg=16 ctermbg=137
+  highlight search ctermfg=16 ctermbg=137
 else
-	highlight search ctermfg=228 ctermbg=240
+  highlight search ctermfg=228 ctermbg=240
 endif
 
 if has('nvim') " sets for nvim only
@@ -41,26 +41,26 @@ if has('nvim') " sets for nvim only
   " https://github.com/christoomey/vim-tmux-navigator/issues/71
   nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
   tnoremap <C-b> <C-\><C-n>
-	" nnoremap <leader>te <C-w>v:te<CR>
-	nnoremap <leader>tm <C-w>s<C-w>J4<C-w>-:te<CR>
+  " nnoremap <leader>te <C-w>v:te<CR>
+  nnoremap <leader>tm <C-w>s<C-w>J4<C-w>-:te<CR>
 else " sets for vim only
   set nocompatible
-	set t_Co=256
-	set ttyfast
-	set encoding=utf-8
+  set t_Co=256
+  set ttyfast
+  set encoding=utf-8
   " https://github.com/neovim/neovim/issues/2092
   "set pastetoggle=<F2> " vim-unimpaired provides 'yo' mapping
   set history=1000               " nvim sets this to 1000 by default
   set undolevels=1000            " nvim sets this to 1000 by default
   set backspace=indent,eol,start
-	set autoindent                 " Indent at the same level of the previous line
-	set autoread                   " detect when a file is changed
-	set smarttab                   " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-	set hlsearch                   " Highlight search terms
-	set incsearch                  " set incremental search, like modern browsers
-	set laststatus=2
-	set wildmenu                   " enhanced command line completion
-	set tags=./tags;/
+  set autoindent                 " Indent at the same level of the previous line
+  set autoread                   " detect when a file is changed
+  set smarttab                   " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+  set hlsearch                   " Highlight search terms
+  set incsearch                  " set incremental search, like modern browsers
+  set laststatus=2
+  set wildmenu                   " enhanced command line completion
+  set tags=./tags;/
 endif
 
 " Excluding version control directories
@@ -364,37 +364,37 @@ nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules
 
 " http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
 if has('clipboard')
-	if has('unnamedplus')  " When possible use + register for copy-paste
-		nnoremap <leader>yp :let @+=expand('%')<CR>
-		nnoremap <leader>ya :let @+=expand('%:p')<CR>
-		nnoremap <leader>yf :let @+=expand('%:t')<CR>
-		nnoremap <leader>yd :let @+=expand('%:p:h')<CR>
+  if has('unnamedplus')  " When possible use + register for copy-paste
+    nnoremap <leader>yp :let @+=expand('%')<CR>
+    nnoremap <leader>ya :let @+=expand('%:p')<CR>
+    nnoremap <leader>yf :let @+=expand('%:t')<CR>
+    nnoremap <leader>yd :let @+=expand('%:p:h')<CR>
 
-		noremap <leader>y "+y
-		noremap <leader>yy "+yy
-		noremap <leader>Y "+y$
-		noremap <leader>p "+p
-		noremap <leader>P "+P
-	else " On mac and Windows, use * register for copy-paste
-		" copy current file name (relative/absolute) to system clipboard
-		" relative path  (src/foo.txt)
-		nnoremap <leader>yp :let @*=expand('%')<CR>
-		" absolute path  (/something/src/foo.txt)
-		nnoremap <leader>ya :let @*=expand('%:p')<CR>
-		" filename       (foo.txt)
-		nnoremap <leader>yf :let @*=expand('%:t')<CR>
-		" directory name (/something/src)
-		nnoremap <leader>yd :let @*=expand('%:p:h')<CR>
+    noremap <leader>y "+y
+    noremap <leader>yy "+yy
+    noremap <leader>Y "+y$
+    noremap <leader>p "+p
+    noremap <leader>P "+P
+  else " On mac and Windows, use * register for copy-paste
+    " copy current file name (relative/absolute) to system clipboard
+    " relative path  (src/foo.txt)
+    nnoremap <leader>yp :let @*=expand('%')<CR>
+    " absolute path  (/something/src/foo.txt)
+    nnoremap <leader>ya :let @*=expand('%:p')<CR>
+    " filename       (foo.txt)
+    nnoremap <leader>yf :let @*=expand('%:t')<CR>
+    " directory name (/something/src)
+    nnoremap <leader>yd :let @*=expand('%:p:h')<CR>
 
-		" easy system clipboard copy/paste
-		noremap <leader>y "*y
-		noremap <leader>yy "*yy
-		noremap <leader>Y "*y$
-		noremap <leader>p "*p
-		noremap <leader>P "*P
-		"use system clipboard as default
-		"set clipboard=unnamed
-	endif
+    " easy system clipboard copy/paste
+    noremap <leader>y "*y
+    noremap <leader>yy "*yy
+    noremap <leader>Y "*y$
+    noremap <leader>p "*p
+    noremap <leader>P "*P
+    "use system clipboard as default
+    "set clipboard=unnamed
+  endif
 endif
 
 " }}}
@@ -408,17 +408,17 @@ augroup vimrcEx
   " automatically rebalance windows on vim resize
   " autocmd VimResized * :wincmd =
 
-	" Create directory if not exists
-	" CTRLP plugin provides same functionality via <c-y>
-	autocmd BufWritePre * :silent !mkdir -p %:h
+  " Create directory if not exists
+  " CTRLP plugin provides same functionality via <c-y>
+  autocmd BufWritePre * :silent !mkdir -p %:h
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when
   " inside an event handler (happens when dropping a file on gvim).
   autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+        \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 
   " Set syntax highlighting for specific file types
   " autocmd BufRead,BufNewFile Appraisals set filetype=ruby
@@ -470,7 +470,7 @@ augroup END
 " ============================================================================
 
 if filereadable(expand("~/.vimrc.local"))
-	source ~/.vimrc.local
+  source ~/.vimrc.local
 endif
 
 " }}}
