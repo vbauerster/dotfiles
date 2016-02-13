@@ -20,10 +20,10 @@ $ env RCRC=$HOME/dotfiles/rcrc rcup
 RCM creates dotfile symlinks (`.vimrc` -> `/dotfiles/vimrc`) from your home directory to your `/dotfiles/` directory.
 
 ### Installing Plugins
-Plugins are listed in `vimrc.bundles`.
+Plugins are listed in `vimrc.plug`.
 
-To install them you'll need vundle. Installation directions are here: https://github.com/gmarik/Vundle.vim.
-Once vundle is installed. Open vim (`$ vim`) and type `:PluginInstall`. And then restart vim. You'll need to do this for all the plugins to work.
+To install them you'll need vim-plug. Installation directions are here: https://github.com/junegunn/vim-plug.
+Once vim-plug is installed. Open vim (`$ vim`) and type `:PlugInstall`. And then restart vim. You'll need to do this for all the plugins to work.
 
 ### Git Config
 Make sure you update ```gitconfig``` with your own name and email address. Otherwise you'll be committing as me. :smile_cat:
@@ -57,6 +57,9 @@ This overwrites your default Vim installation. You should restart terminal after
 ```
 $ brew tap neovim/homebrew-neovim
 $ brew install --HEAD neovim
+$ sudo pip install --upgrade pip
+$ pip install --user neovim
+$ pip install --user --upgrade neovim
 ```
 
 **OS X GUI for NeoVim**
