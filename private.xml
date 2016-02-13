@@ -1,91 +1,165 @@
 <?xml version="1.0"?>
 <root>
-  <inputsourcedef>
-    <name>PROGRAMMER_DVORAK</name>
-    <inputsourceid_prefix>com.apple.keyboardlayout.ProgrammerDvorak</inputsourceid_prefix>
-  </inputsourcedef>
+	<inputsourcedef>
+		<name>PROGRAMMER_DVORAK</name>
+		<inputsourceid_prefix>com.apple.keyboardlayout.ProgrammerDvorak</inputsourceid_prefix>
+	</inputsourcedef>
 
-  <item>
-    <name>Private</name>
+	<item>
+		<name>Private</name>
+		<item>
 
-    <item>
-      <name>──────────────────────────────</name>
-      <appendix>For Programmer Dvorak Only</appendix>
-    </item>
-    <item>
-      <name>Make Cut, Copy, Paste, Quit and Undo behave same as on QWERTY</name>
-      <appendix></appendix>
-      <appendix>Change Command_L+Q to Command_L+X (X in DV - i.e. Cut) </appendix>
-      <appendix>Change Command_L+J to Command_L+C (C in DV - i.e. Copy) </appendix>
-      <appendix>Change Command_L+K to Command_L+V (V in DV - i.e. Paste) </appendix>
-      <appendix>Change Command_L+' to Command_L+Z (Z in DV - i.e. Undo) </appendix>
-      <appendix>Change Command_L+; to Command_L+Q (Q in DV - i.e. Quit) </appendix>
+			<name>For Programmer Dvorak Only</name>
 
-      <identifier>private.cut_copy_paste_quit_undo_pdvorak_as_QWERTY</identifier>
-      <inputsource_only>PROGRAMMER_DVORAK</inputsource_only>
+			<item>
+				<name>Make Cut, Copy, Paste, Quit and Undo behave same as on QWERTY</name>
+				<appendix></appendix>
+				<appendix>Change FN+Q to Command_L+X (X in DV - i.e. Cut) </appendix>
+				<appendix>Change FN+J to Command_L+C (C in DV - i.e. Copy) </appendix>
+				<appendix>Change FN+K to Command_L+V (V in DV - i.e. Paste) </appendix>
+				<appendix>Change FN+' to Command_L+Z (Z in DV - i.e. Undo) </appendix>
+				<appendix>Change FN+; to Command_L+Q (Q in DV - i.e. Quit) </appendix>
 
-      <autogen>__KeyToKey__
-        KeyCode::X, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
-        KeyCode::B, ModifierFlag::COMMAND_L
-      </autogen>
-      <autogen>__KeyToKey__
-        KeyCode::C, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
-        KeyCode::I, ModifierFlag::COMMAND_L
-      </autogen>
-      <autogen>__KeyToKey__
-        KeyCode::V, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
-        KeyCode::DOT, ModifierFlag::COMMAND_L
-      </autogen>
-      <autogen>__KeyToKey__
-        KeyCode::Q, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
-        KeyCode::X, ModifierFlag::COMMAND_L
-      </autogen>
-      <autogen>__KeyToKey__
-        KeyCode::Z, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
-        KeyCode::SLASH, ModifierFlag::COMMAND_L
-      </autogen>
-    </item>
+				<identifier>private.cut_copy_paste_quit_undo_pdvorak_as_QWERTY</identifier>
+				<inputsource_only>PROGRAMMER_DVORAK</inputsource_only>
 
-    <item>
-      <name>Retain BACKQUOTE while COMMAND pressed</name>
-      <appendix></appendix>
-      <appendix>Cycle through windows ⌘ ` (only if COMMAND_L is only modifier)</appendix>
+				<autogen>__KeyToKey__ KeyCode::X, ModifierFlag::FN | ModifierFlag::NONE, KeyCode::B, ModifierFlag::COMMAND_L
+				</autogen>
+				<autogen>__KeyToKey__ KeyCode::C, ModifierFlag::FN | ModifierFlag::NONE, KeyCode::I, ModifierFlag::COMMAND_L
+				</autogen>
+				<autogen>__KeyToKey__ KeyCode::V, ModifierFlag::FN | ModifierFlag::NONE, KeyCode::DOT, ModifierFlag::COMMAND_L
+				</autogen>
+				<autogen>__KeyToKey__ KeyCode::Q, ModifierFlag::FN | ModifierFlag::NONE, KeyCode::X, ModifierFlag::COMMAND_L
+				</autogen>
+				<autogen>__KeyToKey__ KeyCode::Z, ModifierFlag::FN | ModifierFlag::NONE, KeyCode::SLASH, ModifierFlag::COMMAND_L
+				</autogen>
+			</item>
 
-      <identifier>private.cycle_with_command_backquote</identifier>
-      <inputsource_only>PROGRAMMER_DVORAK</inputsource_only>
+			<item>
+				<name>Retain BACKQUOTE while COMMAND pressed</name>
+				<appendix></appendix>
+				<appendix>Cycle through windows ⌘ ` (only if COMMAND_L is only modifier)</appendix>
 
-      <autogen>__KeyToKey__
-        KeyCode::BACKQUOTE, ModifierFlag::COMMAND_L | ModifierFlag::NONE,
-        KeyCode::EQUAL, ModifierFlag::COMMAND_L | ModifierFlag::SHIFT_L
-      </autogen>
-    </item>
+				<identifier>private.cycle_with_command_backquote</identifier>
+				<inputsource_only>PROGRAMMER_DVORAK</inputsource_only>
 
-    <item>
-      <name>──────────────────────────────</name>
-      <appendix>Misc.</appendix>
-    </item>
+				<autogen>__KeyToKey__ KeyCode::BACKQUOTE, ModifierFlag::COMMAND_L | ModifierFlag::NONE, KeyCode::EQUAL, ModifierFlag::COMMAND_L | ModifierFlag::SHIFT_L
+				</autogen>
+			</item>
 
-    <item>
-      <name>FN+CONTROL_L to CapsLock</name>
-      <identifier>fn_lctrl_to_capslock</identifier>
-      <autogen>__KeyToKey__ KeyCode::CONTROL_L, ModifierFlag::FN, KeyCode::CAPSLOCK</autogen>
-    </item>
+			<item>
+				<name>Use "hjkl" keys as arrow keys if you are not editing text.</name>
+				<appendix></appendix>
+				<appendix>
+					Enable in some standard apps.
+				</appendix>
+				<appendix>Supported Applications:</appendix>
+				<appendix>- Finder, iPhoto, iTunes, Mail.app.</appendix>
+				<appendix>- Activity Monitor.</appendix>
+				<appendix>- System Preferences, Karabiner, Seil.</appendix>
+				<identifier>remap.hjkl_arrow.dvorak</identifier>
+				<inputsource_only>PROGRAMMER_DVORAK</inputsource_only>
 
-    <item>
-        <name>Remap Left Control to Hyper</name>
-        <appendix>OS X doesn't have a Hyper. This maps Left Control to Control + Shift + Option + Command.</appendix>
+				{{ HJKL_ARROW_EXTRA }}
+
+				<block>
+					<only>
+						FINDER, IPHOTO, ITUNES, SYSTEM_PREFERENCES, Activity_Monitor, Karabiner, Seil,
+					</only>
+					<uielementrole_not>AXTextField, AXTextArea</uielementrole_not>
+					<modifier_only>
+						ModifierFlag::NONE, ModifierFlag::SHIFT_L | ModifierFlag::NONE, ModifierFlag::SHIFT_R | ModifierFlag::NONE,
+					</modifier_only>
+					<autogen>__KeyToKey__ KeyCode::J, KeyCode::CURSOR_LEFT</autogen>
+					<autogen>__KeyToKey__ KeyCode::C, KeyCode::CURSOR_DOWN</autogen>
+					<autogen>__KeyToKey__ KeyCode::V, KeyCode::CURSOR_UP</autogen>
+					<autogen>__KeyToKey__ KeyCode::P, KeyCode::CURSOR_RIGHT</autogen>
+				</block>
+
+				<block>
+					<only>MAIL</only>
+					<!-- Mail body editor is AXWebArea -->
+					<uielementrole_not>AXTextField, AXTextArea, AXWebArea</uielementrole_not>
+					<modifier_only>
+						ModifierFlag::NONE, ModifierFlag::SHIFT_L | ModifierFlag::NONE, ModifierFlag::SHIFT_R | ModifierFlag::NONE,
+					</modifier_only>
+					<autogen>__KeyToKey__ KeyCode::J, KeyCode::CURSOR_LEFT</autogen>
+					<autogen>__KeyToKey__ KeyCode::C, KeyCode::CURSOR_DOWN</autogen>
+					<autogen>__KeyToKey__ KeyCode::V, KeyCode::CURSOR_UP</autogen>
+					<autogen>__KeyToKey__ KeyCode::P, KeyCode::CURSOR_RIGHT</autogen>
+				</block>
+			</item>
+
+			<item>
+				<name>Home Row Numbers Overlay</name>
+				<item>
+					<name>Home Row Numbers</name>
+					<appendix>Overlay 1234567890 onto the home row (ASDFGHJKL;)</appendix>
+					<identifier vk_config="true">notsave.homerow_numbersh</identifier>
+					<inputsource_only>PROGRAMMER_DVORAK</inputsource_only>
+					<autogen>__KeyToKey__ KeyCode::A, KeyCode::2, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::S, KeyCode::3, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::D, KeyCode::4, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::F, KeyCode::5, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::G, KeyCode::6, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::H, KeyCode::7, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::J, KeyCode::8, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::K, KeyCode::9, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::L, KeyCode::0, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::SEMICOLON, KeyCode::MINUS, ModifierFlag::SHIFT_L</autogen>
+					<autogen>__KeyToKey__ KeyCode::QUOTE, KeyCode::1, ModifierFlag::SHIFT_L</autogen>
+				</item>
+				<item>
+					<name>Hold Space aoeuidhtns- to 7531902468%</name>
+					<identifier>remap.space_to_homerow_numbersh</identifier>
+					<autogen>__KeyOverlaidModifier__ KeyCode::SPACE, KeyCode::VK_CONFIG_SYNC_KEYDOWNUP_notsave_homerow_numbersh, KeyCode::SPACE</autogen>
+				</item>
+			</item>
+
+		</item>
+
+		<item>
+
+			<name>Misc.</name>
+
+			<item>
+				<name>FN+CONTROL_L to CapsLock</name>
+				<identifier>fn_lctrl_to_capslock</identifier>
+				<autogen>__KeyToKey__ KeyCode::CONTROL_L, ModifierFlag::FN, KeyCode::CAPSLOCK</autogen>
+			</item>
+
+			<item>
+				<name>Remap Left Control to Hyper</name>
+				<appendix>OS X doesn't have a Hyper. This maps Left Control to Control + Shift + Option + Command.</appendix>
 				<appendix>http://stevelosh.com/blog/2012/10/a-modern-space-cadet</appendix>
 
-        <identifier>space_cadet.left_control_to_hyper</identifier>
+				<identifier>space_cadet.left_control_to_hyper</identifier>
 
-        <autogen>
-            --KeyToKey--
-            KeyCode::F19,
+				<autogen>
+					__KeyToKey__ KeyCode::F19, KeyCode::COMMAND_L, ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L
+				</autogen>
+			</item>
 
-            KeyCode::COMMAND_L,
-            ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L
-        </autogen>
-    </item>
+			<item>
+				<name>Tap shift to move over words</name>
+				<appendix>Shift keys move the cursor one word forward or backward when pressed alone. When used with other keys they act as normal shifts.</appendix>
+				<appendix>(except TERMINAL)</appendix>
+				<identifier>private.shifts_to_forward_backward_word</identifier>
 
-  </item>
+				<not>TERMINAL, VI</not>
+
+				<autogen>__KeyOverlaidModifier__ KeyCode::SHIFT_R, ModifierFlag::SHIFT_R | ModifierFlag::NONE, KeyCode::SHIFT_R, KeyCode::CURSOR_RIGHT, ModifierFlag::OPTION_L</autogen>
+				<autogen>__KeyOverlaidModifier__ KeyCode::SHIFT_L, ModifierFlag::SHIFT_L | ModifierFlag::NONE, KeyCode::SHIFT_L, KeyCode::CURSOR_LEFT, ModifierFlag::OPTION_L</autogen>
+			</item>
+
+			<item>
+				<name>Double SHIFT_R to send cmd+space</name>
+				<appendix>(except virtual machine, RDC)</appendix>
+				<not>VIRTUALMACHINE, REMOTEDESKTOPCONNECTION</not>
+				<identifier>private.double_shifr_r_cmd_space</identifier>
+				<autogen>__DoublePressModifier__ KeyCode::SHIFT_R, KeyCode::SHIFT_R, KeyCode::SPACE, ModifierFlag::COMMAND_L</autogen>
+			</item>
+		</item>
+
+	</item>
 </root>

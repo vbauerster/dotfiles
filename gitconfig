@@ -11,16 +11,25 @@
   st = status
   br = branch
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	stat = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
   last = cat-file commit HEAD
-  type = cat-file -t
-  dump = cat-file -p
 [credential]
 	helper = osxkeychain
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/vbauer/.gitignore
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
 [github]
 	user = vbauerster
+[difftool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/kdiff3/0.9.98/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/kdiff3/0.9.98/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+	trustExitCode = true
+[diff]
+	tool = sourcetree
+[merge]
+	tool = sourcetree

@@ -1,53 +1,79 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set a map leader for more key combos
-let mapleader = ','
-let maplocalleader = ','
+" vim: set foldmethod=marker foldlevel=0:
+" ============================================================================
+" VIM-PLUG BLOCK {{{
+" ============================================================================
 
-set encoding=utf-8
-
-" Use before config if available {
-    if filereadable(expand("~/.vimrc.before"))
-        source ~/.vimrc.before
-    endif
-" }
-
-" Use bundles config {
-    if filereadable(expand("~/.vimrc.bundles"))
-        source ~/.vimrc.bundles
-    endif
-" }
-
-"if has('clipboard')
-		"if has('unnamedplus')  " When possible use + register for copy-paste
-				"set clipboard=unnamed,unnamedplus
-		"else         " On mac and Windows, use * register for copy-paste
-				"set clipboard=unnamed
-		"endif
-"endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if !has('nvim') " sets for vim only
-	set nocompatible
-	set pastetoggle=<F2> " https://github.com/neovim/neovim/issues/2092
-	set history=1000     " nvim sets this to 1000 by default
-	set undolevels=1000  " nvim sets this to 1000 by default
+" https://github.com/junegunn/vim-plug
+if filereadable(expand("~/.vimrc.plug"))
+	source ~/.vimrc.plug
 endif
+
+" }}}
+" ============================================================================
+" GUI BLOCK {{{
+" ============================================================================
+
+if has('gui_running') && filereadable(expand("~/.vimrc.gui"))
+	source ~/.vimrc.gui
+endif
+
+" }}}
+" ============================================================================
+" BASIC SETTINGS {{{
+" ============================================================================
+
+let mapleader = ' '
+let maplocalleader = ' '
+
+syntax on
+colorscheme solarized
+
+execute "set background=".$BACKGROUND
+"custom search (*) highlight
+if $BACKGROUND == 'dark'
+	highlight search ctermfg=16 ctermbg=137
+else
+	highlight search ctermfg=228 ctermbg=240
+endif
+
+if has('nvim') " sets for nvim only
+  " https://github.com/neovim/neovim/issues/2048
+  " https://github.com/christoomey/vim-tmux-navigator/issues/71
+  nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
+  tnoremap <C-b> <C-\><C-n>
+	" nnoremap <leader>te <C-w>v:te<CR>
+	nnoremap <leader>tm <C-w>s<C-w>J4<C-w>-:te<CR>
+else " sets for vim only
+  set nocompatible
+	set t_Co=256
+	set ttyfast
+	set encoding=utf-8
+  " https://github.com/neovim/neovim/issues/2092
+  "set pastetoggle=<F2> " vim-unimpaired provides 'yo' mapping
+  set history=1000               " nvim sets this to 1000 by default
+  set undolevels=1000            " nvim sets this to 1000 by default
+  set backspace=indent,eol,start
+	set autoindent                 " Indent at the same level of the previous line
+	set autoread                   " detect when a file is changed
+	set smarttab                   " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+	set hlsearch                   " Highlight search terms
+	set incsearch                  " set incremental search, like modern browsers
+	set laststatus=2
+	set wildmenu                   " enhanced command line completion
+	set tags=./tags;/
+endif
+
 " Excluding version control directories
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 " OS X
 set wildignore+=*.DS_Store
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
-" Excluding node_modules
-"set wildignore+=*/node_modules/*
 
+set timeoutlen=330                                  "mapping timeout
+set ttimeoutlen=50                                  "keycode timeout
+set number
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
-set timeoutlen=800 ttimeoutlen=100   " shorter escape delay
-set wildmenu                         " enhanced command line completion
 set wildmode=list:longest            " TAB auto-completion for file paths
 set hidden                           " current buffer can be put into background
 set showcmd                          " show incomplete commands
@@ -55,25 +81,10 @@ set noshowmode                       " don't show which mode disabled for PowerL
 set scrolloff=3                      " lines of text around cursor
 set foldlevelstart=99                " all folds open by default
 set cmdheight=1                      " command bar height
-set autoread                         " detect when a file is changed
 set noerrorbells
-set shell=$SHELL
+" set completeopt+=longest " Only insert the longest common text of the matches
+set completeopt=menuone,preview " to test
 
-" backup/persistance settings
-set undodir=~/.vim/tmp/undo//
-set backupdir=~/.vim/tmp/backup//
-set directory=~/.vim/tmp/swap//
-set backupskip=/tmp/*,/private/tmp/*"
-set backup
-set writebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-
-" persist (g)undo tree between sessions
-set undofile
-
-" make backspace behave in a sane manner
-set backspace=indent,eol,start
-"set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 "set autowrite     " Automatically :write before running commands
 
 " SPACES & TABS
@@ -81,44 +92,30 @@ set backspace=indent,eol,start
 set tabstop=2     " How many columns a tab counts for
 set softtabstop=2 " How many columns vim uses when pressing TAB in insert mode
 set shiftwidth=2  " How many columns text is indented with << and >>
-set noexpandtab   " Use tabs, not spaces
-set smarttab      " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-set autoindent    " Indent at the same level of the previous line
+set expandtab     " Use spaces
 set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
 "set shiftround    " round indent to a multiple of 'shiftwidth'
 
-set ruler                " show the cursor position all the time
+set ruler                " show the cursor position a l the time
 set nojoinspaces         " Prevents inserting two spaces after punctuation on a join (J)
-set completeopt+=longest " Only insert the longest common text of the matches
 
 " Searching
+set gdefault   " global search by default
 set ignorecase " case insensitive searching
 set smartcase  " case-sensitive if expresson contains a capital letter
-set hlsearch   " Highlight search terms
-set incsearch  " set incremental search, like modern browsers
 set lazyredraw " don't redraw while executing macros
 
-" Color scheme
-syntax on
-"set background=dark
-execute "set background=".$BACKGROUND
-colorscheme solarized
-
 " Highlight current line
+" http://stackoverflow.com/questions/8247243/highlighting-the-current-line-number-in-vim
 set cursorline
+" Highlight current line nr
+"highlight cursorlinenr ctermbg=0 ctermfg=14
+" highlight cursorlinenr ctermfg=14
 
-" if textwidth > 120 highlight overlenght with reddish bg
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%121v.\+/
-
-" Make it obvious where 120 characters is
-set textwidth=120
-"set colorcolumn=+1
-"highlight colorcolumn ctermbg=gray guibg=orange
-
-" Numbers
-set number
-"set numberwidth=5
+" if textwidth > 80 highlight overlenght with reddish bg
+set textwidth=80
+highlight OverLength ctermbg=223 guibg=#592929
+match OverLength /\%81v.\+/
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
@@ -129,121 +126,105 @@ set number
 set splitbelow
 set splitright
 
-set tags=./tags;/,~/.vimtags
-
 " Always use vertical diffs
 set diffopt+=vertical
 
 " Whitespaces
-set listchars=tab:‣\ ,eol:¬
-"set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
-set showbreak=↪
+set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
+" set showbreak=↪
 " show invisible chars by default
-"set list
+" set list "use col by unimpaired
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => StatusLine
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" show the satus line all the time
-set laststatus=2
-" Broken down into easily includeable segments
-"set statusline=%<%f\                     " Filename
-"set statusline+=%w%h%m%r                 " Options
-"set statusline+=%{fugitive#statusline()} " Git Hotness
-"set statusline+=\ [%{&ff}/%Y]            " filetype
-"set statusline+=\ [%{getcwd()}]          " current dir
-"set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+" backup/persistance settings
+set undodir=~/.vim/tmp/undo//
+set backupdir=~/.vim/tmp/backup//
+set directory=~/.vim/tmp/swap//
+set backupskip=/tmp/*,/private/tmp/*"
+set backup " delete old backup, backup current file
+set undofile
+set noswapfile
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+" ============================================================================
+" MAPPINGS {{{
+" ============================================================================
+
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+" ----------------------------------------------------------
 " => Quick edit Mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ----------------------------------------------------------
 " open vimrc
-nnoremap <leader>ev :e ~/.vimrc<CR>
-nnoremap <leader>eV :tabnew ~/.vimrc<CR>
+nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 " edit vim plugins
-nnoremap <leader>eb :e ~/.vimrc.bundles<CR>
-nnoremap <leader>eB :tabnew ~/.vimrc.bundles<CR>
+nnoremap <leader>ep :e ~/.vimrc.plug<CR>
 " edit vim local
 nnoremap <leader>el :e ~/.vimrc.local<CR>
-nnoremap <leader>eL :tabnew ~/.vimrc.local<CR>
 " edit gitconfig
 nnoremap <leader>eg :e ~/.gitconfig<CR>
-nnoremap <leader>eG :tabnew ~/.gitconfig<CR>
 " edit tmux.conf
 nnoremap <leader>et :e ~/.tmux.conf<CR>
-nnoremap <leader>eT :tabnew ~/.tmux.conf<CR>
+" edit zshrc
+nnoremap <leader>ez :e ~/.zshrc<CR>
 
-nnoremap <leader>ej :e ~/.vim/bundle/vim-snippets/UltiSnips/javascript.snippets<CR>
+nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/UltiSnips/javascript.snippets<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -----------------------------------------------------------
 " => General mappings/shortcuts for functionality
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" close current buffer without save
-nnoremap QQ ZQ
-" quit all
-nnoremap <Leader>q :qa<cr>
+" -----------------------------------------------------------
+" Save
+inoremap <C-s>     <C-O>:update<CR>
+nnoremap <C-s>     :update<CR>
+nnoremap <leader>u :update<CR>
 
-" reload ctags, --fields=+l needs by YCM
-nnoremap <leader>ct :!/usr/local/bin/ctags -R --fields=+l --exclude=.git --exclude=log --exclude=tmp *<CR><CR>
+" Quit
+inoremap <C-Q>     <esc>:q<CR>
+nnoremap <C-Q>     :q<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :qa!<CR>
 
-" shortcut to save/write
-nnoremap <leader>w :w!<cr>
+" Enter visual line mode
+nmap <leader><leader> V
 
-" Map Ctrl + S to save in any mode
-nnoremap <silent> <C-S> :update<CR>
-vnoremap <silent> <C-S> <C-C>:update<CR>
-inoremap <silent> <C-S> <C-O>:update<CR>
+nnoremap <tab> %
+vnoremap <tab> %
 
-" Retain visual mode after indentation shifts
-vnoremap < <gv
-vnoremap > >gv
+" make Y consistent with C and D. See :help Y.
+nnoremap Y y$
+
+nnoremap <leader>lo :lopen<CR>
+nnoremap <leader>co :copen<CR>
+" nnoremap <leader>cl :close<CR> " same as <C-w> c
+nnoremap <leader>cc :cclose<CR>
+nnoremap <leader>pc :pclose<CR> " same as <C-w> z
+
+" reselect visual block after indent
+vnoremap <silent> < <gv
+vnoremap <silent> > >gv
+
+" reselect last paste
+" nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+nnoremap gp `[v`]
+
+" Search in normal mode with very magic on
+nnoremap / /\v
+nnoremap ? ?\v
 " Search in visually selected block only
-vnoremap / <Esc>/\%V\%V<Left><Left><Left>
-vnoremap ? <Esc>?\%V\%V<Left><Left><Left>
+vnoremap / <Esc>/\%V\v
+vnoremap ? <Esc>?\%V\v
+
+vmap <leader>s :sort<CR>
+
+" paste multiple lines multiple times
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
 
 " Swap implementations of ` and ' jump to markers
-" By default, ' jumps to the marked line, ` jumps to the marked line and
-" column, so swap them
-nnoremap ' `
-nnoremap ` '
-
-" upercase previous word in insert mode
-map! <leader>t <Esc>gUiw']a
-
-" g<c-]> is jump to tag if there's only one matching tag, but show list of
-" options when there is more than one definition
-nnoremap <leader>g g<c-]>
-
-" These create newlines like o and O but stay in normal mode
-nnoremap <silent> zj o<Esc>k
-nnoremap <silent> zk O<Esc>j
-
-" Switch to the directory of the open buffer
-noremap <silent> <leader>cd :cd %:p:h<cr>
-
-" remove trailing whitespace and clear the last search pattern
-nnoremap <leader><space> :%s/\s\+$//<CR>:let @/=''<CR>
-
-" toggle search highlighting
-nmap <silent> <leader>/ :set invhlsearch<CR>
-
-" toggle invisible characters
-nmap <leader>l :set list!<CR>
-
-" switch between current and last buffer
-nmap <leader>. <c-^>
-" closes the current buffer before switching to the previous one
-"noremap <leader>. <c-^> :bd #<cr>
-
-" zoom a vim pane, <C-w>= to re-balance
-nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
-nnoremap <leader>= :wincmd =<cr>
-
-" resize panes
-nnoremap <silent> <Right> :vertical resize +5<cr>
-nnoremap <silent> <Left> :vertical resize -5<cr>
-nnoremap <silent> <Up> :resize +5<cr>
-nnoremap <silent> <Down> :resize -5<cr>
+nnoremap <silent> ' `
+nnoremap <silent> ` '
 
 " moving up and down work as you would expect
 nnoremap <silent> j gj
@@ -251,69 +232,185 @@ nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
-" ,f
-" Fast grep
-" Recursive search in current directory for matches with current word
-nnoremap <Leader>f :<C-u>execute "Ag " . expand("<cword>") <Bar> cw<CR>
+" auto center
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+nnoremap <silent> g# g#zz
 
-" toggle relativenumber
+" tab shortcuts
+map <leader>tn :tabnew<CR>
+map <leader>tc :tabclose<CR>
+
+" fold a html tag
+nnoremap <leader>ft Vatzf
+
+" g<c-]> is jump to tag if there's only one matching tag, but show list of
+" options when there is more than one definition
+" nnoremap <leader>g g<c-]>
+
+" Switch to the directory of the open buffer
+nnoremap <silent> <leader>cd :cd %:p:h<CR>
+
+" remove trailing whitespace and clear the last search pattern
+nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
+
+" toggle search highlighting: coh by unimpaired
+" nmap <silent> <leader>/ :set invhlsearch<CR>
+" toggle invisible characters: col by unimpaired
+" nmap <leader>l :set list!<CR>
+
+" switch between current and last buffer
+" qpkorr/vim-bufkill provides :BA ~ <c-^>
+nmap <silent> <leader>; :BB<CR>
+nmap <silent> <leader>, :BA<CR>
+nmap <silent> <leader>. :BF<CR>
+
+" zoom a vim pane, <C-w>= to re-balance
+" nnoremap <leader>z :wincmd _<CR>:wincmd \|<CR>
+nmap <silent> <leader>- :wincmd =<CR>
+
+" http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
+set winminheight=0
+nmap <leader>j <C-W>j<C-W>_
+nmap <leader>k <C-W>k<C-W>_
+
+set winminwidth=0
+nmap <leader>h <C-W>h500<C-W>>
+nmap <leader>l <C-W>l500<C-W>>
+
+nnoremap <leader>v <C-w>v
+
+" resize panes
+nnoremap <silent> <Right> :vertical resize +5<CR>
+nnoremap <silent> <Left> :vertical resize -5<CR>
+" nnoremap <silent> <Up> :resize +5<CR>
+" nnoremap <silent> <Down> :resize -5<CR>
+
+" toggle relativenumber: cor by unimpaired
 " http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
-nnoremap <Leader>rn :set rnu!<ENTER>
+"nnoremap <leader>rn :set rnu!<ENTER>
+
+" Buffer reload
+nnoremap <leader>rr :e!<CR>
+" nnoremap <leader>ll :ls<CR>
+" nnoremap <leader>bn :bn<CR> "provided by unimpaired ]b
+" nnoremap <leader>bp :bp<CR> "provided by unimpaired [b
+
+" Show Registers
+nnoremap <leader>di :di<CR>
+
+" experimental: quickly access yank reg
+noremap "" "0
 
 " http://habrahabr.ru/post/183222/
 " spell check on
-nnoremap <Leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
+nnoremap <leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
 " spell check off
-nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
+nnoremap <leader>spp :setlocal spell spelllang=<ENTER>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => COOL THINGS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>hi :Highlight<CR>
+nnoremap <silent> <leader>hc :call clearmatches()<CR>:noh<CR>
 
-" Create directory if not exists
-" CTRLP plugin provides same functionality via <c-y>
-au! BufWritePre * :silent !mkdir -p %:h
+" quick access to cmd mode
+" conflicts with CtrlP at the moment
+" nnoremap ; :
 
-" http://vim.wikia.com/wiki/Display_output_of_shell_commands_in_new_window
-let s:_ = ''
+" -----------------------------------------------------------
+" => Command mode mappings
+" -----------------------------------------------------------
+" refer to the directory of the current file, regardless of pwd
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
 
-function! s:ExecuteInShell(command, bang)
-	let _ = a:bang != '' ? s:_ : a:command == '' ? '' : join(map(split(a:command), 'expand(v:val)'))
+" -----------------------------------------------------------
+" => Insert mode mappings
+" -----------------------------------------------------------
+" insert absolute current buffer path
+inoremap <F2> <C-R>=expand('%:p')<CR>
 
-	if (_ != '')
-		let s:_ = _
-		let bufnr = bufnr('%')
-		let winnr = bufwinnr('^' . _ . '$')
-		silent! execute  winnr < 0 ? 'belowright new ' . fnameescape(_) : winnr . 'wincmd w'
-		setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile wrap number
-		silent! :%d
-		let message = 'Execute ' . _ . '...'
-		call append(0, message)
-		echo message
-		silent! 2d | resize 1 | redraw
-		silent! execute 'silent! %!'. _
-		silent! execute 'resize ' . line('$')
-		silent! execute 'syntax on'
-		silent! execute 'autocmd BufUnload <buffer> execute bufwinnr(' . bufnr . ') . ''wincmd w'''
-		silent! execute 'autocmd BufEnter <buffer> execute ''resize '' .  line(''$'')'
-		silent! execute 'nnoremap <silent> <buffer> <CR> :call <SID>ExecuteInShell(''' . _ . ''', '''')<CR>'
-		silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . _ . ''', '''')<CR>'
-		silent! execute 'nnoremap <silent> <buffer> <LocalLeader>g :execute bufwinnr(' . bufnr . ') . ''wincmd w''<CR>'
-		nnoremap <silent> <buffer> <C-W>_ :execute 'resize ' . line('$')<CR>
-		silent! syntax on
+" quick movements
+" http://vim.wikia.com/wiki/Quick_command_in_insert_mode
+inoremap II <Esc>I
+inoremap AA <Esc>A
+" <C-\> does not eat last char of the line
+inoremap CC <C-\><C-O>D
+inoremap SS <Esc>cc
+inoremap UU <C-O>u
+inoremap hh <Esc>
+
+" -----------------------------------------------------------
+" => External cmd mappings
+" -----------------------------------------------------------
+" find current word in quickfix
+nnoremap <leader>b* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR>
+" find last search in quickfix
+nnoremap <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+" http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
+nnoremap <leader>nh :write !node --harmony<CR>
+" see ':h :!'; '.' stands for concatination
+nnoremap <leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
+
+" reload ctags, --fields=+l needs by YCM
+" http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
+" http://raygrasso.com/posts/2015/04/using-ctags-on-modern-javascript.html
+nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
+
+" }}}
+" ============================================================================
+" CLIPBOARDs {{{
+" ============================================================================
+
+" http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
+if has('clipboard')
+	if has('unnamedplus')  " When possible use + register for copy-paste
+		nnoremap <leader>yp :let @+=expand('%')<CR>
+		nnoremap <leader>ya :let @+=expand('%:p')<CR>
+		nnoremap <leader>yf :let @+=expand('%:t')<CR>
+		nnoremap <leader>yd :let @+=expand('%:p:h')<CR>
+
+		noremap <leader>y "+y
+		noremap <leader>yy "+yy
+		noremap <leader>Y "+y$
+		noremap <leader>p "+p
+		noremap <leader>P "+P
+	else " On mac and Windows, use * register for copy-paste
+		" copy current file name (relative/absolute) to system clipboard
+		" relative path  (src/foo.txt)
+		nnoremap <leader>yp :let @*=expand('%')<CR>
+		" absolute path  (/something/src/foo.txt)
+		nnoremap <leader>ya :let @*=expand('%:p')<CR>
+		" filename       (foo.txt)
+		nnoremap <leader>yf :let @*=expand('%:t')<CR>
+		" directory name (/something/src)
+		nnoremap <leader>yd :let @*=expand('%:p:h')<CR>
+
+		" easy system clipboard copy/paste
+		noremap <leader>y "*y
+		noremap <leader>yy "*yy
+		noremap <leader>Y "*y$
+		noremap <leader>p "*p
+		noremap <leader>P "*P
+		"use system clipboard as default
+		"set clipboard=unnamed
 	endif
-endfunction
+endif
 
-command! -complete=shellcmd -nargs=* -bang Shell call s:ExecuteInShell(<q-args>, '<bang>')
-cabbrev shell Shell
-
-nnoremap <leader>nn :Shell node --harmony %<CR>
+" }}}
+" ============================================================================
+" AUTOCMD {{{
+" ============================================================================
 
 augroup vimrcEx
   autocmd!
 
   " automatically rebalance windows on vim resize
-  "autocmd VimResized * :wincmd =
+  " autocmd VimResized * :wincmd =
+
+	" Create directory if not exists
+	" CTRLP plugin provides same functionality via <c-y>
+	autocmd BufWritePre * :silent !mkdir -p %:h
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when
@@ -324,7 +421,7 @@ augroup vimrcEx
     \ endif
 
   " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile Appraisals set filetype=ruby
+  " autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
   " Enable spellchecking for Markdown
@@ -339,51 +436,41 @@ augroup vimrcEx
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
+
+  " js-beautify
+  autocmd FileType json nnoremap <buffer> <leader>ii <Esc>:% !js-beautify -f - -t<CR>
+  autocmd FileType html,xml nnoremap <buffer> <leader>ii <Esc>:% !html-beautify -f - -t<CR>
+  autocmd FileType css nnoremap <buffer> <leader>ii <Esc>:% !css-beautify -f - -t<CR>
+
+  " Automatic rename of tmux window
+  if exists('$TMUX') && !exists('$NORENAME')
+    autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
+    autocmd VimLeave * call system('tmux set-window automatic-rename on')
+  endif
 augroup END
 
-" Text Highlighter = <leader>h[1-4]
-function! HiInterestingWord(n)
-    " Save our location.
-    normal! mz
-    " Yank the current word into the z register.
-    normal! "zyiw
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
-    " Move back to our original location.
-    normal! `z
+" ----------------------------------------------------------------------------
+" Help in new tabs
+" ----------------------------------------------------------------------------
+function! s:helptab()
+  if &buftype == 'help'
+    wincmd T
+    nnoremap <buffer> q :q<CR>
+  endif
 endfunction
 
-nnoremap <leader>hh :call clearmatches()<CR>:noh<CR>
-nnoremap <silent> <leader>h1 :call HiInterestingWord(1)<cr>
-nnoremap <silent> <leader>h2 :call HiInterestingWord(2)<cr>
-nnoremap <silent> <leader>h3 :call HiInterestingWord(3)<cr>
-nnoremap <silent> <leader>h4 :call HiInterestingWord(4)<cr>
-nnoremap <silent> <leader>h5 :call HiInterestingWord(5)<cr>
-nnoremap <silent> <leader>h6 :call HiInterestingWord(6)<cr>
+augroup vimrc_help
+  autocmd!
+  autocmd BufEnter *.txt call s:helptab()
+augroup END
 
-hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
-hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
-hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+" }}}
+" ============================================================================
+" vimrc.local BLOCK {{{
+" ============================================================================
 
-"custom search (*) hightlight
-if $BACKGROUND == 'dark'
-	highlight search ctermfg=16 ctermbg=137
+if filereadable(expand("~/.vimrc.local"))
+	source ~/.vimrc.local
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Local config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Local config if available {
-  if filereadable(expand("~/.vimrc.local"))
-    source ~/.vimrc.local
-  endif
-" }
+" }}}

@@ -1,0 +1,114 @@
+call plug#begin('~/.vim/plugged')
+
+" General
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
+Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'jistr/vim-nerdtree-tabs'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-speeddating'
+Plug 'mbbill/undotree',             { 'on': 'UndotreeToggle'   }
+Plug 'qpkorr/vim-bufkill'
+" ctags tagbar
+Plug 'majutsushi/tagbar'
+" matchit.zip : extended % matching for HTML, LaTeX, and many other languages
+Plug 'vim-scripts/matchit.zip'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+" Tmux
+Plug 'tpope/vim-tbone'
+Plug 'christoomey/vim-tmux-navigator'
+
+" Motions
+" Plug 'Lokaltog/vim-easymotion'
+Plug 'rhysd/clever-f.vim'
+Plug 'justinmk/vim-sneak'
+
+" UI look and feel
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+" Plug 'itchyny/lightline.vim'
+" Plug 'edkolev/tmuxline.vim'
+
+" Marks
+Plug 'kshenoy/vim-signature'
+
+" Grep like search
+" Plug 'rking/ag.vim'
+Plug 'mhinz/vim-grepper'
+
+" Make gists easily from Vim
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+
+" General Programming
+"Plug 'scrooloose/syntastic'
+Plug 'benekastah/neomake'
+Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
+"Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary'
+"http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+Plug 'godlygeek/tabular'
+
+" Snippet & AutoComplete
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+" Group dependencies, vim-snippets depends on ultisnips
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'myhere/vim-nodejs-complete'
+Plug 'justinj/vim-react-snippets'
+
+" Auto pairs
+Plug 'jiangmiao/auto-pairs' "causes troble with ultisnip
+"Plug 'Raimondi/delimitMate'
+"Plug 'idbrii/vim-endoscope' "A single keystroke to end your scope with <C-s>
+"Plug 'Townk/vim-autoclose'
+"Plug 'kana/vim-smartinput'
+
+" HTML
+"Plug 'docunext/closetag.vim' "close HTML tag
+Plug 'amirh/HTML-AutoCloseTag'
+Plug 'mattn/emmet-vim'
+
+" required by xolox/vim-easytags
+"Plug 'xolox/vim-misc'
+
+" Easy Exuberant Ctags
+"Plug 'xolox/vim-easytags'
+"Plug 'vim-scripts/ctags.vim'
+
+" Extended session management for Vim
+Plug 'vim-scripts/sessionman.vim'
+"Plug 'xolox/vim-session'
+"Plug 'tpope/vim-obsession'
+
+" colorschemes
+Plug 'flazz/vim-colorschemes'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'chriskempson/base16-vim'
+
+" JavaScript plugins
+" mxw/vim-jsx syntax highlighting for React's jsx, requires pangloss/vim-javascript
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
+Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
+Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'leafgarland/typescript-vim'
+"Plug 'kchmck/vim-coffee-script'
+"Plug 'burnettk/vim-angular'
+"Plug 'jelera/vim-javascript-syntax'
+"Plug 'maksimr/vim-jsbeautify'
+
+" Misc.
+Plug 'lyokha/vim-xkbswitch'
+
+if has('mac')
+  Plug 'rizzatti/dash.vim',  { 'on': 'Dash' }
+endif
+
+" my plugins
+Plug 'vbauerster/vim-highlighter'
+
+" Add plugins to &runtimepath
+call plug#end()
