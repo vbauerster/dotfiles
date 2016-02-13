@@ -57,6 +57,7 @@ This overwrites your default Vim installation. You should restart terminal after
 ```
 $ brew tap neovim/homebrew-neovim
 $ brew install --HEAD neovim
+$ brew reinstall --HEAD neovim
 $ sudo pip install --upgrade pip
 $ pip install --user neovim
 $ pip install --user --upgrade neovim
