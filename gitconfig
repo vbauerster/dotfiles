@@ -16,7 +16,7 @@
 [credential]
 	helper = osxkeychain
 [core]
-	excludesfile = /Users/vbauer/.gitignore
+	excludesfile = ~/.gitignore
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
