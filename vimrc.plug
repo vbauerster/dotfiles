@@ -29,7 +29,7 @@ Plug 'rhysd/clever-f.vim'
 Plug 'justinmk/vim-sneak'
 
 " UI look and feel
-Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes' | Plug 'vim-airline/vim-airline'
 " Plug 'itchyny/lightline.vim'
 " Plug 'edkolev/tmuxline.vim'
 
@@ -41,8 +41,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'mhinz/vim-grepper'
 
 " Make gists easily from Vim
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " General Programming
 "Plug 'scrooloose/syntastic'
