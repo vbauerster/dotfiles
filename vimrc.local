@@ -103,60 +103,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " }}}
 " ============================================================================
-" 'ctrlpvim/ctrlp.vim' {{{
-" ============================================================================
-
-let g:ctrlp_map = '<F2>'
-"let g:ctrlp_cmd = 'CtrlPBuffer'
-let g:ctrlp_cmd = 'CtrlPFunky'
-"let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
-"let g:ctrlp_match_window = 'max:12'
-"let g:ctrlp_match_window = 'results:12'
-let g:ctrlp_max_height=32
-let g:ctrlp_show_hidden=0
-let g:ctrlp_max_files=20000
-let g:ctrlp_extensions=['funky']
-let g:ctrlp_custom_ignore = {
-			\ 'dir':  '\v[\/]\.(git|hg|svn|idea)$',
-			\ 'file': '\v\.(exe|so|dll|class)$',
-			\ }
-
-"let g:ctrlp_user_command = '/usr/local/bin/ag %s -l --nocolor --hidden -g ""'
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-	" Use Ag over Grep
-	set grepprg=ag\ --nogroup\ --nocolor
-	" Use ag in CtrlP for listing files, unless root dir is under git
-	"let g:ctrlp_user_command='ag %s -l --nocolor -g ""'
-	"let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'ag %s -l --nocolor --hidden -g ""']
-	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files', 'ag %s -l --nocolor -g ""']
-else
-	let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
-endif
-
-nmap ; [ctrlp]
-nnoremap [ctrlp] <nop>
-
-nnoremap [ctrlp]t :CtrlPBufTag<cr>
-nnoremap [ctrlp]T :CtrlPTag<cr>
-nnoremap [ctrlp]l :CtrlPLine<cr>
-" nnoremap [ctrlp]o :CtrlPFunky<cr>
-nnoremap [ctrlp]c :CtrlPChange<cr>
-nnoremap [ctrlp]d :CtrlPDir<cr>
-nnoremap [ctrlp]; :CtrlP<cr>
-nnoremap [ctrlp]m :CtrlPMRU<cr>
-nnoremap [ctrlp]x :CtrlPMixed<cr>
-nnoremap [ctrlp]b :CtrlPBookmarkDir<cr>
-nnoremap [ctrlp]u :CtrlPUndo<cr>
-nnoremap [ctrlp]b :CtrlPBuffer<cr>
-
-augroup CtrlPDirMRU
-	autocmd!
-	autocmd FileType * if &modifiable | execute 'silent CtrlPBookmarkDirAdd! %:p:h' | endif
-augroup END
-
-" }}}
-" ============================================================================
 " 'majutsushi/tagbar' {{{
 " ============================================================================
 
