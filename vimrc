@@ -26,17 +26,19 @@ let mapleader = ' '
 let maplocalleader = ' '
 
 syntax on
-colorscheme solarized
+colorscheme OceanicNext
 
 execute "set background=".$BACKGROUND
 "custom search (*) highlight
-if $BACKGROUND == 'dark'
-  highlight search ctermfg=16 ctermbg=137
-else
-  highlight search ctermfg=228 ctermbg=240
-endif
+" if $BACKGROUND == 'dark'
+"   highlight search ctermfg=16 ctermbg=137
+" else
+"   highlight search ctermfg=228 ctermbg=240
+" endif
 
 if has('nvim') " sets for nvim only
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
   " https://github.com/neovim/neovim/issues/2048
   " https://github.com/christoomey/vim-tmux-navigator/issues/71
   nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
@@ -113,9 +115,9 @@ set cursorline
 " highlight cursorlinenr ctermfg=14
 
 " if textwidth > 80 highlight overlenght with reddish bg
-set textwidth=80
-highlight OverLength ctermbg=223 guibg=#592929
-match OverLength /\%81v.\+/
+" set textwidth=80
+" highlight OverLength ctermbg=223 guibg=#592929
+" match OverLength /\%81v.\+/
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
@@ -316,7 +318,7 @@ nnoremap <silent> <leader>hc :call clearmatches()<CR>:noh<CR>
 
 " quick access to cmd mode
 " conflicts with CtrlP at the moment
-" nnoremap ; :
+nnoremap ; :
 
 " -----------------------------------------------------------
 " => Command mode mappings

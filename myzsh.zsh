@@ -31,7 +31,7 @@ bindkey '^N' history-substring-search-down
 bindkey '^S' insert-last-word
 
 if [ -z "$BACKGROUND" ]; then
-    export BACKGROUND="light"
+    export BACKGROUND="dark"
 fi
 
 # set the background color to light
