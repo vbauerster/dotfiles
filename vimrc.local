@@ -12,7 +12,8 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 " 'othree/javascript-libraries-syntax.vim' {{{
 " ============================================================================
 
-let g:used_javascript_libs = 'jquery,underscore,react'
+" Default lib set is: jquery,underscore,backbone
+" let g:used_javascript_libs = 'jquery,underscore,react'
 
 " }}}
 " ============================================================================
