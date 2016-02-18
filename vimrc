@@ -25,7 +25,6 @@ endif
 let mapleader = ' '
 let maplocalleader = ' '
 
-syntax on
 colorscheme OceanicNext
 
 execute "set background=".$BACKGROUND
@@ -45,11 +44,12 @@ if has('nvim') " sets for nvim only
   tnoremap <C-b> <C-\><C-n>
   " nnoremap <leader>te <C-w>v:te<CR>
   nnoremap <leader>tm <C-w>s<C-w>J4<C-w>-:te<CR>
-else " sets for vim only
+else " sets for vim only, see h: vim-differences
   set nocompatible
   set t_Co=256
   set ttyfast
   set encoding=utf-8
+  syntax on
   " https://github.com/neovim/neovim/issues/2092
   "set pastetoggle=<F2> " vim-unimpaired provides 'yo' mapping
   set history=1000               " nvim sets this to 1000 by default
