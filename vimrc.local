@@ -67,23 +67,10 @@ let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wa
 
 " }}}
 " ============================================================================
-" 'Valloric/YouCompleteMe' {{{
+" 'Shougo/deoplete.nvim' {{{
 " ============================================================================
 
-" make YCM not use Tab key
-" Don’t worry, you still be able to cycle through completion with <C-N> and <C-P> keys.
-"let g:ycm_key_list_select_completion=[]
-"let g:ycm_key_list_previous_completion=[]
-let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
-
-"let g:ycm_path_to_python_interpreter = '/usr/local/opt/python/bin/python'
-
-let g:ycm_complete_in_comments = 0
-" enable completion from tags
-let g:ycm_collect_identifiers_from_tags_files=1
-let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:deoplete#enable_at_startup = 1
 
 " }}}
 " ============================================================================
