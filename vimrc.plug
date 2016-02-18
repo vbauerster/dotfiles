@@ -82,7 +82,8 @@ Plug 'vim-scripts/sessionman.vim'
 "Plug 'tpope/vim-obsession'
 
 " colorschemes
-Plug 'mhartington/oceanic-next'
+Plug 'morhetz/gruvbox'
+" Plug 'mhartington/oceanic-next'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'kristijanhusak/vim-hybrid-material'
 " Plug 'marcopaganini/termschool-vim-theme'

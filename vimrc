@@ -25,7 +25,7 @@ endif
 let mapleader = ' '
 let maplocalleader = ' '
 
-colorscheme OceanicNext
+colorscheme gruvbox
 
 execute "set background=".$BACKGROUND
 "custom search (*) highlight
