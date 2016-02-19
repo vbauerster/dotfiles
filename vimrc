@@ -424,7 +424,6 @@ augroup vimrcEx
         \ endif
 
   " Set syntax highlighting for specific file types
-  " autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
   " Enable spellchecking for Markdown
@@ -444,8 +443,10 @@ augroup vimrcEx
   autocmd FileType json nnoremap <buffer> <leader>ii <Esc>:% !js-beautify -f - -t<CR>
   autocmd FileType html,xml nnoremap <buffer> <leader>ii <Esc>:% !html-beautify -f - -t<CR>
   autocmd FileType css nnoremap <buffer> <leader>ii <Esc>:% !css-beautify -f - -t<CR>
+augroup END
 
-  " Automatic rename of tmux window
+augroup tmux_auto_rename
+  autocmd!
   if exists('$TMUX') && !exists('$NORENAME')
     autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
     autocmd VimLeave * call system('tmux set-window automatic-rename on')
