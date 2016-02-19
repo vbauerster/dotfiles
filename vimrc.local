@@ -85,9 +85,9 @@ let g:tern_map_keys=1
 " 'SirVer/ultisnips'  {{{
 " ============================================================================
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " }}}
 " ============================================================================
@@ -101,18 +101,20 @@ nmap <F8> :TagbarToggle<CR>
 " 'mattn/emmet-vim' {{{
 " ============================================================================
 
-function! s:zen_html_tab()
-	let line = getline('.')
-	if match(line, '<.*>') < 0
-		return "\<c-y>,"
-	endif
-	return "\<c-y>n"
-endfunction
+let g:user_emmet_install_global = 0
+let g:user_emmet_complete_tag = 1
 
+function! s:zen_html_tab()
+  if !emmet#isExpandable()
+    return "\<plug>(emmet-move-next)"
+  endif
+  return "\<plug>(emmet-expand-abbr)"
+endfunction
 augroup EmmetZen
-	autocmd!
-	autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
-	autocmd FileType html imap <buffer><expr><tab> <sid>zen_html_tab()
+  autocmd!
+  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown EmmetInstall
+  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <plug>(emmet-expand-abbr)
+  autocmd FileType html,markdown imap <buffer><expr><tab> <sid>zen_html_tab()
 augroup END
 
 " }}}
