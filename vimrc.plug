@@ -59,6 +59,7 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'
+" Plug 'myhere/vim-nodejs-complete'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
