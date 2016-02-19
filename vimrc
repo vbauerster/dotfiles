@@ -437,12 +437,7 @@ augroup vimrcEx
   autocmd FileType gitcommit setlocal spell spelllang=ru_yo,en_us
 
   " Allow stylesheets to autocomplete hyphenated words
-  autocmd FileType css,scss,sass setlocal iskeyword+=-
-
-  " js-beautify
-  autocmd FileType json nnoremap <buffer> <leader>ii <Esc>:% !js-beautify -f - -t<CR>
-  autocmd FileType html,xml nnoremap <buffer> <leader>ii <Esc>:% !html-beautify -f - -t<CR>
-  autocmd FileType css nnoremap <buffer> <leader>ii <Esc>:% !css-beautify -f - -t<CR>
+  " autocmd FileType css,scss,sass setlocal iskeyword+=-
 augroup END
 
 augroup tmux_auto_rename

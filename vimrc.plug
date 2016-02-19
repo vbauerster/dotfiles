@@ -99,7 +99,7 @@ Plug 'othree/javascript-libraries-syntax.vim'
 
 " JavaScript
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-" Plug 'maksimr/vim-jsbeautify'
+Plug 'maksimr/vim-jsbeautify'
 " Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
 " Plug 'burnettk/vim-angular'
 
