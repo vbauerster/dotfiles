@@ -58,18 +58,19 @@ Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
+Plug 'mattn/emmet-vim'
 
 " Auto pairs
-Plug 'jiangmiao/auto-pairs' "causes troble with ultisnip
+Plug 'jiangmiao/auto-pairs'
 "Plug 'Raimondi/delimitMate'
 "Plug 'idbrii/vim-endoscope' "A single keystroke to end your scope with <C-s>
 "Plug 'Townk/vim-autoclose'
 "Plug 'kana/vim-smartinput'
 
 " HTML
-"Plug 'docunext/closetag.vim' "close HTML tag
-Plug 'amirh/HTML-AutoCloseTag'
-Plug 'mattn/emmet-vim'
+" Plug 'docunext/closetag.vim' "close HTML tag
+" Plug 'amirh/HTML-AutoCloseTag'
+Plug 'valloric/MatchTagAlways'
 
 " required by xolox/vim-easytags
 "Plug 'xolox/vim-misc'
@@ -96,15 +97,18 @@ Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 
-" JavaScript plugins
-" mxw/vim-jsx syntax highlighting for React's jsx, requires pangloss/vim-javascript
+" JavaScript
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
-Plug 'leafgarland/typescript-vim'
-"Plug 'kchmck/vim-coffee-script'
-"Plug 'burnettk/vim-angular'
-"Plug 'jelera/vim-javascript-syntax'
-"Plug 'maksimr/vim-jsbeautify'
+" Plug 'maksimr/vim-jsbeautify'
+" Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
+" Plug 'burnettk/vim-angular'
+
+" Typescript
+" Plug 'HerringtonDarkholme/yats.vim' " Syntax
+" Plug 'Quramy/tsuquyomi' " omni-completion
+
+" CoffeScript
+" Plug 'kchmck/vim-coffee-script' " Syntax
 
 " Misc.
 Plug 'lyokha/vim-xkbswitch'

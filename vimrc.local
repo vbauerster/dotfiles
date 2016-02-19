@@ -31,7 +31,7 @@ let g:airline_powerline_fonts=1
 " See `:echo g:airline_theme_map` for some more choices
 " Default in terminal vim is 'dark'
 if !exists('g:airline_theme')
-	let g:airline_theme = 'wombat'
+	let g:airline_theme = 'gruvbox'
 endif
 if !exists('g:airline_powerline_fonts')
 	" Use the default set of separators with a few customizations
@@ -74,27 +74,16 @@ let g:deoplete#enable_at_startup = 1
 
 " }}}
 " ============================================================================
-" 'ternjs/tern_for_vim' {{{
+" 'Shougo/neosnippet.vim'  {{{
 " ============================================================================
 
-let g:tern_show_argument_hints='on_hold'
-let g:tern_map_keys=1
+let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets,~/.vim/snippets'
+let g:neosnippet#enable_snipmate_compatibility=1
 
-" }}}
-" ============================================================================
-" 'SirVer/ultisnips'  {{{
-" ============================================================================
-
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" }}}
-" ============================================================================
-" 'majutsushi/tagbar' {{{
-" ============================================================================
-
-nmap <F8> :TagbarToggle<CR>
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 
 " }}}
 " ============================================================================
@@ -116,6 +105,21 @@ augroup EmmetZen
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <plug>(emmet-expand-abbr)
   autocmd FileType html,markdown imap <buffer><expr><tab> <sid>zen_html_tab()
 augroup END
+
+" }}}
+" ============================================================================
+" 'ternjs/tern_for_vim' {{{
+" ============================================================================
+
+let g:tern_show_argument_hints='on_hold'
+let g:tern_map_keys=1
+
+" }}}
+" ============================================================================
+" 'majutsushi/tagbar' {{{
+" ============================================================================
+
+nmap <F8> :TagbarToggle<CR>
 
 " }}}
 " ============================================================================

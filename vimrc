@@ -172,7 +172,7 @@ nnoremap <leader>et :e ~/.tmux.conf<CR>
 " edit zshrc
 nnoremap <leader>ez :e ~/.zshrc<CR>
 
-nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/UltiSnips/javascript.snippets<CR>
+nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
 
 " -----------------------------------------------------------
 " => General mappings/shortcuts for functionality
