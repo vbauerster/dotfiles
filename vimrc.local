@@ -62,7 +62,7 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 " 'mbbill/undotree' {{{
 " ============================================================================
 
-nnoremap <Leader>uu :UndotreeToggle<CR>
+nnoremap <leader>uu :UndotreeToggle<CR>
 let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
 
 " }}}
@@ -209,13 +209,6 @@ let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 
 " }}}
 " ============================================================================
-" 'rking/ag.vim' {{{
-" ============================================================================
-
-" nnoremap <Leader>* :Ag<CR>
-
-" }}}
-" ============================================================================
 " 'junegunn/fzf.vim' {{{
 " ============================================================================
 
@@ -247,13 +240,6 @@ nnoremap <Leader>mm :Marks<CR>
 
 nnoremap <leader>gi :Grepper -tool git -noswitch<cr>
 nnoremap <leader>ag  :Grepper -tool ag  -grepprg ag --vimgrep<cr>
-
-" }}}
-" ============================================================================
-" 'mxw/vim-jsx' {{{
-" ============================================================================
-
-" let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 " }}}
 " ============================================================================
