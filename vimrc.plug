@@ -50,23 +50,33 @@ Plug 'tpope/vim-commentary'
 "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plug 'godlygeek/tabular'
 
-" Snippet & AutoComplete
+" AutoComplete
 Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/neco-vim'
-Plug 'Shougo/neoinclude.vim'
+" deoplete-external-sources
+Plug 'Shougo/neco-vim'       "vim source
+Plug 'Shougo/neosnippet.vim' "neosnippet source
+Plug 'Shougo/neoinclude.vim' "include and file/include sources
+Plug 'Shougo/neco-syntax'    "syntax source
+" dict lookup
 Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
-Plug 'Shougo/neosnippet.vim'
+" deoplete-external-plugins
+Plug 'Shougo/context_filetype.vim' "It adds the context filetype feature
+Plug 'Shougo/echodoc.vim'          "It prints the documentation you have completed
+" Snippets
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
+" Emmet
 Plug 'mattn/emmet-vim'
+
 " Plug 'myhere/vim-nodejs-complete'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
-"Plug 'Raimondi/delimitMate'
-"Plug 'idbrii/vim-endoscope' "A single keystroke to end your scope with <C-s>
-"Plug 'Townk/vim-autoclose'
-"Plug 'kana/vim-smartinput'
+" Plug 'Shougo/neopairs.vim'  "It inserts the parentheses pairs automatically
+" Plug 'Raimondi/delimitMate'
+" Plug 'idbrii/vim-endoscope' "A single keystroke to end your scope with <C-s>
+" Plug 'Townk/vim-autoclose'
+" Plug 'kana/vim-smartinput'
 
 " HTML
 " Plug 'docunext/closetag.vim' "close HTML tag
