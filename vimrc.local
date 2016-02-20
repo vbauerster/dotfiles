@@ -141,20 +141,26 @@ nnoremap <silent> <leader>gt :GitGutterToggle<CR>
 " 'tpope/vim-fugitive' {{{
 " ============================================================================
 
-nnoremap <silent> <leader>gg :Gstatus<CR> " double same key for most used
+nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
 nnoremap <silent> <leader>gl :Glog<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 " Git add %
-nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>gg :Gwrite<CR>
 " Git rm %
 nnoremap <silent> <leader>gr :Gremove<CR>
 " Git checkout %
 nnoremap <silent> <leader>go :Gread<CR>
 
-autocmd BufReadPost fugitive://* set bufhidden=delete
+" Every time you open a git object using fugitive it creates a new buffer. 
+" This means that your buffer listing can quickly become swamped with 
+" fugitive buffers. This prevents this from becomming an issue:
+augroup fug_buf_hide
+  autocmd!
+  autocmd BufReadPost fugitive://* set bufhidden=delete
+augroup END
 
 " }}}
 " ============================================================================
