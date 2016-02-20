@@ -221,9 +221,9 @@ vnoremap ? <Esc>?\%V\v
 vmap <leader>s :sort<CR>
 
 " paste multiple lines multiple times
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
+" vnoremap <silent> y y`]
+" vnoremap <silent> p p`]
+" nnoremap <silent> p p`]
 
 " Swap implementations of ` and ' jump to markers
 nnoremap <silent> ' `
