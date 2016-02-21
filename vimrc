@@ -84,9 +84,7 @@ set scrolloff=3                      " lines of text around cursor
 set foldlevelstart=99                " all folds open by default
 set cmdheight=1                      " command bar height
 set noerrorbells
-" set completeopt+=longest " Only insert the longest common text of the matches
-" set completeopt=menuone,preview " to test
-set completeopt-=preview
+set completeopt=menuone
 
 "set autowrite     " Automatically :write before running commands
 
