@@ -29,7 +29,8 @@ Once vim-plug is installed. Open vim (`$ vim`) and type `:PlugInstall`. And then
 Make sure you update ```gitconfig``` with your own name and email address. Otherwise you'll be committing as me. :smile_cat:
 
 #### Custom Fonts
-You'll need to use a custom font for Airline to look nice. See here: https://github.com/Lokaltog/powerline-fonts
+[Powerline fonts](https://github.com/powerline/fonts)
+[Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans)
 
 ### Recommended
 
@@ -38,13 +39,16 @@ You'll need to use a custom font for Airline to look nice. See here: https://git
 $ brew install caskroom/cask/brew-cask
 ```
 
-**iterm2**
+**[iterm2-nightly](http://iterm2.com/nightly/latest)**
+
+**Tmux with true color patch**
 ```
-$ brew cask install iterm2
+$ brew install https://raw.githubusercontent.com/choppsv1/homebrew-term24/master/tmux.rb
+$ brew install reattach-to-user-namespace
 ```
 
-**solarized**
-https://github.com/altercation/solarized/tree/master/iterm2-colors-solarized
+**Gruvbox color scheme for vim and itemr2**
+https://github.com/morhetz/gruvbox
 
 **MacVim**
 By default OSX has an older version of Vim installed. I recommend installing MacVim and running it from within iterm2. This can be done with brew.
@@ -71,9 +75,3 @@ $ brew install --HEAD neovim-dot-app
 
 **Prezto**
 I use Prezto instead of Bash. Info & installation instructions here: https://github.com/sorin-ionescu/prezto
-
-**Tmux**
-```
-$ brew install tmux
-$ brew install reattach-to-user-namespace
-```
