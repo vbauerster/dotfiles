@@ -317,8 +317,7 @@ nnoremap <leader>hi :Highlight<CR>
 nnoremap <silent> <leader>hc :call clearmatches()<CR>:noh<CR>
 
 " quick access to cmd mode
-" conflicts with CtrlP at the moment
-nnoremap ; :
+noremap ; :
 
 " -----------------------------------------------------------
 " => Command mode mappings
