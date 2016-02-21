@@ -126,6 +126,7 @@ nmap <F8> :TagbarToggle<CR>
 " 'jiangmiao/auto-pairs' {{{
 " ============================================================================
 
+let g:AutoPairsMapSpace = 0
 let g:AutoPairsFlyMode = 1
 let g:AutoPairsShortcutBackInsert = '<C-b>'
 
@@ -221,7 +222,7 @@ let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
-imap <leader><tab> <plug>(fzf-maps-i)
+" imap <leader><tab> <plug>(fzf-maps-i)
 
 " Replace the default dictionary completion with fzf-based fuzzy completion
 " inoremap <expr> <c-x><c-k> fzf#complete('cat /usr/share/dict/words')
