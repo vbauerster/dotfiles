@@ -42,10 +42,9 @@ Plug 'mhinz/vim-grepper'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " General Programming
-"Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
-"Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary'
 "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plug 'godlygeek/tabular'
@@ -65,6 +64,7 @@ Plug 'Shougo/echodoc.vim'          "It prints the documentation you have complet
 " Snippets
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
+" Plug 'justinj/vim-react-snippets'
 " Emmet
 Plug 'mattn/emmet-vim'
 
@@ -87,13 +87,13 @@ Plug 'valloric/MatchTagAlways'
 "Plug 'xolox/vim-misc'
 
 " Easy Exuberant Ctags
-"Plug 'xolox/vim-easytags'
-"Plug 'vim-scripts/ctags.vim'
+" Plug 'xolox/vim-easytags'
+" Plug 'vim-scripts/ctags.vim'
 
 " Extended session management for Vim
 Plug 'vim-scripts/sessionman.vim'
-"Plug 'xolox/vim-session'
-"Plug 'tpope/vim-obsession'
+" Plug 'xolox/vim-session'
+" Plug 'tpope/vim-obsession'
 
 " colorschemes
 Plug 'morhetz/gruvbox'
