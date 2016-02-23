@@ -42,44 +42,46 @@ Plug 'mhinz/vim-grepper'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " General Programming
-"Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
-"Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary'
 "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plug 'godlygeek/tabular'
 
-" Snippet & AutoComplete
+" AutoComplete
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 " Group dependencies, vim-snippets depends on ultisnips
+" Snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'myhere/vim-nodejs-complete'
 Plug 'justinj/vim-react-snippets'
+" Plug 'myhere/vim-nodejs-complete'
+" Emmet
+Plug 'mattn/emmet-vim'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs' "causes troble with ultisnip
-"Plug 'Raimondi/delimitMate'
-"Plug 'idbrii/vim-endoscope' "A single keystroke to end your scope with <C-s>
-"Plug 'Townk/vim-autoclose'
-"Plug 'kana/vim-smartinput'
+" Plug 'Raimondi/delimitMate'
+" Plug 'idbrii/vim-endoscope' "A single keystroke to end your scope with <C-s>
+" Plug 'Townk/vim-autoclose'
+" Plug 'kana/vim-smartinput'
 
 " HTML
-"Plug 'docunext/closetag.vim' "close HTML tag
-Plug 'amirh/HTML-AutoCloseTag'
-Plug 'mattn/emmet-vim'
+" Plug 'docunext/closetag.vim' "close HTML tag
+" Plug 'amirh/HTML-AutoCloseTag'
+Plug 'valloric/MatchTagAlways'
 
 " required by xolox/vim-easytags
-"Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-misc'
 
 " Easy Exuberant Ctags
-"Plug 'xolox/vim-easytags'
-"Plug 'vim-scripts/ctags.vim'
+" Plug 'xolox/vim-easytags'
+" Plug 'vim-scripts/ctags.vim'
 
 " Extended session management for Vim
 Plug 'vim-scripts/sessionman.vim'
-"Plug 'xolox/vim-session'
-"Plug 'tpope/vim-obsession'
+" Plug 'xolox/vim-session'
+" Plug 'tpope/vim-obsession'
 
 " colorschemes
 Plug 'morhetz/gruvbox'
@@ -97,12 +99,16 @@ Plug 'othree/javascript-libraries-syntax.vim'
 " JavaScript plugins
 " mxw/vim-jsx syntax highlighting for React's jsx, requires pangloss/vim-javascript
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
-Plug 'leafgarland/typescript-vim'
-"Plug 'kchmck/vim-coffee-script'
-"Plug 'burnettk/vim-angular'
-"Plug 'jelera/vim-javascript-syntax'
-"Plug 'maksimr/vim-jsbeautify'
+Plug 'maksimr/vim-jsbeautify'
+" Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
+" Plug 'burnettk/vim-angular'
+
+" Typescript
+" Plug 'HerringtonDarkholme/yats.vim' " Syntax
+" Plug 'Quramy/tsuquyomi' " omni-completion
+
+" CoffeScript
+" Plug 'kchmck/vim-coffee-script' " Syntax
 
 " Misc.
 Plug 'lyokha/vim-xkbswitch'
