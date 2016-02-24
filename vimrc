@@ -304,9 +304,6 @@ nnoremap <leader>rr :e!<CR>
 " Show Registers
 nnoremap <leader>di :di<CR>
 
-" experimental: quickly access yank reg
-noremap "" "0
-
 " http://habrahabr.ru/post/183222/
 " spell check on
 nnoremap <leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
@@ -315,6 +312,9 @@ nnoremap <leader>spp :setlocal spell spelllang=<ENTER>
 
 nnoremap <leader>hi :Highlight<CR>
 nnoremap <silent> <leader>hc :call clearmatches()<CR>:noh<CR>
+
+" experimental: quickly access yank reg
+noremap "" "0
 
 " quick access to cmd mode
 noremap ; :
