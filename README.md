@@ -53,7 +53,7 @@ https://github.com/morhetz/gruvbox
 **MacVim**
 By default OSX has an older version of Vim installed. I recommend installing MacVim and running it from within iterm2. This can be done with brew.
 ```
-$ brew install macvim --override-system-vim
+$ brew install macvim --with-override-system-vim --with-python3
 ```
 This overwrites your default Vim installation. You should restart terminal after installing.
 
