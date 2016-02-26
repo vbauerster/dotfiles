@@ -1,4 +1,4 @@
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+# source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 export DOTFILES=$HOME/dotfiles
 export PATH=$DOTFILES/bin:$PATH
