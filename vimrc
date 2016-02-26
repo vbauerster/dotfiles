@@ -25,15 +25,12 @@ endif
 let mapleader = ' '
 let maplocalleader = ' '
 
+execute "set background=".$BACKGROUND
 colorscheme gruvbox
 
-execute "set background=".$BACKGROUND
-"custom search (*) highlight
-" if $BACKGROUND == 'dark'
-"   highlight search ctermfg=16 ctermbg=137
-" else
-"   highlight search ctermfg=228 ctermbg=240
-" endif
+if $BACKGROUND == 'dark'
+  let g:gruvbox_contrast_dark='soft'
+endif
 
 if has('nvim') " sets for nvim only
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1

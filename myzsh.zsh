@@ -1,6 +1,13 @@
-if [[ ! "$PATH" == */Users/vbauer/bin* ]]; then
-  export PATH="$PATH:/Users/vbauer/bin"
+source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+
+export DOTFILES=$HOME/dotfiles
+export PATH=$DOTFILES/bin:$PATH
+
+# check for custom bin directory and add to path
+if [[ -d ~/bin ]]; then
+    export PATH=~/bin:$PATH
 fi
+
 # The time the shell waits, in hundredths of seconds, (default is 40)
 # for another key to be pressed when reading bound multi-character sequences.
 # 100ms for key sequences
