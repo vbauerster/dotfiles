@@ -1,3 +1,6 @@
+if [[ ! "$PATH" == */Users/vbauer/bin* ]]; then
+  export PATH="$PATH:/Users/vbauer/bin"
+fi
 # The time the shell waits, in hundredths of seconds, (default is 40)
 # for another key to be pressed when reading bound multi-character sequences.
 # 100ms for key sequences
