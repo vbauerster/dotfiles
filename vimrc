@@ -32,15 +32,18 @@ if $BACKGROUND == 'dark'
   let g:gruvbox_contrast_dark='soft'
 endif
 
-if has('nvim') " sets for nvim only
+if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-  " https://github.com/neovim/neovim/issues/2048
-  " https://github.com/christoomey/vim-tmux-navigator/issues/71
-  nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
-  tnoremap <C-b> <C-\><C-n>
-  " nnoremap <leader>te <C-w>v:te<CR>
-  nnoremap <leader>tm <C-w>s<C-w>J4<C-w>-:te<CR>
+
+  " <C-\><C-n> key combo, exit back to normal mode.
+  tnoremap <A-n> <C-\><C-n>
+  tmap <C-k> <A-n><C-k>
+  tmap <C-j> <A-n><C-j>
+  tmap <C-h> <A-n><C-h>
+  tmap <C-l> <A-n><C-l>
+  nnoremap <leader>te <C-w>v:te<CR>
+  nnoremap <leader>tt <C-w>s<C-w>J4<C-w>-:te<CR>
 
   " Setup Terminal Colors For Neovim
   " remove, when https://github.com/morhetz/gruvbox/pull/93 will be accepted
@@ -70,7 +73,14 @@ if has('nvim') " sets for nvim only
   let g:terminal_color_7 = "#a89984"
   let g:terminal_color_15 = "#ebdbb2"
 
-else " sets for vim only, see h: vim-differences
+  augroup Terminal
+    au!
+    au TermOpen * let g:last_terminal_job_id = b:terminal_job_id
+    au WinEnter term://* startinsert
+  augroup END
+
+else
+  " sets for vim only, see h: vim-differences
   set nocompatible
   set t_Co=256
   set ttyfast
