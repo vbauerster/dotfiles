@@ -220,8 +220,8 @@ let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 " ============================================================================
 
 " Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
+" nmap <leader><tab> <plug>(fzf-maps-n)
+" xmap <leader><tab> <plug>(fzf-maps-x)
 " imap <leader><tab> <plug>(fzf-maps-i)
 
 " Replace the default dictionary completion with fzf-based fuzzy completion
@@ -235,10 +235,12 @@ nnoremap <silent> <Leader>* :Ag <C-R><C-W><CR>
 
 nnoremap <Leader>hh :History<CR>
 nnoremap <Leader>ww :Windows<CR>
-nnoremap <Leader>ll :Buffers<CR>
+nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>gf :GitFiles<CR>
 nnoremap <Leader>mm :Marks<CR>
+" normal mode mappings
+nnoremap <Leader>mn :Maps<CR>
 
 " }}}
 " ============================================================================
