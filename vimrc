@@ -37,13 +37,14 @@ if has('nvim')
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
   " <C-\><C-n> key combo, exit back to normal mode.
-  tnoremap <A-n> <C-\><C-n>
-  tmap <C-k> <A-n><C-k>
-  tmap <C-j> <A-n><C-j>
-  tmap <C-h> <A-n><C-h>
-  tmap <C-l> <A-n><C-l>
-  nnoremap <leader>te <C-w>v:te<CR>
-  nnoremap <leader>tt <C-w>s<C-w>J4<C-w>-:te<CR>
+  tnoremap hh <C-\><C-n>
+  tmap <C-k> hh<C-k>
+  tmap <C-j> hh<C-j>
+  tmap <C-h> hh<C-h>
+  tmap <C-l> hh<C-l>
+  " tt is mapped to :TernType
+  nnoremap <leader>tv <C-w>v:te<CR>
+  nnoremap <leader>te <C-w>s<C-w>J4<C-w>-:te<CR>
 
   " Setup Terminal Colors For Neovim
   " remove, when https://github.com/morhetz/gruvbox/pull/93 will be accepted
