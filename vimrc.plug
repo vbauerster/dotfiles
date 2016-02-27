@@ -52,10 +52,11 @@ Plug 'godlygeek/tabular'
 " AutoComplete
 Plug 'Shougo/deoplete.nvim'
 " deoplete-external-sources
-Plug 'Shougo/neco-vim'       "vim source
+Plug 'Shougo/neco-vim'       "vim source for Vim script
 Plug 'Shougo/neosnippet.vim' "neosnippet source
 Plug 'Shougo/neoinclude.vim' "include and file/include sources
 Plug 'Shougo/neco-syntax'    "syntax source
+" Plug 'carlitux/deoplete-ternjs'
 " dict lookup
 Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
 " deoplete-external-plugins
