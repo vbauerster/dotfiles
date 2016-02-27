@@ -6,8 +6,10 @@ $ cd ~
 $ git clone https://github.com/vbauerster/dotfiles
 ```
 
-Install rcm
+Install [homebrew](http://brew.sh/)
+[cheatsheet](http://ricostacruz.com/cheatsheets/homebrew.html)
 
+Install rcm
 ```
 $ brew tap thoughtbot/formulae
 $ brew install rcm
@@ -71,6 +73,17 @@ $ pip install --user --upgrade neovim
 ```
 $ brew tap rogual/neovim-dot-app
 $ brew install --HEAD neovim-dot-app
+```
+
+**Exuberant CTAGS**
+```
+$ brew install ctags
+$ npm install -g git+https://github.com/ramitos/jsctags.git
+```
+
+**The silver searcher**
+```
+$ brew install the_silver_searcher
 ```
 
 **Prezto**
