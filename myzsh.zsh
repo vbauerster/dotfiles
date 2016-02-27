@@ -120,9 +120,5 @@ function md() {
     mkdir -p "$@" && cd "$@"
 }
 
-function hist() {
-    history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
-}
-
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
