@@ -188,9 +188,9 @@ set noswapfile
 " MAPPINGS {{{
 " ============================================================================
 
-inoremap <F1> <ESC>
-nnoremap <F1> <ESC>
-vnoremap <F1> <ESC>
+" easy moving between tabs
+nnoremap g{ gT
+nnoremap g} gt
 
 " ----------------------------------------------------------
 " => Quick edit Mappings
