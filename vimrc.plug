@@ -23,7 +23,7 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " Motions
 " Plug 'Lokaltog/vim-easymotion'
-Plug 'rhysd/clever-f.vim'
+" Plug 'rhysd/clever-f.vim'
 Plug 'justinmk/vim-sneak'
 
 " UI look and feel

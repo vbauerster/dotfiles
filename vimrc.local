@@ -176,18 +176,26 @@ nnoremap <silent> <leader>gV :Gitv!<CR>
 " 'justinmk/vim-sneak' {{{
 " ============================================================================
 
+let g:sneak#prompt = '❯'
 " To enable 'passive' or 'smart' streak-mode
 let g:sneak#streak = 1
 " Enable the 'clever-s' feature
 let g:sneak#s_next = 1
 
-" Note: If your mapleader is |,| then Sneak maps |\| instead of |,|.
-" |\| mapped by ctrlp (see l:135), so using tab as previous
-" |;| = SneakNext
-" nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>SneakPrevious' : '<Tab>'
-
-" hi link SneakPluginTarget ErrorMsg
-" hi link SneakPluginScope  Comment
+" replace 'f' with 1-char Sneak
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+" replace 't' with 1-char Sneak
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
 
 " }}}
 " ============================================================================
