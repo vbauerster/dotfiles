@@ -459,7 +459,7 @@ augroup vimrcEx
         \ endif
 
   " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
+  " autocmd BufRead,BufNewFile *.md set filetype=markdown
 
   " Enable spellchecking for Markdown
   autocmd FileType markdown setlocal spell spelllang=ru_yo,en_us

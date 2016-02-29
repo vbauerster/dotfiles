@@ -83,6 +83,7 @@ Plug 'jiangmiao/auto-pairs'
 " Plug 'docunext/closetag.vim' "close HTML tag
 " Plug 'amirh/HTML-AutoCloseTag'
 Plug 'valloric/MatchTagAlways'
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 
 " required by xolox/vim-easytags
 "Plug 'xolox/vim-misc'

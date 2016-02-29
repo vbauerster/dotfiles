@@ -289,3 +289,11 @@ augroup jsbeautify_conf
 augroup END
 
 " }}}
+" ============================================================================
+" 'suan/vim-instant-markdown' {{{
+" ============================================================================
+
+let g:instant_markdown_autostart = 0
+" manually trigger preview via :InstantMarkdownPreview
+
+" }}}
