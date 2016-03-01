@@ -221,6 +221,9 @@ nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
 " nnoremap <leader>u :update<CR>
 
+" w!! to sudo write
+cmap w!! w !sudo tee % >/dev/null<CR>
+
 " Quit
 inoremap <C-Q>     <esc>:q<CR>
 nnoremap <C-Q>     :q<CR>
