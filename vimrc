@@ -303,9 +303,9 @@ nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 
 " switch between current and last buffer
 " qpkorr/vim-bufkill provides :BA ~ <c-^>
-nmap <silent> <leader>; :BB<CR>
-nmap <silent> <leader>, :BF<CR>
-nmap <silent> <leader>. :BA<CR>
+nmap <silent> <leader>; :bp<CR>
+nmap <silent> <leader>, :bn<CR>
+nmap <silent> <leader>. <C-^><CR>
 
 " zoom a vim pane, <C-w>= to re-balance
 " nnoremap <leader>z :wincmd _<CR>:wincmd \|<CR>
