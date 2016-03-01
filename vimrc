@@ -217,9 +217,9 @@ nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
 " => General mappings/shortcuts for functionality
 " -----------------------------------------------------------
 " Save
-inoremap <C-s>     <C-O>:update<CR>
-nnoremap <C-s>     :update<CR>
-nnoremap <leader>u :update<CR>
+nnoremap <C-s> :update<CR>
+inoremap <C-s> <C-o>:update<CR>
+" nnoremap <leader>u :update<CR>
 
 " Quit
 inoremap <C-Q>     <esc>:q<CR>
