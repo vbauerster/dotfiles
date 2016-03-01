@@ -1,4 +1,6 @@
-## Installation
+## My dotfiles
+
+### Installation
 
 Clone this repo (or your own fork!) to your **home** directory (`/Users/username`).
 ```
@@ -6,8 +8,7 @@ $ cd ~
 $ git clone https://github.com/vbauerster/dotfiles
 ```
 
-Install [homebrew](http://brew.sh/)
-[cheatsheet](http://ricostacruz.com/cheatsheets/homebrew.html)
+Install [homebrew](http://brew.sh/) | [cheatsheet](http://ricostacruz.com/cheatsheets/homebrew.html)
 
 Install rcm
 ```
@@ -24,14 +25,13 @@ RCM creates dotfile symlinks (`.vimrc` -> `/dotfiles/vimrc`) from your home dire
 ### Installing Plugins
 Plugins are listed in `vimrc.plug`.
 
-To install them you'll need vim-plug. Installation directions are here: https://github.com/junegunn/vim-plug.
-Once vim-plug is installed. Open vim (`$ vim`) and type `:PlugInstall`. And then restart vim. You'll need to do this for all the plugins to work.
+To install them you'll need [vim-plug](https://github.com/junegunn/vim-plug). Open vim (`$ vim`) and type `:PlugInstall`. Restart vim.
 
 ### Git Config
 Make sure you update ```gitconfig``` with your own name and email address. Otherwise you'll be committing as me. :smile_cat:
 
 #### Custom Fonts
-[Powerline fonts](https://github.com/powerline/fonts)
+[Powerline fonts](https://github.com/powerline/fonts),
 [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans)
 
 ### Recommended
@@ -87,4 +87,10 @@ $ brew install the_silver_searcher
 ```
 
 **Prezto**
-I use Prezto instead of Bash. Info & installation instructions here: https://github.com/sorin-ionescu/prezto
+
+Lightweight zsh configuration framework. Info & installation instructions here: https://github.com/sorin-ionescu/prezto
+
+***Disclaimer***
+
+If you have noticed that, most mappings are kind a weird in my [vimrc](https://raw.githubusercontent.com/vbauerster/dotfiles/master/vimrc)
+that because I use [Programmer Dvorak](https://github.com/vbauerster/ProDvorak) keyboard layout. :banana:
