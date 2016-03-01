@@ -449,8 +449,9 @@ endif
 augroup vimrcEx
   autocmd!
 
-  " automatically rebalance windows on vim resize
-  " autocmd VimResized * :wincmd =
+  " highlight cursorline in active window
+  autocmd WinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
 
   " Create directory if not exists
   " CTRLP plugin provides same functionality via <c-y>
