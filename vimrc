@@ -188,6 +188,9 @@ set noswapfile
 " MAPPINGS {{{
 " ============================================================================
 
+" F1 will search help for the word under the cursor
+nnoremap <F1> :help <C-r><C-w><CR>
+
 " easy moving between tabs
 nnoremap g{ gT
 nnoremap g} gt
