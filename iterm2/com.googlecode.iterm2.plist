@@ -1879,7 +1879,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>366 277 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 498 1440 379 0 0 1440 877 </string>
+	<string>0 0 1440 900 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>722 450 585 426 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -2214,20 +2214,6 @@
 					<integer>11</integer>
 					<key>Text</key>
 					<string>0x7f</string>
-				</dict>
-				<key>0x68-0x40000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[104;5u</string>
-				</dict>
-				<key>0x69-0x40000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[105;5u</string>
 				</dict>
 				<key>0xd-0x40000</key>
 				<dict>
@@ -3615,8 +3601,6 @@
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>
-			<key>Background Image Location</key>
-			<string>/Users/vbauer/Downloads/Soft/iTerm/iTerm2-Color-Schemes/backgrounds/solarized_darcula.jpg</string>
 			<key>Badge Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -3787,6 +3771,13 @@
 					<integer>11</integer>
 					<key>Text</key>
 					<string>0x7f</string>
+				</dict>
+				<key>0xd-0x40000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[13;5u</string>
 				</dict>
 				<key>0xf700-0x220000</key>
 				<dict>
@@ -6265,20 +6256,6 @@
 					<key>Text</key>
 					<string>0x7f</string>
 				</dict>
-				<key>0x68-0x40000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[104;5u</string>
-				</dict>
-				<key>0x69-0x40000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[105;5u</string>
-				</dict>
 				<key>0xd-0x40000</key>
 				<dict>
 					<key>Action</key>
@@ -7088,20 +7065,6 @@
 					<key>Text</key>
 					<string>0x7f</string>
 				</dict>
-				<key>0x68-0x40000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[104;5u</string>
-				</dict>
-				<key>0x69-0x40000</key>
-				<dict>
-					<key>Action</key>
-					<integer>10</integer>
-					<key>Text</key>
-					<string>[105;5u</string>
-				</dict>
 				<key>0xd-0x40000</key>
 				<dict>
 					<key>Action</key>
@@ -7651,7 +7614,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-03-01T16:44:55Z</date>
+	<date>2016-03-02T16:12:23Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -7708,6 +7671,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20160301-nightly</string>
+	<string>2.9.20160302-nightly</string>
 </dict>
 </plist>
