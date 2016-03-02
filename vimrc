@@ -36,6 +36,10 @@ if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+  " https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
+  " After applying above fix, below line is no longer necessary
+  " nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
+
   " <C-\><C-n> key combo, exit back to normal mode.
   tnoremap hh <C-\><C-n>
   tmap <C-k> hh<C-k>
