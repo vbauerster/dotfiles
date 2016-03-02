@@ -92,7 +92,8 @@ else
   set encoding=utf-8
   syntax on
   " https://github.com/neovim/neovim/issues/2092
-  "set pastetoggle=<F2> " vim-unimpaired provides 'yo' mapping
+  " vim-unimpaired provides 'yo' pastetoggle
+  " set pastetoggle=<F2>
   set history=1000               " nvim sets this to 1000 by default
   set undolevels=1000            " nvim sets this to 1000 by default
   set backspace=indent,eol,start
@@ -113,8 +114,8 @@ set wildignore+=*.DS_Store
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
-set timeoutlen=333                                  "mapping timeout
-set ttimeoutlen=50                                  "keycode timeout
+set timeoutlen=333                   " mapping timeout
+set ttimeoutlen=50                   " keycode timeout
 set number
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
 set wildmode=list:longest            " TAB auto-completion for file paths
@@ -128,7 +129,7 @@ set noerrorbells
 " set completeopt-=preview
 set completeopt=menuone
 
-"set autowrite     " Automatically :write before running commands
+" set autowrite     " Automatically :write before running commands
 
 " SPACES & TABS
 " Explanations from http://tedlogan.com/techblog3.html
@@ -137,10 +138,8 @@ set softtabstop=2 " How many columns vim uses when pressing TAB in insert mode
 set shiftwidth=2  " How many columns text is indented with << and >>
 set expandtab     " Use spaces
 set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
-"set shiftround    " round indent to a multiple of 'shiftwidth'
-
-set ruler                " show the cursor position a l the time
-set nojoinspaces         " Prevents inserting two spaces after punctuation on a join (J)
+set ruler         " show the cursor position a l the time
+set nojoinspaces  " Prevents inserting two spaces after punctuation on a join (J)
 
 " Searching
 set gdefault   " global search by default
@@ -151,9 +150,6 @@ set lazyredraw " don't redraw while executing macros
 " Highlight current line
 " http://stackoverflow.com/questions/8247243/highlighting-the-current-line-number-in-vim
 set cursorline
-" Highlight current line nr
-"highlight cursorlinenr ctermbg=0 ctermfg=14
-" highlight cursorlinenr ctermfg=14
 
 " if textwidth > 80 highlight overlenght with reddish bg
 " set textwidth=80
@@ -162,7 +158,7 @@ set cursorline
 
 " Set spellfile to location that is guaranteed to exist, can be symlinked to
 " Dropbox or kept in Git and managed outside of thoughtbot/dotfiles using rcm.
-"set spellfile=$HOME/.vim-spell-en.utf-8.add
+" set spellfile=$HOME/.vim-spell-en.utf-8.add
 
 " Open new split panes to right and bottom, which feels more natural
 " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
