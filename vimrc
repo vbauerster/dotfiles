@@ -211,7 +211,8 @@ nnoremap <leader>et :e ~/.tmux.conf<CR>
 " edit zshrc
 nnoremap <leader>ez :e ~/.zshrc<CR>
 
-nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
+" use :NeoSnippetEdit -runtime
+" nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
 
 " -----------------------------------------------------------
 " => General mappings/shortcuts for functionality
@@ -382,7 +383,7 @@ inoremap AA <Esc>A
 inoremap CC <C-\><C-O>D
 inoremap SS <Esc>cc
 inoremap UU <C-O>u
-inoremap hh <Esc>
+noremap! hh <Esc>
 
 " -----------------------------------------------------------
 " => External cmd mappings
