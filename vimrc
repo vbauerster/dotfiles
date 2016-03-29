@@ -308,8 +308,7 @@ nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 " toggle invisible characters: col by unimpaired
 " nmap <leader>l :set list!<CR>
 
-" switch between current and last buffer
-" qpkorr/vim-bufkill provides :BA ~ <c-^>
+" switch between buffers
 nmap <silent> <leader>; :bp<CR>
 nmap <silent> <leader>, :bn<CR>
 nmap <silent> <leader>. <C-^><CR>
