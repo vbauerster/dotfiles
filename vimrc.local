@@ -240,7 +240,7 @@ imap <c-d><c-f> <plug>(fzf-complete-file-ag)
 " Line completion (all open buffers)
 imap <c-d><c-l> <plug>(fzf-complete-line)
 
-nnoremap <silent> <Leader>* :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>a* :Ag <C-R><C-W><CR>
 
 nnoremap <Leader>hh :History<CR>
 nnoremap <Leader>ww :Windows<CR>
@@ -257,7 +257,7 @@ nnoremap <Leader>mn :Maps<CR>
 " ============================================================================
 
 nnoremap <leader>gi :Grepper -tool git -noswitch<cr>
-nnoremap <leader>ag  :Grepper -tool ag  -grepprg ag --vimgrep<cr>
+nnoremap <leader>ag :Grepper -tool ag  -grepprg ag --vimgrep<cr>
 
 " }}}
 " ============================================================================

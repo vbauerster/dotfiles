@@ -354,7 +354,7 @@ nnoremap <leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
 nnoremap <leader>spp :setlocal spell spelllang=<ENTER>
 
 nnoremap <leader>hi :Highlight<CR>
-nnoremap <silent> <leader>hc :call clearmatches()<CR>:noh<CR>
+nnoremap <silent> <leader>ch :call clearmatches()<CR>:noh<CR>
 
 " experimental: quickly access yank reg
 noremap "" "0
@@ -388,7 +388,7 @@ noremap! hh <Esc>
 " => External cmd mappings
 " -----------------------------------------------------------
 " find current word in quickfix
-nnoremap <leader>b* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR>
+nnoremap <leader>* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR>
 " find last search in quickfix
 nnoremap <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
