@@ -114,7 +114,7 @@ set wildignore+=*.DS_Store
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
-set timeoutlen=333                   " mapping timeout
+set timeoutlen=400                   " mapping timeout
 set ttimeoutlen=50                   " keycode timeout
 set number
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
@@ -151,7 +151,7 @@ set lazyredraw " don't redraw while executing macros
 " http://stackoverflow.com/questions/8247243/highlighting-the-current-line-number-in-vim
 set cursorline
 
-" if textwidth > 80 highlight overlenght with reddish bg
+" if textwidth > 80 highlight overlength with reddish bg
 " set textwidth=80
 " highlight OverLength ctermbg=223 guibg=#592929
 " match OverLength /\%81v.\+/
@@ -169,10 +169,9 @@ set splitright
 set diffopt+=vertical
 
 " Whitespaces
+set list " col to toggle
 set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 " set showbreak=↪
-" show invisible chars by default
-" set list "use col by unimpaired
 
 " backup/persistance settings
 set undodir=~/.vim/tmp/undo//
@@ -301,12 +300,10 @@ nnoremap <leader>ft Vatzf
 nnoremap <silent> <leader>cd :cd %:p:h<CR>
 
 " remove trailing whitespace and clear the last search pattern
-nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
+nnoremap <leader>cw :%s/\s\+$//<CR>:let @/=''<CR>
 
 " toggle search highlighting: coh by unimpaired
 " nmap <silent> <leader>/ :set invhlsearch<CR>
-" toggle invisible characters: col by unimpaired
-" nmap <leader>l :set list!<CR>
 
 " switch between buffers
 nmap <silent> <leader>; :bp<CR>
@@ -465,9 +462,6 @@ augroup vimrcEx
         \   exe "normal g`\"" |
         \ endif
 
-  " Set syntax highlighting for specific file types
-  " autocmd BufRead,BufNewFile *.md set filetype=markdown
-
   " Enable spellchecking for Markdown
   autocmd FileType markdown setlocal spell spelllang=ru_yo,en_us
 
@@ -480,6 +474,10 @@ augroup vimrcEx
 
   " Allow stylesheets to autocomplete hyphenated words
   " autocmd FileType css,scss,sass setlocal iskeyword+=-
+
+  " Unset paste on InsertLeave
+  au InsertLeave * silent! set nopaste
+
 augroup END
 
 augroup tmux_auto_rename
