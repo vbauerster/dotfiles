@@ -6,6 +6,8 @@
 	<true/>
 	<key>AllowClipboardAccess</key>
 	<true/>
+	<key>AlternateMouseScroll</key>
+	<true/>
 	<key>AnimateDimming</key>
 	<false/>
 	<key>AppleAntiAliasingThreshold</key>
@@ -1879,7 +1881,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>366 277 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 900 0 0 1440 877 </string>
+	<string>721 11 718 859 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>722 450 585 426 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -6200,6 +6202,13 @@
 			</array>
 			<key>Keyboard Map</key>
 			<dict>
+				<key>0x27-0x40000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[39;5u</string>
+				</dict>
 				<key>0x2d-0x40000</key>
 				<dict>
 					<key>Action</key>
@@ -7515,7 +7524,7 @@
 	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
 	<integer>0</integer>
 	<key>NoSyncLastTipTime</key>
-	<real>478554375.94537598</real>
+	<real>482775944.64095902</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -7529,7 +7538,7 @@
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>453409887.79577601</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>478212116.762851</real>
+	<real>481627019.95024198</real>
 	<key>NoSyncTipsToNotShow</key>
 	<array>
 		<string>000</string>
@@ -7545,6 +7554,44 @@
 		<string>0009</string>
 		<string>0010</string>
 		<string>0011</string>
+		<string>0012</string>
+		<string>0013</string>
+		<string>0014</string>
+		<string>0015</string>
+		<string>0016</string>
+		<string>0017</string>
+		<string>0018</string>
+		<string>0019</string>
+		<string>0020</string>
+		<string>0021</string>
+		<string>0022</string>
+		<string>0023</string>
+		<string>0024</string>
+		<string>0025</string>
+		<string>0026</string>
+		<string>0027</string>
+		<string>0028</string>
+		<string>0029</string>
+		<string>0030</string>
+		<string>0031</string>
+		<string>0032</string>
+		<string>0033</string>
+		<string>0034</string>
+		<string>0035</string>
+		<string>0036</string>
+		<string>0037</string>
+		<string>0038</string>
+		<string>0039</string>
+		<string>0040</string>
+		<string>0041</string>
+		<string>0042</string>
+		<string>0043</string>
+		<string>0044</string>
+		<string>0045</string>
+		<string>0046</string>
+		<string>0047</string>
+		<string>0048</string>
+		<string>0049</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
@@ -7614,7 +7661,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-03-02T16:12:23Z</date>
+	<date>2016-04-20T05:01:49Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -7671,6 +7718,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20160302-nightly</string>
+	<string>2.9.20160405-nightly</string>
 </dict>
 </plist>
