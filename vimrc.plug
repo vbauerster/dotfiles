@@ -7,7 +7,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
-Plug 'mbbill/undotree',             { 'on': 'UndotreeToggle'   }
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " Plug 'qpkorr/vim-bufkill'
 " ctags tagbar
 Plug 'majutsushi/tagbar'
@@ -44,7 +44,8 @@ Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 " General Programming
 " Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
-Plug 'tpope/vim-fugitive' | Plug 'gregsexton/gitv'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-commentary'
 "http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plug 'godlygeek/tabular'
@@ -52,11 +53,12 @@ Plug 'godlygeek/tabular'
 " AutoComplete
 Plug 'Shougo/deoplete.nvim'
 " deoplete-external-sources
-Plug 'Shougo/neco-vim'       "vim source for Vim script
-Plug 'Shougo/neosnippet.vim' "neosnippet source
-Plug 'Shougo/neoinclude.vim' "include and file/include sources
-Plug 'Shougo/neco-syntax'    "syntax source
+Plug 'Shougo/neco-vim'       " vim source for Vim script
+Plug 'Shougo/neosnippet.vim' " neosnippet source
+Plug 'Shougo/neoinclude.vim' " include and file/include sources
+Plug 'Shougo/neco-syntax'    " syntax source
 Plug 'carlitux/deoplete-ternjs'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 " dict lookup
 Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
 " deoplete-external-plugins

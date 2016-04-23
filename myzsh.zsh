@@ -1,9 +1,12 @@
-# source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
-
 export DOTFILES=$HOME/dotfiles
+export GOPATH=$HOME/goprojects
 
 if [[ ! "$PATH" == *$DOTFILES/bin* ]]; then
   export PATH=$DOTFILES/bin:$PATH
+fi
+
+if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
+  export PATH=$GOPATH/bin:$PATH
 fi
 
 # check for custom bin directory and add to path
