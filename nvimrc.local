@@ -1,0 +1,300 @@
+" vim: set foldmethod=marker foldlevel=0:
+" ============================================================================
+" 'benekastah/neomake' {{{
+" ============================================================================
+
+let g:neomake_javascript_enabled_makers = ['eslint']
+" run neomake on the current file on every write
+" autocmd! BufWritePost * Neomake
+
+" }}}
+" ============================================================================
+" 'othree/javascript-libraries-syntax.vim' {{{
+" ============================================================================
+
+" Default lib set is: jquery,underscore,backbone
+" let g:used_javascript_libs = 'jquery,underscore,react'
+
+" }}}
+" ============================================================================
+" 'bling/vim-airline' {{{
+" ============================================================================
+
+" Set configuration options for the statusline plugin vim-airline.
+" Use the powerline theme and optionally enable powerline symbols.
+" To use the symbols , , , , , , and .in the statusline
+" segments add the following to your .vimrc.before.local file:
+let g:airline_powerline_fonts=1
+" If the previous symbols do not render for you then install a
+" powerline enabled font.
+
+" See `:echo g:airline_theme_map` for some more choices
+" Default in terminal vim is 'dark'
+if !exists('g:airline_theme')
+  let g:airline_theme = 'gruvbox'
+endif
+if !exists('g:airline_powerline_fonts')
+  " Use the default set of separators with a few customizations
+  let g:airline_left_sep='›'  " Slightly fancier than '>'
+  let g:airline_right_sep='‹' " Slightly fancier than '<'
+endif
+
+" }}}
+" ============================================================================
+" 'scrooloose/nerdtree' {{{
+" ============================================================================
+
+"map <leader>n <plug>NERDTreeTabsToggle<CR>
+nmap <F3> :NERDTreeToggle<CR>
+nmap <leader>nt :NERDTreeFind<CR>
+
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.sw[op]$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.js.map$']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=1
+let NERDTreeMouseMode=2
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
+let g:nerdtree_tabs_open_on_gui_startup=0
+
+" }}}
+" ============================================================================
+" 'mbbill/undotree' {{{
+" ============================================================================
+
+nnoremap <leader>uu :UndotreeToggle<CR>
+let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
+
+" }}}
+" ============================================================================
+" 'Shougo/deoplete.nvim' {{{
+" ============================================================================
+
+let g:deoplete#enable_at_startup = 1
+
+" }}}
+" ============================================================================
+" 'Shougo/neosnippet.vim'  {{{
+" ============================================================================
+
+" let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets,~/.vim/snippets'
+let g:neosnippet#snippets_directory='~/.vim/snippets'
+let g:neosnippet#enable_snipmate_compatibility=1
+
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+
+" }}}
+" ============================================================================
+" 'mattn/emmet-vim' {{{
+" ============================================================================
+
+let g:user_emmet_install_global = 0
+let g:user_emmet_complete_tag = 1
+
+function! s:zen_html_tab()
+  if !emmet#isExpandable()
+    return "\<plug>(emmet-move-next)"
+  endif
+  return "\<plug>(emmet-expand-abbr)"
+endfunction
+augroup EmmetZen
+  autocmd!
+  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown EmmetInstall
+  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <plug>(emmet-expand-abbr)
+  autocmd FileType html,markdown imap <buffer><expr><tab> <sid>zen_html_tab()
+augroup END
+
+" }}}
+" ============================================================================
+" 'ternjs/tern_for_vim' {{{
+" ============================================================================
+
+let g:tern_show_argument_hints='on_hold'
+let g:tern_map_keys=1
+
+" }}}
+" ============================================================================
+" 'majutsushi/tagbar' {{{
+" ============================================================================
+
+nmap <F8> :TagbarToggle<CR>
+
+" }}}
+" ============================================================================
+" 'jiangmiao/auto-pairs' {{{
+" ============================================================================
+
+let g:AutoPairsMapSpace = 0
+let g:AutoPairsFlyMode = 1
+let g:AutoPairsShortcutBackInsert = '<C-b>'
+
+" }}}
+" ============================================================================
+" 'airblade/vim-gitgutter' {{{
+" ============================================================================
+
+nnoremap <silent> <leader>gt :GitGutterToggle<CR>
+
+" }}}
+" ============================================================================
+" 'tpope/vim-fugitive' {{{
+" ============================================================================
+
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+" Git add %
+nnoremap <silent> <leader>gg :Gwrite<CR>
+" Git rm %
+nnoremap <silent> <leader>gr :Gremove<CR>
+" Git checkout %
+nnoremap <silent> <leader>go :Gread<CR>
+
+" Every time you open a git object using fugitive it creates a new buffer.
+" This means that your buffer listing can quickly become swamped with
+" fugitive buffers. This prevents this from becomming an issue:
+augroup fug_buf_hide
+  autocmd!
+  autocmd BufReadPost fugitive://* set bufhidden=delete
+augroup END
+
+" }}}
+" ============================================================================
+" 'gregsexton/gitv' {{{
+" ============================================================================
+
+nnoremap <silent> <leader>gv :Gitv<CR>
+nnoremap <silent> <leader>gV :Gitv!<CR>
+
+" }}}
+" ============================================================================
+" 'justinmk/vim-sneak' {{{
+" ============================================================================
+
+let g:sneak#prompt = '❯'
+" To enable 'passive' or 'smart' streak-mode
+let g:sneak#streak = 1
+" Enable the 'clever-s' feature
+let g:sneak#s_next = 1
+
+" replace 'f' with 1-char Sneak
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+" replace 't' with 1-char Sneak
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
+
+" }}}
+" ============================================================================
+" 'vim-scripts/sessionman.vim' {{{
+" ============================================================================
+
+set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+nmap <leader>ss :SessionList<CR>
+nmap <leader>sw :SessionSave<CR>
+
+" }}}
+" ============================================================================
+" 'rizzatti/dash.vim' {{{
+" ============================================================================
+
+nmap <silent> <leader>d <Plug>DashSearch
+
+" }}}
+" ============================================================================
+" 'lyokha/vim-xkbswitch' {{{
+" ============================================================================
+
+let g:XkbSwitchEnabled = 1
+let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
+let g:XkbSwitchSkipFt = [ 'nerdtree' ]
+
+" }}}
+" ============================================================================
+" 'junegunn/fzf.vim' {{{
+" ============================================================================
+
+" Mapping selecting mappings
+" nmap <leader><tab> <plug>(fzf-maps-n)
+" xmap <leader><tab> <plug>(fzf-maps-x)
+" imap <leader><tab> <plug>(fzf-maps-i)
+
+" Replace the default dictionary completion with fzf-based fuzzy completion
+" inoremap <expr> <c-x><c-k> fzf#complete('cat /usr/share/dict/words')
+imap <expr> <c-d><c-d> fzf#vim#complete#word({'left': '15%'})
+imap <c-d><c-f> <plug>(fzf-complete-file-ag)
+" Line completion (all open buffers)
+imap <c-d><c-l> <plug>(fzf-complete-line)
+
+nnoremap <silent> <Leader>a* :Ag <C-R><C-W><CR>
+
+nnoremap <Leader>hh :History<CR>
+nnoremap <Leader>ww :Windows<CR>
+nnoremap <Leader>bb :Buffers<CR>
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>gf :GitFiles<CR>
+nnoremap <Leader>mm :Marks<CR>
+" normal mode mappings
+nnoremap <Leader>mn :Maps<CR>
+
+" }}}
+" ============================================================================
+" 'mhinz/vim-grepper' {{{
+" ============================================================================
+
+nnoremap <leader>gi :Grepper -tool git -noswitch<cr>
+nnoremap <leader>ag :Grepper -tool ag  -grepprg ag --vimgrep<cr>
+
+" }}}
+" ============================================================================
+" 'Shougo/echodoc.vim' {{{
+" ============================================================================
+
+augroup echodoc_conf
+  autocmd!
+  autocmd FileType javascript EchoDocEnable
+augroup END
+
+" }}}
+" ============================================================================
+" 'maksimr/vim-jsbeautify' {{{
+" ============================================================================
+
+augroup jsbeautify_conf
+  autocmd!
+  autocmd FileType javascript nnoremap <buffer> <leader>ii :call JsBeautify()<cr>
+  autocmd FileType json nnoremap <buffer> <leader>ii :call JsonBeautify()<cr>
+  autocmd FileType jsx nnoremap <buffer> <leader>ii :call JsxBeautify()<cr>
+  autocmd FileType html,xml nnoremap <buffer> <leader>ii :call HtmlBeautify()<cr>
+  autocmd FileType css,scss nnoremap <buffer> <leader>ii :call CSSBeautify()<cr>
+  " beautify only selected lines
+  autocmd FileType javascript vnoremap <buffer>  <leader>ii :call RangeJsBeautify()<cr>
+  autocmd FileType json vnoremap <buffer> <leade>ii :call RangeJsonBeautify()<cr>
+  autocmd FileType jsx vnoremap <buffer> <leader>ii :call RangeJsxBeautify()<cr>
+  autocmd FileType html,xml vnoremap <buffer> <leader>ii :call RangeHtmlBeautify()<cr>
+  autocmd FileType css,scss vnoremap <buffer> <leader>ii :call RangeCSSBeautify()<cr>
+augroup END
+
+" }}}
+" ============================================================================
+" 'suan/vim-instant-markdown' {{{
+" ============================================================================
+
+let g:instant_markdown_autostart = 0
+" manually trigger preview via :InstantMarkdownPreview
+
+" }}}
