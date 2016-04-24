@@ -167,9 +167,9 @@ nnoremap g} gt
 " open vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 " edit vim plugins
-nnoremap <leader>ep :e ~/.vimrc.plug<CR>
+nnoremap <leader>ep :e ~/.config/nvim/nvimrc.plug<CR>
 " edit vim local
-nnoremap <leader>el :e ~/.vimrc.local<CR>
+nnoremap <leader>el :e ~/.config/nvim/nvimrc.local<CR>
 " edit gitconfig
 nnoremap <leader>eg :e ~/.gitconfig<CR>
 " edit tmux.conf
