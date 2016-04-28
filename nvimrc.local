@@ -166,11 +166,11 @@ augroup END
 
 " }}}
 " ============================================================================
-" 'gregsexton/gitv' {{{
+" 'junegunn/gv.vim' {{{
 " ============================================================================
 
-nnoremap <silent> <leader>gv :Gitv<CR>
-nnoremap <silent> <leader>gV :Gitv!<CR>
+nnoremap <silent> <leader>gv :GV<CR>
+nnoremap <silent> <leader>gV :GV!<CR>
 
 " }}}
 " ============================================================================
