@@ -81,10 +81,26 @@ let g:deoplete#enable_at_startup = 1
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 let g:neosnippet#enable_snipmate_compatibility=1
 
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" <tab> mapping
+imap <expr><TAB>
+  \ neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" :
+  \ pumvisible() ? "\<C-n>" :
+  \ emmet#isExpandable() ? emmet#expandAbbrIntelligent("\<tab>") :
+  \ "\<TAB>"
+smap <expr><TAB>
+  \ neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" :
+  \ emmet#isExpandable() ? emmet#expandAbbrIntelligent("\<tab>") :
+  \ "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 " }}}
 " ============================================================================
@@ -94,17 +110,19 @@ smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 let g:user_emmet_install_global = 0
 let g:user_emmet_complete_tag = 1
 
-function! s:zen_html_tab()
-  if !emmet#isExpandable()
-    return "\<plug>(emmet-move-next)"
-  endif
-  return "\<plug>(emmet-expand-abbr)"
-endfunction
-augroup EmmetZen
+" function! s:zen_html_tab()
+"   if !emmet#isExpandable()
+"     return "\<plug>(emmet-move-next)"
+"   endif
+"   return "\<plug>(emmet-expand-abbr)"
+" endfunction
+augroup Emmetable
   autocmd!
+  " Allow to autocomplete hyphenated words
+  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown setlocal iskeyword+=-
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown EmmetInstall
-  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <plug>(emmet-expand-abbr)
-  autocmd FileType html,markdown imap <buffer><expr><tab> <sid>zen_html_tab()
+  " autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <plug>(emmet-expand-abbr)
+  " autocmd FileType html,markdown imap <buffer><expr><tab> <sid>zen_html_tab()
 augroup END
 
 " }}}
@@ -296,5 +314,12 @@ augroup END
 
 let g:instant_markdown_autostart = 0
 " manually trigger preview via :InstantMarkdownPreview
+
+" }}}
+" ============================================================================
+" 'tyru/open-browser.vim' {{{
+" ============================================================================
+
+nnoremap <silent> <leader>or :call Openpluginrepo()<CR>
 
 " }}}

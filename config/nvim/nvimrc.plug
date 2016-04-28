@@ -127,6 +127,7 @@ Plug 'maksimr/vim-jsbeautify'
 
 " Misc.
 Plug 'lyokha/vim-xkbswitch'
+Plug 'tyru/open-browser.vim'
 
 if has('mac')
   Plug 'rizzatti/dash.vim'

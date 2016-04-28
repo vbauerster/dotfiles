@@ -1,5 +1,12 @@
 " vim: set foldmethod=marker foldlevel=0:
 " ============================================================================
+" FUNCTIONS {{{
+" ============================================================================
+
+source ~/.config/nvim/functions.vim
+
+" }}}
+" ============================================================================
 " VIM-PLUG BLOCK {{{
 " ============================================================================
 
@@ -414,6 +421,9 @@ endif
 augroup vimrcEx
   autocmd!
 
+  " Help in new tabs
+  autocmd BufEnter *.txt call Helptab()
+
   " highlight cursorline in active window
   autocmd WinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
@@ -439,9 +449,6 @@ augroup vimrcEx
   autocmd FileType gitcommit setlocal textwidth=72
   autocmd FileType gitcommit setlocal spell spelllang=ru_yo,en_us
 
-  " Allow stylesheets to autocomplete hyphenated words
-  " autocmd FileType css,scss,sass setlocal iskeyword+=-
-
   " Unset paste on InsertLeave
   autocmd InsertLeave * silent! set nopaste
 augroup END
@@ -458,20 +465,6 @@ augroup Terminal
   autocmd!
   autocmd TermOpen * let g:last_terminal_job_id = b:terminal_job_id
   autocmd WinEnter term://* startinsert
-augroup END
-" ----------------------------------------------------------------------------
-" Help in new tabs
-" ----------------------------------------------------------------------------
-function! s:helptab()
-  if &buftype == 'help'
-    wincmd T
-    nnoremap <buffer> q :q<CR>
-  endif
-endfunction
-
-augroup vimrc_help
-  autocmd!
-  autocmd BufEnter *.txt call s:helptab()
 augroup END
 
 " }}}
