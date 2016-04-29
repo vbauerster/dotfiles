@@ -343,6 +343,9 @@ cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " -----------------------------------------------------------
 " => Insert mode mappings
 " -----------------------------------------------------------
+" Start new line
+inoremap <S-Return> <C-o>o
+
 " insert absolute current buffer path
 inoremap <F2> <C-R>=expand('%:p')<CR>
 
