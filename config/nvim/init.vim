@@ -373,10 +373,10 @@ nnoremap <Leader>nh :write !node --harmony<CR>
 " see ':h :!'; '.' stands for concatination
 nnoremap <Leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
 
-" reload ctags, --fields=+l needs by YCM
+" make tags, --fields=+l needs by YCM
 " http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
 " http://raygrasso.com/posts/2015/04/using-ctags-on-modern-javascript.html
-nnoremap <Leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
+nnoremap <Leader>mt :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
 
 " }}}
 " ============================================================================
