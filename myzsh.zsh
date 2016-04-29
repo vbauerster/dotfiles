@@ -71,32 +71,6 @@ function dark() {
     export BACKGROUND="dark"
 }
 
-# A function executed whenever the directory is changed.
-function prompt_chpwd {
-
-  # List the contents of the new directory.
-  if is-callable 'dircolors'; then
-
-    # GNU flavor ls.
-    if zstyle -t ':prezto:module:utility:ls' color; then
-      ls --group-directories-first --color=auto
-    else
-      ls -F
-    fi
-  else
-
-    # BSD flavor ls.
-    if zstyle -t ':prezto:module:utility:ls' color; then
-      ls -G
-    else
-      ls -F
-    fi
-  fi
-}
-
-# hook for calling chpwd
-add-zsh-hook chpwd prompt_chpwd
-
 # searches the current directory subtree for files with names containing a
 # string (ignoring case). f png would find all PNG files in the current subtree,
 # as well as “PNGisMyFavorite.txt” and so forth.
