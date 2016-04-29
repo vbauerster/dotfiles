@@ -18,7 +18,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Tmux
-Plug 'tpope/vim-tbone'
+" Plug 'tpope/vim-tbone'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Motions
@@ -106,6 +106,7 @@ Plug 'morhetz/gruvbox'
 " Plug 'kristijanhusak/vim-hybrid-material'
 " Plug 'marcopaganini/termschool-vim-theme'
 " Plug 'flazz/vim-colorschemes'
+" Plug 'rafi/awesome-vim-colorschemes'
 
 " Syntax
 Plug 'othree/yajs.vim'
