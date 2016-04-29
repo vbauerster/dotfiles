@@ -23,7 +23,7 @@
 	smudge = git-lfs smudge %f
 	required = true
 [github]
-	user = vbauerster
+	user = vlbauer
 [difftool "sourcetree"]
 	cmd = /opt/homebrew-cask/Caskroom/kdiff3/0.9.98/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
 	path = 
