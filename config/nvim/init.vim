@@ -51,8 +51,8 @@ tmap <C-j> hh<C-j>
 tmap <C-h> hh<C-h>
 tmap <C-l> hh<C-l>
 " tt is mapped to :TernType
-nnoremap <leader>tv <C-w>v:te<CR>
-nnoremap <leader>te <C-w>s<C-w>J4<C-w>-:te<CR>
+nnoremap <Leader>tv <C-w>v:te<CR>
+nnoremap <Leader>te <C-w>s<C-w>J4<C-w>-:te<CR>
 
 " Setup Terminal Colors For Neovim
 " remove, when https://github.com/morhetz/gruvbox/pull/93 will be accepted
@@ -164,30 +164,32 @@ set noswapfile
 " F1 will search help for the word under the cursor
 nnoremap <F1> :help <C-r><C-w><CR>
 
-" easy moving between tabs
+" tab shortcuts
 nnoremap g{ gt
 nnoremap g} gT
+nnoremap <Leader>tn :tabnew<CR>
+nnoremap <Leader>tc :tabclose<CR>
 
 " ----------------------------------------------------------
 " => Quick edit Mappings
 " ----------------------------------------------------------
 " open vimrc
-nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+nnoremap <Leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 " edit vim plugins
-nnoremap <leader>ep :e ~/.config/nvim/nvimrc.plug<CR>
+nnoremap <Leader>ep :e ~/.config/nvim/nvimrc.plug<CR>
 " edit vim local
-nnoremap <leader>el :e ~/.config/nvim/nvimrc.local<CR>
+nnoremap <Leader>el :e ~/.config/nvim/nvimrc.local<CR>
 " edit gitconfig
-nnoremap <leader>eg :e ~/.gitconfig<CR>
+nnoremap <Leader>eg :e ~/.gitconfig<CR>
 " edit tmux.conf
-nnoremap <leader>et :e ~/.tmux.conf<CR>
+nnoremap <Leader>et :e ~/.tmux.conf<CR>
 " edit zshrc
-nnoremap <leader>ez :e ~/.zshrc<CR>
+nnoremap <Leader>ez :e ~/.zshrc<CR>
 " edit/view log from wi-fi box
-nnoremap <leader>ew :e scp://root@192.168.2.1//var/log/syslog<CR>
+nnoremap <Leader>ew :e scp://root@192.168.2.1//var/log/syslog<CR>
 
 " use :NeoSnippetEdit -runtime
-" nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
+" nnoremap <Leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
 
 " -----------------------------------------------------------
 " => General mappings/shortcuts for functionality
@@ -195,17 +197,17 @@ nnoremap <leader>ew :e scp://root@192.168.2.1//var/log/syslog<CR>
 " Save
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
-" nnoremap <leader>u :update<CR>
+" nnoremap <Leader>u :update<CR>
 
 " w!! to sudo write
 cmap w!! w !sudo tee % >/dev/null<CR>
 
 " Quit
-nnoremap <leader>q :q<CR>
-nnoremap <leader>Q :qa!<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>Q :qa!<CR>
 
 " Enter visual line mode
-nmap <leader><leader> V
+nmap <Leader><leader> V
 
 nnoremap <tab> %
 vnoremap <tab> %
@@ -213,12 +215,12 @@ vnoremap <tab> %
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
 
-" nnoremap <leader>lo :lopen<CR>
-nnoremap <leader>co :copen<CR>
-" nnoremap <leader>cl :close<CR> " same as <C-w> c
-nnoremap <leader>cc :cclose<CR>
+" nnoremap <Leader>lo :lopen<CR>
+nnoremap <Leader>co :copen<CR>
+" nnoremap <Leader>cl :close<CR> " same as <C-w> c
+nnoremap <Leader>cc :cclose<CR>
 " following is shortcut for <C-w> z
-nnoremap <leader>cp :pclose<CR>
+nnoremap <Leader>cp :pclose<CR>
 
 " Select blocks after indenting
 xnoremap < <gv
@@ -241,7 +243,7 @@ nnoremap ? ?\v
 vnoremap / <Esc>/\%V\v
 vnoremap ? <Esc>?\%V\v
 
-vmap <leader>s :sort<CR>
+vmap <Leader>s :sort<CR>
 
 " paste multiple lines multiple times
 " vnoremap <silent> y y`]
@@ -266,45 +268,43 @@ nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
 
-" tab shortcuts
-map <leader>tn :tabnew<CR>
-map <leader>tc :tabclose<CR>
-
 " fold a html tag
-nnoremap <leader>ft Vatzf
+nnoremap <Leader>ft Vatzf
 
 " g<c-]> is jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
-" nnoremap <leader>g g<c-]>
+" nnoremap <Leader>g g<c-]>
 
 " Switch to the directory of the open buffer
-nnoremap <silent> <leader>cd :cd %:p:h<CR>
+nnoremap <silent><Leader>cd :cd %:p:h<CR>
 
-" remove trailing whitespace and clear the last search pattern
-nnoremap <leader>cw :%s/\s\+$//<CR>:let @/=''<CR>
+" Remove spaces at the end of lines
+nnoremap <silent><Leader>we :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
-" toggle search highlighting: coh by unimpaired
-" nmap <silent> <leader>/ :set invhlsearch<CR>
+" Buffer reload
+nnoremap <Leader>rr :e!<CR>
 
 " switch between buffers
+" provided by unimpaired [b
 noremap <silent><Leader>bp :bprev<CR>
+" provided by unimpaired ]b
 noremap <silent><Leader>bn :bnext<CR>
-noremap <silent><leader>. <C-^><CR>
+noremap <silent><Leader>. <C-^><CR>
 
 " zoom a vim pane, <C-w>= to re-balance
-" nnoremap <leader>z :wincmd _<CR>:wincmd \|<CR>
-nmap <silent> <leader>- :wincmd =<CR>
+" nnoremap <Leader>z :wincmd _<CR>:wincmd \|<CR>
+nmap <silent><Leader>- :wincmd =<CR>
 
 " http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
 set winminheight=0
-nmap <leader>j <C-W>j<C-W>_
-nmap <leader>k <C-W>k<C-W>_
+nmap <Leader>j <C-W>j<C-W>_
+nmap <Leader>k <C-W>k<C-W>_
 
 set winminwidth=0
-nmap <leader>h <C-W>h500<C-W>>
-nmap <leader>l <C-W>l500<C-W>>
+nmap <Leader>h <C-W>h500<C-W>>
+nmap <Leader>l <C-W>l500<C-W>>
 
-nnoremap <leader>v <C-w>v
+nnoremap <Leader>v <C-w>v
 
 " resize panes
 nnoremap <silent> <Right> :vertical resize +5<CR>
@@ -314,25 +314,21 @@ nnoremap <silent> <Left> :vertical resize -5<CR>
 
 " toggle relativenumber: cor by unimpaired
 " http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
-"nnoremap <leader>rn :set rnu!<ENTER>
-
-" Buffer reload
-nnoremap <leader>rr :e!<CR>
-" nnoremap <leader>ll :ls<CR>
-" nnoremap <leader>bn :bn<CR> "provided by unimpaired ]b
-" nnoremap <leader>bp :bp<CR> "provided by unimpaired [b
+"nnoremap <Leader>rn :set rnu!<ENTER>
 
 " Show Registers
-nnoremap <leader>di :di<CR>
+nnoremap <Leader>di :di<CR>
 
 " http://habrahabr.ru/post/183222/
 " spell check on
-nnoremap <leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
+nnoremap <Leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
 " spell check off
-nnoremap <leader>spp :setlocal spell spelllang=<ENTER>
+nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
-nnoremap <leader>hi :Highlight<CR>
-nnoremap <silent> <leader>ch :call clearmatches()<CR>:noh<CR>
+" toggle search highlighting: coh by unimpaired
+" nnoremap <silent><Leader>/ :set invhlsearch<CR>
+nnoremap <Leader>hi :Highlight<CR>
+nnoremap <silent><Leader>ch :call clearmatches()<CR>:noh<CR>
 
 " experimental: quickly access yank reg
 noremap "" "0
@@ -369,18 +365,18 @@ noremap! hh <Esc>
 " => External cmd mappings
 " -----------------------------------------------------------
 " find current word in quickfix
-nnoremap <leader>* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR>
+nnoremap <Leader>* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR>
 " find last search in quickfix
-nnoremap <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
-nnoremap <leader>nh :write !node --harmony<CR>
+nnoremap <Leader>nh :write !node --harmony<CR>
 " see ':h :!'; '.' stands for concatination
-nnoremap <leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
+nnoremap <Leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
 
 " reload ctags, --fields=+l needs by YCM
 " http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
 " http://raygrasso.com/posts/2015/04/using-ctags-on-modern-javascript.html
-nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
+nnoremap <Leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
 
 " }}}
 " ============================================================================
@@ -390,34 +386,34 @@ nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules
 " http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
 if has('clipboard')
   if has('unnamedplus')  " When possible use + register for copy-paste
-    nnoremap <leader>yp :let @+=expand('%')<CR>
-    nnoremap <leader>ya :let @+=expand('%:p')<CR>
-    nnoremap <leader>yf :let @+=expand('%:t')<CR>
-    nnoremap <leader>yd :let @+=expand('%:p:h')<CR>
+    nnoremap <Leader>yp :let @+=expand('%')<CR>
+    nnoremap <Leader>ya :let @+=expand('%:p')<CR>
+    nnoremap <Leader>yf :let @+=expand('%:t')<CR>
+    nnoremap <Leader>yd :let @+=expand('%:p:h')<CR>
 
-    noremap <leader>y "+y
-    noremap <leader>yy "+yy
-    noremap <leader>Y "+y$
-    noremap <leader>p "+p
-    noremap <leader>P "+P
+    noremap <Leader>y "+y
+    noremap <Leader>yy "+yy
+    noremap <Leader>Y "+y$
+    noremap <Leader>p "+p
+    noremap <Leader>P "+P
   else
     " On mac and Windows, use * register for copy-paste
     " copy current file name (relative/absolute) to system clipboard
     " relative path  (src/foo.txt)
-    nnoremap <leader>yp :let @*=expand('%')<CR>
+    nnoremap <Leader>yp :let @*=expand('%')<CR>
     " absolute path  (/something/src/foo.txt)
-    nnoremap <leader>ya :let @*=expand('%:p')<CR>
+    nnoremap <Leader>ya :let @*=expand('%:p')<CR>
     " filename       (foo.txt)
-    nnoremap <leader>yf :let @*=expand('%:t')<CR>
+    nnoremap <Leader>yf :let @*=expand('%:t')<CR>
     " directory name (/something/src)
-    nnoremap <leader>yd :let @*=expand('%:p:h')<CR>
+    nnoremap <Leader>yd :let @*=expand('%:p:h')<CR>
 
     " easy system clipboard copy/paste
-    noremap <leader>y "*y
-    noremap <leader>yy "*yy
-    noremap <leader>Y "*y$
-    noremap <leader>p "*p
-    noremap <leader>P "*P
+    noremap <Leader>y "*y
+    noremap <Leader>yy "*yy
+    noremap <Leader>Y "*y$
+    noremap <Leader>p "*p
+    noremap <Leader>P "*P
     "use system clipboard as default
     "set clipboard=unnamed
   endif
