@@ -183,6 +183,8 @@ nnoremap <leader>eg :e ~/.gitconfig<CR>
 nnoremap <leader>et :e ~/.tmux.conf<CR>
 " edit zshrc
 nnoremap <leader>ez :e ~/.zshrc<CR>
+" edit/view log from wi-fi box
+nnoremap <leader>ew :e scp://root@192.168.2.1//var/log/syslog<CR>
 
 " use :NeoSnippetEdit -runtime
 " nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
