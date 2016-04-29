@@ -220,9 +220,15 @@ nnoremap <leader>cc :cclose<CR>
 " following is shortcut for <C-w> z
 nnoremap <leader>cp :pclose<CR>
 
-" reselect visual block after indent
-vnoremap <silent> < <gv
-vnoremap <silent> > >gv
+" Select blocks after indenting
+xnoremap < <gv
+xnoremap > >gv|
+
+" Use tab for indenting in visual mode
+xnoremap <Tab> >gv|
+xnoremap <S-Tab> <gv
+nnoremap > >>_
+nnoremap < <<_
 
 " reselect last paste
 " nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
