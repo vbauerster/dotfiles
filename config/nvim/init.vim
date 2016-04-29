@@ -201,8 +201,6 @@ inoremap <C-s> <C-o>:update<CR>
 cmap w!! w !sudo tee % >/dev/null<CR>
 
 " Quit
-inoremap <C-Q>     <esc>:q<CR>
-nnoremap <C-Q>     :q<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :qa!<CR>
 
