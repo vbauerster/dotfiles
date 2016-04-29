@@ -165,8 +165,8 @@ set noswapfile
 nnoremap <F1> :help <C-r><C-w><CR>
 
 " easy moving between tabs
-nnoremap g{ gT
-nnoremap g} gt
+nnoremap g{ gt
+nnoremap g} gT
 
 " ----------------------------------------------------------
 " => Quick edit Mappings
@@ -215,11 +215,12 @@ vnoremap <tab> %
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
 
-nnoremap <leader>lo :lopen<CR>
+" nnoremap <leader>lo :lopen<CR>
 nnoremap <leader>co :copen<CR>
 " nnoremap <leader>cl :close<CR> " same as <C-w> c
 nnoremap <leader>cc :cclose<CR>
-nnoremap <leader>pc :pclose<CR> " same as <C-w> z
+" following is shortcut for <C-w> z
+nnoremap <leader>cp :pclose<CR>
 
 " reselect visual block after indent
 vnoremap <silent> < <gv
@@ -282,9 +283,9 @@ nnoremap <leader>cw :%s/\s\+$//<CR>:let @/=''<CR>
 " nmap <silent> <leader>/ :set invhlsearch<CR>
 
 " switch between buffers
-nmap <silent> <leader>; :bp<CR>
-nmap <silent> <leader>, :bn<CR>
-nmap <silent> <leader>. <C-^><CR>
+noremap <silent><Leader>bp :bprev<CR>
+noremap <silent><Leader>bn :bnext<CR>
+noremap <silent><leader>. <C-^><CR>
 
 " zoom a vim pane, <C-w>= to re-balance
 " nnoremap <leader>z :wincmd _<CR>:wincmd \|<CR>
