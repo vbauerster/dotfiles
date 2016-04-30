@@ -1881,7 +1881,7 @@
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>366 277 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>721 11 718 859 0 0 1440 877 </string>
+	<string>721 434 585 427 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>722 450 585 426 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -6265,6 +6265,13 @@
 					<key>Text</key>
 					<string>0x7f</string>
 				</dict>
+				<key>0xd-0x20000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[13;2u</string>
+				</dict>
 				<key>0xd-0x40000</key>
 				<dict>
 					<key>Action</key>
@@ -7074,6 +7081,13 @@
 					<key>Text</key>
 					<string>0x7f</string>
 				</dict>
+				<key>0xd-0x20000</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[13;2u</string>
+				</dict>
 				<key>0xd-0x40000</key>
 				<dict>
 					<key>Action</key>
@@ -7523,8 +7537,10 @@
 	<true/>
 	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
 	<integer>0</integer>
+	<key>NoSyncInstallationId</key>
+	<string>62901207-E57E-41CE-B3C6-8A6DB572BFF8</string>
 	<key>NoSyncLastTipTime</key>
-	<real>482775944.64095902</real>
+	<real>483687858.97945702</real>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -7592,6 +7608,15 @@
 		<string>0047</string>
 		<string>0048</string>
 		<string>0049</string>
+		<string>0050</string>
+		<string>0051</string>
+		<string>0052</string>
+		<string>0053</string>
+		<string>0054</string>
+		<string>0055</string>
+		<string>0056</string>
+		<string>0057</string>
+		<string>0058</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
@@ -7657,11 +7682,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/nightly.xml</string>
+	<string>https://iterm2.com/appcasts/nightly.xml?shard=42</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-04-20T05:01:49Z</date>
+	<date>2016-04-30T07:09:31Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -7718,6 +7743,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20160405-nightly</string>
+	<string>2.9.20160428-nightly</string>
 </dict>
 </plist>
