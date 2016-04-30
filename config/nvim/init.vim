@@ -50,6 +50,7 @@ tmap <C-k> hh<C-k>
 tmap <C-j> hh<C-j>
 tmap <C-h> hh<C-h>
 tmap <C-l> hh<C-l>
+tmap <C-\> hh<C-\>
 " tt is mapped to :TernType
 nnoremap <Leader>tv <C-w>v:te<CR>
 nnoremap <Leader>te <C-w>s<C-w>J4<C-w>-:te<CR>
