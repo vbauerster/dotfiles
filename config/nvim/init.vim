@@ -186,7 +186,8 @@ nnoremap <Leader>et :e ~/.tmux.conf<CR>
 " edit zshrc
 nnoremap <Leader>ez :e ~/.zshrc<CR>
 " edit/view log from wi-fi box
-nnoremap <Leader>ew :e scp://root@192.168.2.1//var/log/syslog<CR>
+nnoremap <Leader>ewm :e scp://root@192.168.2.1//var/log/syslog<CR>
+nnoremap <Leader>ewv :e scp://root@192.168.2.1//opt/etc/dotfiles/vimrc<CR>
 
 " use :NeoSnippetEdit -runtime
 " nnoremap <Leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
@@ -279,7 +280,7 @@ nnoremap <Leader>ft Vatzf
 nnoremap <silent><Leader>cd :cd %:p:h<CR>
 
 " Remove spaces at the end of lines
-nnoremap <silent><Leader>we :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+nnoremap <silent><Leader>w<Leader> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
 " Buffer reload
 nnoremap <Leader>rr :e!<CR>
