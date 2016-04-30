@@ -294,7 +294,7 @@ noremap <silent><Leader>. <C-^><CR>
 
 " zoom a vim pane, <C-w>= to re-balance
 " nnoremap <Leader>z :wincmd _<CR>:wincmd \|<CR>
-nmap <silent><Leader>- :wincmd =<CR>
+nnoremap <silent><Leader>- :wincmd =<CR>
 
 " http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
 set winminheight=0
