@@ -303,8 +303,8 @@ nmap <Leader>j <C-W>j<C-W>_
 nmap <Leader>k <C-W>k<C-W>_
 
 set winminwidth=0
-nmap <Leader>h <C-W>h500<C-W>>
-nmap <Leader>l <C-W>l500<C-W>>
+nmap <Leader>h <C-W>h500<C-W>>zz
+nmap <Leader>l <C-W>l500<C-W>>zz
 
 nnoremap <Leader>v <C-w>v
 
