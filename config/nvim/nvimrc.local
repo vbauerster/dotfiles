@@ -87,19 +87,17 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " <tab> mapping
-imap <expr><TAB>
-  \ neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" :
-  \ pumvisible() ? "\<C-n>" :
-  \ emmet#isExpandable() ? emmet#expandAbbrIntelligent("\<tab>") :
-  \ "\<TAB>"
-smap <expr><TAB>
-  \ neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" :
-  \ emmet#isExpandable() ? emmet#expandAbbrIntelligent("\<tab>") :
-  \ "\<TAB>"
+
+" imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ? "\<C-n>" : "\<TAB>")
+imap <silent><expr><TAB> MyTabfunc()
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 
 " For conceal markers.
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+  " set conceallevel=2 concealcursor=niv
+  set conceallevel=2 concealcursor=i
 endif
 
 " }}}
@@ -110,19 +108,14 @@ endif
 let g:user_emmet_install_global = 0
 let g:user_emmet_complete_tag = 1
 
-" function! s:zen_html_tab()
-"   if !emmet#isExpandable()
-"     return "\<plug>(emmet-move-next)"
-"   endif
-"   return "\<plug>(emmet-expand-abbr)"
-" endfunction
 augroup Emmetable
   autocmd!
   " Allow to autocomplete hyphenated words
-  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown setlocal iskeyword+=-
+  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html setlocal iskeyword+=-
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown EmmetInstall
-  " autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <plug>(emmet-expand-abbr)
-  " autocmd FileType html,markdown imap <buffer><expr><tab> <sid>zen_html_tab()
+  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
+  autocmd FileType html,markdown imap <buffer><expr><tab> Zen_html_tab()
+  autocmd FileType html,markdown vmap <buffer><Leader>" <c-y>,
 augroup END
 
 " }}}
