@@ -113,7 +113,7 @@ set softtabstop=2 " How many columns vim uses when pressing TAB in insert mode
 set shiftwidth=2  " How many columns text is indented with << and >>
 set expandtab     " Use spaces
 set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
-set ruler         " show the cursor position a l the time
+set ruler         " show the cursor position all the time
 set nojoinspaces  " Prevents inserting two spaces after punctuation on a join (J)
 
 " Searching
@@ -188,7 +188,8 @@ nnoremap <Leader>et :e ~/.tmux.conf<CR>
 nnoremap <Leader>ez :e ~/.zshrc<CR>
 " edit/view log from wi-fi box
 nnoremap <Leader>ewm :e scp://root@192.168.2.1//var/log/syslog<CR>
-nnoremap <Leader>ewv :e scp://root@192.168.2.1//opt/etc/dotfiles/vimrc<CR>
+nnoremap <Leader>ewv :e scp://root@192.168.2.1//opt/share/vim/vimrc<CR>
+nnoremap <Leader>ewb :e scp://root@192.168.2.1//opt/etc/runblock/runblock.dnsmasq<CR>
 
 " use :NeoSnippetEdit -runtime
 " nnoremap <Leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
