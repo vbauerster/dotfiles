@@ -51,7 +51,7 @@ Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
 
 " AutoComplete
-Plug 'Shougo/deoplete.nvim'
+" Plug 'Shougo/deoplete.nvim'
 " deoplete-external-sources
 Plug 'Shougo/neco-vim'       " vim source for Vim script
 Plug 'Shougo/neosnippet.vim' " neosnippet source

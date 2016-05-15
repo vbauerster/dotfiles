@@ -32,80 +32,25 @@ if $BACKGROUND == 'dark'
   let g:gruvbox_contrast_dark='soft'
 endif
 
-if has('nvim')
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
-  " https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
-  " After applying above fix, below line is no longer necessary
-  " nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
-
-  " <C-\><C-n> key combo, exit back to normal mode.
-  tnoremap hh <C-\><C-n>
-  tmap <C-k> hh<C-k>
-  tmap <C-j> hh<C-j>
-  tmap <C-h> hh<C-h>
-  tmap <C-l> hh<C-l>
-  " tt is mapped to :TernType
-  nnoremap <leader>tv <C-w>v:te<CR>
-  nnoremap <leader>te <C-w>s<C-w>J4<C-w>-:te<CR>
-
-  " Setup Terminal Colors For Neovim
-  " remove, when https://github.com/morhetz/gruvbox/pull/93 will be accepted
-
-  " dark0 + gray
-  let g:terminal_color_0 = "#282828"
-  let g:terminal_color_8 = "#928374"
-  " neurtral_red + bright_red
-  let g:terminal_color_1 = "#cc241d"
-  let g:terminal_color_9 = "#fb4934"
-  " neutral_green + bright_green
-  let g:terminal_color_2 = "#98971a"
-  let g:terminal_color_10 = "#b8bb26"
-  " neutral_yellow + bright_yellow
-  let g:terminal_color_3 = "#d79921"
-  let g:terminal_color_11 = "#fabd2f"
-  " neutral_blue + bright_blue
-  let g:terminal_color_4 = "#458588"
-  let g:terminal_color_12 = "#83a598"
-  " neutral_purple + bright_purple
-  let g:terminal_color_5 = "#b16286"
-  let g:terminal_color_13 = "#d3869b"
-  " neutral_aqua + faded_aqua
-  let g:terminal_color_6 = "#689d6a"
-  let g:terminal_color_14 = "#8ec07c"
-  " light4 + light1
-  let g:terminal_color_7 = "#a89984"
-  let g:terminal_color_15 = "#ebdbb2"
-
-  augroup Terminal
-    au!
-    au TermOpen * let g:last_terminal_job_id = b:terminal_job_id
-    au WinEnter term://* startinsert
-  augroup END
-
-else
-  " sets for vim only, see h: vim-differences
-  set nocompatible
-  set t_Co=256
-  set ttyfast
-  set encoding=utf-8
-  syntax on
-  " https://github.com/neovim/neovim/issues/2092
-  " vim-unimpaired provides 'yo' pastetoggle
-  " set pastetoggle=<F2>
-  set history=1000               " nvim sets this to 1000 by default
-  set undolevels=1000            " nvim sets this to 1000 by default
-  set backspace=indent,eol,start
-  set autoindent                 " Indent at the same level of the previous line
-  set autoread                   " detect when a file is changed
-  set smarttab                   " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
-  set hlsearch                   " Highlight search terms
-  set incsearch                  " set incremental search, like modern browsers
-  set laststatus=2
-  set wildmenu                   " enhanced command line completion
-  set tags=./tags;/
-endif
+" sets for vim only, see h: vim-differences
+set nocompatible
+set t_Co=256
+set ttyfast
+set encoding=utf-8
+syntax on
+" https://github.com/neovim/neovim/issues/2092
+" vim-unimpaired provides 'yo' pastetoggle
+" set pastetoggle=<F2>
+set history=1000               " nvim sets this to 1000 by default
+set undolevels=1000            " nvim sets this to 1000 by default
+set backspace=indent,eol,start
+set autoindent                 " Indent at the same level of the previous line
+set autoread                   " detect when a file is changed
+set smarttab                   " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+set hlsearch                   " Highlight search terms
+set incsearch                  " set incremental search, like modern browsers
+set laststatus=2
+set wildmenu                   " enhanced command line completion
 
 " Excluding version control directories
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
@@ -193,6 +138,8 @@ nnoremap <F1> :help <C-r><C-w><CR>
 " easy moving between tabs
 nnoremap g{ gT
 nnoremap g} gt
+nnoremap <Leader>tn :tabnew<CR>
+nnoremap <Leader>tc :tabclose<CR>
 
 " ----------------------------------------------------------
 " => Quick edit Mappings
@@ -225,8 +172,6 @@ inoremap <C-s> <C-o>:update<CR>
 cmap w!! w !sudo tee % >/dev/null<CR>
 
 " Quit
-inoremap <C-Q>     <esc>:q<CR>
-nnoremap <C-Q>     :q<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :qa!<CR>
 
@@ -239,15 +184,22 @@ vnoremap <tab> %
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
 
-nnoremap <leader>lo :lopen<CR>
-nnoremap <leader>co :copen<CR>
-" nnoremap <leader>cl :close<CR> " same as <C-w> c
-nnoremap <leader>cc :cclose<CR>
-nnoremap <leader>pc :pclose<CR> " same as <C-w> z
+" nnoremap <Leader>lo :lopen<CR>
+nnoremap <Leader>co :copen<CR>
+" nnoremap <Leader>cl :close<CR> " same as <C-w> c
+nnoremap <Leader>cc :cclose<CR>
+" following is shortcut for <C-w> z
+nnoremap <Leader>cp :pclose<CR>
 
-" reselect visual block after indent
-vnoremap <silent> < <gv
-vnoremap <silent> > >gv
+" Select blocks after indenting
+xnoremap < <gv
+xnoremap > >gv|
+
+" Use tab for indenting in visual mode
+xnoremap <Tab> >gv|
+xnoremap <S-Tab> <gv
+nnoremap > >>_
+nnoremap < <<_
 
 " reselect last paste
 " nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
@@ -285,10 +237,6 @@ nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
 
-" tab shortcuts
-map <leader>tn :tabnew<CR>
-map <leader>tc :tabclose<CR>
-
 " fold a html tag
 nnoremap <leader>ft Vatzf
 
@@ -299,16 +247,18 @@ nnoremap <leader>ft Vatzf
 " Switch to the directory of the open buffer
 nnoremap <silent> <leader>cd :cd %:p:h<CR>
 
-" remove trailing whitespace and clear the last search pattern
-nnoremap <leader>cw :%s/\s\+$//<CR>:let @/=''<CR>
+" Remove spaces at the end of lines
+nnoremap <silent><Leader>w<Leader> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
-" toggle search highlighting: coh by unimpaired
-" nmap <silent> <leader>/ :set invhlsearch<CR>
+" Buffer reload
+nnoremap <leader>rr :e!<CR>
 
 " switch between buffers
-nmap <silent> <leader>; :bp<CR>
-nmap <silent> <leader>, :bn<CR>
-nmap <silent> <leader>. <C-^><CR>
+" provided by unimpaired [b
+noremap <silent><Leader>bp :bprev<CR>
+" provided by unimpaired ]b
+noremap <silent><Leader>bn :bnext<CR>
+noremap <silent><Leader>. <C-^><CR>
 
 " zoom a vim pane, <C-w>= to re-balance
 " nnoremap <leader>z :wincmd _<CR>:wincmd \|<CR>
@@ -320,8 +270,8 @@ nmap <leader>j <C-W>j<C-W>_
 nmap <leader>k <C-W>k<C-W>_
 
 set winminwidth=0
-nmap <leader>h <C-W>h500<C-W>>
-nmap <leader>l <C-W>l500<C-W>>
+nmap <leader>h <C-W>h500<C-W>>zz
+nmap <leader>l <C-W>l500<C-W>>zz
 
 nnoremap <leader>v <C-w>v
 
@@ -334,12 +284,6 @@ nnoremap <silent> <Left> :vertical resize -5<CR>
 " toggle relativenumber: cor by unimpaired
 " http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
 "nnoremap <leader>rn :set rnu!<ENTER>
-
-" Buffer reload
-nnoremap <leader>rr :e!<CR>
-" nnoremap <leader>ll :ls<CR>
-" nnoremap <leader>bn :bn<CR> "provided by unimpaired ]b
-" nnoremap <leader>bp :bp<CR> "provided by unimpaired [b
 
 " Show Registers
 nnoremap <leader>di :di<CR>
@@ -368,6 +312,9 @@ cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " -----------------------------------------------------------
 " => Insert mode mappings
 " -----------------------------------------------------------
+" Start new line
+inoremap <S-Return> <C-o>o
+
 " insert absolute current buffer path
 inoremap <F2> <C-R>=expand('%:p')<CR>
 
@@ -477,7 +424,6 @@ augroup vimrcEx
 
   " Unset paste on InsertLeave
   au InsertLeave * silent! set nopaste
-
 augroup END
 
 augroup tmux_auto_rename
@@ -488,7 +434,7 @@ augroup tmux_auto_rename
   endif
 augroup END
 
-" ----------------------------------------------------------------------------
+
 " Help in new tabs
 " ----------------------------------------------------------------------------
 function! s:helptab()
