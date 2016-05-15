@@ -49,15 +49,12 @@ $ brew install https://raw.githubusercontent.com/choppsv1/homebrew-term24/master
 $ brew install reattach-to-user-namespace
 ```
 
-**Gruvbox color scheme for vim and itemr2**
-https://github.com/morhetz/gruvbox
-
 **MacVim**
-By default OSX has an older version of Vim installed. I recommend installing MacVim and running it from within iterm2. This can be done with brew.
+
+I prefer NeoVim to Vim, but keep MacVim installed just in case.
 ```
 $ brew install macvim --with-override-system-vim --with-python3
 ```
-This overwrites your default Vim installation. You should restart terminal after installing.
 
 **NeoVim**
 ```
@@ -92,5 +89,5 @@ Lightweight zsh configuration framework. Info & installation instructions here: 
 
 ***Disclaimer***
 
-If you have noticed that, most mappings are kind a weird in my [vimrc](https://raw.githubusercontent.com/vbauerster/dotfiles/master/vimrc)
-that because I use [Programmer Dvorak](https://github.com/vbauerster/ProDvorak) keyboard layout. :banana:
+If you have noticed that, most mappings are kind a weird in my [vimrc](https://github.com/vbauerster/dotfiles/blob/master/config/nvim/init.vim)
+that because I use [Deep Dvorak](https://github.com/vbauerster/DeepDvorak) keyboard layout. :banana:
