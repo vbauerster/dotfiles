@@ -15,7 +15,7 @@ function! MyTabfunc() abort
     endif
 endfunction
 
-function! Zen_html_tab()
+function! ZenHtmlTab()
   if !emmet#isExpandable()
     return "\<plug>(emmet-move-next)"
   endif

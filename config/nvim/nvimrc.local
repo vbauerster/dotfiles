@@ -114,7 +114,7 @@ augroup Emmetable
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html setlocal iskeyword+=-
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown EmmetInstall
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
-  autocmd FileType html,markdown imap <buffer><expr><tab> Zen_html_tab()
+  autocmd FileType html,markdown imap <buffer><expr><tab> ZenHtmlTab()
   autocmd FileType html,markdown vmap <buffer><Leader>" <c-y>,
 augroup END
 
