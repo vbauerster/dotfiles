@@ -187,9 +187,8 @@ nnoremap <Leader>et :e ~/.tmux.conf<CR>
 " edit zshrc
 nnoremap <Leader>ez :e ~/.zshrc<CR>
 " edit/view log from wi-fi box
-nnoremap <Leader>ewm :e scp://root@192.168.2.1//var/log/syslog<CR>
-nnoremap <Leader>ewv :e scp://root@192.168.2.1//opt/share/vim/vimrc<CR>
-nnoremap <Leader>ewb :e scp://root@192.168.2.1//opt/etc/runblock/runblock.dnsmasq<CR>
+nnoremap <Leader>ewm :e scp://root@192.168.2.1//var/log/messages<CR>
+nnoremap <Leader>ewu :e scp://root@192.168.2.1//jffs/runblock/runblock.dnsmasq<CR>
 
 " use :NeoSnippetEdit -runtime
 " nnoremap <Leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
