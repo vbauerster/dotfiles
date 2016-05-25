@@ -53,7 +53,7 @@ tmap <C-l> hh<C-l>
 tmap <C-\> hh<C-\>
 " tt is mapped to :TernType
 nnoremap <Leader>tv <C-w>v:te<CR>
-nnoremap <Leader>te <C-w>s<C-w>J4<C-w>-:te<CR>
+nnoremap <Leader>te <C-w>s<C-w>J6<C-w>-:te<CR>
 
 " Setup Terminal Colors For Neovim
 " remove, when https://github.com/morhetz/gruvbox/pull/93 will be accepted
