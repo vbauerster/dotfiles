@@ -426,11 +426,18 @@ endif
 " AUTOCMD {{{
 " ============================================================================
 
+function! s:helptab()
+  if &buftype == 'help'
+    wincmd T
+    nnoremap <buffer> q :q<CR>
+  endif
+endfunction
+
 augroup vimrcEx
   autocmd!
 
   " Help in new tabs
-  autocmd BufEnter *.txt call Helptab()
+  autocmd BufEnter *.txt call <sid>helptab()
 
   " highlight cursorline in active window
   autocmd WinEnter * setlocal cursorline
