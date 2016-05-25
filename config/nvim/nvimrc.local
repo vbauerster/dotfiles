@@ -279,7 +279,8 @@ nnoremap <Leader>ww :Windows<CR>
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>gf :GitFiles<CR>
-nnoremap <Leader>mm :Marks<CR>
+nnoremap <Leader>mm :Commits<CR>
+nnoremap <Leader>mk :Marks<CR>
 " normal mode mappings
 nnoremap <Leader>mn :Maps<CR>
 
