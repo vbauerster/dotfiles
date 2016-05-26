@@ -77,23 +77,16 @@ let g:deoplete#enable_at_startup = 1
 " 'Shougo/neosnippet.vim'  {{{
 " ============================================================================
 
-function! s:myTabFunc(type) abort
+function! s:tabComplete(type) abort
   let line = getline('.')
-  " if line[col('.')-2] =='{'&& pumvisible()
-  "   return "\<C-n>"
-  " endif
-  if neosnippet#expandable() && line[col('.')-2] =='(' && !pumvisible()
-    return "\<Plug>(neosnippet_expand)"
-  elseif neosnippet#jumpable() && line[col('.')-2] =='(' && !pumvisible() && !neosnippet#expandable()
-    return "\<plug>(neosnippet_jump)"
-  elseif neosnippet#expandable_or_jumpable() && line[col('.')-2] !='('
+  if neosnippet#expandable_or_jumpable()
     return "\<plug>(neosnippet_expand_or_jump)"
-  elseif a:type=='html' && match(line, '<.*>') < 0 && emmet#isExpandable()
+  elseif a:type=='emmetable' && match(line, '[<(].*[>)]')<0 && emmet#isExpandable()
     return "\<plug>(emmet-expand-abbr)"
   elseif pumvisible()
     return "\<C-n>"
   else
-    return "\<tab>"
+    return "\<TAB>"
   endif
 endfunction
 
@@ -107,7 +100,7 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " <tab> mapping
-imap <expr><TAB> <SID>myTabFunc('any')
+imap <expr><TAB> <SID>tabComplete('any')
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
@@ -131,8 +124,7 @@ augroup Emmetable
   " Allow to autocomplete hyphenated words
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html setlocal iskeyword+=-
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown EmmetInstall
-  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache imap <buffer><tab> <c-y>,
-  autocmd FileType html,markdown imap <buffer><expr><TAB> <SID>myTabFunc('html')
+  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown imap <buffer><expr><TAB> <SID>tabComplete('emmetable')
   autocmd FileType html,markdown vmap <buffer><Leader>ee <c-y>,
 augroup END
 
