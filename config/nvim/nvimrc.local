@@ -78,10 +78,11 @@ let g:deoplete#enable_at_startup = 1
 " ============================================================================
 
 function! s:tabComplete(type) abort
-  let line = getline('.')
-  if neosnippet#expandable_or_jumpable()
-    return "\<plug>(neosnippet_expand_or_jump)"
-  elseif a:type=='emmetable' && match(line, '[<(].*[>)]')<0 && emmet#isExpandable()
+  if neosnippet#expandable() && !neosnippet#jumpable()
+    return "\<Plug>(neosnippet_expand)"
+  elseif neosnippet#jumpable() && !pumvisible()
+    return "\<plug>(neosnippet_jump)"
+  elseif a:type=='emmetable' && match(getline('.'), '[<(].*[>)]')<0 && emmet#isExpandable()
     return "\<plug>(emmet-expand-abbr)"
   elseif pumvisible()
     return "\<C-n>"
