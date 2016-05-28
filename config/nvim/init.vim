@@ -74,8 +74,7 @@ set scrolloff=3                      " lines of text around cursor
 set foldlevelstart=99                " all folds open by default
 set cmdheight=1                      " command bar height
 set noerrorbells
-" set completeopt-=preview
-set completeopt=menuone
+set completeopt=menu,longest
 
 " SPACES & TABS
 " Explanations from http://tedlogan.com/techblog3.html
