@@ -165,8 +165,8 @@ nnoremap <Leader>Q :qa!<CR>
 " Enter visual line mode
 nmap <Leader><leader> V
 
-nnoremap <tab> %
-vnoremap <tab> %
+nnoremap <tab> <C-W>w
+nnoremap <S-tab> <C-W>W
 
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
@@ -284,7 +284,7 @@ nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 " toggle search highlighting: coh by unimpaired
 " nnoremap <silent><Leader>/ :set invhlsearch<CR>
 nnoremap <Leader>hi :Highlight<CR>
-nnoremap <silent><Leader>ch :call clearmatches()<CR>:noh<CR>
+nnoremap <silent><C-c> :call clearmatches()<CR>:noh<CR>
 
 " experimental: quickly access yank reg
 noremap "" "0
