@@ -74,8 +74,18 @@ let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wa
 let g:deoplete#enable_at_startup = 1
 " Use smartcase.
 let g:deoplete#enable_smart_case = 1
+" https://github.com/Shougo/deoplete.nvim/issues/267
+" let g:deoplete#enable_refresh_always = 1
+
 " close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
 imap <expr><Esc> pumvisible() ? deoplete#mappings#close_popup() : "\<Esc>"
+
+" https://github.com/neovim/neovim/pull/4682#issuecomment-220763071
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#mappings#close_popup() . "\<CR>"
+endfunction
 
 " }}}
 " ============================================================================
