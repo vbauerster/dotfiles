@@ -74,15 +74,8 @@ let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wa
 let g:deoplete#enable_at_startup = 1
 " Use smartcase.
 let g:deoplete#enable_smart_case = 1
-
-function! s:my_esc_function() abort
-  if pumvisible()
-    return deoplete#mappings#close_popup()
-  else
-    return "\<Esc>"
-  endif
-endfunction
-imap <expr><Esc> <SID>my_esc_function()
+" close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
+imap <expr><Esc> pumvisible() ? deoplete#mappings#close_popup() : "\<Esc>"
 
 " }}}
 " ============================================================================
