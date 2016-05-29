@@ -268,19 +268,16 @@ let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 " 'junegunn/fzf.vim' {{{
 " ============================================================================
 
-" Mapping selecting mappings
-" nmap <leader><tab> <plug>(fzf-maps-n)
-" xmap <leader><tab> <plug>(fzf-maps-x)
-" imap <leader><tab> <plug>(fzf-maps-i)
+let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
 
 " Replace the default dictionary completion with fzf-based fuzzy completion
 " inoremap <expr> <c-x><c-k> fzf#complete('cat /usr/share/dict/words')
-imap <expr> <c-d><c-d> fzf#vim#complete#word({'left': '15%'})
-imap <c-d><c-f> <plug>(fzf-complete-file-ag)
+imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " Line completion (all open buffers)
-imap <c-d><c-l> <plug>(fzf-complete-line)
+imap <c-l> <plug>(fzf-complete-line)
+" imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
-nnoremap <silent> <Leader>a* :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>** :Ag <C-R><C-W><CR>
 
 nnoremap <Leader>hh :History<CR>
 nnoremap <Leader>ww :Windows<CR>
@@ -290,7 +287,7 @@ nnoremap <Leader>gf :GitFiles<CR>
 nnoremap <Leader>mm :Commits<CR>
 nnoremap <Leader>mk :Marks<CR>
 " normal mode mappings
-nnoremap <Leader>mn :Maps<CR>
+nnoremap <Leader>mp :Maps<CR>
 
 " }}}
 " ============================================================================
