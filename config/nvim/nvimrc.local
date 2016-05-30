@@ -272,6 +272,7 @@ let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_mod
 
 " Replace the default dictionary completion with fzf-based fuzzy completion
 " inoremap <expr> <c-x><c-k> fzf#complete('cat /usr/share/dict/words')
+" sacrifice CTRL-d for something more usefull, read :help i_CTRL-d
 imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " Line completion (all open buffers)
 imap <c-l> <plug>(fzf-complete-line)
