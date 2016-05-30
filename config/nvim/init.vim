@@ -8,6 +8,47 @@ source ~/.config/nvim/nvimrc.plug
 
 " }}}
 " ============================================================================
+" Script local functions {{{
+" ============================================================================
+
+function! s:isBufferOpen(bufname)
+  redir =>buflist
+  silent! ls!
+  redir END
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      return 1
+    endif
+  endfor
+endfunction
+
+" http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
+function! s:toggleList(bufname, pfx)
+  if <sid>isBufferOpen(a:bufname)
+    exec(a:pfx.'close')
+    return
+  endif
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
+function! s:helptab()
+  if &buftype ==# "help"
+    wincmd T
+    nnoremap <buffer> q :q<CR>
+  endif
+endfunction
+
+" }}}
+" ============================================================================
 " BASIC SETTINGS {{{
 " ============================================================================
 
@@ -120,8 +161,8 @@ set noswapfile
 nnoremap <F1> :help <C-r><C-w><CR>
 
 " tab shortcuts
-nnoremap g{ gt
-nnoremap g} gT
+nnoremap g{ gT
+nnoremap g} gt
 nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>tc :tabclose<CR>
 
@@ -165,18 +206,28 @@ nnoremap <Leader>Q :qa!<CR>
 " Enter visual line mode
 nmap <Leader><leader> V
 
-nnoremap <tab> <C-W>w
-nnoremap <S-tab> <C-W>W
+" Read :help ctrl-w_w
+" Read :help wincmd
+nnoremap <Tab> <C-W>w
+nnoremap <S-Tab> <C-W>W
+" Go to previous (last accessed) window
+nnoremap <Leader><Tab> <C-W>p
 
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
 
-" nnoremap <Leader>lo :lopen<CR>
-nnoremap <Leader>co :copen<CR>
-" nnoremap <Leader>cl :close<CR> " same as <C-w> c
-nnoremap <Leader>cc :cclose<CR>
-" following is shortcut for <C-w> z
-nnoremap <Leader>cp :pclose<CR>
+" <C-w> c Close the current window
+" <C-w> z Close any "Preview" window currently open
+" <C-w> P Go to preview window
+
+" Toggle to open or close the quickfix window
+" http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
+" http://stackoverflow.com/questions/13208660/how-to-enable-mapping-only-if-there-is-no-quickfix-window-opened-in-vim
+nmap <silent> <leader>ll :call <sid>toggleList("Location List", 'l')<CR>
+nmap <silent> <leader>cc :call <sid>toggleList("Quickfix List", 'c')<CR>
+
+nmap <expr><C-n> &buftype !=# "quickfix" && <sid>isBufferOpen("Quickfix List") ? ":cnext<CR>" : "\<C-n>"
+nmap <expr><C-p> &buftype !=# "quickfix" && <sid>isBufferOpen("Quickfix List") ? ":cNext<CR>" : "\<C-p>"
 
 " Select blocks after indenting
 xnoremap < <gv
@@ -227,9 +278,11 @@ nnoremap <silent> g# g#zz
 " fold a html tag
 nnoremap <Leader>ft Vatzf
 
-" g<c-]> is jump to tag if there's only one matching tag, but show list of
+" Read :help g_ctrl-]
+" same as :tjump
+" jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
-" nnoremap <Leader>g g<c-]>
+nnoremap <c-]> g<c-]>
 
 " Switch to the directory of the open buffer
 nnoremap <silent><Leader>cd :cd %:p:h<CR>
@@ -379,13 +432,6 @@ endif
 " ============================================================================
 " AUTOCMD {{{
 " ============================================================================
-
-function! s:helptab()
-  if &buftype == 'help'
-    wincmd T
-    nnoremap <buffer> q :q<CR>
-  endif
-endfunction
 
 augroup vimrcEx
   autocmd!
