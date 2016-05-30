@@ -394,38 +394,28 @@ nnoremap <Leader>mt :!gtags -R --fields=+l --exclude=.git --exclude=node_modules
 
 " http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
 if has('clipboard')
-  if has('unnamedplus')  " When possible use + register for copy-paste
-    nnoremap <Leader>yp :let @+=expand('%')<CR>
-    nnoremap <Leader>ya :let @+=expand('%:p')<CR>
-    nnoremap <Leader>yf :let @+=expand('%:t')<CR>
-    nnoremap <Leader>yd :let @+=expand('%:p:h')<CR>
+  " When possible use + register for copy-paste
+  let sreg = has('unnamedplus') ? '+' : '*'
+  " On mac and Windows, use * register for copy-paste
+  " copy current file name (relative/absolute) to system clipboard
+  " relative path  (src/foo.txt)
+  nnoremap <expr><Leader>yp ":let @" . sreg . "=expand('%')<CR>"
+  " absolute path  (/something/src/foo.txt)
+  nnoremap <expr><Leader>ya ":let @" . sreg . "=expand('%:p')<CR>"
+  " filename       (foo.txt)
+  nnoremap <expr><Leader>yf ":let @" . sreg . "=expand('%:t')<CR>"
+  " directory name (/something/src)
+  nnoremap <expr><Leader>yd ":let @" . sreg . "=expand('%:p:h')<CR>"
 
-    noremap <Leader>y "+y
-    noremap <Leader>yy "+yy
-    noremap <Leader>Y "+y$
-    noremap <Leader>p "+p
-    noremap <Leader>P "+P
-  else
-    " On mac and Windows, use * register for copy-paste
-    " copy current file name (relative/absolute) to system clipboard
-    " relative path  (src/foo.txt)
-    nnoremap <Leader>yp :let @*=expand('%')<CR>
-    " absolute path  (/something/src/foo.txt)
-    nnoremap <Leader>ya :let @*=expand('%:p')<CR>
-    " filename       (foo.txt)
-    nnoremap <Leader>yf :let @*=expand('%:t')<CR>
-    " directory name (/something/src)
-    nnoremap <Leader>yd :let @*=expand('%:p:h')<CR>
+  " easy system clipboard copy/paste
+  noremap <expr><Leader>y   "\"" . sreg . "y"
+  noremap <expr><Leader>yy  "\"" . sreg . "yy"
+  noremap <expr><Leader>Y   "\"" . sreg . "y$"
+  noremap <expr><Leader>p   "\"" . sreg . "p"
+  noremap <expr><Leader>P   "\"" . sreg . "P"
 
-    " easy system clipboard copy/paste
-    noremap <Leader>y "*y
-    noremap <Leader>yy "*yy
-    noremap <Leader>Y "*y$
-    noremap <Leader>p "*p
-    noremap <Leader>P "*P
-    "use system clipboard as default
-    "set clipboard=unnamed
-  endif
+  "use system clipboard as default
+  "set clipboard=unnamed
 endif
 
 " }}}
