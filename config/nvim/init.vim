@@ -226,8 +226,8 @@ nnoremap Y y$
 nmap <silent> <leader>ll :call <sid>toggleList("Location List", 'l')<CR>
 nmap <silent> <leader>cc :call <sid>toggleList("Quickfix List", 'c')<CR>
 
-nmap <expr><C-n> &buftype !=# "quickfix" && <sid>isBufferOpen("Quickfix List") ? ":cnext<CR>" : "\<C-n>"
-nmap <expr><C-p> &buftype !=# "quickfix" && <sid>isBufferOpen("Quickfix List") ? ":cNext<CR>" : "\<C-p>"
+nmap <expr><C-n> empty(&buftype) && <sid>isBufferOpen("Quickfix List") ? ":cnext<CR>" : "\<C-n>"
+nmap <expr><C-p> empty(&buftype) && <sid>isBufferOpen("Quickfix List") ? ":cNext<CR>" : "\<C-p>"
 
 " Select blocks after indenting
 xnoremap < <gv
