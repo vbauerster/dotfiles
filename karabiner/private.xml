@@ -2,7 +2,7 @@
 <root>
 	<inputsourcedef>
 		<name>PROGRAMMER_DVORAK</name>
-		<inputsourceid_prefix>com.apple.keyboardlayout.ProgrammerDvorak</inputsourceid_prefix>
+		<inputsourceid_prefix>org.sil.ukelele.keyboardlayout.dvorak.deepdvorak</inputsourceid_prefix>
 	</inputsourcedef>
 
 	<item>
