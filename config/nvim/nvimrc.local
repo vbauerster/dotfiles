@@ -4,6 +4,7 @@
 " ============================================================================
 
 let g:neomake_javascript_enabled_makers = ['eslint']
+" let g:neomake_go_enabled_makers = ['golint']
 " run neomake on the current file on every write
 " autocmd! BufWritePost * Neomake
 
@@ -76,6 +77,9 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 " https://github.com/Shougo/deoplete.nvim/issues/267
 " let g:deoplete#enable_refresh_always = 1
+
+" let g:deoplete#omni_patterns = {}
+" let g:deoplete#omni_patterns.go = '[^.[:digit:] *\t]\.\w*'
 
 " close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
 imap <expr><Esc> pumvisible() && neosnippet#expandable_or_jumpable() ? deoplete#mappings#close_popup() : "\<Esc>"
@@ -158,6 +162,34 @@ let g:tern_map_keys=1
 " ============================================================================
 
 nmap <F8> :TagbarToggle<CR>
+
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " }}}
 " ============================================================================
