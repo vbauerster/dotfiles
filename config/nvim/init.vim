@@ -76,6 +76,7 @@ tmap <C-j> hh<C-j>
 tmap <C-h> hh<C-h>
 tmap <C-l> hh<C-l>
 tmap <C-\> hh<C-\>
+tmap <S-Tab> hh<C-w>p
 " tt is mapped to :TernType
 nnoremap <Leader>tv <C-w>v:te<CR>
 nnoremap <Leader>te <C-w>s<C-w>J6<C-w>-:te<CR>
@@ -208,10 +209,10 @@ nmap <Leader><leader> V
 
 " Read :help ctrl-w_w
 " Read :help wincmd
-nnoremap <Tab> <C-W>w
-nnoremap <S-Tab> <C-W>W
+nnoremap <Tab> <C-w>w
+nnoremap <S-Tab> <C-w>p
 " Go to previous (last accessed) window
-nnoremap <Leader><Tab> <C-W>p
+" nnoremap <Leader><Tab> <C-w>p
 
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
