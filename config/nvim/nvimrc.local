@@ -81,6 +81,9 @@ let g:deoplete#enable_smart_case = 1
 " let g:deoplete#omni_patterns = {}
 " let g:deoplete#omni_patterns.go = '[^.[:digit:] *\t]\.\w*'
 
+imap     <Nul> <C-Space>
+inoremap <expr><C-Space> deoplete#mappings#manual_complete()
+
 " close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
 imap <expr><Esc> pumvisible() && neosnippet#expandable_or_jumpable() ? deoplete#mappings#close_popup() : "\<Esc>"
 
@@ -100,9 +103,9 @@ function! s:tabComplete(type) abort
   if neosnippet#expandable() && !neosnippet#jumpable()
     return "\<Plug>(neosnippet_expand)"
   elseif neosnippet#jumpable() && !pumvisible()
-    return "\<plug>(neosnippet_jump)"
+    return "\<Plug>(neosnippet_jump)"
   elseif a:type=='emmetable' && match(getline('.'), '[<(].*[>)]')<0 && emmet#isExpandable()
-    return "\<plug>(emmet-expand-abbr)"
+    return "\<Plug>(emmet-expand-abbr)"
   elseif pumvisible()
     return "\<C-n>"
   else
@@ -114,7 +117,7 @@ endfunction
 let g:neosnippet#snippets_directory='~/.vim/snippets'
 let g:neosnippet#enable_snipmate_compatibility=1
 
-" Plugin key-mappings.
+" Plugin key-mappings
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
