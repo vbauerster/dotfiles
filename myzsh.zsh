@@ -1,5 +1,5 @@
 export DOTFILES=$HOME/dotfiles
-export GOPATH=$HOME/goprojects
+export GOPATH=$HOME/gocode
 
 if [[ ! "$PATH" == *$DOTFILES/bin* ]]; then
   export PATH=$DOTFILES/bin:$PATH
