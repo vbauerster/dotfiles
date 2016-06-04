@@ -47,7 +47,7 @@ Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-commentary'
-"http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plug 'godlygeek/tabular'
 
 " AutoComplete
@@ -71,7 +71,8 @@ Plug 'Shougo/neosnippet-snippets'
 " Emmet
 Plug 'mattn/emmet-vim'
 
-" Plug 'myhere/vim-nodejs-complete'
+" Golang
+Plug 'dgryski/vim-godef'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
