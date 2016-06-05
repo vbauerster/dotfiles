@@ -100,7 +100,9 @@ set scrolloff=3                      " lines of text around cursor
 set foldlevelstart=99                " all folds open by default
 set cmdheight=1                      " command bar height
 set noerrorbells
+set complete=.,w,t
 set completeopt=menu,longest
+" set completeopt=menu,noselect,noinsert
 
 " SPACES & TABS
 " Explanations from http://tedlogan.com/techblog3.html
@@ -296,10 +298,11 @@ nnoremap <Leader>rr :e!<CR>
 
 " switch between buffers
 " provided by unimpaired [b
-noremap <silent><Leader>bp :bprev<CR>
+nnoremap <Leader>bp :bprev<CR>
 " provided by unimpaired ]b
-noremap <silent><Leader>bn :bnext<CR>
-noremap <silent><Leader>. <C-^><CR>
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <silent><Leader>. <C-^><CR>
+nnoremap <Leader>bk :bd<CR>
 
 " zoom a vim pane, <C-w>= to re-balance
 " nnoremap <Leader>z :wincmd _<CR>:wincmd \|<CR>
