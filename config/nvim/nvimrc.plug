@@ -12,7 +12,8 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " ctags tagbar
 Plug 'majutsushi/tagbar'
 " matchit.zip : extended % matching for HTML, LaTeX, and many other languages
-Plug 'vim-scripts/matchit.zip'
+" Nvim already loads the matchit plugin by default; see ':help pi_matchit.txt'
+" Plug 'vim-scripts/matchit.zip'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
