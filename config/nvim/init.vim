@@ -65,22 +65,6 @@ endif
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-" https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
-" After applying above fix, below line is no longer necessary
-" nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
-
-" <C-\><C-n> key combo, exit back to normal mode.
-tnoremap hh <C-\><C-n>
-tmap <C-k> hh<C-k>
-tmap <C-j> hh<C-j>
-tmap <C-h> hh<C-h>
-tmap <C-l> hh<C-l>
-tmap <C-\> hh<C-\>
-tmap <S-Tab> hh<C-w>p
-" tt is mapped to :TernType
-nnoremap <Leader>tv <C-w>v:te<CR>
-nnoremap <Leader>te <C-w>s<C-w>J6<C-w>-:te<CR>
-
 " Excluding version control directories
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 " OS X
@@ -348,6 +332,26 @@ noremap "" "0
 
 " quick access to cmd mode
 noremap ; :
+
+" https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
+" After applying above fix, below line is no longer necessary
+" nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
+
+" Start terminal
+nnoremap <Leader>tv <C-w>v:te<CR>
+nnoremap <Leader>te <C-w>s<C-w>J6<C-w>-:te<CR>
+
+" -----------------------------------------------------------
+" => Terminal mode mappings
+" -----------------------------------------------------------
+" <C-\><C-n> key combo, exit back to normal mode.
+tnoremap hh <C-\><C-n>
+tmap <C-k> hh<C-k>
+tmap <C-j> hh<C-j>
+tmap <C-h> hh<C-h>
+tmap <C-l> hh<C-l>
+tmap <C-\> hh<C-\>
+tmap <S-Tab> hh<C-w>p
 
 " -----------------------------------------------------------
 " => Command mode mappings
