@@ -213,8 +213,8 @@ nnoremap Y y$
 nmap <silent> <leader>ll :call <sid>toggleList("Location List", 'l')<CR>
 nmap <silent> <leader>cc :call <sid>toggleList("Quickfix List", 'c')<CR>
 
-nmap <expr><C-n> empty(&buftype) && <sid>isBufferOpen("Quickfix List") ? ":cnext<CR>" : "\<C-n>"
-nmap <expr><C-p> empty(&buftype) && <sid>isBufferOpen("Quickfix List") ? ":cNext<CR>" : "\<C-p>"
+nnoremap <expr><C-n> empty(&buftype) && <sid>isBufferOpen("Quickfix List") ? ":cnext<CR>" : "\<C-n>"
+nnoremap <expr><C-p> empty(&buftype) && <sid>isBufferOpen("Quickfix List") ? ":cNext<CR>" : "\<C-p>"
 
 " Select blocks after indenting
 xnoremap < <gv
@@ -304,10 +304,9 @@ nmap <Leader>l <C-W>l500<C-W>>zz
 nnoremap <Leader>v <C-w>v
 
 " resize panes
+" For horizontal resize use CTRL-W_- and CTRL-W_+
 nnoremap <silent> <Right> :vertical resize +5<CR>
 nnoremap <silent> <Left> :vertical resize -5<CR>
-" nnoremap <silent> <Up> :resize +5<CR>
-" nnoremap <silent> <Down> :resize -5<CR>
 
 " toggle relativenumber: cor by unimpaired
 " http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
@@ -340,6 +339,9 @@ noremap ; :
 " Start terminal
 nnoremap <Leader>tv <C-w>v:te<CR>
 nnoremap <Leader>te <C-w>s<C-w>J6<C-w>-:te<CR>
+" resize terminal horizontally
+nnoremap <expr><Up> &buftype ==# "terminal" ? "\<C-w>+<CR>" : "\<Up>"
+nnoremap <expr><Down> &buftype ==# "terminal" ? "\<C-w>-<CR>" : "\<Down>"
 
 " -----------------------------------------------------------
 " => Terminal mode mappings
