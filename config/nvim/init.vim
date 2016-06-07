@@ -338,7 +338,7 @@ noremap ; :
 
 " Start terminal
 nnoremap <Leader>tv <C-w>v:te<CR>
-nnoremap <Leader>te <C-w>s<C-w>J6<C-w>-:te<CR>
+nnoremap <Leader>te <C-w>s<C-w>J8<C-w>-:te<CR>
 " resize terminal horizontally
 nnoremap <expr><Up> &buftype ==# "terminal" ? "\<C-w>+<CR>" : "\<Up>"
 nnoremap <expr><Down> &buftype ==# "terminal" ? "\<C-w>-<CR>" : "\<Down>"
