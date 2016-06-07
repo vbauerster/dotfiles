@@ -378,7 +378,9 @@ inoremap AA <Esc>A
 inoremap CC <C-\><C-O>D
 inoremap SS <Esc>cc
 inoremap UU <C-O>u
-noremap! hh <Esc>
+inoremap hh <Esc>
+
+inoremap <C-Space> <C-x><C-l>
 
 " -----------------------------------------------------------
 " => External cmd mappings

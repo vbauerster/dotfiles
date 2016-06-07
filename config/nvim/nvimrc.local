@@ -81,8 +81,8 @@ let g:deoplete#enable_smart_case = 1
 " let g:deoplete#omni_patterns = {}
 " let g:deoplete#omni_patterns.go = '[^.[:digit:] *\t]\.\w*'
 
-imap     <Nul> <C-Space>
-inoremap <expr><C-Space> deoplete#mappings#manual_complete()
+" imap     <Nul> <C-Space>
+" inoremap <expr><C-Space> deoplete#mappings#manual_complete()
 
 " close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
 imap <expr><Esc> pumvisible() && neosnippet#expandable_or_jumpable() ? deoplete#mappings#close_popup() : "\<Esc>"
@@ -310,7 +310,7 @@ let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_mod
 " sacrifice CTRL-d for something more usefull, read :help i_CTRL-d
 imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " Line completion (all open buffers)
-imap <c-l> <plug>(fzf-complete-line)
+" imap <c-l> <plug>(fzf-complete-line)
 " imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
 nnoremap <silent> <Leader>** :Ag <C-R><C-W><CR>
