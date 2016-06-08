@@ -346,6 +346,7 @@ nnoremap <expr><Down> &buftype ==# "terminal" ? "\<C-w>-<CR>" : "\<Down>"
 " -----------------------------------------------------------
 " => Terminal mode mappings
 " -----------------------------------------------------------
+" Read :help nvim-terminal-emulator
 " <C-\><C-n> key combo, exit back to normal mode.
 tnoremap hh <C-\><C-n>
 tmap <C-k> hh<C-k>
