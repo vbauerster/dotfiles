@@ -73,7 +73,8 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'mattn/emmet-vim'
 
 " Golang
-Plug 'dgryski/vim-godef'
+" Plug 'dgryski/vim-godef'
+Plug 'fatih/vim-go'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
