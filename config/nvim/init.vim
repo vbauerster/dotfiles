@@ -316,10 +316,10 @@ nnoremap <silent> <Left> :vertical resize -5<CR>
 nnoremap <Leader>di :di<CR>
 
 " http://habrahabr.ru/post/183222/
-" spell check on
-nnoremap <Leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
+" spell toggle
+nnoremap <Leader>sp :setlocal spell! spelllang=ru_yo,en_us<ENTER>
 " spell check off
-nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
+" nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
 " toggle search highlighting: coh by unimpaired
 " nnoremap <silent><Leader>/ :set invhlsearch<CR>
