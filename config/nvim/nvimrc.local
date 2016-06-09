@@ -361,9 +361,11 @@ nnoremap <silent> <leader>or :call <SID>openPluginRepo()<CR>
 
 " }}}
 " ============================================================================
-" 'dgryski/vim-godef' {{{
+" 'fatih/vim-go' {{{
 " ============================================================================
 
-let g:godef_same_file_in_same_window=1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+" let g:go_fmt_command = "goimports"
 
 " }}}
