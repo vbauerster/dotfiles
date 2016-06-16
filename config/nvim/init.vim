@@ -381,6 +381,7 @@ inoremap SS <Esc>cc
 inoremap UU <C-O>u
 inoremap hh <Esc>
 
+imap     <Nul> <C-Space>
 inoremap <C-Space> <C-x><C-l>
 
 " -----------------------------------------------------------
