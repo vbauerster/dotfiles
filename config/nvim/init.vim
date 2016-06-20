@@ -128,7 +128,7 @@ set diffopt+=vertical
 
 " Whitespaces
 set list " col to toggle
-set listchars=tab:»⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
+set listchars=tab:›⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 " set showbreak=↪
 
 " backup/persistance settings
