@@ -21,19 +21,19 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 " 'bling/vim-airline' {{{
 " ============================================================================
 
-" Set configuration options for the statusline plugin vim-airline.
-" Use the powerline theme and optionally enable powerline symbols.
-" To use the symbols , , , , , , and .in the statusline
-" segments add the following to your .vimrc.before.local file:
-let g:airline_powerline_fonts=1
-" If the previous symbols do not render for you then install a
-" powerline enabled font.
+" For powerline enabled font.
+let g:airline_powerline_fonts = 1
 
+" Smarter tab line
+let g:airline#extensions#tabline#enabled = 1
+
+let g:airline_inactive_collapse = 1
+
+" Themes are automatically selected based on the matching colorscheme.
+" this can be overridden by defining a value:
+"     let g:airline_theme='dark'
 " See `:echo g:airline_theme_map` for some more choices
-" Default in terminal vim is 'dark'
-if !exists('g:airline_theme')
-  let g:airline_theme = 'gruvbox'
-endif
+
 if !exists('g:airline_powerline_fonts')
   " Use the default set of separators with a few customizations
   let g:airline_left_sep='›'  " Slightly fancier than '>'
@@ -221,7 +221,7 @@ nnoremap <silent> <leader>gV :GV!<CR>
 " 'justinmk/vim-sneak' {{{
 " ============================================================================
 
-let g:sneak#prompt = '❯'
+let g:sneak#prompt = 'sneak›'
 " To enable 'passive' or 'smart' streak-mode
 let g:sneak#streak = 1
 " Enable the 'clever-s' feature
