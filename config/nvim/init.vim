@@ -86,6 +86,7 @@ set cmdheight=1                      " command bar height
 set noerrorbells
 set complete=.,w,t
 set completeopt=menu,longest
+" noinsert adds auto select feature to deoplete
 " set completeopt=menu,noselect,noinsert
 
 " SPACES & TABS
@@ -196,7 +197,7 @@ nmap <Leader><leader> V
 " Read :help ctrl-w_w
 " Read :help wincmd
 nnoremap <Tab> <C-w>w
-nnoremap <S-Tab> <C-w>p
+nnoremap <S-Tab> <C-w>W
 " Go to previous (last accessed) window
 " nnoremap <Leader><Tab> <C-w>p
 
