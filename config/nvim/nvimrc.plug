@@ -5,6 +5,7 @@ Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
@@ -29,6 +30,7 @@ Plug 'justinmk/vim-sneak'
 
 " UI look and feel
 Plug 'vim-airline/vim-airline-themes' | Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
 " Plug 'itchyny/lightline.vim'
 " Plug 'edkolev/tmuxline.vim'
 
