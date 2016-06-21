@@ -40,6 +40,18 @@ function! s:toggleList(bufname, pfx)
   endif
 endfunction
 
+function! s:scrolList(dir)
+  if empty(&buftype)
+    if <sid>isBufferOpen("Quickfix List")
+      return (a:dir ==# "cn" ? ":cnext" : ":cNext")."\<CR>"
+    endif
+    if <sid>isBufferOpen("Location List")
+      return (a:dir ==# "cn" ? ":lnext" : ":lNext")."\<CR>"
+    endif
+  endif
+  return a:dir == "cn" ? "\<C-n>" : "\<C-p>"
+endfunction
+
 function! s:helptab()
   if &buftype ==# "help"
     wincmd T
@@ -214,8 +226,8 @@ nnoremap Y y$
 nmap <silent> <leader>ll :call <sid>toggleList("Location List", 'l')<CR>
 nmap <silent> <leader>cc :call <sid>toggleList("Quickfix List", 'c')<CR>
 
-nnoremap <expr><C-n> empty(&buftype) && <sid>isBufferOpen("Quickfix List") ? ":cnext<CR>" : "\<C-n>"
-nnoremap <expr><C-p> empty(&buftype) && <sid>isBufferOpen("Quickfix List") ? ":cNext<CR>" : "\<C-p>"
+nnoremap <expr><C-n> <sid>scrolList("cn")
+nnoremap <expr><C-p> <sid>scrolList("cp")
 
 " Select blocks after indenting
 xnoremap < <gv
