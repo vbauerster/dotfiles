@@ -20,12 +20,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Tmux
-" Plug 'tpope/vim-tbone'
 Plug 'christoomey/vim-tmux-navigator'
+" Plug 'tpope/vim-tbone'
 
 " Motions
-" Plug 'Lokaltog/vim-easymotion'
-" Plug 'rhysd/clever-f.vim'
 Plug 'justinmk/vim-sneak'
 
 " UI look and feel
@@ -38,14 +36,13 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature'
 
 " Grep like search
-" Plug 'rking/ag.vim'
 Plug 'mhinz/vim-grepper'
+" Plug 'rking/ag.vim'
 
 " Make gists easily from Vim
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " General Programming
-" Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
@@ -80,7 +77,7 @@ Plug 'fatih/vim-go'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
-" Plug 'Shougo/neopairs.vim'  "It inserts the parentheses pairs automatically
+" Plug 'Shougo/neopairs.vim'
 " Plug 'Raimondi/delimitMate'
 " Plug 'idbrii/vim-endoscope' "A single keystroke to end your scope with <C-s>
 " Plug 'Townk/vim-autoclose'
@@ -92,13 +89,6 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'valloric/MatchTagAlways'
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 
-" required by xolox/vim-easytags
-"Plug 'xolox/vim-misc'
-
-" Easy Exuberant Ctags
-" Plug 'xolox/vim-easytags'
-" Plug 'vim-scripts/ctags.vim'
-
 " Extended session management for Vim
 Plug 'vim-scripts/sessionman.vim'
 " Plug 'xolox/vim-session'
@@ -106,7 +96,6 @@ Plug 'vim-scripts/sessionman.vim'
 
 " colorschemes
 Plug 'morhetz/gruvbox'
-" Plug 'mhartington/oceanic-next'
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'kristijanhusak/vim-hybrid-material'
 " Plug 'marcopaganini/termschool-vim-theme'
