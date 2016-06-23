@@ -194,14 +194,14 @@ nnoremap <Leader>ewu :e scp://root@192.168.2.1//jffs/runblock/runblock.dnsmasq<C
 " Save
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
-" nnoremap <Leader>u :update<CR>
 
 " w!! to sudo write
 cmap w!! w !sudo tee % >/dev/null<CR>
 
 " Quit
 nnoremap <Leader>q :q<CR>
-nnoremap <Leader>Q :qa!<CR>
+nnoremap <Leader>! :q!<CR>
+nnoremap <Leader>x :close<CR>
 
 " Enter visual line mode
 nmap <Leader><leader> V
