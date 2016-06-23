@@ -380,4 +380,10 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 " let g:go_fmt_command = "goimports"
 
+augroup goLang
+  autocmd!
+  " complement to K
+  autocmd FileType go nnoremap <F1> :GoDoc<cr>
+augroup END
+
 " }}}
