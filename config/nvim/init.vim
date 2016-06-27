@@ -49,7 +49,7 @@ function! s:scrolList(dir)
       return (a:dir ==# "cn" ? ":lnext" : ":lNext")."\<CR>"
     endif
   endif
-  return a:dir == "cn" ? "\<C-n>" : "\<C-p>"
+  return a:dir ==# "cn" ? "\<C-n>" : "\<C-p>"
 endfunction
 
 function! s:diffToggle()
