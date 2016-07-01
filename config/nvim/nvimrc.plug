@@ -9,7 +9,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-" Plug 'qpkorr/vim-bufkill'
+Plug 'tommcdo/vim-exchange' " cx to exchange
 " ctags tagbar
 Plug 'majutsushi/tagbar'
 " matchit.zip : extended % matching for HTML, LaTeX, and many other languages
