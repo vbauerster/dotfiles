@@ -4,7 +4,7 @@
 " ============================================================================
 
 let g:neomake_verbose = 0
-let g:neomake_open_list = 2
+" let g:neomake_open_list = 2
 let g:neomake_javascript_enabled_makers = ['eslint']
 " let g:neomake_go_enabled_makers = ['golint']
 
@@ -383,7 +383,8 @@ let g:go_highlight_methods = 1
 augroup goLang
   autocmd!
   " complement to K
-  autocmd FileType go nnoremap <F1> :GoDoc<cr>
+  autocmd FileType go nnoremap <buffer><F1> :GoDoc<cr>
+  " autocmd FileType go setlocal tabstop=4
 augroup END
 
 " }}}
