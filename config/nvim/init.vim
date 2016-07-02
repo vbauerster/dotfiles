@@ -82,7 +82,9 @@ if $BACKGROUND == 'dark'
   let g:gruvbox_contrast_dark='soft'
 endif
 
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" https://github.com/neovim/neovim/pull/4690
+" set termguicolors
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " Excluding version control directories
