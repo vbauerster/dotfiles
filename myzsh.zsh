@@ -84,7 +84,7 @@ function dark() {
 #function r() { grep -rn "$1" ${@:2} . }
 
 # print available colors and their numbers
-function colours() {
+function colors() {
     for i in {0..255}; do
         printf "\x1b[38;5;${i}m colour${i}"
         if (( $i % 5 == 0 )); then
