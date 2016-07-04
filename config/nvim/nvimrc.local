@@ -203,7 +203,7 @@ nnoremap <silent> <leader>gg :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>gl :Glog<CR>
+" nnoremap <silent> <leader>gl :Glog<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 " Git add %
 nnoremap <silent> <leader>gw :Gwrite<CR>
@@ -219,14 +219,6 @@ augroup fug_buf_hide
   autocmd!
   autocmd BufReadPost fugitive://* set bufhidden=delete
 augroup END
-
-" }}}
-" ============================================================================
-" 'junegunn/gv.vim' {{{
-" ============================================================================
-
-nnoremap <silent> <leader>gv :GV<CR>
-nnoremap <silent> <leader>gV :GV!<CR>
 
 " }}}
 " ============================================================================
@@ -281,6 +273,18 @@ let g:dash_map = {
 let g:XkbSwitchEnabled = 1
 let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
 let g:XkbSwitchSkipFt = [ 'nerdtree' ]
+
+" }}}
+" ============================================================================
+" 'junegunn/gv.vim' {{{
+" ============================================================================
+
+" commits explorer
+nnoremap <silent> <leader>ge :GV<CR>
+" only list commits that affected the current file
+nnoremap <silent> <leader>gh :GV!<CR>
+" revisions of the current file
+nnoremap <silent> <leader>grr :GV?<CR>
 
 " }}}
 " ============================================================================
