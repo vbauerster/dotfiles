@@ -76,16 +76,17 @@ let mapleader = ' '
 let maplocalleader = ' '
 
 execute "set background=".$BACKGROUND
-colorscheme gruvbox
-
 if $BACKGROUND == 'dark'
   let g:gruvbox_contrast_dark='soft'
 endif
+colorscheme gruvbox
 
 " https://github.com/neovim/neovim/pull/4690
-" set termguicolors
+set termguicolors
 " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+source ~/.config/nvim/termcolors.vim
 
 " Excluding version control directories
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
@@ -107,7 +108,7 @@ set foldlevelstart=99                " all folds open by default
 set cmdheight=1                      " command bar height
 set noerrorbells
 set complete=.,w,t
-set completeopt=menu,longest
+set completeopt=menu,noselect,longest
 " noinsert adds auto select feature to deoplete
 " set completeopt=menu,noselect,noinsert
 
@@ -321,8 +322,8 @@ nmap <Leader>j <C-W>j<C-W>_
 nmap <Leader>k <C-W>k<C-W>_
 
 set winminwidth=0
-nmap <Leader>h <C-W>h500<C-W>>zz
-nmap <Leader>l <C-W>l500<C-W>>zz
+nmap <Leader>l <C-W>h500<C-W>>
+nmap <Leader>h <C-W>l500<C-W>>
 
 nnoremap <Leader>v <C-w>v
 
