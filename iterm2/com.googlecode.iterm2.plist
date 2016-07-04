@@ -1875,7 +1875,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>501 238 755 238 0 0 1440 877 </string>
+	<string>582 227 755 185 0 0 1440 877 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>80 421 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
@@ -2466,7 +2466,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>PragmataProForPowerline 13</string>
+			<string>IosevkaNerdFontCompleteMono---Medium 14</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -2633,6 +2633,8 @@
 			<true/>
 			<key>Use Italic Font</key>
 			<true/>
+			<key>Use Non-ASCII Font</key>
+			<false/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -7705,7 +7707,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-06-20T18:01:34Z</date>
+	<date>2016-06-22T09:06:39Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -7762,6 +7764,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.20160607-nightly</string>
+	<string>3.0.20160620-nightly</string>
 </dict>
 </plist>
