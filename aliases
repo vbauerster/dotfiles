@@ -5,6 +5,7 @@ alias reload!='source ~/.zshrc'
 alias ln='ln -v'
 alias rmf="rm -rf"
 alias q='exit'
+alias cdp='cdls'
 
 # File size
 alias fs="stat -f \"%z bytes\""
