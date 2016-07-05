@@ -212,7 +212,7 @@ cmap w!! w !sudo tee % >/dev/null<CR>
 " Quit
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>! :q!<CR>
-nnoremap <Leader>x :close<CR>
+nnoremap <silent> <Leader>x :close<CR>
 
 " Enter visual line mode
 nmap <Leader><leader> V
