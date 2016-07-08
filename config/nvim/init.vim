@@ -203,6 +203,16 @@ nnoremap <Leader>ewu :e scp://root@192.168.2.1//jffs/runblock/runblock.dnsmasq<C
 " -----------------------------------------------------------
 " => General mappings/shortcuts for functionality
 " -----------------------------------------------------------
+" quick access to cmd mode
+noremap ; :
+
+" Swap implementations of ` and ' jump to markers
+nnoremap ' `
+nnoremap ` '
+
+" quickly access yank reg
+noremap "" "0
+
 " Save
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
@@ -268,10 +278,6 @@ vmap <Leader>s :sort<CR>
 " vnoremap <silent> y y`]
 " vnoremap <silent> p p`]
 " nnoremap <silent> p p`]
-
-" Swap implementations of ` and ' jump to markers
-nnoremap <silent> ' `
-nnoremap <silent> ` '
 
 " moving up and down work as you would expect
 nnoremap <silent> j gj
@@ -356,12 +362,6 @@ nnoremap <Leader>sp :setlocal spell! spelllang=ru_yo,en_us<CR>
 nnoremap <Leader>hi :Highlight<CR>
 nnoremap <silent><C-c> :call clearmatches()<CR>:noh<CR>
 
-" experimental: quickly access yank reg
-noremap "" "0
-
-" quick access to cmd mode
-noremap ; :
-
 " https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
 " After applying above fix, below line is no longer necessary
 " nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
@@ -407,9 +407,10 @@ inoremap II <Esc>I
 inoremap AA <Esc>A
 " <C-\> does not eat last char of the line
 inoremap CC <C-\><C-O>D
-inoremap SS <Esc>cc
-inoremap UU <C-O>u
 inoremap hh <Esc>
+
+" upper case
+inoremap UU <Esc>gUiw`]a
 
 imap     <Nul> <C-Space>
 inoremap <C-Space> <C-x><C-l>
