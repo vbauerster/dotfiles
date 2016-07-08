@@ -31,15 +31,16 @@ HISTSIZE=2048              # stores the maximum number of events to save in the 
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
 # http://zsh.sourceforge.net/Guide/zshguide04.html
 # http://www.geekmind.net/2011/01/shortcuts-to-improve-your-bash-zsh.html
-bindkey "^A" beginning-of-line
-bindkey "^E" end-of-line
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
 # ctrl + enter = accept-and-hold
-bindkey "^[[13;5u" accept-and-hold
+bindkey '^[[13;5u' accept-and-hold
 # in vi mode use j/k for history-substring search
-bindkey "^P" history-substring-search-up
-bindkey "^N" history-substring-search-down
-bindkey "^[OA" up-line-or-history
-bindkey "^[OB" down-line-or-history
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
+bindkey '^[OA' up-line-or-history
+bindkey '^[OB' down-line-or-history
+bindkey '^ ' autosuggest-accept
 
 # ^U vi-kill-line
 # ^W vi-backward-kill-word
