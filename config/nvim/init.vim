@@ -266,7 +266,6 @@ nnoremap > >>_
 nnoremap < <<_
 
 " reselect last paste
-" nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 nnoremap gp `[v`]
 
 " Search in normal mode with very magic on
