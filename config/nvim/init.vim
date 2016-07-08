@@ -166,21 +166,6 @@ set noswapfile
 " ============================================================================
 " MAPPINGS {{{
 " ============================================================================
-
-nmap <Enter> %
-
-" F1 will search help for the word under the cursor
-nnoremap <F1> :help <C-r><C-w><CR>
-
-" tab shortcuts
-nnoremap g{ gT
-nnoremap g} gt
-nnoremap <Leader>tn :tabnew<CR>
-nnoremap <Leader>tc :tabclose<CR>
-
-" ----------------------------------------------------------
-" => Quick edit Mappings
-" ----------------------------------------------------------
 " open vimrc
 nnoremap <Leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 " edit vim plugins
@@ -200,9 +185,6 @@ nnoremap <Leader>ewu :e scp://root@192.168.2.1//jffs/runblock/runblock.dnsmasq<C
 " use :NeoSnippetEdit -runtime
 " nnoremap <Leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
 
-" -----------------------------------------------------------
-" => General mappings/shortcuts for functionality
-" -----------------------------------------------------------
 " In normal mode, we use : much more often than ; so lets swap them.
 " WARNING: this will cause any "ordinary" map command without the "nore" prefix
 " that uses ":" to fail. For instance, "map <f2> :w" would fail, since vim will
@@ -217,6 +199,16 @@ nnoremap ` '
 " quickly access yank reg
 noremap "" "0
 
+nmap <Enter> %
+
+" F1 will search help for the word under the cursor
+nnoremap <F1> :help <C-r><C-w><CR>
+
+" tab shortcuts
+nnoremap g{ gT
+nnoremap g} gt
+nnoremap <Leader>tn :tabnew<CR>
+nnoremap <Leader>tc :tabclose<CR>
 " Save
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
@@ -288,8 +280,8 @@ nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
-nnoremap <silent> + 5j
-nnoremap <silent> - 5k
+nnoremap <silent> + 5gj
+nnoremap <silent> - 5gk
 
 " auto center
 nnoremap <silent> n nzz
