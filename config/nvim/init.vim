@@ -83,7 +83,6 @@ colorscheme gruvbox
 
 " https://github.com/neovim/neovim/pull/4690
 set termguicolors
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 source ~/.config/nvim/termcolors.vim
@@ -103,7 +102,7 @@ set wildmode=list:longest            " TAB auto-completion for file paths
 set hidden                           " current buffer can be put into background
 set showcmd                          " show incomplete commands
 set noshowmode                       " don't show which mode disabled for PowerLine
-set scrolloff=3                      " lines of text around cursor
+set scrolloff=2                      " lines of text around cursor
 set foldlevelstart=99                " all folds open by default
 set cmdheight=1                      " command bar height
 set noerrorbells
@@ -167,6 +166,8 @@ set noswapfile
 " ============================================================================
 " MAPPINGS {{{
 " ============================================================================
+
+nmap <Enter> %
 
 " F1 will search help for the word under the cursor
 nnoremap <F1> :help <C-r><C-w><CR>
@@ -343,7 +344,7 @@ nnoremap <silent> <Leader>dd :call <sid>diffToggle()<CR>
 
 " http://habrahabr.ru/post/183222/
 " spell toggle
-nnoremap <Leader>sp :setlocal spell! spelllang=ru_yo,en_us<ENTER>
+nnoremap <Leader>sp :setlocal spell! spelllang=ru_yo,en_us<CR>
 " spell check off
 " nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
