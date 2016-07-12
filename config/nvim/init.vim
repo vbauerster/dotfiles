@@ -280,8 +280,8 @@ nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
-nnoremap <silent> + 5gj
-nnoremap <silent> - 5gk
+nnoremap <silent> gj 5gj
+nnoremap <silent> gk 5gk
 
 " auto center
 nnoremap <silent> n nzz
