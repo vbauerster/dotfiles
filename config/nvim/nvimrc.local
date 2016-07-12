@@ -293,6 +293,9 @@ nnoremap <silent> <leader>grr :GV?<CR>
 
 let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
 
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
 " Replace the default dictionary completion with fzf-based fuzzy completion
 " inoremap <expr> <c-x><c-k> fzf#complete('cat /usr/share/dict/words')
 " sacrifice CTRL-d for something more usefull, read :help i_CTRL-d
