@@ -205,8 +205,8 @@ nmap <Enter> %
 nnoremap <F1> :help <C-r><C-w><CR>
 
 " tab shortcuts
-nnoremap g{ gT
-nnoremap g} gt
+nnoremap - gT
+nnoremap + gt
 nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>tc :tabclose<CR>
 " Save
@@ -310,12 +310,10 @@ nnoremap <silent><Leader>w<Leader> :<C-u>silent! keeppatterns %substitute/\s\+$/
 nnoremap <Leader>rr :e!<CR>
 
 " switch between buffers
-" provided by unimpaired [b
-nnoremap <Leader>bp :bprev<CR>
-" provided by unimpaired ]b
-nnoremap <Leader>bn :bnext<CR>
+" bprev provided by unimpaired [b
+" bnext provided by unimpaired ]b
 nnoremap <silent><Leader>. <C-^><CR>
-nnoremap <Leader>bk :bd<CR>
+nnoremap <Leader>bx :bd<CR>
 
 " zoom a vim pane, <C-w>= to re-balance
 " nnoremap <Leader>z :wincmd _<CR>:wincmd \|<CR>
