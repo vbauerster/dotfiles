@@ -321,7 +321,7 @@ nnoremap <Leader>mp :Maps<CR>
 " 'mhinz/vim-grepper' {{{
 " ============================================================================
 
-nnoremap <leader>gi :Grepper -tool git -noswitch<cr>
+" nnoremap <leader>gi :Grepper -tool git -noswitch<cr>
 nnoremap <leader>ag :Grepper -tool ag  -grepprg ag --vimgrep<cr>
 
 " }}}
@@ -392,6 +392,7 @@ augroup goLang
   autocmd!
   " complement to K
   autocmd FileType go nnoremap <buffer><F1> :GoDoc<cr>
+  autocmd FileType go nnoremap <buffer><leader>gi :GoImports<cr>
   " autocmd FileType go setlocal tabstop=4
 augroup END
 
