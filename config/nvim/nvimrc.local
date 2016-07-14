@@ -192,7 +192,7 @@ let g:AutoPairsShortcutBackInsert = '<C-b>'
 " 'airblade/vim-gitgutter' {{{
 " ============================================================================
 
-nnoremap <silent> <leader>gt :GitGutterToggle<CR>
+" nnoremap <silent> <leader>gt :GitGutterToggle<CR>
 
 " }}}
 " ============================================================================
