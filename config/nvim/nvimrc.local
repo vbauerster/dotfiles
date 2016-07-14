@@ -112,12 +112,12 @@ endfunction
 " ============================================================================
 
 function! s:tabComplete(type) abort
-  if neosnippet#expandable() && !neosnippet#jumpable()
+  if a:type==#"emmetable" && match(getline('.'), '[<(].*[>)]')<0 && emmet#isExpandable()
+    return "\<Plug>(emmet-expand-abbr)"
+  elseif neosnippet#expandable() && !neosnippet#jumpable()
     return "\<Plug>(neosnippet_expand)"
   elseif neosnippet#jumpable() && !pumvisible()
     return "\<Plug>(neosnippet_jump)"
-  elseif a:type=='emmetable' && match(getline('.'), '[<(].*[>)]')<0 && emmet#isExpandable()
-    return "\<Plug>(emmet-expand-abbr)"
   elseif pumvisible()
     return "\<C-n>"
   else
@@ -135,7 +135,7 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " <tab> mapping
-imap <expr><TAB> <sid>tabComplete("any")
+imap <expr><TAB> <sid>tabComplete("neo")
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
