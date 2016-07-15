@@ -52,14 +52,6 @@ function! s:scrolList(dir)
   return a:dir ==# "cn" ? "\<C-n>" : "\<C-p>"
 endfunction
 
-function! s:diffToggle()
-    if &diff
-        diffoff
-    else
-        diffthis
-    endif
-:endfunction
-
 function! s:helptab()
   if &buftype ==# "help"
     wincmd T
@@ -341,8 +333,6 @@ nnoremap <silent> <Left> :vertical resize -5<CR>
 
 " Show Registers
 nnoremap <Leader>di :di<CR>
-
-nnoremap <silent> <Leader>dd :call <sid>diffToggle()<CR>
 
 " http://habrahabr.ru/post/183222/
 " spell toggle
