@@ -392,6 +392,7 @@ augroup goLang
   autocmd!
   " complement to K
   autocmd FileType go nnoremap <buffer><F1> :GoDoc<cr>
+  autocmd FileType go nnoremap <buffer><F9> :GoRun<cr>
   autocmd FileType go nnoremap <buffer><leader>gi :GoImports<cr>
   " autocmd FileType go setlocal tabstop=4
 augroup END
