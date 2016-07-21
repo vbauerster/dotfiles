@@ -97,13 +97,13 @@ call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 " inoremap <expr><C-Space> deoplete#mappings#manual_complete()
 
 " close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
-imap <expr><Esc> pumvisible() && neosnippet#expandable_or_jumpable() ? deoplete#mappings#close_popup() : "\<Esc>"
+imap <expr><Esc> pumvisible() && neosnippet#expandable_or_jumpable() ? deoplete#close_popup() : "\<Esc>"
 
 " https://github.com/neovim/neovim/pull/4682#issuecomment-220763071
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function() abort
-  return deoplete#mappings#close_popup() . "\<CR>"
+  return deoplete#close_popup() . "\<CR>"
 endfunction
 
 " }}}
