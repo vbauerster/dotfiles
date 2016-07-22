@@ -96,10 +96,5 @@ function colors() {
     done
 }
 
-# Create a new directory and enter it
-function md() {
-    mkdir -p "$@" && cd "$@"
-}
-
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
