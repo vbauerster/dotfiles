@@ -42,6 +42,8 @@ bindkey '^[OA' up-line-or-history
 bindkey '^[OB' down-line-or-history
 bindkey '^ ' autosuggest-accept
 
+# some useful defaults:
+# ^Q push-line-or-edit
 # ^U vi-kill-line
 # ^W vi-backward-kill-word
 # ^H vi-backward-delete-char
@@ -49,7 +51,6 @@ bindkey '^ ' autosuggest-accept
 # ^T fzf-file-widget
 # ^R fzf-history-widget
 # ^[c fzf-cd-widget = alt+c
-# ^Q push-line-or-edit
 
 # history-incremental is from editor module
 # in vi mode / = history-incremental-search-forward
