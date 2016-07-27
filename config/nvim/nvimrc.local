@@ -89,6 +89,11 @@ let g:deoplete#enable_smart_case = 1
 
 " https://github.com/Shougo/deoplete.nvim/issues/288
 call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
+" Use head matcher instead of fuzzy matcher
+" call deoplete#custom#set('_', 'matchers', ['matcher_head'])
+" Length matching matcher.
+" It removes shorter candidates than user input.
+" call deoplete#custom#set('_', 'matchers', ['matcher_length'])
 
 " let g:deoplete#omni_patterns = {}
 " let g:deoplete#omni_patterns.go = '[^.[:digit:] *\t]\.\w*'
@@ -97,7 +102,9 @@ call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 " inoremap <expr><C-Space> deoplete#mappings#manual_complete()
 
 " close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
-imap <expr><Esc> pumvisible() && neosnippet#expandable_or_jumpable() ? deoplete#close_popup() : "\<Esc>"
+inoremap <expr><Esc> pumvisible() && neosnippet#jumpable() ? deoplete#close_popup() : "\<Esc>"
+
+inoremap <expr><C-z> deoplete#undo_completion()
 
 " https://github.com/neovim/neovim/pull/4682#issuecomment-220763071
 " <CR>: close popup and save indent.
@@ -142,8 +149,7 @@ smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 
 " For conceal markers.
 if has('conceal')
-  " set conceallevel=2 concealcursor=niv
-  set conceallevel=2 concealcursor=i
+  set conceallevel=2 concealcursor=niv
 endif
 
 " }}}
@@ -331,7 +337,7 @@ nnoremap <leader>ag :Grepper -tool ag  -grepprg ag --vimgrep<cr>
 
 augroup echodoc_conf
   autocmd!
-  autocmd FileType javascript EchoDocEnable
+  autocmd FileType javascript,go EchoDocEnable
 augroup END
 
 " }}}
