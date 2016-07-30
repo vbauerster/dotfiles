@@ -42,7 +42,7 @@ bindkey '^[OA' up-line-or-history
 bindkey '^[OB' down-line-or-history
 bindkey '^ ' autosuggest-accept
 
-# some useful defaults:
+# following just for reference
 # ^Q push-line-or-edit
 # ^U vi-kill-line
 # ^W vi-backward-kill-word
@@ -59,6 +59,19 @@ bindkey '^ ' autosuggest-accept
 # bindkey '^S' insert-last-word
 # bindkey -M vicmd "u" undo
 # bindkey -M vicmd "ga" what-cursor-position
+
+# https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
 
 if [ -z "$BACKGROUND" ]; then
     export BACKGROUND="dark"
