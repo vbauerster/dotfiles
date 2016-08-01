@@ -1,8 +1,13 @@
 export DOTFILES=$HOME/dotfiles
 export GOPATH=$HOME/gocode
+export GEMPATH=$HOME/.gem/ruby/2.0.0
 
 if [[ ! "$PATH" == *$DOTFILES/bin* ]]; then
   export PATH=$DOTFILES/bin:$PATH
+fi
+
+if [[ ! "$PATH" == *$GEMPATH/bin* ]]; then
+  export PATH=$GEMPATH/bin:$PATH
 fi
 
 if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
