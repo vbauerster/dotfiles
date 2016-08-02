@@ -21,6 +21,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-after-object'
 Plug 'junegunn/rainbow_parentheses.vim'
 let g:rainbow#pairs = [['{', '}']]
+Plug 'junegunn/vim-peekaboo'
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
