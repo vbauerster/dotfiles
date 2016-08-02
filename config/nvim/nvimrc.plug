@@ -16,8 +16,9 @@ Plug 'majutsushi/tagbar'
 " Nvim already loads the matchit plugin by default; see ':help pi_matchit.txt'
 " Plug 'vim-scripts/matchit.zip'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-after-object'
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
