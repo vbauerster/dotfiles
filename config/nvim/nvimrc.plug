@@ -19,6 +19,8 @@ Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-after-object'
+Plug 'junegunn/rainbow_parentheses.vim'
+let g:rainbow#pairs = [['{', '}']]
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
