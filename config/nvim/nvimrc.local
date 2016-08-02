@@ -196,10 +196,12 @@ let g:AutoPairsShortcutBackInsert = '<C-b>'
 
 " }}}
 " ============================================================================
-" 'airblade/vim-gitgutter' {{{
+" 'junegunn/vim-after-object' {{{
 " ============================================================================
 
-" nnoremap <silent> <leader>gt :GitGutterToggle<CR>
+silent! if has_key(g:plugs, 'vim-after-object')
+  autocmd VimEnter * silent! call after_object#enable('=', ':', '-', '#', ' ')
+endif
 
 " }}}
 " ============================================================================
@@ -224,6 +226,10 @@ nnoremap <silent> <leader>gco :Gread<CR>
 " fugitive buffers. This prevents this from becomming an issue:
 augroup fug_buf_hide
   autocmd!
+  autocmd User fugitive 
+        \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+        \   nnoremap <buffer> .. :edit %:h<CR> |
+        \ endif
   autocmd BufReadPost fugitive://* set bufhidden=delete
 augroup END
 
@@ -298,7 +304,9 @@ nnoremap <silent> <leader>grr :GV?<CR>
 " 'junegunn/fzf.vim' {{{
 " ============================================================================
 
-let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
+" let $FZF_DEFAULT_OPTS .= ' --inline-info'
+
+" let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
 
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
@@ -313,15 +321,29 @@ imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 
 nnoremap <silent> <Leader>** :Ag <C-R><C-W><CR>
 
-nnoremap <Leader>hh :History<CR>
-nnoremap <Leader>ww :Windows<CR>
-nnoremap <Leader>bb :Buffers<CR>
-nnoremap <Leader>ff :Files<CR>
-nnoremap <Leader>gf :GitFiles<CR>
-nnoremap <Leader>mm :Commits<CR>
-nnoremap <Leader>mk :Marks<CR>
-" normal mode mappings
-nnoremap <Leader>mp :Maps<CR>
+" File preview using CodeRay (http://coderay.rubychan.de/)
+let g:fzf_files_options =
+  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+
+" avoids opening file in Nerd_tree window
+nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
+nnoremap <silent><Leader>hh :History<CR>
+nnoremap <silent><Leader>ww :Windows<CR>
+nnoremap <silent><Leader><Enter> :Buffers<CR>
+nnoremap <silent><Leader>gf :GitFiles<CR>
+nnoremap <silent><Leader>mm :Commits<CR>
+nnoremap <silent><Leader>' :Marks<CR>
+nnoremap <silent><Leader>; :History:<CR>
+
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+command! Plugs call fzf#run({
+  \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
+  \ 'options': '--delimiter / --nth -1',
+  \ 'down':    '~40%',
+  \ 'sink':    'Explore'})
 
 " }}}
 " ============================================================================
