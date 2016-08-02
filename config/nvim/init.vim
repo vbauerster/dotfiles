@@ -86,7 +86,7 @@ set wildignore+=*.DS_Store
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
-set timeoutlen=400                   " mapping timeout
+set timeoutlen=500                   " mapping timeout
 set ttimeoutlen=50                   " keycode timeout
 set number
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
@@ -174,9 +174,6 @@ nnoremap <Leader>ez :e ~/.zshrc<CR>
 nnoremap <Leader>ewm :e scp://root@192.168.2.1//var/log/messages<CR>
 nnoremap <Leader>ewu :e scp://root@192.168.2.1//jffs/runblock/runblock.dnsmasq<CR>
 
-" use :NeoSnippetEdit -runtime
-" nnoremap <Leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
-
 " In normal mode, we use : much more often than ; so lets swap them.
 " WARNING: this will cause any "ordinary" map command without the "nore" prefix
 " that uses ":" to fail. For instance, "map <f2> :w" would fail, since vim will
@@ -214,7 +211,7 @@ nnoremap <Leader>! :q!<CR>
 nnoremap <silent> <Leader>x :close<CR>
 
 " Enter visual line mode
-nmap <Leader><leader> V
+" nmap <Leader><leader> V
 
 " Read :help ctrl-w_w
 " Read :help wincmd
@@ -502,7 +499,7 @@ augroup END
 
 " }}}
 " ============================================================================
-" vimrc.local BLOCK {{{
+" plugin settings BLOCK {{{
 " ============================================================================
 
 source ~/.config/nvim/nvimrc.local
