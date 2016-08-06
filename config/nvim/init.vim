@@ -269,8 +269,8 @@ nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
-nnoremap <silent> gj 5gj
-nnoremap <silent> gk 5gk
+noremap <silent> gj 6gj
+noremap <silent> gk 6gk
 
 " auto center
 nnoremap <silent> n nzz
