@@ -57,6 +57,12 @@ bindkey '^ ' autosuggest-accept
 # ^R fzf-history-widget
 # ^[c fzf-cd-widget = alt+c
 
+### ^x0 IPs
+bindkey -s '^x0' '127.0.0.1'
+bindkey -s '^x1' '10.0.0.'
+bindkey -s '^x7' '172.16.0.'
+bindkey -s '^x9' '192.168.0.'
+
 # history-incremental is from editor module
 # in vi mode / = history-incremental-search-forward
 # in vi mode ? = history-incremental-search-backward
