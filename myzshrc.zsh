@@ -73,6 +73,7 @@ bindkey '^ ' autosuggest-accept
 # first unbind '^G', which is bound to list-expand by default
 bindkey '^G' undefined-key
 bindkey '^Gt' fzf-gt-widget
+bindkey '^Gh' fzf-gh-widget
 
 # https://github.com/kurkale6ka/zsh/blob/master/.zshrc 
 ### ^x0 IPs
