@@ -96,3 +96,42 @@ cme() {
       --bind "enter:execute:echo {} | grep -o '[a-f0-9]\{7\}' | head -1 |
               xargs -I % sh -c 'nvim fugitive://\$(git rev-parse --show-toplevel)/.git//% < /dev/tty'"
 }
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+  local file
+  file=$(fzf-tmux --query="$1" --select-1 --exit-0)
+  [ -n "$file" ] && ${EDITOR:-vim} "$file"
+}
+
+# Switch tmux-sessions
+ts() {
+  local session
+  session=$(tmux list-sessions -F "#{session_name}" | \
+    fzf-tmux --query="$1" --select-1 --exit-0) &&
+  tmux switch-client -t "$session"
+}
+
+# c - browse chrome history
+c() {
+  local cols sep
+  export cols=$(( COLUMNS / 3 ))
+  export sep='{::}'
+
+  cp -f ~/Library/Application\ Support/Google/Chrome/Default/History /tmp/h
+  sqlite3 -separator $sep /tmp/h \
+    "select title, url from urls order by last_visit_time desc" |
+  ruby -ne '
+    cols = ENV["cols"].to_i
+    title, url = $_.split(ENV["sep"])
+    len = 0
+    puts "\x1b[36m" + title.each_char.take_while { |e|
+      if len < cols
+        len += e =~ /\p{Han}|\p{Katakana}|\p{Hiragana}|\p{Hangul}/ ? 2 : 1
+      end
+    }.join + " " * (2 + cols - len) + "\x1b[m" + url' |
+  fzf --ansi --multi --no-hscroll --tiebreak=index |
+  sed 's#.*\(https*://\)#\1#' | xargs open
+}
