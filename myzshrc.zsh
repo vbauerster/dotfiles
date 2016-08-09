@@ -74,6 +74,7 @@ bindkey '^ ' autosuggest-accept
 bindkey '^G' undefined-key
 bindkey '^Gt' fzf-gt-widget
 bindkey '^Gh' fzf-gh-widget
+bindkey '^Gf' fzf-gf-widget
 
 # https://github.com/kurkale6ka/zsh/blob/master/.zshrc 
 ### ^x0 IPs
