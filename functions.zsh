@@ -1,4 +1,5 @@
 # GIT heart FZF
+# http://junegunn.kr/2016/07/fzf-git
 # -------------
 
 is_in_git_repo() {
