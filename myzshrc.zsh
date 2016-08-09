@@ -1,10 +1,9 @@
-export DOTFILES=$HOME/dotfiles
+# http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
+# http://zsh.sourceforge.net/Guide/zshguide04.html
+# http://www.geekmind.net/2011/01/shortcuts-to-improve-your-bash-zsh.html
+
 export GOPATH=$HOME/gocode
 export GEMPATH=$HOME/.gem/ruby/2.0.0
-
-if [[ ! "$PATH" == *$DOTFILES/bin* ]]; then
-  export PATH=$DOTFILES/bin:$PATH
-fi
 
 if [[ ! "$PATH" == *$GEMPATH/bin* ]]; then
   export PATH=$GEMPATH/bin:$PATH
@@ -39,9 +38,8 @@ setopt HIST_IGNORE_SPACE   # does not record an event starting with a space
 SAVEHIST=4096
 HISTSIZE=4096              # stores the maximum number of events to save in the internal history
 
-# http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
-# http://zsh.sourceforge.net/Guide/zshguide04.html
-# http://www.geekmind.net/2011/01/shortcuts-to-improve-your-bash-zsh.html
+# Bindings
+# http://zsh.sourceforge.net/Intro/intro_11.html#SEC11 
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 # ctrl + enter = accept-and-hold
@@ -70,6 +68,11 @@ bindkey '^ ' autosuggest-accept
 # bindkey '^S' insert-last-word
 # bindkey -M vicmd "u" undo
 # bindkey -M vicmd "ga" what-cursor-position
+
+# fzf bindings
+# first unbind '^G', which is bound to list-expand by default
+bindkey '^G' undefined-key
+bindkey '^Gt' fzf-gt-widget
 
 # https://github.com/kurkale6ka/zsh/blob/master/.zshrc 
 ### ^x0 IPs
