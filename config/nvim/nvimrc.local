@@ -370,17 +370,17 @@ augroup END
 
 augroup jsbeautify_conf
   autocmd!
-  autocmd FileType javascript nnoremap <buffer> <leader>ii :call JsBeautify()<cr>
-  autocmd FileType json nnoremap <buffer> <leader>ii :call JsonBeautify()<cr>
-  autocmd FileType jsx nnoremap <buffer> <leader>ii :call JsxBeautify()<cr>
-  autocmd FileType html,xml nnoremap <buffer> <leader>ii :call HtmlBeautify()<cr>
-  autocmd FileType css,scss nnoremap <buffer> <leader>ii :call CSSBeautify()<cr>
+  autocmd FileType javascript nnoremap <buffer> <leader>f :call JsBeautify()<cr>
+  autocmd FileType json nnoremap <buffer> <leader>f :call JsonBeautify()<cr>
+  autocmd FileType jsx nnoremap <buffer> <leader>f :call JsxBeautify()<cr>
+  autocmd FileType html,xml nnoremap <buffer> <leader>f :call HtmlBeautify()<cr>
+  autocmd FileType css,scss nnoremap <buffer> <leader>f :call CSSBeautify()<cr>
   " beautify only selected lines
-  autocmd FileType javascript vnoremap <buffer>  <leader>ii :call RangeJsBeautify()<cr>
-  autocmd FileType json vnoremap <buffer> <leade>ii :call RangeJsonBeautify()<cr>
-  autocmd FileType jsx vnoremap <buffer> <leader>ii :call RangeJsxBeautify()<cr>
-  autocmd FileType html,xml vnoremap <buffer> <leader>ii :call RangeHtmlBeautify()<cr>
-  autocmd FileType css,scss vnoremap <buffer> <leader>ii :call RangeCSSBeautify()<cr>
+  autocmd FileType javascript vnoremap <buffer>  <leader>f :call RangeJsBeautify()<cr>
+  autocmd FileType json vnoremap <buffer> <leade>f :call RangeJsonBeautify()<cr>
+  autocmd FileType jsx vnoremap <buffer> <leader>f :call RangeJsxBeautify()<cr>
+  autocmd FileType html,xml vnoremap <buffer> <leader>f :call RangeHtmlBeautify()<cr>
+  autocmd FileType css,scss vnoremap <buffer> <leader>f :call RangeCSSBeautify()<cr>
 augroup END
 
 " }}}
@@ -423,7 +423,7 @@ augroup goLang
   autocmd FileType go nnoremap <buffer><F1> :GoDoc<cr>
   autocmd FileType go nnoremap <buffer><F6> :GoRename<cr>
   autocmd FileType go nnoremap <buffer><F9> :GoRun<cr>
-  autocmd FileType go nnoremap <buffer><leader>gi :GoImports<cr>
+  autocmd FileType go nnoremap <buffer><leader>i :GoImports<cr>
   " autocmd FileType go setlocal tabstop=4
 augroup END
 
