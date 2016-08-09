@@ -32,8 +32,8 @@ setopt INC_APPEND_HISTORY  # writes to the history file immediately, not when th
 setopt HIST_IGNORE_DUPS    # does not record an event that was just recorded again.
 setopt HIST_SAVE_NO_DUPS   # does not write a duplicate event to the history file
 setopt HIST_IGNORE_SPACE   # does not record an event starting with a space
-SAVEHIST=2048              # stores the maximum number of events to save in the history file
-HISTSIZE=2048              # stores the maximum number of events to save in the internal history
+SAVEHIST=4096
+HISTSIZE=4096              # stores the maximum number of events to save in the internal history
 
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
 # http://zsh.sourceforge.net/Guide/zshguide04.html
