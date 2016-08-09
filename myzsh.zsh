@@ -63,6 +63,14 @@ bindkey '^ ' autosuggest-accept
 # ^R fzf-history-widget
 # ^[c fzf-cd-widget = alt+c
 
+# history-incremental is from editor module
+# in vi mode / = history-incremental-search-forward
+# in vi mode ? = history-incremental-search-backward
+
+# bindkey '^S' insert-last-word
+# bindkey -M vicmd "u" undo
+# bindkey -M vicmd "ga" what-cursor-position
+
 # https://github.com/kurkale6ka/zsh/blob/master/.zshrc 
 ### ^x0 IPs
 bindkey -s '^x0' '127.0.0.1'
@@ -72,14 +80,6 @@ bindkey -s '^x9' '192.168.0.'
 
 ### ^x_ /dev/null
 bindkey -s '^x_' '/dev/null'
-
-# history-incremental is from editor module
-# in vi mode / = history-incremental-search-forward
-# in vi mode ? = history-incremental-search-backward
-
-# bindkey '^S' insert-last-word
-# bindkey -M vicmd "u" undo
-# bindkey -M vicmd "ga" what-cursor-position
 
 # https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity
 fancy-ctrl-z () {
