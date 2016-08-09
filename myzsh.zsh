@@ -24,6 +24,8 @@ fi
 # 100ms for key sequences
 export KEYTIMEOUT=10
 
+unsetopt flow_control # no ^s freezing the screen
+
 # history settings
 setopt EXTENDED_HISTORY    # writes the history file in the *:start:elapsed;command* format
 setopt INC_APPEND_HISTORY  # writes to the history file immediately, not when the shell exits
