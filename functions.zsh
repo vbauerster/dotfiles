@@ -70,6 +70,8 @@ zle -N fzf-gb-widget
 fzf-gr-widget() LBUFFER+=$(fzf-gr | join-lines)
 zle -N fzf-gr-widget
 
+# fzf related functions
+# ---------------------
 # fco - checkout git branch/tag
 fco() {
   local tags branches target
