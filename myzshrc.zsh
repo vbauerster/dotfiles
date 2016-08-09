@@ -88,32 +88,6 @@ bindkey -s '^x9' '192.168.0.'
 ### ^x_ /dev/null
 bindkey -s '^x_' '/dev/null'
 
-# https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity
-fancy-ctrl-z () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
-  fi
-}
-zle -N fancy-ctrl-z
-bindkey '^Z' fancy-ctrl-z
-
-if [ -z "$BACKGROUND" ]; then
-    export BACKGROUND="dark"
-fi
-
-# set the background color to light
-function light() {
-    export BACKGROUND="light"
-}
-
-function dark() {
-    export BACKGROUND="dark"
-}
-
 # searches the current directory subtree for files with names containing a
 # string (ignoring case). f png would find all PNG files in the current subtree,
 # as well as “PNGisMyFavorite.txt” and so forth.
@@ -125,18 +99,6 @@ function dark() {
 # ignoring case.
 # conflicts with zsh r command
 #function r() { grep -rn "$1" ${@:2} . }
-
-# print available colors and their numbers
-function colors() {
-    for i in {0..255}; do
-        printf "\x1b[38;5;${i}m colour${i}"
-        if (( $i % 5 == 0 )); then
-            printf "\n"
-        else
-            printf "\t"
-        fi
-    done
-}
 
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
