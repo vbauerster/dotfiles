@@ -76,6 +76,7 @@ bindkey '^Gt' fzf-gt-widget
 bindkey '^Gh' fzf-gh-widget
 bindkey '^Gf' fzf-gf-widget
 bindkey '^Gb' fzf-gb-widget
+bindkey '^Gr' fzf-gr-widget
 
 # https://github.com/kurkale6ka/zsh/blob/master/.zshrc 
 ### ^x0 IPs
