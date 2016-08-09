@@ -42,3 +42,8 @@ alias pon='networksetup -setsocksfirewallproxystate "Wi-Fi" on'
 alias poff='networksetup -setsocksfirewallproxystate "Wi-Fi" off'
 
 alias myip='curl icanhazip.com'
+
+# tmux
+alias tma='tmux attach -d -t'
+alias tmn='tmux new -s $(basename $(pwd))'
+alias tml='tmux list-sessions'
