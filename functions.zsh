@@ -30,6 +30,15 @@ fzf-gf() {
   cut -c4-
 }
 
+fzf-gb() {
+  is_in_git_repo || return
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  fzf-tmux --ansi --multi --tac --preview-window right:70% \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+  sed 's/^..//' | cut -d' ' -f1 |
+  sed 's#^remotes/##'
+}
+
 # A helper function to join multi-line output from fzf
 join-lines() {
 local item
@@ -46,3 +55,6 @@ zle -N fzf-gh-widget
 
 fzf-gf-widget() LBUFFER+=$(fzf-gf | join-lines)
 zle -N fzf-gf-widget
+
+fzf-gb-widget() LBUFFER+=$(fzf-gb | join-lines)
+zle -N fzf-gb-widget
