@@ -59,11 +59,15 @@ bindkey '^ ' autosuggest-accept
 # ^R fzf-history-widget
 # ^[c fzf-cd-widget = alt+c
 
+# https://github.com/kurkale6ka/zsh/blob/master/.zshrc 
 ### ^x0 IPs
 bindkey -s '^x0' '127.0.0.1'
 bindkey -s '^x1' '10.0.0.'
 bindkey -s '^x7' '172.16.0.'
 bindkey -s '^x9' '192.168.0.'
+
+### ^x_ /dev/null
+bindkey -s '^x_' '/dev/null'
 
 # history-incremental is from editor module
 # in vi mode / = history-incremental-search-forward
