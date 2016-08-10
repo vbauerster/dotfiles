@@ -179,3 +179,9 @@ fancy-ctrl-z() {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+# Song Trimmer
+# trimmer <song> <start(sec)> <duration(sec)>
+trimmer() {
+  ffmpeg -i "$1" -ss "$2" -t "$3" -acodec copy cut_"$1"
+}
