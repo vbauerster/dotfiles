@@ -115,10 +115,10 @@ endfunction
 inoremap <expr><Space> <SID>smartClosePopup()
 function! s:smartClosePopup() abort
   if pumvisible()
-    let inmap = {')': '(', ']': '['}
+    let indic = {')': '(', ']': '['}
     let src = strpart(getline('.'), 0, col('.'))
     let key = src[len(src)-1]
-    if key=="{" || (get(inmap, key, "F")!="F" && stridx(strpart(src, strridx(src, inmap[key])), " ")<0)
+    if key=="{" || (get(indic, key, "F")!="F" && stridx(strpart(src, strridx(src, indic[key])), " ")<0)
       return "\<Space>"
     elseif neosnippet#jumpable()
       return deoplete#close_popup()
