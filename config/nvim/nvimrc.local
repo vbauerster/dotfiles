@@ -101,9 +101,6 @@ call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 " imap     <Nul> <C-Space>
 " inoremap <expr><C-Space> deoplete#mappings#manual_complete()
 
-" close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
-inoremap <expr><Esc> pumvisible() && neosnippet#jumpable() ? deoplete#close_popup() : "\<Esc>"
-
 inoremap <expr><C-z> deoplete#undo_completion()
 
 " https://github.com/neovim/neovim/pull/4682#issuecomment-220763071
@@ -111,6 +108,23 @@ inoremap <expr><C-z> deoplete#undo_completion()
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function() abort
   return deoplete#close_popup() . "\<CR>"
+endfunction
+
+" close popup by Space, if next adjacent character is '{' send space
+" <C-e> closes popup as well
+inoremap <expr><Space> <SID>smartClosePopup()
+function! s:smartClosePopup() abort
+  if pumvisible()
+    if match(getline('.')[col('.') - 1], '[{]')>=0
+      return "\<Space>"
+    elseif neosnippet#jumpable()
+      return deoplete#close_popup()
+    else
+      return "\<Space>"
+    endif
+  else
+    return "\<Space>"
+  endif
 endfunction
 
 " }}}
@@ -143,7 +157,7 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " <tab> mapping
-imap <expr><TAB> <sid>tabComplete("neo")
+imap <expr><TAB> <SID>tabComplete("neo")
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
@@ -166,7 +180,7 @@ augroup Emmetable
   " Allow to autocomplete hyphenated words
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html setlocal iskeyword+=-
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown EmmetInstall
-  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown imap <buffer><expr><TAB> <sid>tabComplete("emmetable")
+  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown imap <buffer><expr><TAB> <SID>tabComplete("emmetable")
   autocmd FileType html,markdown vmap <buffer><Leader>ee <c-y>,
 augroup END
 
