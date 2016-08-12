@@ -25,6 +25,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'tommcdo/vim-exchange' " cx to exchange
 Plug 'junegunn/vim-after-object'
 Plug 'chaoren/vim-wordmotion'
+let g:wordmotion_prefix = '\'
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
