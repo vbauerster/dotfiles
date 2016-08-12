@@ -125,6 +125,7 @@ Plug 'artur-shaik/vim-javacomplete2'
 " Misc.
 Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
+Plug 'airblade/vim-rooter'
 
 if has('mac')
   Plug 'rizzatti/dash.vim'
