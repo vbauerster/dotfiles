@@ -11,7 +11,7 @@ source ~/.config/nvim/nvimrc.plug
 " Script local functions {{{
 " ============================================================================
 
-function! s:isBufferOpen(bufname)
+function! s:IsBufferOpen(bufname)
   redir =>buflist
   silent! ls!
   redir END
@@ -23,8 +23,8 @@ function! s:isBufferOpen(bufname)
 endfunction
 
 " http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
-function! s:toggleList(bufname, pfx)
-  if <sid>isBufferOpen(a:bufname)
+function! s:ToggleList(bufname, pfx)
+  if <sid>IsBufferOpen(a:bufname)
     exec(a:pfx.'close')
     return
   endif
@@ -40,19 +40,19 @@ function! s:toggleList(bufname, pfx)
   endif
 endfunction
 
-function! s:scrolList(dir)
+function! s:ScrolList(dir)
   if empty(&buftype)
-    if <sid>isBufferOpen("Quickfix List")
+    if <sid>IsBufferOpen("Quickfix List")
       return (a:dir ==# "cn" ? ":cnext" : ":cNext")."\<CR>"
     endif
-    if <sid>isBufferOpen("Location List")
+    if <sid>IsBufferOpen("Location List")
       return (a:dir ==# "cn" ? ":lnext" : ":lNext")."\<CR>"
     endif
   endif
   return a:dir ==# "cn" ? "\<C-n>" : "\<C-p>"
 endfunction
 
-function! s:helptab()
+function! s:HelpTab()
   if &buftype ==# "help"
     wincmd T
     nnoremap <buffer> q :q<CR>
@@ -230,11 +230,11 @@ nnoremap Y y$
 " Toggle to open or close the quickfix window
 " http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
 " http://stackoverflow.com/questions/13208660/how-to-enable-mapping-only-if-there-is-no-quickfix-window-opened-in-vim
-nmap <silent> <leader>ll :call <sid>toggleList("Location List", 'l')<CR>
-nmap <silent> <leader>cc :call <sid>toggleList("Quickfix List", 'c')<CR>
+nmap <silent> <leader>ll :call <sid>ToggleList("Location List", 'l')<CR>
+nmap <silent> <leader>cc :call <sid>ToggleList("Quickfix List", 'c')<CR>
 
-nnoremap <expr><C-n> <sid>scrolList("cn")
-nnoremap <expr><C-p> <sid>scrolList("cp")
+nnoremap <expr><C-n> <sid>ScrolList("cn")
+nnoremap <expr><C-p> <sid>ScrolList("cp")
 
 " Select blocks after indenting
 xnoremap < <gv
@@ -452,7 +452,7 @@ augroup vimrcEx
   autocmd!
 
   " Help in new tabs
-  autocmd BufEnter *.txt call <sid>helptab()
+  autocmd BufEnter *.txt call <sid>HelpTab()
 
   " highlight cursorline in active window
   autocmd WinEnter * setlocal cursorline

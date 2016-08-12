@@ -112,8 +112,8 @@ endfunction
 
 " close popup by Space, if next adjacent character is '{' send space
 " <C-e> closes popup as well
-inoremap <expr><Space> <SID>smartClosePopup()
-function! s:smartClosePopup() abort
+inoremap <expr><Space> <SID>SmartClosePopup()
+function! s:SmartClosePopup() abort
   if pumvisible()
     let indic = {')': '(', ']': '['}
     let src = strpart(getline('.'), 0, col('.'))
@@ -413,7 +413,7 @@ let g:instant_markdown_autostart = 0
 " 'tyru/open-browser.vim' {{{
 " ============================================================================
 
-function! s:openPluginRepo()
+function! s:OpenPluginRepo()
     try
         exec "normal! ".'"ayi'."'"
         exec 'OpenBrowser https://github.com/'.@a
@@ -422,7 +422,7 @@ function! s:openPluginRepo()
     endtry
 endfunction
 
-nnoremap <silent> <leader>or :call <SID>openPluginRepo()<CR>
+nnoremap <silent> <leader>or :call <SID>OpenPluginRepo()<CR>
 
 " }}}
 " ============================================================================
