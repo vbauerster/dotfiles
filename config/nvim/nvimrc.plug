@@ -85,11 +85,6 @@ Plug 'fatih/vim-go'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
-" Plug 'Shougo/neopairs.vim'
-" Plug 'Raimondi/delimitMate'
-" Plug 'idbrii/vim-endoscope' "A single keystroke to end your scope with <C-s>
-" Plug 'Townk/vim-autoclose'
-" Plug 'kana/vim-smartinput'
 
 " HTML
 " Plug 'docunext/closetag.vim' "close HTML tag
@@ -104,11 +99,6 @@ Plug 'vim-scripts/sessionman.vim'
 
 " colorschemes
 Plug 'morhetz/gruvbox'
-" Plug 'altercation/vim-colors-solarized'
-" Plug 'kristijanhusak/vim-hybrid-material'
-" Plug 'marcopaganini/termschool-vim-theme'
-" Plug 'flazz/vim-colorschemes'
-" Plug 'rafi/awesome-vim-colorschemes'
 
 " Syntax
 Plug 'othree/yajs.vim'
