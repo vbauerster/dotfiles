@@ -9,7 +9,6 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'tommcdo/vim-exchange' " cx to exchange
 " ctags tagbar
 Plug 'majutsushi/tagbar'
 " matchit.zip : extended % matching for HTML, LaTeX, and many other languages
@@ -18,10 +17,14 @@ Plug 'majutsushi/tagbar'
 
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-after-object'
 Plug 'junegunn/rainbow_parentheses.vim'
 let g:rainbow#pairs = [['{', '}']]
 Plug 'junegunn/vim-peekaboo'
+
+" New text objects
+Plug 'tommcdo/vim-exchange' " cx to exchange
+Plug 'junegunn/vim-after-object'
+Plug 'chaoren/vim-wordmotion'
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -49,6 +52,7 @@ Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 " General Programming
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
+" Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-commentary'
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
