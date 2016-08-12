@@ -467,3 +467,10 @@ nnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 
 " }}}
+" ============================================================================
+" 'artur-shaik/vim-javacomplete2' {{{
+" ============================================================================
+
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+" }}}

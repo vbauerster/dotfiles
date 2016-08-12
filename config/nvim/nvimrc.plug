@@ -128,6 +128,9 @@ Plug 'maksimr/vim-jsbeautify'
 " CoffeScript
 " Plug 'kchmck/vim-coffee-script' " Syntax
 
+" Java
+Plug 'artur-shaik/vim-javacomplete2'
+
 " Misc.
 Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
