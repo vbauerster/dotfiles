@@ -203,7 +203,8 @@ nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
 
 " w!! to sudo write
-cmap w!! w !sudo tee % >/dev/null<CR>
+" use :SudoWrite from vim-eunuch
+" cmap w!! w !sudo tee % >/dev/null<CR>
 
 " Quit
 nnoremap <Leader>q :q<CR>
