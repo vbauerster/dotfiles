@@ -114,16 +114,14 @@ inoremap <expr><C-z> deoplete#undo_completion()
 " <C-e> closes popup as well
 inoremap <expr><Space> <SID>SmartClosePopup()
 function! s:SmartClosePopup() abort
-  if pumvisible()
+  if pumvisible() && neosnippet#jumpable()
     let indic = {')': '(', ']': '['}
     let src = strpart(getline('.'), 0, col('.'))
     let key = src[len(src)-1]
     if key=="{" || (get(indic, key, "F")!="F" && stridx(strpart(src, strridx(src, indic[key])), " ")<0)
       return "\<Space>"
-    elseif neosnippet#jumpable()
-      return deoplete#close_popup()
     else
-      return "\<Space>"
+      return deoplete#close_popup()
     endif
   else
     return "\<Space>"
