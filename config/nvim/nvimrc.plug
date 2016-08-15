@@ -15,7 +15,7 @@ Plug 'majutsushi/tagbar'
 " Nvim already loads the matchit plugin by default; see ':help pi_matchit.txt'
 " Plug 'vim-scripts/matchit.zip'
 
-Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 let g:rainbow#pairs = [['{', '}']]
@@ -126,6 +126,8 @@ Plug 'artur-shaik/vim-javacomplete2'
 Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'airblade/vim-rooter'
+let g:rooter_manual_only = 1
+let g:rooter_use_lcd = 1
 
 if has('mac')
   Plug 'rizzatti/dash.vim'
