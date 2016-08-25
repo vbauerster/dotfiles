@@ -101,6 +101,9 @@ call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 " imap     <Nul> <C-Space>
 " inoremap <expr><C-Space> deoplete#mappings#manual_complete()
 
+" close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
+" inoremap <expr><Esc> pumvisible() && neosnippet#jumpable() ? deoplete#close_popup() : "\<Esc>"
+
 inoremap <expr><C-z> deoplete#undo_completion()
 
 " https://github.com/neovim/neovim/pull/4682#issuecomment-220763071
@@ -109,24 +112,6 @@ inoremap <expr><C-z> deoplete#undo_completion()
 " function! s:my_cr_function() abort
 "   return deoplete#close_popup() . "\<CR>"
 " endfunction
-
-" close popup by Space, if next adjacent character is '{' send space
-" <C-e> closes popup as well
-inoremap <expr><Space> <SID>SmartClosePopup()
-function! s:SmartClosePopup() abort
-  if pumvisible() && neosnippet#jumpable()
-    let indic = {')': '(', ']': '['}
-    let src = strpart(getline('.'), 0, col('.'))
-    let key = src[len(src)-1]
-    if key=="{" || (get(indic, key, "F")!="F" && stridx(strpart(src, strridx(src, indic[key])), " ")<0)
-      return "\<Space>"
-    else
-      return deoplete#close_popup()
-    endif
-  else
-    return "\<Space>"
-  endif
-endfunction
 
 " }}}
 " ============================================================================
