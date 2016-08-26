@@ -102,7 +102,7 @@ call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 " inoremap <expr><C-Space> deoplete#mappings#manual_complete()
 
 " close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
-" inoremap <expr><Esc> pumvisible() && neosnippet#jumpable() ? deoplete#close_popup() : "\<Esc>"
+inoremap <expr><Esc> pumvisible() && neosnippet#jumpable() ? deoplete#close_popup() : "\<Esc>"
 
 inoremap <expr><C-z> deoplete#undo_completion()
 
