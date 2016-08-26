@@ -207,7 +207,7 @@ inoremap <C-s> <C-o>:update<CR>
 " cmap w!! w !sudo tee % >/dev/null<CR>
 
 " Quit
-nnoremap <Leader>q :q<CR>
+nnoremap <silent> <F10> :q<CR>
 nnoremap <Leader>! :q!<CR>
 nnoremap <silent> <Leader>x :close<CR>
 
@@ -270,8 +270,8 @@ nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
-noremap <silent> gj 6gj
-noremap <silent> gk 6gk
+noremap <silent> gj 4gj
+noremap <silent> gk 4gk
 
 " auto center
 nnoremap <silent> n nzz
