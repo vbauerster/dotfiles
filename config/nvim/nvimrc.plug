@@ -44,7 +44,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature'
 
 " Grep like search
-Plug 'mhinz/vim-grepper'
+" Plug 'mhinz/vim-grepper'
 " Plug 'rking/ag.vim'
 
 " Make gists easily from Vim

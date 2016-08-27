@@ -353,7 +353,7 @@ command! Plugs call fzf#run({
 " ============================================================================
 
 " nnoremap <leader>gi :Grepper -tool git -noswitch<cr>
-nnoremap <leader>ag :Grepper -tool ag  -grepprg ag --vimgrep<cr>
+" nnoremap <leader>ag :Grepper -tool ag  -grepprg ag --vimgrep<cr>
 
 " }}}
 " ============================================================================
