@@ -396,12 +396,18 @@ imap     <Nul> <C-Space>
 inoremap <C-Space> <C-x><C-l>
 
 " -----------------------------------------------------------
-" => External cmd mappings
+" => vimgrep
 " -----------------------------------------------------------
 " find current word in quickfix
 nnoremap <Leader>* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
 " find last search in quickfix
 nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
+
+nnoremap <Leader>*i [I
+
+" -----------------------------------------------------------
+" => External cmd mappings
+" -----------------------------------------------------------
 " http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
 nnoremap <Leader>nh :write !node --harmony<CR>
 " see ':h :!'; '.' stands for concatination
