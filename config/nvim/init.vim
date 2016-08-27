@@ -305,26 +305,7 @@ nnoremap <Leader>rr :e!<CR>
 nnoremap <silent><Leader>. <C-^><CR>
 nnoremap <Leader>bx :bd<CR>
 
-" zoom a vim pane, <C-w>= to re-balance
-" nnoremap <Leader>z :wincmd _<CR>:wincmd \|<CR>
-nnoremap <silent><Leader>- :wincmd =<CR>
-
-" http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
-" z{nr}<CR>  Set current window height to {nr}. 
-set winminheight=0
-nmap <Leader>k <C-W>j<C-W>_
-nmap <Leader>j <C-W>k<C-W>_
-
-set winminwidth=0
-nmap <Leader>l <C-W>h500<C-W>>
-nmap <Leader>h <C-W>l500<C-W>>
-
 nnoremap <Leader>v <C-w>v
-
-" resize panes
-" For horizontal resize use CTRL-W_- and CTRL-W_+
-nnoremap <silent> <Right> :vertical resize +5<CR>
-nnoremap <silent> <Left> :vertical resize -5<CR>
 
 " Show Registers
 nnoremap <Leader>di :di<CR>
@@ -350,6 +331,26 @@ nnoremap <Leader>te <C-w>s<C-w>J8<C-w>-:te<CR>
 " resize terminal horizontally
 nnoremap <expr><Up> &buftype ==# "terminal" ? "\<C-w>+<CR>" : "\<Up>"
 nnoremap <expr><Down> &buftype ==# "terminal" ? "\<C-w>-<CR>" : "\<Down>"
+
+" -----------------------------------------------------------
+" => h: window-resize
+" -----------------------------------------------------------
+" nnoremap <Leader>z :wincmd _<CR>:wincmd \|<CR>
+nnoremap <silent><Leader>- :wincmd =<CR>
+
+" http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
+" z{nr}<CR>  Set current window height to {nr}. 
+set winminheight=0
+nmap <Leader>k <C-W>j<C-W>_
+nmap <Leader>j <C-W>k<C-W>_
+
+set winminwidth=0
+nmap <Leader>l <C-W>h500<C-W>>
+nmap <Leader>h <C-W>l500<C-W>>
+
+" For horizontal resize use CTRL-W_- and CTRL-W_+
+nnoremap <silent> <Right> :vertical resize +5<CR>
+nnoremap <silent> <Left> :vertical resize -5<CR>
 
 " -----------------------------------------------------------
 " => Terminal mode mappings
