@@ -326,10 +326,6 @@ nnoremap <Leader>v <C-w>v
 nnoremap <silent> <Right> :vertical resize +5<CR>
 nnoremap <silent> <Left> :vertical resize -5<CR>
 
-" toggle relativenumber: cor by unimpaired
-" http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
-"nnoremap <Leader>rn :set rnu!<ENTER>
-
 " Show Registers
 nnoremap <Leader>di :di<CR>
 
