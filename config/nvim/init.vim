@@ -348,9 +348,10 @@ set winminwidth=0
 nmap <Leader>l <C-W>h500<C-W>>
 nmap <Leader>h <C-W>l500<C-W>>
 
-" For horizontal resize use CTRL-W_- and CTRL-W_+
-nnoremap <silent> <Right> :vertical resize +5<CR>
-nnoremap <silent> <Left> :vertical resize -5<CR>
+nnoremap <S-Left> <C-w>>
+nnoremap <S-Right> <C-w><
+nnoremap <S-Up> <C-w>+
+nnoremap <S-Down> <C-w>-
 
 " -----------------------------------------------------------
 " => Terminal mode mappings
