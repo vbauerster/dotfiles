@@ -398,12 +398,11 @@ inoremap <C-Space> <C-x><C-l>
 " -----------------------------------------------------------
 " => vimgrep
 " -----------------------------------------------------------
+nnoremap <Leader>* [I
 " find current word in quickfix
-nnoremap <Leader>* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
+nnoremap <Leader>** :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
 " find last search in quickfix
 nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
-
-nnoremap <Leader>*i [I
 
 " -----------------------------------------------------------
 " => External cmd mappings

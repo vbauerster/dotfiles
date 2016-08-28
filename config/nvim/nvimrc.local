@@ -321,7 +321,7 @@ imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " imap <c-l> <plug>(fzf-complete-line)
 " imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
-nnoremap <silent> <Leader>** :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>*a :Ag <C-R><C-W><CR>
 
 " File preview using CodeRay (http://coderay.rubychan.de/)
 let g:fzf_files_options =
