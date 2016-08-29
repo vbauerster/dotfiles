@@ -165,8 +165,11 @@ inoremap <C-s> <C-o>:update<CR>
 " use :SudoWrite from vim-eunuch
 " cmap w!! w !sudo tee % >/dev/null<CR>
 
-" Quit
-nnoremap <silent> <F10> :q<CR>
+" Quit nvim
+nnoremap <silent> <F10> :qa<CR>
+nnoremap <silent> <F22> :qa!<CR>
+" Quit/close window
+nnoremap <Leader>q :q<CR>
 nnoremap <Leader>! :q!<CR>
 nnoremap <silent> <Leader>x :close<CR>
 
