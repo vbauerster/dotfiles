@@ -153,8 +153,8 @@ nmap <Enter> %
 nnoremap <F1> :help <C-r><C-w><CR>
 
 " tab shortcuts
-nnoremap - gT
-nnoremap + gt
+nnoremap g{ gT
+nnoremap g} gt
 nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>tc :tabclose<CR>
 " Save
