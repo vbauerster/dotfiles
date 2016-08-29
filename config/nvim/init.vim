@@ -156,7 +156,7 @@ nnoremap <F1> :help <C-r><C-w><CR>
 nnoremap g{ gT
 nnoremap g} gt
 nnoremap <Leader>tn :tabnew<CR>
-nnoremap <Leader>tc :tabclose<CR>
+nnoremap <Leader>tx :tabclose<CR>
 " Save
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
