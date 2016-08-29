@@ -73,8 +73,8 @@ zle -N fzf-gr-widget
 
 # fzf related functions
 # ---------------------
-# fco - checkout git branch/tag
-fco() {
+# zgco - checkout git branch/tag
+zgco() {
   local tags branches target
   tags=$(
     git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
@@ -88,8 +88,8 @@ fco() {
   git checkout $(echo "$target" | awk '{print $2}')
 }
 
-# CoMmits Explorer
-cme() {
+# zghh - git history
+zghh() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
@@ -100,12 +100,21 @@ cme() {
               xargs -I % sh -c 'nvim fugitive://\$(git rev-parse --show-toplevel)/.git//% < /dev/tty'"
 }
 
-# fe [FUZZY PATTERN] - Open the selected file with the default editor
+# zfe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
-fe() {
+zfe() {
   local file
   file=$(fzf-tmux --query="$1" --select-1 --exit-0)
+  [ -n "$file" ] && ${EDITOR:-vim} "$file"
+}
+
+# zee [EXACT PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+zee() {
+  local file
+  file=$(fzf-tmux -e --query="$1" --select-1 --exit-0)
   [ -n "$file" ] && ${EDITOR:-vim} "$file"
 }
 
