@@ -73,10 +73,15 @@ bindkey '^ ' autosuggest-accept
 # http://junegunn.kr/2016/07/fzf-git/
 # first unbind '^G', which is bound to list-expand by default
 bindkey '^G' undefined-key
+# for tags
 bindkey '^Gt' fzf-gt-widget
+# for commit hashes
 bindkey '^Gh' fzf-gh-widget
+# for files
 bindkey '^Gf' fzf-gf-widget
+# for branches
 bindkey '^Gb' fzf-gb-widget
+# for remotes
 bindkey '^Gr' fzf-gr-widget
 
 # https://github.com/kurkale6ka/zsh/blob/master/.zshrc 
