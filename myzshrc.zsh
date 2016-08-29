@@ -70,6 +70,7 @@ bindkey '^ ' autosuggest-accept
 # bindkey -M vicmd "ga" what-cursor-position
 
 # fzf bindings
+# http://junegunn.kr/2016/07/fzf-git/
 # first unbind '^G', which is bound to list-expand by default
 bindkey '^G' undefined-key
 bindkey '^Gt' fzf-gt-widget
