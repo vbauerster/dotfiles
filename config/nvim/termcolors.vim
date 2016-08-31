@@ -1,10 +1,10 @@
 " https://github.com/morhetz/gruvbox/pull/93
 " dark0 + gray
-let g:terminal_color_0 = "#282828"
+" let g:terminal_color_0 = "#282828"
 let g:terminal_color_8 = "#928374"
 
 " neurtral_red + bright_red
-let g:terminal_color_1 = "#cc241d"
+" let g:terminal_color_1 = "#cc241d"
 let g:terminal_color_9 = "#fb4934"
 
 " neutral_green + bright_green
