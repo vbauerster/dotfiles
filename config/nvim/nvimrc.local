@@ -421,11 +421,11 @@ let g:go_term_enabled = 1
 
 augroup goLang
   autocmd!
-  " complement to K
-  autocmd FileType go nnoremap <buffer><F1> :GoDoc<cr>
+  autocmd FileType go nnoremap <buffer><F1> :GoInfo<cr>
   autocmd FileType go nnoremap <buffer><F6> :GoRename<cr>
   autocmd FileType go nnoremap <buffer><F9> :GoRun<cr>
   autocmd FileType go nnoremap <buffer><leader>i :GoImports<cr>
+  autocmd FileType go nnoremap <buffer><F7> :GoSameIdsAutoToggle<cr>
   " autocmd FileType go setlocal tabstop=4
 augroup END
 
