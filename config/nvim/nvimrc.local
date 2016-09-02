@@ -212,16 +212,16 @@ endif
 
 nnoremap <silent> <leader>gg :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gcc :Gcommit<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
 " nnoremap <silent> <leader>gl :Glog<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 " Git add %
 nnoremap <silent> <leader>gw :Gwrite<CR>
 " Git rm %
-" nnoremap <silent> <leader>grm :Gremove<CR>
+nnoremap <silent> <leader>gx :Gremove<CR>
 " Git checkout %
-nnoremap <silent> <leader>gco :Gread<CR>
+nnoremap <silent> <leader>gr :Gread<CR>
 
 " Every time you open a git object using fugitive it creates a new buffer.
 " This means that your buffer listing can quickly become swamped with
@@ -241,12 +241,12 @@ augroup END
 " 'junegunn/gv.vim' {{{
 " ============================================================================
 
-" commits explorer
-nnoremap <silent> <leader>ge :GV<CR>
-" only list commits that affected the current file
-nnoremap <silent> <leader>gh :GV!<CR>
-" revisions of the current file
-nnoremap <silent> <leader>gr :GV?<CR>
+" Commits All
+nnoremap <silent> <leader>gca :GV<CR>
+" Commitns Only of the current file
+nnoremap <silent> <leader>gco :GV!<CR>
+" Commits Revisions of the current file
+nnoremap <silent> <leader>gcr :GV?<CR>
 
 " }}}
 " ============================================================================
