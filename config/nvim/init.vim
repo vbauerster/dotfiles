@@ -269,9 +269,8 @@ nnoremap <Leader>sp :setlocal spell! spelllang=ru_yo,en_us<CR>
 " spell check off
 " nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
-" toggle search highlighting: coh by unimpaired
-" nnoremap <silent><Leader>/ :set invhlsearch<CR>
-nnoremap <Leader>hi :Highlight<CR>
+" Highlight All
+nnoremap <Leader>ha :Highlight<CR>
 nnoremap <silent><C-c> :call clearmatches()<CR>:noh<CR>
 
 " https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
