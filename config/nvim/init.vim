@@ -11,6 +11,47 @@ source ~/.config/nvim/nvimrc.plug
 " Script local functions {{{
 " ============================================================================
 
+function! s:IsBufferOpen(bufname)
+  redir =>buflist
+  silent! ls!
+  redir END
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      return 1
+    endif
+  endfor
+endfunction
+
+" http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
+function! s:ToggleList(bufname, pfx)
+  if <sid>IsBufferOpen(a:bufname)
+    exec(a:pfx.'close')
+    return
+  endif
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
+function! s:ScrolList(dir)
+  if empty(&buftype)
+    if <sid>IsBufferOpen("Quickfix List")
+      return (a:dir ==# "cn" ? ":cnext" : ":cNext")."\<CR>"
+    endif
+    if <sid>IsBufferOpen("Location List")
+      return (a:dir ==# "cn" ? ":lnext" : ":lNext")."\<CR>"
+    endif
+  endif
+  return a:dir ==# "cn" ? "\<C-n>" : "\<C-p>"
+endfunction
+
 function! s:HelpTab()
   if &buftype ==# "help"
     wincmd T
@@ -190,6 +231,15 @@ nnoremap Y y$
 " <C-w> z Close any "Preview" window currently open
 " <C-w> P Go to preview window
 
+" Toggle to open or close the quickfix window
+" http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
+" http://stackoverflow.com/questions/13208660/how-to-enable-mapping-only-if-there-is-no-quickfix-window-opened-in-vim
+nmap <silent> <leader>ll :call <sid>ToggleList("Location List", 'l')<CR>
+nmap <silent> <leader>cc :call <sid>ToggleList("Quickfix List", 'c')<CR>
+
+nnoremap <expr><C-n> <sid>ScrolList("cn")
+nnoremap <expr><C-p> <sid>ScrolList("cp")
+
 " Select blocks after indenting
 xnoremap < <gv
 xnoremap > >gv|
@@ -352,9 +402,9 @@ inoremap <C-Space> <C-x><C-l>
 " -----------------------------------------------------------
 nnoremap <Leader>* [I
 " find current word in quickfix
-nnoremap <Leader>** :execute "vimgrep ".expand("<cword>")." %"<CR>
+nnoremap <Leader>** :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
 " find last search in quickfix
-nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>
+nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR><C-w>W
 
 " -----------------------------------------------------------
 " => External cmd mappings

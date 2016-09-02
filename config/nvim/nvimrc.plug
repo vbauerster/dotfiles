@@ -11,7 +11,6 @@ Plug 'tpope/vim-speeddating'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " ctags tagbar
 Plug 'majutsushi/tagbar'
-Plug 'romainl/vim-qf'
 " matchit.zip : extended % matching for HTML, LaTeX, and many other languages
 " Nvim already loads the matchit plugin by default; see ':help pi_matchit.txt'
 " Plug 'vim-scripts/matchit.zip'
