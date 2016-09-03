@@ -19,6 +19,59 @@ endif
 
 " }}}
 " ============================================================================
+" Script local functions {{{
+" ============================================================================
+
+function! s:IsBufferOpen(bufname)
+  redir =>buflist
+  silent! ls!
+  redir END
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      return 1
+    endif
+  endfor
+endfunction
+
+" http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
+function! s:ToggleList(bufname, pfx)
+  if <sid>IsBufferOpen(a:bufname)
+    exec(a:pfx.'close')
+    return
+  endif
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
+function! s:ScrolList(dir)
+  if empty(&buftype)
+    if <sid>IsBufferOpen("Quickfix List")
+      return (a:dir ==# "cn" ? ":cnext" : ":cNext")."\<CR>"
+    endif
+    if <sid>IsBufferOpen("Location List")
+      return (a:dir ==# "cn" ? ":lnext" : ":lNext")."\<CR>"
+    endif
+  endif
+  return a:dir ==# "cn" ? "\<C-n>" : "\<C-p>"
+endfunction
+
+function! s:HelpTab()
+  if &buftype ==# "help"
+    wincmd T
+    nnoremap <buffer> q :q<CR>
+  endif
+endfunction
+
+" }}}
+" ============================================================================
 " BASIC SETTINGS {{{
 " ============================================================================
 
@@ -43,12 +96,10 @@ syntax on
 " set pastetoggle=<F2>
 set history=1000               " nvim sets this to 1000 by default
 set undolevels=1000            " nvim sets this to 1000 by default
-set backspace=indent,eol,start
 set autoindent                 " Indent at the same level of the previous line
 set autoread                   " detect when a file is changed
 set smarttab                   " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set hlsearch                   " Highlight search terms
-set incsearch                  " set incremental search, like modern browsers
 set laststatus=2
 set wildmenu                   " enhanced command line completion
 
@@ -59,7 +110,7 @@ set wildignore+=*.DS_Store
 " Binary images
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
-set timeoutlen=400                   " mapping timeout
+set timeoutlen=500                   " mapping timeout
 set ttimeoutlen=50                   " keycode timeout
 set number
 set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
@@ -67,7 +118,6 @@ set wildmode=list:longest            " TAB auto-completion for file paths
 set hidden                           " current buffer can be put into background
 set showcmd                          " show incomplete commands
 set noshowmode                       " don't show which mode disabled for PowerLine
-set scrolloff=3                      " lines of text around cursor
 set foldlevelstart=99                " all folds open by default
 set cmdheight=1                      " command bar height
 set noerrorbells
@@ -131,19 +181,6 @@ set noswapfile
 " ============================================================================
 " MAPPINGS {{{
 " ============================================================================
-
-" F1 will search help for the word under the cursor
-nnoremap <F1> :help <C-r><C-w><CR>
-
-" easy moving between tabs
-nnoremap g{ gT
-nnoremap g} gt
-nnoremap <Leader>tn :tabnew<CR>
-nnoremap <Leader>tc :tabclose<CR>
-
-" ----------------------------------------------------------
-" => Quick edit Mappings
-" ----------------------------------------------------------
 " open vimrc
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
 " edit vim plugins
@@ -157,39 +194,71 @@ nnoremap <leader>et :e ~/.tmux.conf<CR>
 " edit zshrc
 nnoremap <leader>ez :e ~/.zshrc<CR>
 
-" use :NeoSnippetEdit -runtime
-" nnoremap <leader>ej :e ~/.vim/plugged/vim-snippets/snippets/javascript<CR>
+" In normal mode, we use : much more often than ; so lets swap them.
+" WARNING: this will cause any "ordinary" map command without the "nore" prefix
+" that uses ":" to fail. For instance, "map <f2> :w" would fail, since vim will
+" read ":w" as ";w" because of the below remappings. Use "noremap"s in such
+" situations and you'll be fine.
+noremap ; :
 
-" -----------------------------------------------------------
-" => General mappings/shortcuts for functionality
-" -----------------------------------------------------------
+" Swap implementations of ` and ' jump to markers
+nnoremap ' `
+nnoremap ` '
+
+" quickly access yank reg
+noremap "" "0
+
+nmap <Enter> %
+
+" F1 will search help for the word under the cursor
+nnoremap <F1> :help <C-r><C-w><CR>
+
+" tab shortcuts
+nnoremap g{ gT
+nnoremap g} gt
+nnoremap <Leader>tn :tabnew<CR>
+nnoremap <Leader>tx :tabclose<CR>
 " Save
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
-" nnoremap <leader>u :update<CR>
 
 " w!! to sudo write
-cmap w!! w !sudo tee % >/dev/null<CR>
+" use :SudoWrite from vim-eunuch
+" cmap w!! w !sudo tee % >/dev/null<CR>
 
-" Quit
-nnoremap <leader>q :q<CR>
-nnoremap <leader>Q :qa!<CR>
+" Quit nvim
+nnoremap <silent> <F10> :qa<CR>
+nnoremap <silent> <F22> :qa!<CR>
+" Quit/close window
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>! :q!<CR>
+nnoremap <silent> <Leader>x :close<CR>
 
 " Enter visual line mode
-nmap <leader><leader> V
+" nmap <Leader><leader> V
 
-nnoremap <tab> %
-vnoremap <tab> %
+" Read :help ctrl-w_w
+" Read :help wincmd
+nnoremap <Tab> <C-w>w
+nnoremap <S-Tab> <C-w>W
+" Go to previous (last accessed) window
+" nnoremap <Leader><Tab> <C-w>p
 
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
 
-" nnoremap <Leader>lo :lopen<CR>
-nnoremap <Leader>co :copen<CR>
-" nnoremap <Leader>cl :close<CR> " same as <C-w> c
-nnoremap <Leader>cc :cclose<CR>
-" following is shortcut for <C-w> z
-nnoremap <Leader>cp :pclose<CR>
+" <C-w> c Close the current window
+" <C-w> z Close any "Preview" window currently open
+" <C-w> P Go to preview window
+
+" Toggle to open or close the quickfix window
+" http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
+" http://stackoverflow.com/questions/13208660/how-to-enable-mapping-only-if-there-is-no-quickfix-window-opened-in-vim
+nmap <silent> <leader>ll :call <sid>ToggleList("Location List", 'l')<CR>
+nmap <silent> <leader>cc :call <sid>ToggleList("Quickfix List", 'c')<CR>
+
+nnoremap <expr><C-n> <sid>ScrolList("cn")
+nnoremap <expr><C-p> <sid>ScrolList("cp")
 
 " Select blocks after indenting
 xnoremap < <gv
@@ -202,7 +271,6 @@ nnoremap > >>_
 nnoremap < <<_
 
 " reselect last paste
-" nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 nnoremap gp `[v`]
 
 " Search in normal mode with very magic on
@@ -212,22 +280,21 @@ nnoremap ? ?\v
 vnoremap / <Esc>/\%V\v
 vnoremap ? <Esc>?\%V\v
 
-vmap <leader>s :sort<CR>
+vmap <Leader>s :sort<CR>
 
 " paste multiple lines multiple times
 " vnoremap <silent> y y`]
 " vnoremap <silent> p p`]
 " nnoremap <silent> p p`]
 
-" Swap implementations of ` and ' jump to markers
-nnoremap <silent> ' `
-nnoremap <silent> ` '
-
 " moving up and down work as you would expect
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
+
+noremap <silent> gj 4gj
+noremap <silent> gk 4gk
 
 " auto center
 nnoremap <silent> n nzz
@@ -238,70 +305,75 @@ nnoremap <silent> g* g*zz
 nnoremap <silent> g# g#zz
 
 " fold a html tag
-nnoremap <leader>ft Vatzf
+nnoremap <Leader>ft Vatzf
 
-" g<c-]> is jump to tag if there's only one matching tag, but show list of
+" Read :help g_ctrl-]
+" same as :tjump
+" jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
-" nnoremap <leader>g g<c-]>
+nnoremap <c-]> g<c-]>
 
 " Switch to the directory of the open buffer
-nnoremap <silent> <leader>cd :cd %:p:h<CR>
+nnoremap <silent><Leader>cd :cd %:p:h<CR>
 
 " Remove spaces at the end of lines
 nnoremap <silent><Leader>w<Leader> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
 " Buffer reload
-nnoremap <leader>rr :e!<CR>
+nnoremap <Leader>rr :e!<CR>
 
 " switch between buffers
-" provided by unimpaired [b
-noremap <silent><Leader>bp :bprev<CR>
-" provided by unimpaired ]b
-noremap <silent><Leader>bn :bnext<CR>
-noremap <silent><Leader>. <C-^><CR>
+" bprev provided by unimpaired [b
+" bnext provided by unimpaired ]b
+nnoremap <silent><Leader>. <C-^><CR>
+nnoremap <Leader>bx :bd<CR>
 
-" zoom a vim pane, <C-w>= to re-balance
-" nnoremap <leader>z :wincmd _<CR>:wincmd \|<CR>
-nmap <silent> <leader>- :wincmd =<CR>
-
-" http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
-set winminheight=0
-nmap <leader>j <C-W>j<C-W>_
-nmap <leader>k <C-W>k<C-W>_
-
-set winminwidth=0
-nmap <leader>h <C-W>h500<C-W>>zz
-nmap <leader>l <C-W>l500<C-W>>zz
-
-nnoremap <leader>v <C-w>v
-
-" resize panes
-nnoremap <silent> <Right> :vertical resize +5<CR>
-nnoremap <silent> <Left> :vertical resize -5<CR>
-" nnoremap <silent> <Up> :resize +5<CR>
-" nnoremap <silent> <Down> :resize -5<CR>
-
-" toggle relativenumber: cor by unimpaired
-" http://stackoverflow.com/questions/4387210/vim-how-to-map-two-tasks-under-one-shortcut-key
-"nnoremap <leader>rn :set rnu!<ENTER>
+nnoremap <Leader>v <C-w>v
 
 " Show Registers
-nnoremap <leader>di :di<CR>
+nnoremap <Leader>di :di<CR>
 
 " http://habrahabr.ru/post/183222/
-" spell check on
-nnoremap <leader>sp :setlocal spell spelllang=ru_yo,en_us<ENTER>
+" spell toggle
+nnoremap <Leader>sp :setlocal spell! spelllang=ru_yo,en_us<CR>
 " spell check off
-nnoremap <leader>spp :setlocal spell spelllang=<ENTER>
+" nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
-nnoremap <leader>hi :Highlight<CR>
-nnoremap <silent> <leader>ch :call clearmatches()<CR>:noh<CR>
+" Highlight All
+nnoremap <Leader>ha :Highlight<CR>
+nnoremap <silent><C-c> :call clearmatches()<CR>:noh<CR>
 
-" experimental: quickly access yank reg
-noremap "" "0
+" https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
+" After applying above fix, below line is no longer necessary
+" nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
 
-" quick access to cmd mode
-noremap ; :
+" Start terminal
+nnoremap <Leader>tv <C-w>v:te<CR>
+nnoremap <Leader>te <C-w>s<C-w>J8<C-w>-:te<CR>
+" resize terminal horizontally
+nnoremap <expr><Up> &buftype ==# "terminal" ? "\<C-w>+<CR>" : "\<Up>"
+nnoremap <expr><Down> &buftype ==# "terminal" ? "\<C-w>-<CR>" : "\<Down>"
+
+" -----------------------------------------------------------
+" => h: window-resize
+" -----------------------------------------------------------
+" nnoremap <Leader>z :wincmd _<CR>:wincmd \|<CR>
+nnoremap <silent><Leader>- :wincmd =<CR>
+
+" http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
+" z{nr}<CR>  Set current window height to {nr}. 
+set winminheight=0
+nmap <Leader>k <C-W>j<C-W>_
+nmap <Leader>j <C-W>k<C-W>_
+
+set winminwidth=0
+nmap <Leader>l <C-W>h500<C-W>>
+nmap <Leader>h <C-W>l500<C-W>>
+
+nnoremap <M-Left> <C-w>>
+nnoremap <M-Right> <C-w><
+nnoremap <M-Up> <C-w>+
+nnoremap <M-Down> <C-w>-
 
 " -----------------------------------------------------------
 " => Command mode mappings
@@ -324,26 +396,35 @@ inoremap II <Esc>I
 inoremap AA <Esc>A
 " <C-\> does not eat last char of the line
 inoremap CC <C-\><C-O>D
-inoremap SS <Esc>cc
-inoremap UU <C-O>u
-noremap! hh <Esc>
+inoremap hh <Esc>
+
+" upper case
+inoremap UU <Esc>gUiw`]a
+
+imap     <Nul> <C-Space>
+inoremap <C-Space> <C-x><C-l>
+
+" -----------------------------------------------------------
+" => vimgrep
+" -----------------------------------------------------------
+nnoremap <Leader>* [I
+" find current word in quickfix
+nnoremap <Leader>** :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
+" find last search in quickfix
+nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR><C-w>W
 
 " -----------------------------------------------------------
 " => External cmd mappings
 " -----------------------------------------------------------
-" find current word in quickfix
-nnoremap <leader>* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR>
-" find last search in quickfix
-nnoremap <leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 " http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
-nnoremap <leader>nh :write !node --harmony<CR>
+nnoremap <Leader>nh :write !node --harmony<CR>
 " see ':h :!'; '.' stands for concatination
-nnoremap <leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
+nnoremap <Leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
 
-" reload ctags, --fields=+l needs by YCM
+" make tags, --fields=+l needs by YCM
 " http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
 " http://raygrasso.com/posts/2015/04/using-ctags-on-modern-javascript.html
-nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
+nnoremap <Leader>mt :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
 
 " }}}
 " ============================================================================
@@ -352,37 +433,28 @@ nnoremap <leader>ct :!gtags -R --fields=+l --exclude=.git --exclude=node_modules
 
 " http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
 if has('clipboard')
-  if has('unnamedplus')  " When possible use + register for copy-paste
-    nnoremap <leader>yp :let @+=expand('%')<CR>
-    nnoremap <leader>ya :let @+=expand('%:p')<CR>
-    nnoremap <leader>yf :let @+=expand('%:t')<CR>
-    nnoremap <leader>yd :let @+=expand('%:p:h')<CR>
+  " When possible use + register for copy-paste
+  let sreg = has('unnamedplus') ? '+' : '*'
+  " On mac and Windows, use * register for copy-paste
+  " copy current file name (relative/absolute) to system clipboard
+  " relative path  (src/foo.txt)
+  nnoremap <expr><Leader>yp ":let @" . sreg . "=expand('%')<CR>"
+  " absolute path  (/something/src/foo.txt)
+  nnoremap <expr><Leader>ya ":let @" . sreg . "=expand('%:p')<CR>"
+  " filename       (foo.txt)
+  nnoremap <expr><Leader>yf ":let @" . sreg . "=expand('%:t')<CR>"
+  " directory name (/something/src)
+  nnoremap <expr><Leader>yd ":let @" . sreg . "=expand('%:p:h')<CR>"
 
-    noremap <leader>y "+y
-    noremap <leader>yy "+yy
-    noremap <leader>Y "+y$
-    noremap <leader>p "+p
-    noremap <leader>P "+P
-  else " On mac and Windows, use * register for copy-paste
-    " copy current file name (relative/absolute) to system clipboard
-    " relative path  (src/foo.txt)
-    nnoremap <leader>yp :let @*=expand('%')<CR>
-    " absolute path  (/something/src/foo.txt)
-    nnoremap <leader>ya :let @*=expand('%:p')<CR>
-    " filename       (foo.txt)
-    nnoremap <leader>yf :let @*=expand('%:t')<CR>
-    " directory name (/something/src)
-    nnoremap <leader>yd :let @*=expand('%:p:h')<CR>
+  " easy system clipboard copy/paste
+  noremap <expr><Leader>y   "\"" . sreg . "y"
+  noremap <expr><Leader>yy  "\"" . sreg . "yy"
+  noremap <expr><Leader>Y   "\"" . sreg . "y$"
+  noremap <expr><Leader>p   "\"" . sreg . "p"
+  noremap <expr><Leader>P   "\"" . sreg . "P"
 
-    " easy system clipboard copy/paste
-    noremap <leader>y "*y
-    noremap <leader>yy "*yy
-    noremap <leader>Y "*y$
-    noremap <leader>p "*p
-    noremap <leader>P "*P
-    "use system clipboard as default
-    "set clipboard=unnamed
-  endif
+  "use system clipboard as default
+  "set clipboard=unnamed
 endif
 
 " }}}
@@ -393,12 +465,14 @@ endif
 augroup vimrcEx
   autocmd!
 
+  " Help in new tabs
+  autocmd BufEnter *.txt call <sid>HelpTab()
+
   " highlight cursorline in active window
   autocmd WinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
 
   " Create directory if not exists
-  " CTRLP plugin provides same functionality via <c-y>
   autocmd BufWritePre * :silent !mkdir -p %:h
 
   " When editing a file, always jump to the last known cursor position.
@@ -423,7 +497,7 @@ augroup vimrcEx
   " autocmd FileType css,scss,sass setlocal iskeyword+=-
 
   " Unset paste on InsertLeave
-  au InsertLeave * silent! set nopaste
+  " au InsertLeave * silent! set nopaste
 augroup END
 
 augroup tmux_auto_rename
@@ -432,21 +506,6 @@ augroup tmux_auto_rename
     autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
     autocmd VimLeave * call system('tmux set-window automatic-rename on')
   endif
-augroup END
-
-
-" Help in new tabs
-" ----------------------------------------------------------------------------
-function! s:helptab()
-  if &buftype == 'help'
-    wincmd T
-    nnoremap <buffer> q :q<CR>
-  endif
-endfunction
-
-augroup vimrc_help
-  autocmd!
-  autocmd BufEnter *.txt call s:helptab()
 augroup END
 
 " }}}

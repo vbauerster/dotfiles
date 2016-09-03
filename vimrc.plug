@@ -3,27 +3,32 @@ call plug#begin('~/.vim/plugged')
 " General
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-" Plug 'qpkorr/vim-bufkill'
 " ctags tagbar
 Plug 'majutsushi/tagbar'
 " matchit.zip : extended % matching for HTML, LaTeX, and many other languages
-Plug 'vim-scripts/matchit.zip'
+" Plug 'vim-scripts/matchit.zip'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
+let g:rainbow#pairs = [['{', '}']]
+Plug 'junegunn/vim-peekaboo'
+
+" New text objects
+Plug 'tommcdo/vim-exchange' " cx to exchange
 
 " Tmux
-Plug 'tpope/vim-tbone'
 Plug 'christoomey/vim-tmux-navigator'
+" Plug 'tpope/vim-tbone'
 
 " Motions
-" Plug 'Lokaltog/vim-easymotion'
-" Plug 'rhysd/clever-f.vim'
 Plug 'justinmk/vim-sneak'
 
 " UI look and feel
@@ -36,14 +41,14 @@ Plug 'kshenoy/vim-signature'
 
 " Grep like search
 " Plug 'rking/ag.vim'
-Plug 'mhinz/vim-grepper'
+" Plug 'mhinz/vim-grepper'
 
 " Make gists easily from Vim
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " General Programming
 " Plug 'scrooloose/syntastic'
-Plug 'benekastah/neomake'
+" Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-commentary'
@@ -51,35 +56,14 @@ Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
 
 " AutoComplete
-" Plug 'Shougo/deoplete.nvim'
-" deoplete-external-sources
-Plug 'Shougo/neco-vim'       " vim source for Vim script
-Plug 'Shougo/neosnippet.vim' " neosnippet source
-Plug 'Shougo/neoinclude.vim' " include and file/include sources
-Plug 'Shougo/neco-syntax'    " syntax source
-Plug 'carlitux/deoplete-ternjs'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
-" dict lookup
-Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
-" deoplete-external-plugins
-Plug 'Shougo/context_filetype.vim' "It adds the context filetype feature
-Plug 'Shougo/echodoc.vim'          "It prints the documentation you have completed
-" Snippets
-Plug 'Shougo/neosnippet-snippets'
-" Plug 'honza/vim-snippets'
-" Plug 'justinj/vim-react-snippets'
 " Emmet
 Plug 'mattn/emmet-vim'
 
-" Plug 'myhere/vim-nodejs-complete'
-
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
-" Plug 'Shougo/neopairs.vim'  "It inserts the parentheses pairs automatically
-" Plug 'Raimondi/delimitMate'
-" Plug 'idbrii/vim-endoscope' "A single keystroke to end your scope with <C-s>
-" Plug 'Townk/vim-autoclose'
-" Plug 'kana/vim-smartinput'
+
+" Golang
+Plug 'fatih/vim-go'
 
 " HTML
 " Plug 'docunext/closetag.vim' "close HTML tag
@@ -87,25 +71,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'valloric/MatchTagAlways'
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 
-" required by xolox/vim-easytags
-"Plug 'xolox/vim-misc'
-
-" Easy Exuberant Ctags
-" Plug 'xolox/vim-easytags'
-" Plug 'vim-scripts/ctags.vim'
-
 " Extended session management for Vim
 Plug 'vim-scripts/sessionman.vim'
-" Plug 'xolox/vim-session'
-" Plug 'tpope/vim-obsession'
 
 " colorschemes
 Plug 'morhetz/gruvbox'
-" Plug 'mhartington/oceanic-next'
-" Plug 'altercation/vim-colors-solarized'
-" Plug 'kristijanhusak/vim-hybrid-material'
-" Plug 'marcopaganini/termschool-vim-theme'
-" Plug 'flazz/vim-colorschemes'
 
 " Syntax
 Plug 'othree/yajs.vim'
@@ -117,13 +87,6 @@ Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'maksimr/vim-jsbeautify'
 " Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
 " Plug 'burnettk/vim-angular'
-
-" Typescript
-" Plug 'HerringtonDarkholme/yats.vim' " Syntax
-" Plug 'Quramy/tsuquyomi' " omni-completion
-
-" CoffeScript
-" Plug 'kchmck/vim-coffee-script' " Syntax
 
 " Misc.
 Plug 'lyokha/vim-xkbswitch'

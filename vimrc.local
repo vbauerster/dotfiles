@@ -3,7 +3,7 @@
 " 'benekastah/neomake' {{{
 " ============================================================================
 
-let g:neomake_javascript_enabled_makers = ['eslint']
+" let g:neomake_javascript_enabled_makers = ['eslint']
 " run neomake on the current file on every write
 " autocmd! BufWritePost * Neomake
 
@@ -20,23 +20,23 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 " 'bling/vim-airline' {{{
 " ============================================================================
 
-" Set configuration options for the statusline plugin vim-airline.
-" Use the powerline theme and optionally enable powerline symbols.
-" To use the symbols , , , , , , and .in the statusline
-" segments add the following to your .vimrc.before.local file:
-let g:airline_powerline_fonts=1
-" If the previous symbols do not render for you then install a
-" powerline enabled font.
+" For powerline enabled font.
+" let g:airline_powerline_fonts = 1
 
+" Smarter tab line
+let g:airline#extensions#tabline#enabled = 1
+
+let g:airline_inactive_collapse = 1
+
+" Themes are automatically selected based on the matching colorscheme.
+" this can be overridden by defining a value:
+"     let g:airline_theme='dark'
 " See `:echo g:airline_theme_map` for some more choices
-" Default in terminal vim is 'dark'
-if !exists('g:airline_theme')
-	let g:airline_theme = 'gruvbox'
-endif
+
 if !exists('g:airline_powerline_fonts')
-	" Use the default set of separators with a few customizations
-	let g:airline_left_sep='›'  " Slightly fancier than '>'
-	let g:airline_right_sep='‹' " Slightly fancier than '<'
+  " Use the default set of separators with a few customizations
+  let g:airline_left_sep='›'  " Slightly fancier than '>'
+  let g:airline_right_sep='‹' " Slightly fancier than '<'
 endif
 
 " }}}
@@ -70,7 +70,7 @@ let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wa
 " 'Shougo/deoplete.nvim' {{{
 " ============================================================================
 
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
 
 " }}}
 " ============================================================================
@@ -112,8 +112,8 @@ augroup END
 " 'ternjs/tern_for_vim' {{{
 " ============================================================================
 
-let g:tern_show_argument_hints='on_hold'
-let g:tern_map_keys=1
+" let g:tern_show_argument_hints='on_hold'
+" let g:tern_map_keys=1
 
 " }}}
 " ============================================================================
@@ -161,23 +161,27 @@ nnoremap <silent> <leader>go :Gread<CR>
 " fugitive buffers. This prevents this from becomming an issue:
 augroup fug_buf_hide
   autocmd!
-  autocmd BufReadPost fugitive://* set bufhidden=delete
+  " autocmd BufReadPost fugitive://* set bufhidden=delete
 augroup END
 
 " }}}
 " ============================================================================
-" 'gregsexton/gitv' {{{
+" 'junegunn/gv.vim' {{{
 " ============================================================================
 
-nnoremap <silent> <leader>gv :Gitv<CR>
-nnoremap <silent> <leader>gV :Gitv!<CR>
+" Commits All
+nnoremap <silent> <leader>gca :GV<CR>
+" Commitns Only of the current file
+nnoremap <silent> <leader>gco :GV!<CR>
+" Commits Revisions of the current file
+nnoremap <silent> <leader>gcr :GV?<CR>
 
 " }}}
 " ============================================================================
 " 'justinmk/vim-sneak' {{{
 " ============================================================================
 
-let g:sneak#prompt = '❯'
+" let g:sneak#prompt = '❯'
 " To enable 'passive' or 'smart' streak-mode
 let g:sneak#streak = 1
 " Enable the 'clever-s' feature
@@ -228,46 +232,64 @@ let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 " 'junegunn/fzf.vim' {{{
 " ============================================================================
 
-" Mapping selecting mappings
-" nmap <leader><tab> <plug>(fzf-maps-n)
-" xmap <leader><tab> <plug>(fzf-maps-x)
-" imap <leader><tab> <plug>(fzf-maps-i)
+" let $FZF_DEFAULT_OPTS .= ' --inline-info'
+
+" let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
 
 " Replace the default dictionary completion with fzf-based fuzzy completion
 " inoremap <expr> <c-x><c-k> fzf#complete('cat /usr/share/dict/words')
-imap <expr> <c-d><c-d> fzf#vim#complete#word({'left': '15%'})
-imap <c-d><c-f> <plug>(fzf-complete-file-ag)
+" sacrifice CTRL-d for something more usefull, read :help i_CTRL-d
+imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " Line completion (all open buffers)
-imap <c-d><c-l> <plug>(fzf-complete-line)
+" imap <c-l> <plug>(fzf-complete-line)
+" imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
-nnoremap <silent> <Leader>a* :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>*a :Ag <C-R><C-W><CR>
 
-nnoremap <Leader>hh :History<CR>
-nnoremap <Leader>ww :Windows<CR>
-nnoremap <Leader>bb :Buffers<CR>
-nnoremap <Leader>ff :Files<CR>
-nnoremap <Leader>gf :GitFiles<CR>
-nnoremap <Leader>mm :Marks<CR>
-" normal mode mappings
-nnoremap <Leader>mn :Maps<CR>
+" File preview using CodeRay (http://coderay.rubychan.de/)
+let g:fzf_files_options =
+  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+
+" avoids opening file in Nerd_tree window
+nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
+nnoremap <silent><Leader>hh :History<CR>
+nnoremap <silent><Leader>ww :Windows<CR>
+nnoremap <silent><Leader><Enter> :Buffers<CR>
+nnoremap <silent><Leader>gf :GitFiles<CR>
+nnoremap <silent><Leader>mm :Commits<CR>
+nnoremap <silent><Leader>' :Marks<CR>
+nnoremap <silent><Leader>; :History:<CR>
+
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+command! Plugs call fzf#run({
+  \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
+  \ 'options': '--delimiter / --nth -1',
+  \ 'down':    '~40%',
+  \ 'sink':    'Explore'})
 
 " }}}
 " ============================================================================
 " 'mhinz/vim-grepper' {{{
 " ============================================================================
 
-nnoremap <leader>gi :Grepper -tool git -noswitch<cr>
-nnoremap <leader>ag :Grepper -tool ag  -grepprg ag --vimgrep<cr>
+" nnoremap <leader>gi :Grepper -tool git -noswitch<cr>
+" nnoremap <leader>ag :Grepper -tool ag  -grepprg ag --vimgrep<cr>
 
 " }}}
 " ============================================================================
 " 'Shougo/echodoc.vim' {{{
 " ============================================================================
 
-augroup echodoc_conf
-  autocmd!
-  autocmd FileType javascript EchoDocEnable
-augroup END
+" augroup echodoc_conf
+"   autocmd!
+"   autocmd FileType javascript EchoDocEnable
+" augroup END
 
 " }}}
 " ============================================================================
@@ -276,17 +298,17 @@ augroup END
 
 augroup jsbeautify_conf
   autocmd!
-  autocmd FileType javascript nnoremap <buffer> <leader>ii :call JsBeautify()<cr>
-  autocmd FileType json nnoremap <buffer> <leader>ii :call JsonBeautify()<cr>
-  autocmd FileType jsx nnoremap <buffer> <leader>ii :call JsxBeautify()<cr>
-  autocmd FileType html,xml nnoremap <buffer> <leader>ii :call HtmlBeautify()<cr>
-  autocmd FileType css,scss nnoremap <buffer> <leader>ii :call CSSBeautify()<cr>
+  autocmd FileType javascript nnoremap <buffer> <leader>f :call JsBeautify()<cr>
+  autocmd FileType json nnoremap <buffer> <leader>f :call JsonBeautify()<cr>
+  autocmd FileType jsx nnoremap <buffer> <leader>f :call JsxBeautify()<cr>
+  autocmd FileType html,xml nnoremap <buffer> <leader>f :call HtmlBeautify()<cr>
+  autocmd FileType css,scss nnoremap <buffer> <leader>f :call CSSBeautify()<cr>
   " beautify only selected lines
-  autocmd FileType javascript vnoremap <buffer>  <leader>ii :call RangeJsBeautify()<cr>
-  autocmd FileType json vnoremap <buffer> <leade>ii :call RangeJsonBeautify()<cr>
-  autocmd FileType jsx vnoremap <buffer> <leader>ii :call RangeJsxBeautify()<cr>
-  autocmd FileType html,xml vnoremap <buffer> <leader>ii :call RangeHtmlBeautify()<cr>
-  autocmd FileType css,scss vnoremap <buffer> <leader>ii :call RangeCSSBeautify()<cr>
+  autocmd FileType javascript vnoremap <buffer>  <leader>f :call RangeJsBeautify()<cr>
+  autocmd FileType json vnoremap <buffer> <leade>f :call RangeJsonBeautify()<cr>
+  autocmd FileType jsx vnoremap <buffer> <leader>f :call RangeJsxBeautify()<cr>
+  autocmd FileType html,xml vnoremap <buffer> <leader>f :call RangeHtmlBeautify()<cr>
+  autocmd FileType css,scss vnoremap <buffer> <leader>f :call RangeCSSBeautify()<cr>
 augroup END
 
 " }}}
@@ -296,5 +318,39 @@ augroup END
 
 let g:instant_markdown_autostart = 0
 " manually trigger preview via :InstantMarkdownPreview
+
+" }}}
+" ============================================================================
+" 'fatih/vim-go' {{{
+" ============================================================================
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_term_enabled = 1
+" let g:go_fmt_command = "goimports"
+
+augroup goLang
+  autocmd!
+  autocmd FileType go nnoremap <buffer><F1> :GoInfo<cr>
+  autocmd FileType go nnoremap <buffer><F6> :GoRename<cr>
+  autocmd FileType go nnoremap <buffer><F9> :GoRun<cr>
+  autocmd FileType go nnoremap <buffer><leader>i :GoImports<cr>
+  autocmd FileType go nnoremap <buffer><F7> :GoSameIdsAutoToggle<cr>
+  " autocmd FileType go setlocal tabstop=4
+augroup END
+
+" }}}
+" ============================================================================
+" 'godlygeek/tabular' {{{
+" ============================================================================
+
+" looks at the current line and the lines above and below it and aligns all the
+" equals signs; useful for when we have several lines of declarations
+nnoremap <Leader>a= :Tabularize /=<CR>
+vnoremap <Leader>a= :Tabularize /=<CR>
+nnoremap <Leader>a/ :Tabularize /\/\//l2c1l0<CR>
+vnoremap <Leader>a/ :Tabularize /\/\//l2c1l0<CR>
+nnoremap <Leader>a, :Tabularize /,/l0r1<CR>
+vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 
 " }}}
