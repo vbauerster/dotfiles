@@ -145,13 +145,6 @@ set list " col to toggle
 set listchars=tab:›⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
 " set showbreak=↪
 
-" backup/persistance settings
-" set undodir=~/.vim/tmp/undo//
-" set backupdir=~/.vim/tmp/backup//
-" set directory=~/.vim/tmp/swap//
-" set backupskip=/tmp/*,/private/tmp/*"
-" set backup " delete old backup, backup current file
-" set undofile
 set noswapfile
 
 " }}}
