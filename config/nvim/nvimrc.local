@@ -283,7 +283,7 @@ nmap <leader>sw :SessionSave<CR>
 " 'rizzatti/dash.vim' {{{
 " ============================================================================
 
-nmap <silent> <leader>d <Plug>DashSearch
+nmap <silent> <leader>ds <Plug>DashSearch
 let g:dash_map = {
   \ 'stylus' : ['css', 'stylus']
   \ }

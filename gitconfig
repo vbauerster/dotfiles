@@ -37,6 +37,6 @@ cmd = gitmerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [diff]
 	tool = sourcetree
 [merge]
-	tool = gitmerge
+	tool = nvimd3
 [commit]
 	template = /Users/vbauer/.stCommitMsg

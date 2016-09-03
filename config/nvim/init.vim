@@ -328,6 +328,11 @@ nnoremap <expr><Up> &buftype ==# "terminal" ? "\<C-w>+<CR>" : "\<Up>"
 nnoremap <expr><Down> &buftype ==# "terminal" ? "\<C-w>-<CR>" : "\<Down>"
 
 " -----------------------------------------------------------
+" => Diff3 merge
+" -----------------------------------------------------------
+nnoremap <silent><Leader>dl :diffget LOCAL \| diffupdate<CR>
+nnoremap <silent><Leader>dr :diffget REMOTE \| diffupdate<CR>
+" -----------------------------------------------------------
 " => h: window-resize
 " -----------------------------------------------------------
 " nnoremap <Leader>z :wincmd _<CR>:wincmd \|<CR>
