@@ -1,0 +1,6 @@
+#!/bin/sh
+mvim -d $2 $1 &
+sleep 0.5
+mvim -d $1 $3 &
+sleep 0.5
+nvim -d -c "wincmd J" $4 $2 $1 $3

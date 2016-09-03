@@ -30,11 +30,13 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
 	trustExitCode = true
-[mergetool "vimdiff3"]
+[mergetool "nvimd3"]
 cmd = nvim -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+[mergetool "gitmerge"]
+cmd = gitmerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [diff]
 	tool = sourcetree
 [merge]
-	tool = vimdiff3
+	tool = gitmerge
 [commit]
 	template = /Users/vbauer/.stCommitMsg
