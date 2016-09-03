@@ -228,12 +228,7 @@ nnoremap <silent> <leader>gr :Gread<CR>
 " fugitive buffers. This prevents this from becomming an issue:
 augroup fug_buf_hide
   autocmd!
-  " http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
-  autocmd User fugitive
-        \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-        \   nnoremap <buffer> <Leader>tu :edit %:h<CR> |
-        \ endif
-  autocmd BufReadPost fugitive://* set bufhidden=delete
+  " autocmd BufReadPost fugitive://* set bufhidden=delete
 augroup END
 
 " }}}
