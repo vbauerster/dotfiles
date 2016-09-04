@@ -138,15 +138,15 @@ let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 let g:neosnippet#enable_snipmate_compatibility=1
 
 " Plugin key-mappings
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+" xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 " <tab> mapping
 imap <expr><TAB> <SID>tabComplete("neo")
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+" imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+" smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 
 " For conceal markers.
 if has('conceal')
