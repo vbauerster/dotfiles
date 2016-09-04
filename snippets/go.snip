@@ -4,3 +4,13 @@ options head
   for ${1:v} := range ${2:#:iterator} {
     ${0:TARGET}
   }
+
+snippet fn
+abbr    fmt.Println
+options word
+  fmt.Println(${0:TARGET})
+
+snippet ff
+abbr    fmt.Printf
+options word
+  fmt.Printf(${0:TARGET})
