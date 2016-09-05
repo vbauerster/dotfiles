@@ -233,6 +233,11 @@ nnoremap <S-Tab> <C-w>W
 
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
+" copy selection to gui-clipboard
+xnoremap Y "*y
+" copy entire file contents (to gui-clipboard if available)
+nnoremap yY :let b:winview=winsaveview()<bar>exe 'keepjumps keepmarks norm ggVG'.(has('clipboard')?'"*y':'y')<bar>call winrestview(b:winview)<cr>
+inoremap <insert> <C-r>*
 
 " <C-w> c Close the current window
 " <C-w> z Close any "Preview" window currently open
@@ -434,37 +439,6 @@ nnoremap <Leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
 " http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
 " http://raygrasso.com/posts/2015/04/using-ctags-on-modern-javascript.html
 nnoremap <Leader>mt :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
-
-" }}}
-" ============================================================================
-" CLIPBOARDs {{{
-" ============================================================================
-
-" http://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
-if has('clipboard')
-  " When possible use + register for copy-paste
-  let sreg = has('unnamedplus') ? '+' : '*'
-  " On mac and Windows, use * register for copy-paste
-  " copy current file name (relative/absolute) to system clipboard
-  " relative path  (src/foo.txt)
-  nnoremap <expr><Leader>yp ":let @" . sreg . "=expand('%')<CR>"
-  " absolute path  (/something/src/foo.txt)
-  nnoremap <expr><Leader>ya ":let @" . sreg . "=expand('%:p')<CR>"
-  " filename       (foo.txt)
-  nnoremap <expr><Leader>yf ":let @" . sreg . "=expand('%:t')<CR>"
-  " directory name (/something/src)
-  nnoremap <expr><Leader>yd ":let @" . sreg . "=expand('%:p:h')<CR>"
-
-  " easy system clipboard copy/paste
-  noremap <expr><Leader>y   "\"" . sreg . "y"
-  noremap <expr><Leader>yy  "\"" . sreg . "yy"
-  noremap <expr><Leader>Y   "\"" . sreg . "y$"
-  noremap <expr><Leader>p   "\"" . sreg . "p"
-  noremap <expr><Leader>P   "\"" . sreg . "P"
-
-  "use system clipboard as default
-  "set clipboard=unnamed
-endif
 
 " }}}
 " ============================================================================
