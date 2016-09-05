@@ -464,7 +464,7 @@ augroup vimrcEx
   autocmd WinLeave * setlocal nocursorline
 
   " Create directory if not exists
-  autocmd BufWritePre * :silent !mkdir -p %:h
+  autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when
