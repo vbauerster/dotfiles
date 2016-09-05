@@ -59,6 +59,20 @@ function! s:HelpTab()
   endif
 endfunction
 
+" vim-vertical-move replacement
+" credit: cherryberryterry: https://www.reddit.com/r/vim/comments/4j4duz/a/d33s213
+function! s:vjump(dir)
+  let c = '%'.virtcol('.').'v'
+  let flags = a:dir ? 'bnW' : 'nW'
+  let bot = search('\v'.c.'.*\n^(.*'.c.'.)@!.*$', flags)
+  let top = search('\v^(.*'.c.'.)@!.*$\n.*\zs'.c, flags)
+  echom string(bot) string(top)
+
+  " norm! m`
+  return a:dir ? (line('.') - (bot > top ? bot : top)).'k'
+    \        : ((bot < top ? bot : top) - line('.')).'j'
+endfunction
+
 " }}}
 " ============================================================================
 " BASIC SETTINGS {{{
@@ -266,8 +280,12 @@ nnoremap <silent> k gk
 nnoremap <silent> ^ g^
 nnoremap <silent> $ g$
 
-noremap <silent> gj 4gj
-noremap <silent> gk 4gk
+noremap <silent> + 4gj
+noremap <silent> - 4gk
+
+" vim-vertical-move
+noremap <expr> gj <SID>vjump(0)
+noremap <expr> gk <SID>vjump(1)
 
 " auto center
 nnoremap <silent> n nzz
