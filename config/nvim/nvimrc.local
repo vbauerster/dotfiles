@@ -254,6 +254,8 @@ nnoremap <silent> <leader>gcr :GV?<CR>
 let g:sneak#streak = 1
 " Enable the 'clever-s' feature
 let g:sneak#s_next = 1
+" Case sensitivity is determined by 'ignorecase' and 'smartcase'.
+let g:sneak#use_ic_scs = 1
 
 " replace 'f' with 1-char Sneak
 nmap f <Plug>Sneak_f
