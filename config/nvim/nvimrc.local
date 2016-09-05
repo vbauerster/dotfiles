@@ -134,6 +134,7 @@ endfunction
 
 " :NeoSnippetEdit -runtime to edit global snippets
 " :NeoSnippetEdit to edit user defined snippets
+nnoremap <silent><Leader>ne :NeoSnippetEdit<CR>
 let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
 let g:neosnippet#enable_snipmate_compatibility=1
 
@@ -358,7 +359,7 @@ command! Plugs call fzf#run({
 
 augroup echodoc_conf
   autocmd!
-  autocmd FileType javascript,go EchoDocEnable
+  autocmd FileType javascript EchoDocEnable
 augroup END
 
 " }}}
