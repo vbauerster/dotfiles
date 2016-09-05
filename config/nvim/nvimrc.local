@@ -327,10 +327,10 @@ let g:fzf_files_options =
   \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
 " avoids opening file in Nerd_tree window
-nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
+nnoremap <silent> <expr> <Leader><Enter> (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
 nnoremap <silent><Leader>hh :History<CR>
 nnoremap <silent><Leader>ww :Windows<CR>
-nnoremap <silent><Leader><Enter> :Buffers<CR>
+nnoremap <silent><Leader><Leader> :Buffers<CR>
 nnoremap <silent><Leader>gf :GitFiles<CR>
 nnoremap <silent><Leader>mm :Commits<CR>
 nnoremap <silent><Leader>' :Marks<CR>
