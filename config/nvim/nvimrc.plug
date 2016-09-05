@@ -2,7 +2,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " General
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-eunuch'
@@ -11,9 +10,6 @@ Plug 'tpope/vim-speeddating'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " ctags tagbar
 Plug 'majutsushi/tagbar'
-" matchit.zip : extended % matching for HTML, LaTeX, and many other languages
-" Nvim already loads the matchit plugin by default; see ':help pi_matchit.txt'
-" Plug 'vim-scripts/matchit.zip'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -47,9 +43,6 @@ Plug 'kshenoy/vim-signature'
 " Plug 'mhinz/vim-grepper'
 " Plug 'rking/ag.vim'
 
-" Make gists easily from Vim
-Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
-
 " General Programming
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
@@ -58,6 +51,11 @@ Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-commentary'
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plug 'godlygeek/tabular'
+
+" Git
+Plug 'airblade/vim-gitgutter'
+" Make gists easily from Vim
+Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " AutoComplete
 Plug 'Shougo/deoplete.nvim'
