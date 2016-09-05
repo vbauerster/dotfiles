@@ -181,6 +181,12 @@ nnoremap <Leader>ez :e ~/.zshrc<CR>
 nnoremap <Leader>ewm :e scp://root@192.168.2.1//var/log/messages<CR>
 nnoremap <Leader>ewu :e scp://root@192.168.2.1//jffs/runblock/runblock.dnsmasq<CR>
 
+" set working directory to the current buffer's directory
+nnoremap cd :lcd %:p:h<bar>pwd<cr>
+nnoremap cu :lcd ..<bar>pwd<cr>
+nnoremap cD :cd %:p:h<bar>pwd<cr>
+nnoremap cU :cd ..<bar>pwd<cr>
+
 " In normal mode, we use : much more often than ; so lets swap them.
 " WARNING: this will cause any "ordinary" map command without the "nore" prefix
 " that uses ":" to fail. For instance, "map <f2> :w" would fail, since vim will
@@ -308,9 +314,6 @@ nnoremap <Leader>ft Vatzf
 " jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
 nnoremap <c-]> g<c-]>
-
-" Switch to the directory of the open buffer
-nnoremap <silent><Leader>cd :cd %:p:h<CR>
 
 " Remove spaces at the end of lines
 nnoremap <silent><Leader>w<Leader> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
