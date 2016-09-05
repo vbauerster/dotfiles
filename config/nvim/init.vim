@@ -329,8 +329,8 @@ nnoremap <Leader>bx :bd<CR>
 
 nnoremap <Leader>v <C-w>v
 
-" Show Registers
-nnoremap <Leader>di :di<CR>
+" vim-peekaboo provides @
+" nnoremap <Leader>di :di<CR>
 
 " http://habrahabr.ru/post/183222/
 " spell toggle
