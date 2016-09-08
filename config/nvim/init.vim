@@ -211,13 +211,10 @@ nnoremap g{ gT
 nnoremap g} gt
 nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>tx :tabclose<CR>
+
 " Save
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-o>:update<CR>
-
-" w!! to sudo write
-" use :SudoWrite from vim-eunuch
-" cmap w!! w !sudo tee % >/dev/null<CR>
 
 " Quit nvim
 nnoremap <silent> <F10> :qa<CR>
@@ -226,9 +223,6 @@ nnoremap <silent> <F22> :qa!<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>! :q!<CR>
 nnoremap <silent> <Leader>x :close<CR>
-
-" Enter visual line mode
-" nmap <Leader><leader> V
 
 " Read :help ctrl-w_w
 " Read :help wincmd
@@ -279,11 +273,6 @@ vnoremap / <Esc>/\%V\v
 vnoremap ? <Esc>?\%V\v
 
 vmap <Leader>s :sort<CR>
-
-" paste multiple lines multiple times
-" vnoremap <silent> y y`]
-" vnoremap <silent> p p`]
-" nnoremap <silent> p p`]
 
 " moving up and down work as you would expect
 nnoremap <silent> j gj
