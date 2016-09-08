@@ -45,14 +45,14 @@ Plug 'kshenoy/vim-signature'
 
 " General Programming
 Plug 'benekastah/neomake'
-Plug 'tpope/vim-fugitive'
 " Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
-Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-commentary'
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 Plug 'godlygeek/tabular'
 
 " Git
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
 " Make gists easily from Vim
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
