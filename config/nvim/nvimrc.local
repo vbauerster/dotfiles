@@ -406,7 +406,7 @@ function! s:OpenPluginRepo()
     endtry
 endfunction
 
-nnoremap <silent> <leader>pr :call <SID>OpenPluginRepo()<CR>
+nnoremap <silent> <leader>px :call <SID>OpenPluginRepo()<CR>
 
 " }}}
 " ============================================================================
