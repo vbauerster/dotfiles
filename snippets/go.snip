@@ -14,3 +14,17 @@ snippet ff
 abbr    fmt.Printf
 options word
   fmt.Printf(${0:TARGET})
+
+snippet     gof
+abbr        go func() { ... }()
+options     head
+  go func(${2}) ${3:int }{
+    ${0:TARGET:return }
+  }(${1:#:args})
+
+snippet     funm
+abbr        func (receiver) ...() { ... }
+options     head
+  func (${1:#:receiver}) ${2:mname}(${3}) ${4:int }{
+    ${0:TARGET:return }
+  }
