@@ -13,8 +13,8 @@ let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'GruvboxYellowSign'}
 
 " run neomake on the current file on every write
 augroup Neomake
-  au!
-  au! BufWritePost * Neomake
+  autocmd!
+  autocmd BufWritePost * Neomake
 augroup END
 
 " }}}
@@ -382,6 +382,7 @@ augroup jsbeautify_conf
   autocmd FileType jsx vnoremap <buffer> <leader>f :call RangeJsxBeautify()<cr>
   autocmd FileType html,xml vnoremap <buffer> <leader>f :call RangeHtmlBeautify()<cr>
   autocmd FileType css,scss vnoremap <buffer> <leader>f :call RangeCSSBeautify()<cr>
+  autocmd BufWritePre *.js call JsBeautify()
 augroup END
 
 " }}}
