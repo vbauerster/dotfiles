@@ -209,6 +209,8 @@ nnoremap <F1> :help <C-r><C-w><CR>
 " tab shortcuts
 nnoremap g{ gT
 nnoremap g} gt
+nnoremap gt :tablast<CR>
+nnoremap gT :tabfirst<CR>
 nnoremap <Leader>tn :tabnew<CR>
 nnoremap <Leader>tx :tabclose<CR>
 
