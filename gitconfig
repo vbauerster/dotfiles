@@ -36,6 +36,7 @@ cmd = nvim -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
 cmd = gitmerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [diff]
 	tool = sourcetree
+	compactionHeuristic = true
 [merge]
 	tool = nvimd3
 [commit]
