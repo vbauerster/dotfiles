@@ -338,8 +338,8 @@ nnoremap <silent><C-c> :call clearmatches()<CR>:noh<CR>
 " nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
 
 " Start terminal
-nnoremap <Leader>tv <C-w>v:te<CR>
-nnoremap <Leader>te <C-w>s<C-w>J8<C-w>-:te<CR>
+nnoremap <Leader>tt <C-w>v:te<CR>
+nnoremap <Leader>tm <C-w>s<C-w>J8<C-w>-:te<CR>
 " resize terminal horizontally
 nnoremap <expr><Up> &buftype ==# "terminal" ? "\<C-w>+<CR>" : "\<Up>"
 nnoremap <expr><Down> &buftype ==# "terminal" ? "\<C-w>-<CR>" : "\<Down>"
