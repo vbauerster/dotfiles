@@ -2,11 +2,12 @@ call plug#begin('~/.config/nvim/plugged')
 
 " General
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
+" Plug 'tpope/vim-abolish'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 " ctags tagbar
 Plug 'majutsushi/tagbar'
