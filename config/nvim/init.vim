@@ -283,14 +283,19 @@ vnoremap ? <Esc>?\%V\v
 " eregex.vim plugin and uses Perl-style regular expressions.
 vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
 
-" moving up and down work as you would expect
-nnoremap <silent> j gj
-nnoremap <silent> k gk
-nnoremap <silent> ^ g^
-nnoremap <silent> $ g$
+" This makes j and k work on "screen lines" instead of on "file lines"; now, when
+" we have a long line that wraps to multiple screen lines, j and k behave as we
+" expect them to.
+nnoremap j gj
+nnoremap k gk
+" nnoremap ^ g^
+" nnoremap $ g$
 
-noremap <silent> + 4gj
-noremap <silent> - 4gk
+noremap + 4gj
+noremap - 4gk
+
+noremap <m-j> 15gj
+noremap <m-k> 15gk
 
 " vim-vertical-move
 noremap <expr> gj <SID>vjump(0)
