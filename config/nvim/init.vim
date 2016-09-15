@@ -274,7 +274,14 @@ nnoremap ? ?\v
 vnoremap / <Esc>/\%V\v
 vnoremap ? <Esc>?\%V\v
 
-vmap <Leader>s :sort<CR>
+" With this map, we can select some text in visual mode and by invoking the map,
+" have the selection automatically filled in as the search text and the cursor
+" placed in the position for typing the replacement text. Also, this will ask
+" for confirmation before it replaces any instance of the search text in the
+" file.
+" NOTE: We're using %S here instead of %s; the capital S version comes from the
+" eregex.vim plugin and uses Perl-style regular expressions.
+vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
 
 " moving up and down work as you would expect
 nnoremap <silent> j gj
@@ -419,7 +426,7 @@ nnoremap <Leader>* [I
 " find current word in quickfix
 nnoremap <Leader>** :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
 " find last search in quickfix
-nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR><C-w>W
+" nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR><C-w>W
 
 " -----------------------------------------------------------
 " => External cmd mappings

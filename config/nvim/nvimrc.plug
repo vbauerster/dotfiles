@@ -9,8 +9,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
 " Plug 'tpope/vim-abolish'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-" ctags tagbar
 Plug 'majutsushi/tagbar'
+Plug 'othree/eregex.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'

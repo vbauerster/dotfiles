@@ -459,3 +459,13 @@ vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
 " }}}
+" ============================================================================
+" 'othree/eregex.vim' {{{
+" ============================================================================
+
+let g:eregex_default_enable = 0
+
+" Toggles '/' to mean eregex search or normal Vim search
+nnoremap <leader>/ :call eregex#toggle()<CR>
+
+" }}}
