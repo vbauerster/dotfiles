@@ -270,18 +270,6 @@ nnoremap gp `[v`]
 " Search in normal mode with very magic on
 nnoremap / /\v
 nnoremap ? ?\v
-" Search in visually selected block only
-vnoremap / <Esc>/\%V\v
-vnoremap ? <Esc>?\%V\v
-
-" With this map, we can select some text in visual mode and by invoking the map,
-" have the selection automatically filled in as the search text and the cursor
-" placed in the position for typing the replacement text. Also, this will ask
-" for confirmation before it replaces any instance of the search text in the
-" file.
-" NOTE: We're using %S here instead of %s; the capital S version comes from the
-" eregex.vim plugin and uses Perl-style regular expressions.
-vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
 
 " This makes j and k work on "screen lines" instead of on "file lines"; now, when
 " we have a long line that wraps to multiple screen lines, j and k behave as we
@@ -383,48 +371,6 @@ nnoremap <M-Up> <C-w>+
 nnoremap <M-Down> <C-w>-
 
 " -----------------------------------------------------------
-" => Terminal mode mappings
-" -----------------------------------------------------------
-" Read :help nvim-terminal-emulator
-" <C-\><C-n> key combo, exit back to normal mode.
-tnoremap hh <C-\><C-n>
-tmap <C-k> hh<C-k>
-tmap <C-j> hh<C-j>
-tmap <C-h> hh<C-h>
-tmap <C-l> hh<C-l>
-tmap <C-\> hh<C-\>
-tmap <S-Tab> hh<C-w>p
-
-" -----------------------------------------------------------
-" => Command mode mappings
-" -----------------------------------------------------------
-" refer to the directory of the current file, regardless of pwd
-cnoremap %% <C-R>=expand('%:h').'/'<CR>
-
-" -----------------------------------------------------------
-" => Insert mode mappings
-" -----------------------------------------------------------
-" Start new line
-inoremap <S-Return> <C-o>o
-
-" insert absolute current buffer path
-inoremap <F2> <C-R>=expand('%:p')<CR>
-
-" quick movements
-" http://vim.wikia.com/wiki/Quick_command_in_insert_mode
-inoremap II <Esc>I
-inoremap AA <Esc>A
-" <C-\> does not eat last char of the line
-inoremap CC <C-\><C-O>D
-inoremap hh <Esc>
-
-" upper case
-inoremap UU <Esc>gUiw`]a
-
-imap     <Nul> <C-Space>
-inoremap <C-Space> <C-x><C-l>
-
-" -----------------------------------------------------------
 " => vimgrep
 " -----------------------------------------------------------
 nnoremap <Leader>* [I
@@ -445,6 +391,67 @@ nnoremap <Leader>nn :exe "!babel-node " . shellescape(expand("%"))<CR>
 " http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
 " http://raygrasso.com/posts/2015/04/using-ctags-on-modern-javascript.html
 nnoremap <Leader>mt :!gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp *<CR><CR>
+
+" -----------------------------------------------------------
+" => Insert mode mappings
+" -----------------------------------------------------------
+" Start new line
+inoremap <S-Return> <C-o>o
+
+" insert absolute current buffer path
+inoremap <F2> <C-R>=expand('%:p')<CR>
+
+" quick movements
+" http://vim.wikia.com/wiki/Quick_command_in_insert_mode
+inoremap II <Esc>I
+inoremap AA <Esc>A
+" <C-\> does not eat last char of the line
+inoremap CC <C-\><C-O>D
+
+inoremap ,. <Esc>
+
+" upper case
+inoremap UU <Esc>gUiw`]a
+
+imap     <Nul> <C-Space>
+inoremap <C-Space> <C-x><C-l>
+
+" -----------------------------------------------------------
+" => Visual and Select mode mappings
+" -----------------------------------------------------------
+vnoremap ,. <Esc>
+
+" Search in visually selected block only
+vnoremap / <Esc>/\%V\v
+vnoremap ? <Esc>?\%V\v
+
+" With this map, we can select some text in visual mode and by invoking the map,
+" have the selection automatically filled in as the search text and the cursor
+" placed in the position for typing the replacement text. Also, this will ask
+" for confirmation before it replaces any instance of the search text in the
+" file.
+" NOTE: We're using %S here instead of %s; the capital S version comes from the
+" eregex.vim plugin and uses Perl-style regular expressions.
+vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
+
+" -----------------------------------------------------------
+" => Command mode mappings
+" -----------------------------------------------------------
+" refer to the directory of the current file, regardless of pwd
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
+
+" -----------------------------------------------------------
+" => Terminal mode mappings
+" -----------------------------------------------------------
+" Read :help nvim-terminal-emulator
+" <C-\><C-n> key combo, exit back to normal mode.
+tnoremap hh <C-\><C-n>
+tmap <C-k> hh<C-k>
+tmap <C-j> hh<C-j>
+tmap <C-h> hh<C-h>
+tmap <C-l> hh<C-l>
+tmap <C-\> hh<C-\>
+tmap <S-Tab> hh<C-w>p
 
 " }}}
 " ============================================================================
