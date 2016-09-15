@@ -1955,15 +1955,15 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>80 421 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
-	<string>502 578 400 129 0 0 1440 900 </string>
+	<string>502 561 400 129 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>410 382 620 392 0 0 1440 900 </string>
+	<string>392 363 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>146 435 918 381 0 0 1440 877 </string>
+	<string>24 298 918 452 0 0 1440 877 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>366 277 592 584 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 570 877 0 0 1440 877 </string>
+	<string>834 0 570 877 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>722 450 585 426 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -6676,6 +6676,8 @@
 			<true/>
 			<key>Normal Font</key>
 			<string>IosevkaNerdFontCompleteMono--- 16</string>
+			<key>Only The Default BG Color Uses Transparency</key>
+			<true/>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -6839,7 +6841,7 @@
 			<key>Thin Strokes</key>
 			<integer>1</integer>
 			<key>Transparency</key>
-			<real>0.048365846893491125</real>
+			<real>0.080541846258973357</real>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
@@ -8770,7 +8772,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-09-10T11:11:48Z</date>
+	<date>2016-09-14T14:58:24Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
