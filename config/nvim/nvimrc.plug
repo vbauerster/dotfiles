@@ -16,7 +16,6 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 let g:rainbow#pairs = [['{', '}']]
-Plug 'junegunn/vim-peekaboo'
 
 " New text objects
 Plug 'tommcdo/vim-exchange' " cx to exchange
@@ -122,6 +121,7 @@ Plug 'maksimr/vim-jsbeautify'
 Plug 'artur-shaik/vim-javacomplete2'
 
 " Misc.
+" Plug 'chrisbra/Colorizer'
 Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'airblade/vim-rooter'
@@ -131,6 +131,10 @@ let g:rooter_use_lcd = 1
 if has('mac')
   Plug 'rizzatti/dash.vim'
 endif
+
+" Clipboard related
+Plug 'junegunn/vim-peekaboo'
+Plug 'roxma/vim-tmux-clipboard'
 
 " my plugins
 Plug 'vbauerster/vim-highlighter'
