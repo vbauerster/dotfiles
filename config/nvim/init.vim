@@ -228,8 +228,8 @@ nnoremap <silent> <Leader>x :close<CR>
 
 " Read :help ctrl-w_w
 " Read :help wincmd
-" nnoremap <Tab> <C-w>w
-" nnoremap <S-Tab> <C-w>W
+nnoremap <Tab> <C-w>w
+nnoremap <S-Tab> <C-w>W
 " Go to previous (last accessed) window
 " nnoremap <Leader><Tab> <C-w>p
 
