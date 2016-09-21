@@ -443,13 +443,13 @@ cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " -----------------------------------------------------------
 " Read :help nvim-terminal-emulator
 " <C-\><C-n> key combo, exit back to normal mode.
-tnoremap hh <C-\><C-n>
-tmap <C-k> hh<C-k>
-tmap <C-j> hh<C-j>
-tmap <C-h> hh<C-h>
-tmap <C-l> hh<C-l>
-tmap <C-\> hh<C-\>
-tmap <S-Tab> hh<C-w>p
+tnoremap ,. <C-\><C-n>
+tmap <C-k> ,.<C-k>
+tmap <C-j> ,.<C-j>
+tmap <C-h> ,.<C-h>
+tmap <C-l> ,.<C-l>
+tmap <C-\> ,.<C-\>
+tmap <S-Tab> ,.<C-w>p
 
 " }}}
 " ============================================================================
