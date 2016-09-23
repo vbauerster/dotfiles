@@ -81,10 +81,9 @@ endfunction
 let mapleader = ' '
 let maplocalleader = ' '
 
+let g:gruvbox_contrast_light='soft'
+let g:gruvbox_contrast_dark='soft'
 execute "set background=".$BACKGROUND
-if $BACKGROUND == 'dark'
-  let g:gruvbox_contrast_dark='soft'
-endif
 colorscheme gruvbox
 
 " https://github.com/neovim/neovim/pull/4690
