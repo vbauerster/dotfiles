@@ -1,0 +1,14 @@
+# https://github.com/tmux/tmux/blob/2.1/FAQ#L355-L383
+# A xterm-256color based TERMINFO that adds the escape sequences for italic.
+#
+# Install:
+#
+#   tic xterm-256color-italic.terminfo
+#
+# Usage:
+#
+#   export TERM=tmux-256color-italic
+#
+tmux-256color-italic|tmux with 256 colors and italic,
+  sitm=\E[3m, ritm=\E[23m,
+  use=xterm-256color,
