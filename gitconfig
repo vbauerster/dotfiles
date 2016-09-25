@@ -10,8 +10,9 @@
   ci = commit
   st = status
   br = branch
+	d = diff -w
   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-	stat = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
+  stat = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
   last = cat-file commit HEAD
 [credential]
 	helper = osxkeychain
@@ -41,3 +42,6 @@ cmd = gitmerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 	tool = nvimd3
 [commit]
 	template = /Users/vbauer/.stCommitMsg
+[color "diff"]
+	old = red dim
+	new = green italic
