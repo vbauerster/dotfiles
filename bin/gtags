@@ -2,6 +2,8 @@
 
 set -e
 
+# http://dance.computer.dance/posts/2015/04/using-ctags-on-modern-javascript.html
+# https://github.com/grassdog/dotfiles/blob/master/files/.bin/gtags
 # ctags doesn't handle negative look behinds so instead this script
 # strips false positives out of a tags file.
 
