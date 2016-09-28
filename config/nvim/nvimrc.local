@@ -306,7 +306,7 @@ let g:XkbSwitchSkipFt = [ 'nerdtree' ]
 " 'junegunn/fzf.vim' {{{
 " ============================================================================
 
-" let $FZF_DEFAULT_OPTS .= ' --inline-info'
+let $FZF_DEFAULT_OPTS .= ' --inline-info'
 
 " let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
 
@@ -323,9 +323,9 @@ imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 
 nnoremap <silent> <Leader>*a :Ag <C-R><C-W><CR>
 
-" File preview using CodeRay (http://coderay.rubychan.de/)
+" File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
 let g:fzf_files_options =
-  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+  \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
 " avoids opening file in Nerd_tree window
 nnoremap <silent> <expr> <Leader><Enter> (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
