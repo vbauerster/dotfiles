@@ -15,13 +15,12 @@ Plug 'othree/eregex.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
-let g:rainbow#pairs = [['{', '}']]
+" let g:rainbow#pairs = [['{', '}']]
 
 " New text objects
 Plug 'tommcdo/vim-exchange' " cx to exchange
 Plug 'junegunn/vim-after-object'
 Plug 'chaoren/vim-wordmotion'
-let g:wordmotion_prefix = '\'
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'

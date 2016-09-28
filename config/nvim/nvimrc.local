@@ -470,3 +470,12 @@ let g:eregex_default_enable = 0
 nnoremap <leader>/ :call eregex#toggle()<CR>
 
 " }}}
+" ============================================================================
+" 'chaoren/vim-wordmotion' {{{
+" ============================================================================
+
+let g:wordmotion_prefix = '\'
+
+nmap z\ ci\w
+
+" }}}
