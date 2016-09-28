@@ -5,15 +5,20 @@ options head
     ${0:TARGET}
   }
 
-snippet fn
+snippet pn
 abbr    fmt.Println
 options word
   fmt.Println(${0:TARGET})
 
-snippet ff
+snippet pf
 abbr    fmt.Printf
 options word
   fmt.Printf(${0:TARGET})
+
+snippet p#
+abbr    fmt.Printf # adverb
+options word
+  fmt.Printf("%#v\n", ${0:TARGET})
 
 snippet     gof
 abbr        go func() { ... }()
