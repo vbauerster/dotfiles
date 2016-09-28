@@ -496,7 +496,7 @@ augroup tmux_auto_rename
   autocmd!
   if exists('$TMUX') && !exists('$NORENAME')
     autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
-    autocmd VimLeave * call system('tmux set-window automatic-rename on')
+    " autocmd VimLeave * call system('tmux set-window automatic-rename on')
   endif
 augroup END
 
