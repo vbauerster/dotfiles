@@ -480,7 +480,7 @@ augroup vimrcEx
   " :h last-position-jump
   autocmd BufReadPost *
         \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal g`\"" |
+        \  exe 'normal! g`"zvzz' |
         \ endif
 
   " Enable spellchecking for Markdown
