@@ -154,6 +154,11 @@ set splitright
 " Always use vertical diffs
 set diffopt+=vertical
 
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
 " Whitespaces
 set list " col to toggle
 set listchars=tab:›⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮

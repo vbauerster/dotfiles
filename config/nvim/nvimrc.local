@@ -149,11 +149,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expan
 " imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 " smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
 " }}}
 " ============================================================================
 " 'mattn/emmet-vim' {{{
@@ -169,6 +164,8 @@ augroup Emmetable
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown EmmetInstall
   autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown imap <buffer><expr><TAB> <SID>tabComplete("emmetable")
   autocmd FileType html,markdown vmap <buffer><Leader>ee <c-y>,
+  autocmd FileType css,scss setlocal foldmethod=marker foldmarker={,}
+  autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
 augroup END
 
 " }}}
@@ -378,12 +375,14 @@ augroup jsbeautify_conf
   " autocmd FileType html,xml nnoremap <buffer> <leader>f :call HtmlBeautify()<cr>
   " autocmd FileType css,scss nnoremap <buffer> <leader>f :call CSSBeautify()<cr>
   " beautify only selected lines
-  autocmd FileType javascript vnoremap <buffer>  <leader>f :call RangeJsBeautify()<cr>
-  autocmd FileType json vnoremap <buffer> <leade>f :call RangeJsonBeautify()<cr>
-  autocmd FileType jsx vnoremap <buffer> <leader>f :call RangeJsxBeautify()<cr>
-  autocmd FileType html,xml vnoremap <buffer> <leader>f :call RangeHtmlBeautify()<cr>
-  autocmd FileType css,scss vnoremap <buffer> <leader>f :call RangeCSSBeautify()<cr>
+  " autocmd FileType javascript vnoremap <buffer>  <leader>f :call RangeJsBeautify()<cr>
+  " autocmd FileType json vnoremap <buffer> <leade>f :call RangeJsonBeautify()<cr>
+  " autocmd FileType jsx vnoremap <buffer> <leader>f :call RangeJsxBeautify()<cr>
+  " autocmd FileType html,xml vnoremap <buffer> <leader>f :call RangeHtmlBeautify()<cr>
+  " autocmd FileType css,scss vnoremap <buffer> <leader>f :call RangeCSSBeautify()<cr>
   autocmd BufWritePre *.js call JsBeautify()
+  autocmd BufWritePre *.json call JsonBeautify()
+  autocmd FileType json setlocal conceallevel&
 augroup END
 
 " }}}
@@ -458,7 +457,10 @@ vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
 " 'artur-shaik/vim-javacomplete2' {{{
 " ============================================================================
 
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+augroup javacomplete
+  autocmd!
+  autocmd FileType java setlocal omnifunc=javacomplete#Complete
+augroup END
 
 " }}}
 " ============================================================================
