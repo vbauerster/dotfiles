@@ -49,7 +49,8 @@ bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 bindkey '^[OA' up-line-or-history
 bindkey '^[OB' down-line-or-history
-bindkey '^ ' autosuggest-accept
+# shift + tab
+bindkey '^[[Z' autosuggest-accept
 
 # following just for reference
 # ^Q push-line-or-edit
