@@ -318,7 +318,7 @@ imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " imap <c-l> <plug>(fzf-complete-line)
 " imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
-nnoremap <silent> <Leader>*a :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
 
 " File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
 let g:fzf_files_options =
@@ -480,5 +480,12 @@ nnoremap <leader>/ :call eregex#toggle()<CR>
 let g:wordmotion_prefix = '\'
 
 nmap z\ ci\w
+
+" }}}
+" ============================================================================
+" 'junegunn/goyo.vim' {{{
+" ============================================================================
+
+nnoremap <silent> <Leader>go :Goyo<CR>
 
 " }}}

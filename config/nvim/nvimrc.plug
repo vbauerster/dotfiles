@@ -126,13 +126,14 @@ Plug 'tyru/open-browser.vim'
 Plug 'airblade/vim-rooter'
 let g:rooter_manual_only = 1
 let g:rooter_use_lcd = 1
+Plug 'junegunn/goyo.vim'
 
 if has('mac')
   Plug 'rizzatti/dash.vim'
 endif
 
 " Clipboard related
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 Plug 'roxma/vim-tmux-clipboard'
 
 " my plugins
