@@ -227,9 +227,12 @@ inoremap <C-s> <C-o>:update<CR>
 nnoremap <silent> <F10> :qa<CR>
 nnoremap <silent> <F22> :qa!<CR>
 " Quit/close window
+" <C-w> c Close the current window
+" <C-w> z Close any "Preview" window currently open
+" <C-w> P Go to preview window
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>! :q!<CR>
-nnoremap <silent> <Leader>x :close<CR>
+nnoremap <Leader>x <C-w>c
 
 " Read :help ctrl-w_w
 " Read :help wincmd
@@ -238,6 +241,8 @@ nnoremap <S-Tab> <C-w>W
 " Go to previous (last accessed) window
 " nnoremap <Leader><Tab> <C-w>p
 
+nnoremap <Leader>o <C-w>o
+
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
 " copy selection to gui-clipboard
@@ -245,10 +250,6 @@ xnoremap Y "*y
 " copy entire file contents (to gui-clipboard if available)
 nnoremap yY :let b:winview=winsaveview()<bar>exe 'keepjumps keepmarks norm ggVG'.(has('clipboard')?'"*y':'y')<bar>call winrestview(b:winview)<cr>
 inoremap <insert> <C-r>*
-
-" <C-w> c Close the current window
-" <C-w> z Close any "Preview" window currently open
-" <C-w> P Go to preview window
 
 " Toggle to open or close the quickfix window
 " http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
@@ -378,9 +379,10 @@ nnoremap <M-Down> <C-w>-
 " -----------------------------------------------------------
 " => vimgrep
 " -----------------------------------------------------------
-nnoremap <Leader>* [I
+nnoremap <Leader>* ]I
+nnoremap <Leader># [I
 " find current word in quickfix
-nnoremap <Leader>** :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
+nnoremap <Leader>g* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
 " find last search in quickfix
 " nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR><C-w>W
 
@@ -454,7 +456,7 @@ tmap <C-j> ,.<C-j>
 tmap <C-h> ,.<C-h>
 tmap <C-l> ,.<C-l>
 tmap <C-\> ,.<C-\>
-tmap <S-Tab> ,.<C-w>p
+" tmap <S-Tab> ,.<C-w>p
 
 " }}}
 " ============================================================================
