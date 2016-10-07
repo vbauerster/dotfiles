@@ -26,8 +26,7 @@ fzf-gf() {
   is_in_git_repo || return
   git -c color.status=always status --short |
   fzf-tmux -m --ansi --nth 2..,.. \
-    --preview 'NAME="$(cut -c4- <<< {})" &&
-               (git diff --color=always "$NAME" | sed 1,4d; cat "$NAME") | head -200' |
+    --preview '(git diff --color=always {2} | sed 1,4d; cat {2}) | head -300' |
   cut -c4-
 }
 
@@ -42,9 +41,9 @@ fzf-gb() {
 
 fzf-gr() {
   is_in_git_repo || return
-  git remote -v | awk '{print $1 " " $2}' | uniq |
+  git remote -v | awk '{print $1 "\t" $2}' | uniq |
   fzf-tmux --tac \
-    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" $(cut -d" " -f1 <<< {}) | head -200' |
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
   cut -d' ' -f1
 }
 
