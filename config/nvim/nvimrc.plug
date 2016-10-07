@@ -50,8 +50,7 @@ Plug 'tpope/vim-commentary'
 Plug 'godlygeek/tabular'
 
 " Git
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/gv.vim'
+Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
 " Make gists easily from Vim
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
