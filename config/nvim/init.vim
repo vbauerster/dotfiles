@@ -232,7 +232,7 @@ nnoremap <silent> <F22> :qa!<CR>
 " <C-w> P Go to preview window
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>! :q!<CR>
-nnoremap <Leader>x <C-w>c
+nnoremap <Leader>xc <C-w>c
 
 " Read :help ctrl-w_w
 " Read :help wincmd
@@ -242,6 +242,8 @@ nnoremap <S-Tab> <C-w>W
 " nnoremap <Leader><Tab> <C-w>p
 
 nnoremap <Leader>o <C-w>o
+nnoremap <Leader><Bar> <C-w><Bar>
+nnoremap <Leader>v <C-w>v
 
 " make Y consistent with C and D. See :help Y.
 nnoremap Y y$
@@ -306,6 +308,8 @@ nnoremap <silent> g# g#zz
 " fold a html tag
 nnoremap <Leader>ft Vatzf
 
+nnoremap <Leader>Bx daBdd
+
 " Read :help g_ctrl-]
 " same as :tjump
 " jump to tag if there's only one matching tag, but show list of
@@ -313,7 +317,7 @@ nnoremap <Leader>ft Vatzf
 nnoremap <c-]> g<c-]>
 
 " Remove spaces at the end of lines
-nnoremap <silent><Leader>w<Leader> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+nnoremap <silent><Leader>wx :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
 " Buffer reload
 nnoremap <Leader>rr :e!<CR>
@@ -322,9 +326,7 @@ nnoremap <Leader>rr :e!<CR>
 " bprev provided by unimpaired [b
 " bnext provided by unimpaired ]b
 nnoremap <silent><Leader>. <C-^><CR>
-nnoremap <Leader>bx :bd<CR>
-
-nnoremap <Leader>v <C-w>v
+nnoremap <Leader>xx :bd<CR>
 
 " vim-peekaboo provides @
 " nnoremap <Leader>di :di<CR>
@@ -456,7 +458,6 @@ tmap <C-j> ,.<C-j>
 tmap <C-h> ,.<C-h>
 tmap <C-l> ,.<C-l>
 tmap <C-\> ,.<C-\>
-" tmap <S-Tab> ,.<C-w>p
 
 " }}}
 " ============================================================================
@@ -503,7 +504,7 @@ augroup tmux_auto_rename
   autocmd!
   if exists('$TMUX') && !exists('$NORENAME')
     autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
-    " autocmd VimLeave * call system('tmux set-window automatic-rename on')
+    autocmd VimLeave * call system('tmux set-window automatic-rename on')
   endif
 augroup END
 
