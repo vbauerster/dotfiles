@@ -108,10 +108,10 @@ inoremap <expr><C-z> deoplete#undo_completion()
 
 " https://github.com/neovim/neovim/pull/4682#issuecomment-220763071
 " <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function() abort
-"   return deoplete#close_popup() . "\<CR>"
-" endfunction
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
 
 " }}}
 " ============================================================================
