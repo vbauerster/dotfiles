@@ -70,10 +70,16 @@ zle -N fzf-gb-widget
 fzf-gr-widget() LBUFFER+=$(fzf-gr | join-lines)
 zle -N fzf-gr-widget
 
+# Figlet font selector
+fgl() (
+  cd /usr/local/Cellar/figlet/*/share/figlet/fonts
+  ls *.flf | sort | fzf --no-multi --reverse --preview "figlet -f {} Hello World!"
+)
+
 # fzf related functions
 # ---------------------
-# zgco - checkout git branch/tag
-zgco() {
+# zco - checkout git branch/tag
+zco() {
   local tags branches target
   tags=$(
     git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
@@ -87,8 +93,8 @@ zgco() {
   git checkout $(echo "$target" | awk '{print $2}')
 }
 
-# zghh - git history
-zghh() {
+# zmm - git coMMit browser
+zmm() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
@@ -99,10 +105,21 @@ zghh() {
               xargs -I % sh -c 'nvim fugitive://\$(git rev-parse --show-toplevel)/.git//% < /dev/tty'"
 }
 
-# zfe [FUZZY PATTERN] - Open the selected file with the default editor
+# ztags - search ctags
+ztags() {
+  local line
+  [ -e tags ] &&
+  line=$(
+    awk 'BEGIN { FS="\t" } !/^!/ {print toupper($4)"\t"$1"\t"$2"\t"$3}' tags |
+    cut -c1-$COLUMNS | fzf --nth=2 --tiebreak=begin
+  ) && $EDITOR $(cut -f3 <<< "$line") -c "set nocst" \
+                                      -c "silent tag $(cut -f2 <<< "$line")"
+}
+
+# ze [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
-zfe() {
+ze() {
   local file
   file=$(fzf-tmux --query="$1" --select-1 --exit-0)
   [ -n "$file" ] && ${EDITOR:-vim} "$file"
@@ -118,7 +135,7 @@ zee() {
 }
 
 # Switch tmux-sessions
-ts() {
+ztms() {
   local session
   session=$(tmux list-sessions -F "#{session_name}" | \
     fzf-tmux --query="$1" --select-1 --exit-0) &&
