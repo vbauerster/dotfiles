@@ -319,6 +319,7 @@ imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
 nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+xnoremap <silent> <Leader>ag y:Ag <C-R>"<CR>
 
 " File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
 let g:fzf_files_options =
