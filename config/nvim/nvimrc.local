@@ -1,493 +1,393 @@
-" vim: set foldmethod=marker foldlevel=0:
-" ============================================================================
+" vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
+
 " 'benekastah/neomake' {{{
-" ============================================================================
+  let g:neomake_verbose = 0
+  " let g:neomake_open_list = 2
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  " let g:neomake_go_enabled_makers = ['golint']
 
-let g:neomake_verbose = 0
-" let g:neomake_open_list = 2
-let g:neomake_javascript_enabled_makers = ['eslint']
-" let g:neomake_go_enabled_makers = ['golint']
+  let g:neomake_error_sign = {'text': '✖', 'texthl': 'GruvboxRedSign'}
+  let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'GruvboxYellowSign'}
 
-let g:neomake_error_sign = {'text': '✖', 'texthl': 'GruvboxRedSign'}
-let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'GruvboxYellowSign'}
+  " run neomake on the current file on every write
+  augroup Neomake
+    autocmd!
+    autocmd BufWritePost * Neomake
+  augroup END
+"}}}
 
-" run neomake on the current file on every write
-augroup Neomake
-  autocmd!
-  autocmd BufWritePost * Neomake
-augroup END
-
-" }}}
-" ============================================================================
 " 'othree/javascript-libraries-syntax.vim' {{{
-" ============================================================================
+  " Default lib set is: jquery,underscore,backbone
+  " let g:used_javascript_libs = 'jquery,underscore,react'
+"}}}
 
-" Default lib set is: jquery,underscore,backbone
-" let g:used_javascript_libs = 'jquery,underscore,react'
-
-" }}}
-" ============================================================================
 " 'bling/vim-airline' {{{
-" ============================================================================
+  " For powerline enabled font.
+  let g:airline_powerline_fonts = 1
 
-" For powerline enabled font.
-let g:airline_powerline_fonts = 1
+  " Smarter tab line
+  let g:airline#extensions#tabline#enabled = 1
 
-" Smarter tab line
-let g:airline#extensions#tabline#enabled = 1
+  let g:airline_inactive_collapse = 1
 
-let g:airline_inactive_collapse = 1
+  " Themes are automatically selected based on the matching colorscheme.
+  " this can be overridden by defining a value:
+  "     let g:airline_theme='dark'
+  " See `:echo g:airline_theme_map` for some more choices
 
-" Themes are automatically selected based on the matching colorscheme.
-" this can be overridden by defining a value:
-"     let g:airline_theme='dark'
-" See `:echo g:airline_theme_map` for some more choices
-
-if !exists('g:airline_powerline_fonts')
-  " Use the default set of separators with a few customizations
-  let g:airline_left_sep='›'  " Slightly fancier than '>'
-  let g:airline_right_sep='‹' " Slightly fancier than '<'
-endif
-
-" }}}
-" ============================================================================
-" 'scrooloose/nerdtree' {{{
-" ============================================================================
-
-"map <leader>n <plug>NERDTreeTabsToggle<CR>
-nmap <F3> :NERDTreeToggle<CR>
-nmap <leader>nt :NERDTreeFind<CR>
-
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.sw[op]$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.js.map$']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeMouseMode=2
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
-let g:nerdtree_tabs_open_on_gui_startup=0
-
-" }}}
-" ============================================================================
-" 'mbbill/undotree' {{{
-" ============================================================================
-
-nnoremap <leader>uu :UndotreeToggle<CR>
-let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
-
-" }}}
-" ============================================================================
-" 'Shougo/deoplete.nvim' {{{
-" ============================================================================
-
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-" Use smartcase.
-let g:deoplete#enable_smart_case = 1
-" https://github.com/Shougo/deoplete.nvim/issues/267
-" let g:deoplete#enable_refresh_always = 1
-
-" https://github.com/Shougo/deoplete.nvim/issues/288
-call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
-" Use head matcher instead of fuzzy matcher
-" call deoplete#custom#set('_', 'matchers', ['matcher_head'])
-" Length matching matcher.
-" It removes shorter candidates than user input.
-" call deoplete#custom#set('_', 'matchers', ['matcher_length'])
-
-" let g:deoplete#omni_patterns = {}
-" let g:deoplete#omni_patterns.go = '[^.[:digit:] *\t]\.\w*'
-
-" imap     <Nul> <C-Space>
-" inoremap <expr><C-Space> deoplete#mappings#manual_complete()
-
-" close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
-inoremap <expr><Esc> pumvisible() && neosnippet#jumpable() ? deoplete#close_popup() : "\<Esc>"
-
-inoremap <expr><C-z> deoplete#undo_completion()
-
-" https://github.com/neovim/neovim/pull/4682#issuecomment-220763071
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-  return deoplete#close_popup() . "\<CR>"
-endfunction
-
-" }}}
-" ============================================================================
-" 'Shougo/neosnippet.vim'  {{{
-" ============================================================================
-
-function! s:tabComplete(type) abort
-  if a:type==#"emmetable" && match(getline('.'), '[<(].*[>)]')<0 && emmet#isExpandable()
-    return "\<Plug>(emmet-expand-abbr)"
-  elseif neosnippet#expandable() && !neosnippet#jumpable()
-    return "\<Plug>(neosnippet_expand)"
-  elseif neosnippet#jumpable() && !pumvisible()
-    return "\<Plug>(neosnippet_jump)"
-  elseif pumvisible()
-    return "\<C-n>"
-  else
-    return "\<TAB>"
+  if !exists('g:airline_powerline_fonts')
+    " Use the default set of separators with a few customizations
+    let g:airline_left_sep='›'  " Slightly fancier than '>'
+    let g:airline_right_sep='‹' " Slightly fancier than '<'
   endif
-endfunction
+"}}}
 
-" :NeoSnippetEdit -runtime to edit global snippets
-" :NeoSnippetEdit to edit user defined snippets
-nnoremap <silent><Leader>ne :NeoSnippetEdit<CR>
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
-let g:neosnippet#enable_snipmate_compatibility=1
+" 'scrooloose/nerdtree' {{{
+  "map <leader>n <plug>NERDTreeTabsToggle<CR>
+  nmap <F3> :NERDTreeToggle<CR>
+  nmap <leader>nt :NERDTreeFind<CR>
 
-" Plugin key-mappings
-" imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-" xmap <C-k>     <Plug>(neosnippet_expand_target)
+  let NERDTreeShowBookmarks=1
+  let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.sw[op]$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.js.map$']
+  let NERDTreeChDirMode=0
+  let NERDTreeQuitOnOpen=1
+  let NERDTreeMouseMode=2
+  let NERDTreeShowHidden=1
+  let NERDTreeKeepTreeInNewTab=1
+  let g:nerdtree_tabs_open_on_gui_startup=0
+"}}}
 
-" <tab> mapping
-imap <expr><TAB> <SID>tabComplete("neo")
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-" imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-" smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+" 'mbbill/undotree' {{{
+  nnoremap <leader>uu :UndotreeToggle<CR>
+  let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
+"}}}
 
-" }}}
-" ============================================================================
+" 'Shougo/deoplete.nvim' {{{
+  " Use deoplete.
+  let g:deoplete#enable_at_startup = 1
+  " Use smartcase.
+  let g:deoplete#enable_smart_case = 1
+  " https://github.com/Shougo/deoplete.nvim/issues/267
+  " let g:deoplete#enable_refresh_always = 1
+
+  " https://github.com/Shougo/deoplete.nvim/issues/288
+  call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
+  " Use head matcher instead of fuzzy matcher
+  " call deoplete#custom#set('_', 'matchers', ['matcher_head'])
+  " Length matching matcher.
+  " It removes shorter candidates than user input.
+  " call deoplete#custom#set('_', 'matchers', ['matcher_length'])
+
+  " let g:deoplete#omni_patterns = {}
+  " let g:deoplete#omni_patterns.go = '[^.[:digit:] *\t]\.\w*'
+
+  " imap     <Nul> <C-Space>
+  " inoremap <expr><C-Space> deoplete#mappings#manual_complete()
+
+  " close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
+  inoremap <expr><Esc> pumvisible() && neosnippet#jumpable() ? deoplete#close_popup() : "\<Esc>"
+
+  inoremap <expr><C-z> deoplete#undo_completion()
+
+  " https://github.com/neovim/neovim/pull/4682#issuecomment-220763071
+  " <CR>: close popup and save indent.
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function() abort
+    return deoplete#close_popup() . "\<CR>"
+  endfunction
+"}}}
+
+" 'Shougo/neosnippet.vim'  {{{
+  function! s:tabComplete(type) abort
+    if a:type==#"emmetable" && match(getline('.'), '[<(].*[>)]')<0 && emmet#isExpandable()
+      return "\<Plug>(emmet-expand-abbr)"
+    elseif neosnippet#expandable() && !neosnippet#jumpable()
+      return "\<Plug>(neosnippet_expand)"
+    elseif neosnippet#jumpable() && !pumvisible()
+      return "\<Plug>(neosnippet_jump)"
+    elseif pumvisible()
+      return "\<C-n>"
+    else
+      return "\<TAB>"
+    endif
+  endfunction
+
+  " :NeoSnippetEdit -runtime to edit global snippets
+  " :NeoSnippetEdit to edit user defined snippets
+  nnoremap <silent><Leader>ne :NeoSnippetEdit<CR>
+  let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
+  let g:neosnippet#enable_snipmate_compatibility=1
+
+  " Plugin key-mappings
+  " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  " xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+  " <tab> mapping
+  imap <expr><TAB> <SID>tabComplete("neo")
+  smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  " imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+  " smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+"}}}
+
 " 'mattn/emmet-vim' {{{
-" ============================================================================
+  let g:user_emmet_install_global = 0
+  let g:user_emmet_complete_tag = 1
 
-let g:user_emmet_install_global = 0
-let g:user_emmet_complete_tag = 1
-
-augroup Emmetable
-  autocmd!
-  " Allow to autocomplete hyphenated words
-  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html setlocal iskeyword+=-
-  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown EmmetInstall
-  autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown imap <buffer><expr><TAB> <SID>tabComplete("emmetable")
-  autocmd FileType html,markdown vmap <buffer><Leader>ee <c-y>,
-  autocmd FileType css,scss setlocal foldmethod=marker foldmarker={,}
-  autocmd FileType css,scss nnoremap <silent> <leader>S vi{:sort<CR>
-augroup END
-
+  augroup Emmetable
+    autocmd!
+    " Allow to autocomplete hyphenated words
+    autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html setlocal iskeyword+=-
+    autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown EmmetInstall
+    autocmd FileType xml,xsl,xslt,xsd,css,sass,scss,less,mustache,html,markdown imap <buffer><expr><TAB> <SID>tabComplete("emmetable")
+    autocmd FileType html,markdown vmap <buffer><Leader>ee <c-y>,
+    autocmd FileType css,scss setlocal foldmethod=marker foldmarker={,}
+    autocmd FileType css,scss nnoremap <silent> <leader>S viB:sort<CR>
+  augroup END
 " }}}
-" ============================================================================
+
 " 'ternjs/tern_for_vim' {{{
-" ============================================================================
+  let g:tern_show_argument_hints='on_hold'
+  let g:tern_map_keys=1
+"}}}
 
-let g:tern_show_argument_hints='on_hold'
-let g:tern_map_keys=1
-
-" }}}
-" ============================================================================
 " 'majutsushi/tagbar' {{{
-" ============================================================================
+  nmap <F8> :TagbarToggle<CR>
+"}}}
 
-nmap <F8> :TagbarToggle<CR>
-
-" }}}
-" ============================================================================
 " 'jiangmiao/auto-pairs' {{{
-" ============================================================================
+  " <M-p> : Toggle Autopairs (g:AutoPairsShortcutToggle)
+  " let g:AutoPairsMapSpace = 0
+  let g:AutoPairsFlyMode = 1
+  let g:AutoPairsShortcutBackInsert = '<C-b>'
+  let g:AutoPairsShortcutFastWrap = '<M-w>'
+"}}}
 
-" <M-p> : Toggle Autopairs (g:AutoPairsShortcutToggle)
-" let g:AutoPairsMapSpace = 0
-let g:AutoPairsFlyMode = 1
-let g:AutoPairsShortcutBackInsert = '<C-b>'
-let g:AutoPairsShortcutFastWrap = '<M-w>'
-
-" }}}
-" ============================================================================
 " 'junegunn/vim-after-object' {{{
-" ============================================================================
+  silent! if has_key(g:plugs, 'vim-after-object')
+    autocmd VimEnter * silent! call after_object#enable('=', ':', '-', '#', ' ')
+  endif
+"}}}
 
-silent! if has_key(g:plugs, 'vim-after-object')
-  autocmd VimEnter * silent! call after_object#enable('=', ':', '-', '#', ' ')
-endif
-
-" }}}
-" ============================================================================
 " 'tpope/vim-fugitive' {{{
-" ============================================================================
+  nnoremap <silent> <leader>gg :Gstatus<CR>
+  nnoremap <silent> <leader>gd :Gdiff<CR>
+  nnoremap <silent> <leader>gcc :Gcommit<CR>
+  nnoremap <silent> <leader>gb :Gblame<CR>
+  nnoremap <silent> <leader>gl :Glog<CR>
+  nnoremap <silent> <leader>gv :Gvsplit<CR>
+  nnoremap <silent> <leader>gp :Git push<CR>
+  " Git add %
+  nnoremap <silent> <leader>gw :Gwrite<CR>
+  " Git rm %
+  nnoremap <silent> <leader>gx :Gremove<CR>
+  " Git checkout %
+  nnoremap <silent> <leader>gu :Gread<CR>
 
-nnoremap <silent> <leader>gg :Gstatus<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gcc :Gcommit<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>gl :Glog<CR>
-nnoremap <silent> <leader>gv :Gvsplit<CR>
-nnoremap <silent> <leader>gp :Git push<CR>
-" Git add %
-nnoremap <silent> <leader>gw :Gwrite<CR>
-" Git rm %
-nnoremap <silent> <leader>gx :Gremove<CR>
-" Git checkout %
-nnoremap <silent> <leader>gu :Gread<CR>
+  " Every time you open a git object using fugitive it creates a new buffer.
+  " This means that your buffer listing can quickly become swamped with
+  " fugitive buffers. This prevents this from becomming an issue:
+  " augroup fug_buf_hide
+  "   autocmd!
+  "   autocmd BufReadPost fugitive://* set bufhidden=delete
+  " augroup END
+"}}}
 
-" Every time you open a git object using fugitive it creates a new buffer.
-" This means that your buffer listing can quickly become swamped with
-" fugitive buffers. This prevents this from becomming an issue:
-" augroup fug_buf_hide
-"   autocmd!
-"   autocmd BufReadPost fugitive://* set bufhidden=delete
-" augroup END
-
-" }}}
-" ============================================================================
 " 'junegunn/gv.vim' {{{
-" ============================================================================
+  " Commits All
+  nnoremap <silent> <leader>gca :GV<CR>
+  " Commitns Only of the current file
+  nnoremap <silent> <leader>gco :GV!<CR>
+  " Commits Revisions of the current file
+  nnoremap <silent> <leader>gcr :GV?<CR>
+"}}}
 
-" Commits All
-nnoremap <silent> <leader>gca :GV<CR>
-" Commitns Only of the current file
-nnoremap <silent> <leader>gco :GV!<CR>
-" Commits Revisions of the current file
-nnoremap <silent> <leader>gcr :GV?<CR>
-
-" }}}
-" ============================================================================
 " 'justinmk/vim-sneak' {{{
-" ============================================================================
+  " let g:sneak#prompt = 'sneak›'
+  " To enable 'passive' or 'smart' streak-mode
+  let g:sneak#streak = 1
+  " Enable the 'clever-s' feature
+  let g:sneak#s_next = 1
+  " Case sensitivity is determined by 'ignorecase' and 'smartcase'.
+  let g:sneak#use_ic_scs = 1
 
-" let g:sneak#prompt = 'sneak›'
-" To enable 'passive' or 'smart' streak-mode
-let g:sneak#streak = 1
-" Enable the 'clever-s' feature
-let g:sneak#s_next = 1
-" Case sensitivity is determined by 'ignorecase' and 'smartcase'.
-let g:sneak#use_ic_scs = 1
+  " replace 'f' with 1-char Sneak
+  nmap f <Plug>Sneak_f
+  nmap F <Plug>Sneak_F
+  xmap f <Plug>Sneak_f
+  xmap F <Plug>Sneak_F
+  omap f <Plug>Sneak_f
+  omap F <Plug>Sneak_F
+  " replace 't' with 1-char Sneak
+  nmap t <Plug>Sneak_t
+  nmap T <Plug>Sneak_T
+  xmap t <Plug>Sneak_t
+  xmap T <Plug>Sneak_T
+  omap t <Plug>Sneak_t
+  omap T <Plug>Sneak_T
+"}}}
 
-" replace 'f' with 1-char Sneak
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
-" replace 't' with 1-char Sneak
-nmap t <Plug>Sneak_t
-nmap T <Plug>Sneak_T
-xmap t <Plug>Sneak_t
-xmap T <Plug>Sneak_T
-omap t <Plug>Sneak_t
-omap T <Plug>Sneak_T
-
-" }}}
-" ============================================================================
 " 'vim-scripts/sessionman.vim' {{{
-" ============================================================================
+  set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+  nmap <leader>ss :SessionList<CR>
+  nmap <leader>sw :SessionSave<CR>
+"}}}
 
-set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-nmap <leader>ss :SessionList<CR>
-nmap <leader>sw :SessionSave<CR>
-
-" }}}
-" ============================================================================
 " 'rizzatti/dash.vim' {{{
-" ============================================================================
+  nmap <silent> <leader>ds <Plug>DashSearch
+  let g:dash_map = {
+    \ 'stylus' : ['css', 'stylus']
+    \ }
+"}}}
 
-nmap <silent> <leader>ds <Plug>DashSearch
-let g:dash_map = {
-  \ 'stylus' : ['css', 'stylus']
-  \ }
-
-" }}}
-" ============================================================================
 " 'lyokha/vim-xkbswitch' {{{
-" ============================================================================
+  let g:XkbSwitchEnabled = 1
+  let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
+  let g:XkbSwitchSkipFt = [ 'nerdtree' ]
+"}}}
 
-let g:XkbSwitchEnabled = 1
-let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.dylib'
-let g:XkbSwitchSkipFt = [ 'nerdtree' ]
-
-" }}}
-" ============================================================================
 " 'junegunn/fzf.vim' {{{
-" ============================================================================
+  let $FZF_DEFAULT_OPTS .= ' --inline-info'
 
-let $FZF_DEFAULT_OPTS .= ' --inline-info'
+  " let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
 
-" let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
+  " [Buffers] Jump to the existing window if possible
+  let g:fzf_buffers_jump = 1
 
-" [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
+  " Replace the default dictionary completion with fzf-based fuzzy completion
+  " inoremap <expr> <c-x><c-k> fzf#complete('cat /usr/share/dict/words')
+  " sacrifice CTRL-d for something more usefull, read :help i_CTRL-d
+  imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
+  " Line completion (all open buffers)
+  " imap <c-l> <plug>(fzf-complete-line)
+  " imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
-" Replace the default dictionary completion with fzf-based fuzzy completion
-" inoremap <expr> <c-x><c-k> fzf#complete('cat /usr/share/dict/words')
-" sacrifice CTRL-d for something more usefull, read :help i_CTRL-d
-imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
-" Line completion (all open buffers)
-" imap <c-l> <plug>(fzf-complete-line)
-" imap <c-x><c-f> <plug>(fzf-complete-file-ag)
+  nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
+  xnoremap <silent> <Leader>ag y:Ag <C-R>"<CR>
 
-nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
-xnoremap <silent> <Leader>ag y:Ag <C-R>"<CR>
+  " File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
+  let g:fzf_files_options =
+    \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
-" File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
-let g:fzf_files_options =
-  \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+  " avoids opening file in Nerd_tree window
+  nnoremap <silent> <expr> <Leader><Enter> (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
+  nnoremap <silent><Leader>hh :History<CR>
+  nnoremap <silent><Leader>ww :Windows<CR>
+  nnoremap <silent><Leader><Leader> :Buffers<CR>
+  nnoremap <silent><Leader>gf :GitFiles<CR>
+  nnoremap <silent><Leader>mm :Commits<CR>
+  nnoremap <silent><Leader>' :Marks<CR>
+  nnoremap <silent><Leader>; :History:<CR>
 
-" avoids opening file in Nerd_tree window
-nnoremap <silent> <expr> <Leader><Enter> (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
-nnoremap <silent><Leader>hh :History<CR>
-nnoremap <silent><Leader>ww :Windows<CR>
-nnoremap <silent><Leader><Leader> :Buffers<CR>
-nnoremap <silent><Leader>gf :GitFiles<CR>
-nnoremap <silent><Leader>mm :Commits<CR>
-nnoremap <silent><Leader>' :Marks<CR>
-nnoremap <silent><Leader>; :History:<CR>
+  nmap <leader><tab> <plug>(fzf-maps-n)
+  xmap <leader><tab> <plug>(fzf-maps-x)
+  omap <leader><tab> <plug>(fzf-maps-o)
 
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+  command! Plugs call fzf#run({
+    \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
+    \ 'options': '--delimiter / --nth -1',
+    \ 'down':    '~40%',
+    \ 'sink':    'Explore'})
+"}}}
 
-command! Plugs call fzf#run({
-  \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
-  \ 'options': '--delimiter / --nth -1',
-  \ 'down':    '~40%',
-  \ 'sink':    'Explore'})
-
-" }}}
-" ============================================================================
-" 'mhinz/vim-grepper' {{{
-" ============================================================================
-
-" nnoremap <leader>gi :Grepper -tool git -noswitch<cr>
-" nnoremap <leader>ag :Grepper -tool ag  -grepprg ag --vimgrep<cr>
-
-" }}}
-" ============================================================================
 " 'Shougo/echodoc.vim' {{{
-" ============================================================================
+  augroup echodoc_conf
+    autocmd!
+    autocmd FileType javascript EchoDocEnable
+  augroup END
+"}}}
 
-augroup echodoc_conf
-  autocmd!
-  autocmd FileType javascript EchoDocEnable
-augroup END
-
-" }}}
-" ============================================================================
 " 'maksimr/vim-jsbeautify' {{{
-" ============================================================================
+  augroup jsbeautify_conf
+    autocmd!
+    " autocmd FileType javascript nnoremap <buffer> <leader>f :call JsBeautify()<cr>
+    " autocmd FileType json nnoremap <buffer> <leader>f :call JsonBeautify()<cr>
+    " autocmd FileType jsx nnoremap <buffer> <leader>f :call JsxBeautify()<cr>
+    " autocmd FileType html,xml nnoremap <buffer> <leader>f :call HtmlBeautify()<cr>
+    " autocmd FileType css,scss nnoremap <buffer> <leader>f :call CSSBeautify()<cr>
+    " beautify only selected lines
+    " autocmd FileType javascript vnoremap <buffer>  <leader>f :call RangeJsBeautify()<cr>
+    " autocmd FileType json vnoremap <buffer> <leade>f :call RangeJsonBeautify()<cr>
+    " autocmd FileType jsx vnoremap <buffer> <leader>f :call RangeJsxBeautify()<cr>
+    " autocmd FileType html,xml vnoremap <buffer> <leader>f :call RangeHtmlBeautify()<cr>
+    " autocmd FileType css,scss vnoremap <buffer> <leader>f :call RangeCSSBeautify()<cr>
+    autocmd BufWritePre *.js call JsBeautify()
+    autocmd BufWritePre *.json call JsonBeautify()
+    autocmd FileType json setlocal conceallevel&
+  augroup END
+"}}}
 
-augroup jsbeautify_conf
-  autocmd!
-  " autocmd FileType javascript nnoremap <buffer> <leader>f :call JsBeautify()<cr>
-  " autocmd FileType json nnoremap <buffer> <leader>f :call JsonBeautify()<cr>
-  " autocmd FileType jsx nnoremap <buffer> <leader>f :call JsxBeautify()<cr>
-  " autocmd FileType html,xml nnoremap <buffer> <leader>f :call HtmlBeautify()<cr>
-  " autocmd FileType css,scss nnoremap <buffer> <leader>f :call CSSBeautify()<cr>
-  " beautify only selected lines
-  " autocmd FileType javascript vnoremap <buffer>  <leader>f :call RangeJsBeautify()<cr>
-  " autocmd FileType json vnoremap <buffer> <leade>f :call RangeJsonBeautify()<cr>
-  " autocmd FileType jsx vnoremap <buffer> <leader>f :call RangeJsxBeautify()<cr>
-  " autocmd FileType html,xml vnoremap <buffer> <leader>f :call RangeHtmlBeautify()<cr>
-  " autocmd FileType css,scss vnoremap <buffer> <leader>f :call RangeCSSBeautify()<cr>
-  autocmd BufWritePre *.js call JsBeautify()
-  autocmd BufWritePre *.json call JsonBeautify()
-  autocmd FileType json setlocal conceallevel&
-augroup END
-
-" }}}
-" ============================================================================
 " 'suan/vim-instant-markdown' {{{
-" ============================================================================
+  let g:instant_markdown_autostart = 0
+  " manually trigger preview via :InstantMarkdownPreview
+"}}}
 
-let g:instant_markdown_autostart = 0
-" manually trigger preview via :InstantMarkdownPreview
-
-" }}}
-" ============================================================================
 " 'tyru/open-browser.vim' {{{
-" ============================================================================
+  function! s:OpenPluginRepo()
+      try
+          exec "normal! ".'"ayi'."'"
+          exec 'OpenBrowser https://github.com/'.@a
+      catch
+          echohl WarningMsg | echomsg "can not open the web of current plugin" | echohl None
+      endtry
+  endfunction
 
-function! s:OpenPluginRepo()
-    try
-        exec "normal! ".'"ayi'."'"
-        exec 'OpenBrowser https://github.com/'.@a
-    catch
-        echohl WarningMsg | echomsg "can not open the web of current plugin" | echohl None
-    endtry
-endfunction
+  nnoremap <silent> <leader>px :call <SID>OpenPluginRepo()<CR>
+"}}}
 
-nnoremap <silent> <leader>px :call <SID>OpenPluginRepo()<CR>
-
-" }}}
-" ============================================================================
 " 'fatih/vim-go' {{{
-" ============================================================================
+  let g:go_highlight_functions = 1
+  let g:go_highlight_methods = 1
+  let g:go_term_enabled = 1
+  " let g:go_fmt_command = "goimports"
 
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_term_enabled = 1
-" let g:go_fmt_command = "goimports"
+  augroup goLang
+    autocmd!
+    autocmd FileType go nnoremap <buffer><F1> :GoInfo<cr>
+    autocmd FileType go nnoremap <buffer><F6> :GoRename<cr>
+    autocmd FileType go nnoremap <buffer><F9> :GoRun<cr>
+    autocmd FileType go nnoremap <buffer><F21> :GoTest<cr>
+    autocmd FileType go nnoremap <buffer><leader>i :GoImports<cr>
+    autocmd FileType go nnoremap <buffer><F7> :GoSameIdsToggle<cr>
+    " autocmd FileType go setlocal tabstop=4
+    " autocmd FileType go setlocal softtabstop=4
+  augroup END
+"}}}
 
-augroup goLang
-  autocmd!
-  autocmd FileType go nnoremap <buffer><F1> :GoInfo<cr>
-  autocmd FileType go nnoremap <buffer><F6> :GoRename<cr>
-  autocmd FileType go nnoremap <buffer><F9> :GoRun<cr>
-  autocmd FileType go nnoremap <buffer><F21> :GoTest<cr>
-  autocmd FileType go nnoremap <buffer><leader>i :GoImports<cr>
-  autocmd FileType go nnoremap <buffer><F7> :GoSameIdsToggle<cr>
-  " autocmd FileType go setlocal tabstop=4
-  " autocmd FileType go setlocal softtabstop=4
-augroup END
-
-" }}}
-" ============================================================================
 " 'zchee/deoplete-go' {{{
-" ============================================================================
+  let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+  let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+"}}}
 
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-
-" }}}
-" ============================================================================
 " 'godlygeek/tabular' {{{
-" ============================================================================
+  " looks at the current line and the lines above and below it and aligns all the
+  " equals signs; useful for when we have several lines of declarations
+  nnoremap <Leader>a= :Tabularize /=<CR>
+  vnoremap <Leader>a= :Tabularize /=<CR>
+  nnoremap <Leader>a/ :Tabularize /\/\//l2c1l0<CR>
+  vnoremap <Leader>a/ :Tabularize /\/\//l2c1l0<CR>
+  nnoremap <Leader>a, :Tabularize /,/l0r1<CR>
+  vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
+"}}}
 
-" looks at the current line and the lines above and below it and aligns all the
-" equals signs; useful for when we have several lines of declarations
-nnoremap <Leader>a= :Tabularize /=<CR>
-vnoremap <Leader>a= :Tabularize /=<CR>
-nnoremap <Leader>a/ :Tabularize /\/\//l2c1l0<CR>
-vnoremap <Leader>a/ :Tabularize /\/\//l2c1l0<CR>
-nnoremap <Leader>a, :Tabularize /,/l0r1<CR>
-vnoremap <Leader>a, :Tabularize /,/l0r1<CR>
-
-" }}}
-" ============================================================================
 " 'artur-shaik/vim-javacomplete2' {{{
-" ============================================================================
+  augroup javacomplete
+    autocmd!
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
+  augroup END
+"}}}
 
-augroup javacomplete
-  autocmd!
-  autocmd FileType java setlocal omnifunc=javacomplete#Complete
-augroup END
-
-" }}}
-" ============================================================================
 " 'othree/eregex.vim' {{{
-" ============================================================================
+  let g:eregex_default_enable = 0
+  " Toggles '/' to mean eregex search or normal Vim search
+  nnoremap <leader>/ :call eregex#toggle()<CR>
+"}}}
 
-let g:eregex_default_enable = 0
-
-" Toggles '/' to mean eregex search or normal Vim search
-nnoremap <leader>/ :call eregex#toggle()<CR>
-
-" }}}
-" ============================================================================
 " 'chaoren/vim-wordmotion' {{{
-" ============================================================================
+  let g:wordmotion_prefix = '\'
+  nmap z\ ci\w
+"}}}
 
-let g:wordmotion_prefix = '\'
-
-nmap z\ ci\w
-
-" }}}
-" ============================================================================
 " 'junegunn/goyo.vim' {{{
-" ============================================================================
-
-nnoremap <silent> <Leader>go :Goyo<CR>
-
-" }}}
+  nnoremap <silent> <Leader>gy :Goyo<CR>
+"}}}
