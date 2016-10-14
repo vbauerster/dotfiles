@@ -276,6 +276,9 @@
   nnoremap <silent><Leader><Leader> :Buffers<CR>
   nnoremap <silent><Leader>gf :GitFiles<CR>
   nnoremap <silent><Leader>mm :Commits<CR>
+  nnoremap <silent><Leader>bb :BCommits<CR>
+  nnoremap <silent><Leader>bl :BLines<CR>
+  nnoremap <silent><Leader>al :Lines<CR>
   nnoremap <silent><Leader>' :Marks<CR>
   nnoremap <silent><Leader>; :History:<CR>
 
@@ -288,6 +291,8 @@
     \ 'options': '--delimiter / --nth -1',
     \ 'down':    '~40%',
     \ 'sink':    'Explore'})
+
+  nnoremap <silent><Leader>pp :Plugs<CR>
 "}}}
 
 " 'Shougo/echodoc.vim' {{{
