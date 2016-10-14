@@ -25,6 +25,7 @@ Plug 'chaoren/vim-wordmotion'
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'wellle/tmux-complete.vim'
+let g:tmuxcomplete#trigger = ''
 " Plug 'tpope/vim-tbone'
 
 " Motions
