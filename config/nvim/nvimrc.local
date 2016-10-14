@@ -349,13 +349,14 @@
   augroup goLang
     autocmd!
     autocmd FileType go nnoremap <buffer><F1> :GoInfo<cr>
+    autocmd FileType go nnoremap <buffer><F13> :GoDescribe<cr>
     autocmd FileType go nnoremap <buffer><F6> :GoRename<cr>
     autocmd FileType go nnoremap <buffer><F9> :GoRun<cr>
     autocmd FileType go nnoremap <buffer><F21> :GoTest<cr>
     autocmd FileType go nnoremap <buffer><leader>i :GoImports<cr>
     autocmd FileType go nnoremap <buffer><F7> :GoSameIdsToggle<cr>
-    " autocmd FileType go setlocal tabstop=4
-    " autocmd FileType go setlocal softtabstop=4
+    autocmd FileType go setlocal tabstop=4
+    autocmd FileType go setlocal softtabstop=4
   augroup END
 "}}}
 
