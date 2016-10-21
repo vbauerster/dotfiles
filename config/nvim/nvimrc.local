@@ -357,6 +357,7 @@
     autocmd FileType go nnoremap <buffer><F7> :GoSameIdsToggle<cr>
     autocmd FileType go setlocal tabstop=4
     autocmd FileType go setlocal softtabstop=4
+    autocmd FileType go setlocal shiftwidth=4
   augroup END
 "}}}
 
