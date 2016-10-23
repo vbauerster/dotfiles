@@ -101,10 +101,10 @@
   function! s:tabComplete(type) abort
     if a:type==#"emmetable" && match(getline('.'), '[<(].*[>)]')<0 && emmet#isExpandable()
       return "\<Plug>(emmet-expand-abbr)"
-    elseif neosnippet#expandable() && !neosnippet#jumpable()
-      return "\<Plug>(neosnippet_expand)"
     elseif neosnippet#jumpable() && !pumvisible()
       return "\<Plug>(neosnippet_jump)"
+    elseif neosnippet#expandable()
+      return "\<Plug>(neosnippet_expand)"
     elseif pumvisible()
       return "\<C-n>"
     else
@@ -114,12 +114,12 @@
 
   " :NeoSnippetEdit -runtime to edit global snippets
   " :NeoSnippetEdit to edit user defined snippets
-  nnoremap <silent><Leader>ne :NeoSnippetEdit<CR>
+  nnoremap <silent><Leader>en :NeoSnippetEdit<CR>
   let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
   let g:neosnippet#enable_snipmate_compatibility=1
 
   " Plugin key-mappings
-  " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
   " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
   " xmap <C-k>     <Plug>(neosnippet_expand_target)
 
@@ -345,7 +345,7 @@
   let g:go_highlight_functions = 1
   let g:go_highlight_methods = 1
   let g:go_term_enabled = 1
-  " let g:go_fmt_command = "goimports"
+  let g:go_fmt_command = "goimports"
 
   augroup goLang
     autocmd!
@@ -354,11 +354,11 @@
     autocmd FileType go nnoremap <buffer><F6> :GoRename<cr>
     autocmd FileType go nnoremap <buffer><F9> :GoRun<cr>
     autocmd FileType go nnoremap <buffer><F21> :GoTest<cr>
-    autocmd FileType go nnoremap <buffer><leader>i :GoImports<cr>
+    " autocmd FileType go nnoremap <buffer><leader>i :GoImports<cr>
     autocmd FileType go nnoremap <buffer><F7> :GoSameIdsToggle<cr>
     autocmd FileType go setlocal tabstop=4
     autocmd FileType go setlocal softtabstop=4
-    autocmd FileType go setlocal shiftwidth=4
+    " autocmd FileType go setlocal shiftwidth=4
   augroup END
 "}}}
 
