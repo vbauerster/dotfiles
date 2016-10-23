@@ -43,12 +43,6 @@ $ brew install caskroom/cask/brew-cask
 
 **[iterm2-nightly](http://iterm2.com/nightly/latest)**
 
-**Tmux with true color patch**
-```
-$ brew install https://raw.githubusercontent.com/choppsv1/homebrew-term24/master/tmux.rb
-$ brew install reattach-to-user-namespace
-```
-
 **MacVim**
 
 I prefer NeoVim to Vim, but keep MacVim installed just in case.
