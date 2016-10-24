@@ -19,7 +19,7 @@ Plug 'junegunn/rainbow_parentheses.vim'
 
 " New text objects
 Plug 'tommcdo/vim-exchange' " cx to exchange
-Plug 'junegunn/vim-after-object'
+" Plug 'junegunn/vim-after-object'
 Plug 'chaoren/vim-wordmotion'
 
 " Tmux
