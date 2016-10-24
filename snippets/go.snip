@@ -5,21 +5,6 @@ options head
     ${0:TARGET}
   }
 
-snippet pn
-abbr    fmt.Println
-options word
-  fmt.Println(${0:TARGET})
-
-snippet pt
-abbr    fmt.Print
-options word
-  fmt.Print(${0:TARGET})
-
-snippet pf
-abbr    fmt.Printf
-options word
-  fmt.Printf(${0:TARGET})
-
 snippet p#
 abbr    fmt.Printf # adverb
 options word
@@ -31,10 +16,3 @@ options     head
   go func(${2}) ${3:int }{
     ${0:TARGET:return }
   }(${1:#:args})
-
-snippet     funm
-abbr        func (receiver) ...() { ... }
-options     head
-  func (${1:#:receiver}) ${2:mname}(${3}) ${4:int }{
-    ${0:TARGET:return }
-  }
