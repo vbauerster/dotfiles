@@ -8,7 +8,7 @@ k = hs.hotkey.modal.new({}, 'F18')
 -- Hyper+key for all the below are setup somewhere
 -- The handler already exists, usually in Keyboard Maestro
 -- we just have to get the right keystroke sent
-hyperBindings = {'H','C','J','K','M','T','SPACE','+','-'}
+hyperBindings = {'H','C','J','K','M','T','P','SPACE','+','-'}
 
 for i,key in ipairs(hyperBindings) do
   k:bind({}, key, nil, function() hs.eventtap.keyStroke(hyper, key)
@@ -35,7 +35,7 @@ end
 f19 = hs.hotkey.bind({}, 'F19', pressedF19, releasedF19)
 
 require 'caffeine'
-require 'clipboard'
+-- require 'clipboard'
 -- require 'launch-applications'
 -- require 'window-management'
 require 'reload-config'
