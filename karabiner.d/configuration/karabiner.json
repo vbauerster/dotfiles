@@ -1,14 +1,32 @@
 {
-    "profiles": [{
-        "name": "Default profile",
-        "selected": true,
-        "simple_modifications": {
-            "caps_lock": "f19",
-            "left_command": "left_control",
-            "right_command": "right_control",
-            "left_option": "left_command",
-            "right_option": "right_command",
-            "left_control": "left_option"
-        }
-    }]
+  "profiles" : [
+    {
+      "fn_function_keys" : {
+        "f12" : "volume_up",
+        "f9" : "vk_consumer_next",
+        "f5" : "vk_consumer_illumination_down",
+        "f10" : "mute",
+        "f1" : "vk_consumer_brightness_down",
+        "f6" : "vk_consumer_illumination_up",
+        "f2" : "vk_consumer_brightness_up",
+        "f7" : "vk_consumer_previous",
+        "f11" : "volume_down",
+        "f3" : "vk_mission_control",
+        "f8" : "vk_consumer_play",
+        "f4" : "vk_launchpad"
+      },
+      "selected" : true,
+      "simple_modifications" : {
+        "left_control" : "left_option",
+        "escape" : "fn",
+        "left_option" : "left_command",
+        "caps_lock" : "f19",
+        "fn" : "caps_lock",
+        "right_command" : "right_control",
+        "left_command" : "left_control",
+        "right_option" : "right_command"
+      },
+      "name" : "Default profile"
+    }
+  ]
 }
