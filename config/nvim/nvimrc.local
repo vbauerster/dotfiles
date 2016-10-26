@@ -228,9 +228,9 @@
 "}}}
 
 " 'vim-scripts/sessionman.vim' {{{
-  set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-  nmap <leader>ss :SessionList<CR>
-  nmap <leader>sw :SessionSave<CR>
+  " set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+  " nmap <leader>ss :SessionList<CR>
+  " nmap <leader>sw :SessionSave<CR>
 "}}}
 
 " 'rizzatti/dash.vim' {{{
@@ -342,7 +342,7 @@
 "}}}
 
 " 'fatih/vim-go' {{{
-  let g:go_auto_type_info = 1
+  " let g:go_auto_type_info = 1
   let g:go_highlight_functions = 1
   " let g:go_highlight_methods = 1
   " let g:go_highlight_types = 1
@@ -368,8 +368,9 @@
 " 'zchee/deoplete-go' {{{
   let g:deoplete#sources#go#gocode_binary = $HOME.'/gocode/bin/gocode'
   let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-  let g:deoplete#sources#go#use_cache = 1
-  let g:deoplete#sources#go#json_directory = $HOME.'/.cache/deoplete/go/darwin_amd64'
+  " https://github.com/zchee/deoplete-go/issues/79
+  " let g:deoplete#sources#go#use_cache = 1
+  " let g:deoplete#sources#go#json_directory = $HOME.'/.cache/deoplete/go/darwin_amd64'
 "}}}
 
 " 'godlygeek/tabular' {{{
