@@ -125,7 +125,7 @@
 
   " <tab> mapping
   imap <expr><TAB> <SID>tabComplete("neo")
-  smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+  smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)" : "\<TAB>"
   " imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
   " smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
 "}}}
