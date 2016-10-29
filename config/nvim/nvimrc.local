@@ -227,12 +227,6 @@
   omap T <Plug>Sneak_T
 "}}}
 
-" 'vim-scripts/sessionman.vim' {{{
-  " set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-  " nmap <leader>ss :SessionList<CR>
-  " nmap <leader>sw :SessionSave<CR>
-"}}}
-
 " 'rizzatti/dash.vim' {{{
 " mnemonic See/Search Help
   nmap <silent> <leader>sh <Plug>DashSearch
