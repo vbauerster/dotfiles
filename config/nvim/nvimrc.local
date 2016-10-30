@@ -69,25 +69,20 @@
   let g:deoplete#enable_smart_case = 1
   " https://github.com/Shougo/deoplete.nvim/issues/267
   " let g:deoplete#enable_refresh_always = 1
+  let g:deoplete#enable_camel_case = 1
 
   " https://github.com/Shougo/deoplete.nvim/issues/288
   call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
-  " Use head matcher instead of fuzzy matcher
-  " call deoplete#custom#set('_', 'matchers', ['matcher_head'])
-  " Length matching matcher.
-  " It removes shorter candidates than user input.
-  " call deoplete#custom#set('_', 'matchers', ['matcher_length'])
-
-  " let g:deoplete#omni_patterns = {}
-  " let g:deoplete#omni_patterns.go = '[^.[:digit:] *\t]\.\w*'
+  " https://github.com/Shougo/deoplete.nvim/issues/150
+  call deoplete#custom#set('_', 'converters', ['converter_remove_paren'])
 
   " imap     <Nul> <C-Space>
   " inoremap <expr><C-Space> deoplete#mappings#manual_complete()
 
   " close popup menu by Esc and stay in insert mode. <C-e> closes popup as well
-  inoremap <expr><Esc> pumvisible() && neosnippet#jumpable() ? deoplete#close_popup() : "\<Esc>"
+  " inoremap <expr><Esc> pumvisible() && neosnippet#jumpable() ? deoplete#close_popup() : "\<Esc>"
 
-  inoremap <expr><C-z> deoplete#undo_completion()
+  " inoremap <expr><C-z> deoplete#undo_completion()
 
   " https://github.com/neovim/neovim/pull/4682#issuecomment-220763071
   " <CR>: close popup and save indent.
@@ -97,37 +92,43 @@
   endfunction
 "}}}
 
-" 'Shougo/neosnippet.vim'  {{{
-  function! s:tabComplete(type) abort
-    if a:type==#"emmetable" && match(getline('.'), '[<(].*[>)]')<0 && emmet#isExpandable()
-      return "\<Plug>(emmet-expand-abbr)"
-    elseif neosnippet#jumpable() && !pumvisible()
-      return "\<Plug>(neosnippet_jump)"
-    elseif neosnippet#expandable()
-      return "\<Plug>(neosnippet_expand)"
-    elseif pumvisible()
+" 'SirVer/ultisnips'  {{{
+" ==================== UltiSnips ====================
+function! g:UltiSnips_Complete()
+  call UltiSnips#ExpandSnippet()
+  if g:ulti_expand_res == 0
+    if pumvisible()
       return "\<C-n>"
     else
-      return "\<TAB>"
+      call UltiSnips#JumpForwards()
+      if g:ulti_jump_forwards_res == 0
+        return "\<TAB>"
+      endif
     endif
-  endfunction
+  endif
+  return ""
+endfunction
 
-  " :NeoSnippetEdit -runtime to edit global snippets
-  " :NeoSnippetEdit to edit user defined snippets
-  nnoremap <silent><Leader>en :NeoSnippetEdit<CR>
-  let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
-  let g:neosnippet#enable_snipmate_compatibility=1
+function! g:UltiSnips_Reverse()
+  call UltiSnips#JumpBackwards()
+  if g:ulti_jump_backwards_res == 0
+    return "\<C-P>"
+  endif
 
-  " Plugin key-mappings
-  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  " smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-  " xmap <C-k>     <Plug>(neosnippet_expand_target)
+  return ""
+endfunction
 
-  " <tab> mapping
-  imap <expr><TAB> <SID>tabComplete("neo")
-  smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_jump)" : "\<TAB>"
-  " imap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
-  " smap <expr><S-TAB> pumvisible() ? "\<C-p>" : ""
+
+if !exists("g:UltiSnipsJumpForwardTrigger")
+  let g:UltiSnipsJumpForwardTrigger = "<tab>"
+endif
+
+if !exists("g:UltiSnipsJumpBackwardTrigger")
+  let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+endif
+
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+au InsertEnter * exec "inoremap <silent> " . g:UltiSnipsJumpBackwardTrigger . " <C-R>=g:UltiSnips_Reverse()<cr>"
 "}}}
 
 " 'mattn/emmet-vim' {{{
@@ -342,7 +343,7 @@
   " let g:go_highlight_types = 1
   let g:go_term_enabled = 1
   let g:go_fmt_command = "goimports"
-  let g:go_snippet_engine = "neosnippet"
+  " let g:go_snippet_engine = "neosnippet"
 
   augroup GoLang
     autocmd!
