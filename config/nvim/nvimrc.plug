@@ -18,27 +18,22 @@ Plug 'othree/eregex.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
-" let g:rainbow#pairs = [['{', '}']]
 
 " New text objects
 Plug 'tommcdo/vim-exchange' " cx to exchange
 Plug 'chaoren/vim-wordmotion' " CamelCase motion
-" Plug 'junegunn/vim-after-object'
 
 " Motions
 Plug 'justinmk/vim-sneak'
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'wellle/tmux-complete.vim'
-let g:tmuxcomplete#trigger = ''
 " Plug 'tpope/vim-tbone'
 
 " UI look and feel
 Plug 'vim-airline/vim-airline-themes' | Plug 'vim-airline/vim-airline'
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'itchyny/lightline.vim'
-" Plug 'edkolev/tmuxline.vim'
 
 " Marks
 Plug 'kshenoy/vim-signature'
@@ -71,6 +66,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
       \ | Plug 'Shougo/echodoc.vim'
       \ | Plug 'carlitux/deoplete-ternjs'
       \ | Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
+      \ | Plug 'wellle/tmux-complete.vim'
 
 " Snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -94,7 +90,7 @@ Plug 'valloric/MatchTagAlways', {'for': ['html'] }
 Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
 
 " Emmet
-Plug 'mattn/emmet-vim', {'for': ['html', 'css'] }
+Plug 'mattn/emmet-vim'
 
 " Extended session management for Vim
 " Plug 'vim-scripts/sessionman.vim'
@@ -124,8 +120,6 @@ Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'json', 'css', 'html'] }
 Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'airblade/vim-rooter'
-let g:rooter_manual_only = 1
-let g:rooter_use_lcd = 1
 Plug 'junegunn/goyo.vim'
 Plug 'romainl/vim-qf'
 
