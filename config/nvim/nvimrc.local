@@ -109,10 +109,12 @@
     endif
   endfunction
 
+  " :h popupmenu-keys
+  " :h map-<expr>
   " imap <expr><TAB> <SID>tab_complete()
-
-  let g:UltiSnipsJumpForwardTrigger="<c-s>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+  " let g:UltiSnipsExpandTrigger = "<c-s>"
+  let g:UltiSnipsJumpForwardTrigger = "<c-s>"
+  let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
 "}}}
 
 " 'mattn/emmet-vim' {{{
@@ -132,26 +134,22 @@
 " }}}
 
 " 'ternjs/tern_for_vim' {{{
-  let g:tern_show_argument_hints='on_hold'
-  let g:tern_map_keys=1
+  " let g:tern_show_argument_hints='on_hold'
+  " let g:tern_map_keys=1
 "}}}
 
 " 'majutsushi/tagbar' {{{
   nmap <F8> :TagbarToggle<CR>
 "}}}
 
-" 'jiangmiao/auto-pairs' {{{
-  " <M-p> : Toggle Autopairs (g:AutoPairsShortcutToggle)
-  " let g:AutoPairsMapSpace = 0
-  let g:AutoPairsFlyMode = 1
-  let g:AutoPairsShortcutBackInsert = '<C-b>'
-  let g:AutoPairsShortcutFastWrap = '<M-w>'
-"}}}
+" 'Raimondi/delimitMate' {{{
+  let g:delimitMate_expand_cr = 1
+  let g:delimitMate_expand_space = 1
+  let g:delimitMate_smart_quotes = 1
+  let g:delimitMate_expand_inside_quotes = 0
+  let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 
-" 'junegunn/vim-after-object' {{{
-  silent! if has_key(g:plugs, 'vim-after-object')
-    autocmd VimEnter * silent! call after_object#enable('=', ':', '-', '#', '.', ' ')
-  endif
+  imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
 "}}}
 
 " 'tpope/vim-fugitive' {{{

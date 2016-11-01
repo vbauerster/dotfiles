@@ -84,7 +84,8 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'fatih/vim-go', {'for': ['go'] }
 
 " Auto pairs
-Plug 'jiangmiao/auto-pairs'
+Plug 'Raimondi/delimitMate'
+" Plug 'jiangmiao/auto-pairs'
 
 " HTML
 " Plug 'docunext/closetag.vim' "close HTML tag
