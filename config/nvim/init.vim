@@ -155,7 +155,7 @@
   " quickly access yank reg
   noremap "" "0
 
-  nmap <Enter> %
+  " nmap <Enter> %
 
   " F1 will search help for the word under the cursor
   nnoremap <F1> :help <C-r><C-w><CR>
@@ -316,8 +316,8 @@
   " -----------------------------------------------------------
   " => vimgrep
   " -----------------------------------------------------------
-  nnoremap <Leader>* ]I
-  nnoremap <Leader># [I
+  nmap <Leader>* ]I
+  nmap <Leader># [I
   " find current word in quickfix
   nnoremap <Leader>g* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
   " find last search in quickfix

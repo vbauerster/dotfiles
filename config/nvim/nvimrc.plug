@@ -123,6 +123,7 @@ Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'airblade/vim-rooter'
 Plug 'romainl/vim-qf'
+Plug 'romainl/vim-qlist'
 Plug 'tpope/vim-characterize' " enhaced ga
 
 if has('mac')
