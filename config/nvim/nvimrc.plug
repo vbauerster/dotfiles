@@ -61,19 +61,16 @@ Plug 'airblade/vim-gitgutter'
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " AutoComplete
-Plug 'Shougo/deoplete.nvim'
-" deoplete-external-sources
-Plug 'Shougo/neco-vim'       " vim source for Vim script
-" Plug 'Shougo/neosnippet.vim' " neosnippet source
-Plug 'Shougo/neoinclude.vim' " include and file/include sources
-Plug 'Shougo/neco-syntax'    " syntax source
-Plug 'carlitux/deoplete-ternjs'
-Plug 'zchee/deoplete-go', { 'for': ['go'], 'do': 'make'}
-" dict lookup
-Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
-" deoplete-external-plugins
-Plug 'Shougo/context_filetype.vim' "It adds the context filetype feature
-Plug 'Shougo/echodoc.vim'          "It prints the documentation you have completed
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+      \ | Plug 'zchee/deoplete-go', { 'for': ['go'], 'do': 'make'}
+      \ | Plug 'zchee/deoplete-clang'
+      \ | Plug 'Shougo/neoinclude.vim'
+      \ | Plug 'Shougo/neco-syntax'
+      \ | Plug 'Shougo/neco-vim'
+      \ | Plug 'Shougo/context_filetype.vim'
+      \ | Plug 'Shougo/echodoc.vim'
+      \ | Plug 'carlitux/deoplete-ternjs'
+      \ | Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
 
 " Snippets
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -82,6 +79,9 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " Golang
 Plug 'fatih/vim-go', {'for': ['go'] }
+
+" Java
+Plug 'artur-shaik/vim-javacomplete2', {'for': ['java'] }
 
 " Auto pairs
 Plug 'Raimondi/delimitMate'
@@ -118,9 +118,6 @@ Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'json', 'css', 'html'] }
 
 " CoffeScript
 " Plug 'kchmck/vim-coffee-script' " Syntax
-
-" Java
-Plug 'artur-shaik/vim-javacomplete2', {'for': ['java'] }
 
 " Misc.
 " Plug 'chrisbra/Colorizer'
