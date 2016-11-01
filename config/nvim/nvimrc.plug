@@ -17,6 +17,8 @@ Plug 'othree/eregex.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/rainbow_parentheses.vim'
 
 " New text objects
@@ -47,7 +49,7 @@ Plug 'benekastah/neomake'
 " Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 Plug 'tpope/vim-commentary'
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
-Plug 'godlygeek/tabular'
+" Plug 'godlygeek/tabular'
 
 " Git
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim'
@@ -120,7 +122,6 @@ Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'json', 'css', 'html'] }
 Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'airblade/vim-rooter'
-Plug 'junegunn/goyo.vim'
 Plug 'romainl/vim-qf'
 Plug 'tpope/vim-characterize' " enhaced ga
 
