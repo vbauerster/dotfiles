@@ -106,9 +106,9 @@
   set diffopt+=vertical
 
   " For conceal markers.
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
+  " if has('conceal')
+  "   set conceallevel=2 concealcursor=niv
+  " endif
 
   " Whitespaces
   set list " col to toggle
@@ -169,8 +169,8 @@
   nnoremap <Leader>tx :tabclose<CR>
 
   " Save
-  nnoremap <C-s> :update<CR>
-  inoremap <C-s> <C-o>:update<CR>
+  " nnoremap <C-s> :update<CR>
+  " inoremap <C-s> <C-o>:update<CR>
 
   " Quit nvim
   nnoremap <silent> <F10> :qa<CR>
@@ -207,12 +207,6 @@
   xnoremap < <gv
   xnoremap > >gv|
 
-  " Use tab for indenting in visual mode
-  " xnoremap <Tab> >gv|
-  " xnoremap <S-Tab> <gv
-  nnoremap > >>_
-  nnoremap < <<_
-
   " reselect last paste
   nnoremap gp `[v`]
 
@@ -231,8 +225,8 @@
   noremap + 4gj
   noremap - 4gk
 
-  noremap <m-j> 15gj
-  noremap <m-k> 15gk
+  noremap <m-+> 14gj
+  noremap <m--> 14gk
 
   " vim-vertical-move
   noremap <expr> gj <SID>vjump(0)
@@ -305,7 +299,7 @@
   nnoremap <silent><Leader>- :wincmd =<CR>
 
   " http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
-  " z{nr}<CR>  Set current window height to {nr}. 
+  " z{nr}<CR>  Set current window height to {nr}.
   set winminheight=0
   nmap <Leader>k <C-W>j<C-W>_
   nmap <Leader>j <C-W>k<C-W>_
@@ -364,6 +358,9 @@
   imap     <Nul> <C-Space>
   inoremap <C-Space> <C-x><C-l>
 
+  inoremap <expr> + pumvisible() ? "\<c-n>" : "+"
+  inoremap <expr> } pumvisible() ? "\<c-p>" : "}"
+
   " -----------------------------------------------------------
   " => Visual and Select mode mappings
   " -----------------------------------------------------------
@@ -405,6 +402,9 @@
   augroup vimrcEx
     autocmd!
 
+    " Remove trailing whitespaces
+    autocmd BufWritePre * :%s/\s\+$//e
+
     " Help in new tabs
     autocmd BufEnter *.txt call <sid>HelpTab()
 
@@ -413,7 +413,7 @@
     autocmd WinLeave * setlocal nocursorline
 
     " Create directory if not exists
-    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+    " autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it for commit messages, when the position is invalid, or when
