@@ -32,7 +32,7 @@
   let mapleader = ' '
   let maplocalleader = ' '
 
-  let g:gruvbox_contrast_light='soft'
+  let g:gruvbox_contrast_light='medium'
   let g:gruvbox_contrast_dark='soft'
   let g:gruvbox_italic=1
   execute "set background=".$BACKGROUND
@@ -155,7 +155,7 @@
   " quickly access yank reg
   noremap "" "0
 
-  " nmap <Enter> %
+  nmap <Enter> %
 
   " F1 will search help for the word under the cursor
   nnoremap <F1> :help <C-r><C-w><CR>
