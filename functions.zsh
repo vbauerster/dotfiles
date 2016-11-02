@@ -210,3 +210,16 @@ bindkey '^Z' fancy-ctrl-z
 trimmer() {
   ffmpeg -i "$1" -ss "$2" -t "$3" -acodec copy cut_"$1"
 }
+
+show_function_keys() {
+  printf "%-5s%5s\n" "key" "value"; infocmp -1  | awk -F= '/kf/ { key=$1; sub("kf", "", key); printf("%-5d %s\n", key, $2) }'  | sort -n
+}
+
+edit() {
+  SESSION=Session.vim
+  if [ -e $SESSION ]; then
+    nvim -S $SESSION
+  else
+    nvim $@
+  fi
+}
