@@ -119,6 +119,7 @@ Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'json', 'css', 'html'] }
 
 " Misc.
 " Plug 'chrisbra/Colorizer'
+Plug 'ap/vim-css-color'
 Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'airblade/vim-rooter'
