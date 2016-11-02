@@ -34,7 +34,7 @@ end
 -- Bind the Hyper key
 f19 = hs.hotkey.bind({}, 'F19', pressedF19, releasedF19)
 
-require 'caffeine'
+-- require 'caffeine'
 -- require 'clipboard'
 -- require 'launch-applications'
 -- require 'window-management'
