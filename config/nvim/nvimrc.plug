@@ -28,10 +28,6 @@ Plug 'chaoren/vim-wordmotion' " CamelCase motion
 " Motions
 Plug 'justinmk/vim-sneak'
 
-" Tmux
-Plug 'christoomey/vim-tmux-navigator'
-" Plug 'tpope/vim-tbone'
-
 " UI look and feel
 Plug 'vim-airline/vim-airline-themes' | Plug 'vim-airline/vim-airline'
 " Plug 'ryanoasis/vim-devicons'
@@ -59,21 +55,29 @@ Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " AutoComplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-      \ | Plug 'zchee/deoplete-go', { 'for': ['go'], 'do': 'make'}
-      \ | Plug 'zchee/deoplete-clang'
-      \ | Plug 'Shougo/neoinclude.vim'
-      \ | Plug 'Shougo/neco-syntax'
-      \ | Plug 'Shougo/neco-vim'
-      \ | Plug 'Shougo/context_filetype.vim'
-      \ | Plug 'Shougo/echodoc.vim'
-      \ | Plug 'carlitux/deoplete-ternjs'
-      \ | Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
-      \ | Plug 'wellle/tmux-complete.vim'
-
-" Snippets
+" neco-syntax: 'syntax' source
+Plug 'Shougo/neco-syntax'
+" neco-vim: 'vim' source for Vim script
+Plug 'Shougo/neco-vim'
+" context_filetype: It adds the context filetype feature
+Plug 'Shougo/context_filetype.vim'
+" echodoc: It prints the documentation you have completed
+Plug 'Shougo/echodoc.vim'
+" neoinclude: 'include' and 'file/include' sources
+" You can completes the candidates from the included files and included path
+Plug 'Shougo/neoinclude.vim'
+" deoplete-go: 'golang' source
+Plug 'zchee/deoplete-go', { 'for': ['go'], 'do': 'make'}
+" deoplete-clang: 'clang' source for C/C++
+Plug 'zchee/deoplete-clang'
+" deoplete-ternjs: 'ternjs' source for JavaScript
+Plug 'carlitux/deoplete-ternjs'
+" neco-look: plugin for /usr/bin/look for completing words in English
+Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
+" tmux-complete: 'tmuxcomplete' source for tmux panes
+Plug 'wellle/tmux-complete.vim'
+" UltiSnips source: 'ultisnips' source for UltiSnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" Plug 'Shougo/neosnippet-snippets'
-" Plug 'justinj/vim-react-snippets'
 
 " Golang
 Plug 'fatih/vim-go', {'for': ['go'] }
@@ -112,7 +116,6 @@ Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'json', 'css', 'html'] }
 
 " Typescript
 " Plug 'HerringtonDarkholme/yats.vim' " Syntax
-" Plug 'Quramy/tsuquyomi' " omni-completion
 
 " CoffeScript
 " Plug 'kchmck/vim-coffee-script' " Syntax
@@ -133,6 +136,9 @@ endif
 
 " Clipboard related
 " Plug 'junegunn/vim-peekaboo'
+
+" Tmux
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'roxma/vim-tmux-clipboard'
 
 " my plugins
