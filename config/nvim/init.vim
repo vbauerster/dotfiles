@@ -243,7 +243,7 @@
   " fold a html tag
   nnoremap <Leader>ft Vatzf
 
-  nnoremap <Leader>dd daBdd
+  nnoremap <Leader>df vaBo0d
 
   " Read :help g_ctrl-]
   " same as :tjump
@@ -262,9 +262,6 @@
   " bnext provided by unimpaired ]b
   nnoremap <silent><Leader>. <C-^><CR>
   nnoremap <Leader>xx :bd<CR>
-
-  " vim-peekaboo provides @
-  " nnoremap <Leader>di :di<CR>
 
   " http://habrahabr.ru/post/183222/
   " spell toggle

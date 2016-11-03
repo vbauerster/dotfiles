@@ -99,22 +99,11 @@
 
 " 'SirVer/ultisnips'  {{{
 " ==================== UltiSnips ====================
-  function! s:tab_complete()
-    call UltiSnips#JumpForwards()
-    if g:ulti_jump_forwards_res == 0
-      call UltiSnips#ExpandSnippet()
-      if g:ulti_expand_res == 0
-        return "\<TAB>"
-      endif
-    endif
-  endfunction
-
   " :h popupmenu-keys
   " :h map-<expr>
-  " imap <expr><TAB> <SID>tab_complete()
-  " let g:UltiSnipsExpandTrigger = "<c-s>"
-  let g:UltiSnipsJumpForwardTrigger = "<c-s>"
-  let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+  let g:UltiSnipsExpandTrigger = "<c-s>"
+  let g:UltiSnipsJumpForwardTrigger = "<tab>"
+  let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 "}}}
 
 " 'mattn/emmet-vim' {{{
