@@ -297,16 +297,16 @@
 
   " http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
   " z{nr}<CR>  Set current window height to {nr}.
-  set winminheight=0
-  nmap <Leader>k <C-W>j<C-W>_
-  nmap <Leader>j <C-W>k<C-W>_
+  " set winminheight=0
+  " nmap <Leader>k <C-W>j<C-W>_
+  " nmap <Leader>j <C-W>k<C-W>_
 
-  set winminwidth=0
-  nmap <Leader>l <C-W>h500<C-W>>
-  nmap <Leader>h <C-W>l500<C-W>>
+  " set winminwidth=0
+  " nmap <Leader>l <C-W>h500<C-W>>
+  " nmap <Leader>h <C-W>l500<C-W>>
 
-  nnoremap <M-Left> <C-w>>
-  nnoremap <M-Right> <C-w><
+  nnoremap <M-Left> <C-w><
+  nnoremap <M-Right> <C-w>>
   nnoremap <M-Up> <C-w>+
   nnoremap <M-Down> <C-w>-
 
