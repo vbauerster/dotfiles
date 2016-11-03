@@ -44,8 +44,8 @@
 
 " 'scrooloose/nerdtree' {{{
   "map <leader>n <plug>NERDTreeTabsToggle<CR>
-  nmap <F3> :NERDTreeToggle<CR>
-  nmap <leader>nt :NERDTreeFind<CR>
+  nmap <silent> <F3> :NERDTreeToggle<CR>
+  nmap <silent> <Leader>nt :NERDTreeFind<CR>
 
   let NERDTreeShowBookmarks=1
   let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.sw[op]$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.js.map$']
@@ -58,7 +58,7 @@
 "}}}
 
 " 'mbbill/undotree' {{{
-  nnoremap <leader>uu :UndotreeToggle<CR>
+  nnoremap <silent> <Leader>ut :UndotreeToggle<CR>
   let g:undotree_SetFocusWhenToggle=1 " if undotree is opened, it is likely one wants to interact with it.
 "}}}
 

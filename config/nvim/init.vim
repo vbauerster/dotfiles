@@ -169,15 +169,14 @@
   nnoremap <Leader>tx :tabclose<CR>
 
   " Save
-  " nnoremap <C-s> :update<CR>
-  " inoremap <C-s> <C-o>:update<CR>
+  nnoremap <silent> <C-s> :update<CR>
 
   " Quit nvim
   nnoremap <silent> <F10> :qa<CR>
   nnoremap <silent> <F22> :qa!<CR>
   " Quit/close window
   " <C-w> c Close the current window
-  " <C-w> z Close any "Preview" window currently open
+  " <C-w> z Close any 'Preview' window currently open
   " <C-w> P Go to preview window
   nnoremap <Leader>q :q<CR>
   nnoremap <Leader>! :q!<CR>
@@ -251,8 +250,8 @@
   " options when there is more than one definition
   nnoremap <c-]> g<c-]>
 
-  " Remove spaces at the end of lines
-  nnoremap <silent><Leader>wx :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
+  " Remove trailing whitespaces
+  " nnoremap <silent><Leader>wx :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
   " Buffer reload
   nnoremap <Leader>rr :e!<CR>
@@ -269,13 +268,9 @@
   " spell check off
   " nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
-  " Highlight All
-  nnoremap <Leader>ha :Highlight<CR>
+  " Highlight word
+  nnoremap <silent><Leader>hw :Highlight<CR>
   nnoremap <silent><C-c> :call clearmatches()<CR>:noh<CR>
-
-  " https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
-  " After applying above fix, below line is no longer necessary
-  " nnoremap <silent> <BS> :TmuxNavigateLeft<CR>
 
   " Start terminal
   nnoremap <Leader>tt <C-w>v:te<CR>
