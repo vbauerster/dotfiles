@@ -169,7 +169,7 @@
   nnoremap <Leader>tx :tabclose<CR>
 
   " Save
-  nnoremap <silent> <C-s> :update<CR>
+  " nnoremap <silent> <C-s> :update<CR>
 
   " Quit nvim
   nnoremap <silent> <F10> :qa<CR>
@@ -376,6 +376,8 @@
   " -----------------------------------------------------------
   " refer to the directory of the current file, regardless of pwd
   cnoremap %% <C-R>=expand('%:h').'/'<CR>
+  " quick save without hitting enter
+  cnoremap ww <C-u>w<CR>
 
   " -----------------------------------------------------------
   " => Terminal mode mappings
