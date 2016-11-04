@@ -181,7 +181,6 @@
   nnoremap <Leader>q :q<CR>
   nnoremap <Leader>! :q!<CR>
   nnoremap <Leader>xc <C-w>c
-  nnoremap <Leader>xl :lcl<CR>
 
   " Read :help ctrl-w_w
   " Read :help wincmd
@@ -378,6 +377,8 @@
   cnoremap %% <C-R>=expand('%:h').'/'<CR>
   " quick save without hitting enter
   cnoremap ww <C-u>w<CR>
+  " close location list
+  cnoremap cc <C-u>lcl<CR>
 
   " -----------------------------------------------------------
   " => Terminal mode mappings
