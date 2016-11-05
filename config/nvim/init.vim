@@ -32,6 +32,8 @@
   let mapleader = ' '
   let maplocalleader = ' '
 
+  let g:python3_host_prog = "/usr/local/bin/python3"
+
   let g:gruvbox_contrast_light='medium'
   let g:gruvbox_contrast_dark='soft'
   let g:gruvbox_italic=1
