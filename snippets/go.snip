@@ -1,18 +1,4 @@
-snippet forr
-abbr    for range
-options head
-  for ${1:v} := range ${2:#:iterator} {
-    ${0:TARGET}
-  }
-
 snippet p#
 abbr    fmt.Printf # adverb
 options word
   fmt.Printf("%#v\n", ${0:TARGET})
-
-snippet     gof
-abbr        go func() { ... }()
-options     head
-  go func(${2}) ${3:int }{
-    ${0:TARGET:return }
-  }(${1:#:args})
