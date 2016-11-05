@@ -82,19 +82,8 @@
 
   inoremap <expr><C-z> deoplete#undo_completion()
 
-  " <C-h>, <BS>: close popup and delete backword char.
-  inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-  inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
-
   " instead of closing popup by <C-e>
-  " inoremap <expr><Esc> pumvisible() ? deoplete#close_popup() : "\<Esc>"
-
-  " https://github.com/neovim/neovim/pull/4682#issuecomment-220763071
-  " <CR>: close popup and save indent.
-  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-  function! s:my_cr_function() abort
-    return deoplete#close_popup() . "\<CR>"
-  endfunction
+  inoremap <expr>- pumvisible() ? deoplete#close_popup() : "-"
 "}}}
 
 " 'SirVer/ultisnips'  {{{
@@ -141,9 +130,7 @@
   let g:delimitMate_expand_space = 1
   let g:delimitMate_smart_quotes = 1
   let g:delimitMate_expand_inside_quotes = 0
-  let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
-
-  imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
+  " let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
 "}}}
 
 " 'tpope/vim-fugitive' {{{
