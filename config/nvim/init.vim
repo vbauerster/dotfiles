@@ -380,6 +380,9 @@
   " close location list
   cnoremap cc <C-u>lcl<CR>
 
+  cnoremap <C-A> <Home>
+  cnoremap <C-O> <Up>
+
   " -----------------------------------------------------------
   " => Terminal mode mappings
   " -----------------------------------------------------------
