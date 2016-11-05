@@ -69,7 +69,7 @@ Plug 'Shougo/neoinclude.vim'
 " deoplete-go: 'golang' source
 Plug 'zchee/deoplete-go', { 'for': ['go'], 'do': 'make'}
 " deoplete-clang: 'clang' source for C/C++
-Plug 'zchee/deoplete-clang'
+" Plug 'zchee/deoplete-clang'
 " deoplete-ternjs: 'ternjs' source for JavaScript
 Plug 'carlitux/deoplete-ternjs'
 " neco-look: plugin for /usr/bin/look for completing words in English
