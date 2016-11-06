@@ -1,3 +1,11 @@
+function! s:gopath_handler(dir)
+  execute 'lcd $GOPATH/src/'.a:dir
+  execute 'FZF' . '$GOPATH/src/'.a:dir
+  if has("nvim")
+      call feedkeys('i')
+  endif
+endfunction
+
 function! s:yank_list()
   if exists(":Yanks")
     redir => ys
@@ -35,6 +43,18 @@ command! Plugs call fzf#run({
       \ 'down':    '~40%',
       \ 'sink':    'Explore'})
 
+command! FZFGopath call fzf#run({
+      \ 'source': "ls -1p $GOPATH/src | awk -F/ '/\\/$/ {print $1}'",
+      \ 'sink': function('<sid>gopath_handler'),
+      \ 'options': '-m',
+      \ 'down': '50%'
+      \ })
+
+command! FZFPlugConf call fzf#run(fzf#wrap({
+      \ 'source': "ls -1p $HOME/dotfiles/config/nvim/config/plugins",
+      \ 'dir': "$HOME/dotfiles/config/nvim/config/plugins"
+      \}))
+
 let $FZF_DEFAULT_OPTS .= ' --inline-info'
 
 " let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
@@ -70,6 +90,9 @@ nnoremap <silent><Leader>al :Lines<CR>
 nnoremap <silent><Leader>' :Marks<CR>
 nnoremap <silent><Leader>; :History:<CR>
 nnoremap <silent><Leader>pp :Plugs<CR>
+nnoremap <silent><Leader>pc :FZFPlugConf<CR>
+nnoremap <silent><Leader>go :FZFGopath<CR>
+nnoremap <silent><Leader>y :FZFYank<CR>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
