@@ -2,7 +2,11 @@
 
 " VIM-PLUG BLOCK {{{
   " https://github.com/junegunn/vim-plug
-  source ~/.config/nvim/nvimrc.plug
+  source ~/.config/nvim/config/nvimrc.plug
+"}}}
+
+" termcolors {{{
+  source ~/.config/nvim/config/termcolors.vim
 "}}}
 
 " Script local functions {{{
@@ -43,8 +47,6 @@
   " https://github.com/neovim/neovim/pull/4690
   set termguicolors
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
-  source ~/.config/nvim/termcolors.vim
 
   " Excluding version control directories
   set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
@@ -459,5 +461,6 @@
 "}}}
 
 " plugin settings BLOCK {{{
-  source ~/.config/nvim/nvimrc.local
+  " Load plugin specific settings
+  for f in split(glob("~/.config/nvim/config/plugins/*"), "\n") | execute 'source ' . fnameescape(f) | endfor
 "}}}
