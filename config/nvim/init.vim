@@ -261,7 +261,7 @@
   " bprev provided by unimpaired [b
   " bnext provided by unimpaired ]b
   nnoremap <silent><Leader>. <C-^><CR>
-  nnoremap <Leader>xx :bd<CR>
+  nnoremap <silent><Leader>xx :bd<CR>
 
   " http://habrahabr.ru/post/183222/
   " spell toggle
@@ -274,8 +274,8 @@
   nnoremap <silent><C-c> :call clearmatches()<CR>:noh<CR>
 
   " Start terminal
-  nnoremap <Leader>tt <C-w>v:te<CR>
-  nnoremap <Leader>tm <C-w>s<C-w>J8<C-w>-:te<CR>
+  nnoremap <silent><Leader>tt <C-w>v:te<CR>
+  nnoremap <silent><Leader>tm <C-w>s<C-w>J8<C-w>-:te<CR>
   " resize terminal horizontally
   nnoremap <expr><Up> &buftype ==# "terminal" ? "\<C-w>+<CR>" : "\<Up>"
   nnoremap <expr><Down> &buftype ==# "terminal" ? "\<C-w>-<CR>" : "\<Down>"
@@ -451,7 +451,9 @@
   augroup Terminal
     autocmd!
     autocmd TermOpen * let g:last_terminal_job_id = b:terminal_job_id
-    autocmd WinEnter term://* startinsert
+    " https://github.com/junegunn/fzf.vim/issues/21
+    autocmd BufWinEnter,WinEnter term://* startinsert
+    " autocmd BufWinEnter,WinEnter term://* echom string(reltime())
   augroup END
 "}}}
 
