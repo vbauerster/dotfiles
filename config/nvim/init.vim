@@ -288,8 +288,10 @@
   " -----------------------------------------------------------
   " => h: window-resize
   " -----------------------------------------------------------
+  " <C-w>|
   " nnoremap <Leader>z :wincmd _<CR>:wincmd \|<CR>
-  nnoremap <silent><Leader>- :wincmd =<CR>
+  " <C-w>=
+  " nnoremap <silent><Leader>- :wincmd =<CR>
 
   " http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
   " z{nr}<CR>  Set current window height to {nr}.
