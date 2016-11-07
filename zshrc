@@ -7,9 +7,6 @@ fi
 # http://zsh.sourceforge.net/Guide/zshguide04.html
 # http://www.geekmind.net/2011/01/shortcuts-to-improve-your-bash-zsh.html
 export DOTFILES=$HOME/dotfiles
-if [[ ! "$PATH" == *$DOTFILES/bin* ]]; then
-  export PATH=$DOTFILES/bin:$PATH
-fi
 
 # Node Version Manager
 export NVM_DIR="$HOME/.nvm"
