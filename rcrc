@@ -1,2 +1,3 @@
-EXCLUDES="README.md LICENSE"
+EXCLUDES="README.md iterm2 resources"
+UNDOTTED="Library bin"
 DOTFILES_DIRS="$HOME/dotfiles"

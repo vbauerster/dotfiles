@@ -223,3 +223,16 @@ edit() {
     nvim $@
   fi
 }
+
+# searches the current directory subtree for files with names containing a
+# string (ignoring case). f png would find all PNG files in the current subtree,
+# as well as “PNGisMyFavorite.txt” and so forth.
+# function f() { find . -iname "*$1*" ${@:2} }
+# function f() { ag -l --nocolor -u -g "$1" ${@:2} }
+# recursively greps the current directory subtree for files matching a pattern.
+# r HTTP would grep for files containing that exact string, while r
+# '"http[^"]*"' -i would search for double-quoted strings starting with “http”,
+# ignoring case.
+# conflicts with zsh r command
+#function r() { grep -rn "$1" ${@:2} . }
+
