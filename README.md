@@ -79,7 +79,7 @@ $ brew install the_silver_searcher
 
 **Prezto**
 
-Lightweight zsh configuration framework. Info & installation instructions here: https://github.com/sorin-ionescu/prezto
+I use [prezto](https://github.com/sorin-ionescu/prezto), lightweight zsh configuration framework.
 
 ***Disclaimer***
 
