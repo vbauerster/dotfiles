@@ -10,7 +10,7 @@ $ git clone https://github.com/vbauerster/dotfiles
 
 Install [homebrew](http://brew.sh/) | [cheatsheet](http://ricostacruz.com/cheatsheets/homebrew.html)
 
-Install rcm
+Install [rcm](https://thoughtbot.github.io/rcm)
 ```
 $ brew tap thoughtbot/formulae
 $ brew install rcm
@@ -60,7 +60,7 @@ $ pip install --user neovim
 $ pip install --user --upgrade neovim
 ```
 
-**OS X GUI for NeoVim**
+**OS X GUI for NeoVim, there is [more](https://github.com/neovim/neovim/wiki/Related-projects)**
 ```
 $ brew tap rogual/neovim-dot-app
 $ brew install --HEAD neovim-dot-app
