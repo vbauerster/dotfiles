@@ -52,7 +52,8 @@ command! FZFGopath call fzf#run({
 
 command! FZFPlugConf call fzf#run(fzf#wrap({
       \ 'source': "ls -1p $HOME/dotfiles/config/nvim/config/plugins",
-      \ 'dir': "$HOME/dotfiles/config/nvim/config/plugins"
+      \ 'dir': "$HOME/dotfiles/config/nvim/config/plugins",
+      \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
       \}))
 
 let $FZF_DEFAULT_OPTS .= ' --inline-info'
