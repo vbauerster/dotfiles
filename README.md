@@ -22,17 +22,8 @@ $ env RCRC=$HOME/dotfiles/rcrc rcup
 ```
 RCM creates dotfile symlinks (`.vimrc` -> `/dotfiles/vimrc`) from your home directory to your `/dotfiles/` directory.
 
-### Installing Plugins
-Plugins are listed in `vimrc.plug`.
-
-To install them you'll need [vim-plug](https://github.com/junegunn/vim-plug). Open vim (`$ vim`) and type `:PlugInstall`. Restart vim.
-
 ### Git Config
 Make sure you update ```gitconfig``` with your own name and email address. Otherwise you'll be committing as me. :smile_cat:
-
-#### Custom Fonts
-[Powerline fonts](https://github.com/powerline/fonts),
-[Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans)
 
 ### Recommended
 
