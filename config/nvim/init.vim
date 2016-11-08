@@ -191,10 +191,6 @@
   " Go to previous (last accessed) window
   " nnoremap <Leader><Tab> <C-w>p
 
-  nnoremap <Leader>o <C-w>o
-  nnoremap <Leader><Bar> <C-w><Bar>
-  nnoremap <Leader>v <C-w>v
-
   " make Y consistent with C and D. See :help Y.
   nnoremap Y y$
   " copy selection to gui-clipboard
@@ -285,13 +281,14 @@
   " -----------------------------------------------------------
   nnoremap <silent><Leader>dl :diffget LOCAL \| diffupdate<CR>
   nnoremap <silent><Leader>dr :diffget REMOTE \| diffupdate<CR>
+
   " -----------------------------------------------------------
   " => h: window-resize
   " -----------------------------------------------------------
-  " <C-w>|
-  " nnoremap <Leader>z :wincmd _<CR>:wincmd \|<CR>
-  " <C-w>=
-  " nnoremap <silent><Leader>- :wincmd =<CR>
+  nnoremap <Leader><Bar> <C-w><Bar>
+  nnoremap <Leader>= <C-w>=
+  nnoremap <Leader>o <C-w>o
+  nnoremap <Leader>v <C-w>v
 
   " http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
   " z{nr}<CR>  Set current window height to {nr}.
