@@ -17,5 +17,8 @@ call deoplete#custom#set('ultisnips', 'rank', 1000)
 
 inoremap <expr><C-z> deoplete#undo_completion()
 
-" instead of closing popup by <C-e>
-inoremap <expr>- pumvisible() ? deoplete#close_popup() : "-"
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
