@@ -63,7 +63,7 @@ Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
 
 " Golang
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', {'for': ['go'] }
 
 " HTML
 " Plug 'docunext/closetag.vim' "close HTML tag
