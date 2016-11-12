@@ -87,8 +87,8 @@ Plug 'fatih/vim-go', {'for': ['go'] }
 Plug 'artur-shaik/vim-javacomplete2', {'for': ['java'] }
 
 " Auto pairs
-Plug 'Raimondi/delimitMate'
-" Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
+" Plug 'Raimondi/delimitMate'
 
 " HTML
 " Plug 'docunext/closetag.vim' "close HTML tag
