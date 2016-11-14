@@ -51,7 +51,9 @@
   " Excluding version control directories
   set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
   " OS X
-  set wildignore+=*.DS_Store
+  if has('mac')
+    set wildignore+=*.DS_Store
+  endif
   " Binary images
   set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
@@ -68,9 +70,9 @@
   set cmdheight=1                      " command bar height
   set noerrorbells
   set complete=.,w,t
-  set completeopt=menu,noselect,longest
+  set completeopt=menuone,noselect
   " noinsert adds auto select feature to deoplete
-  " set completeopt=menu,noselect,noinsert
+  " set completeopt=menu,noinsert
 
   " SPACES & TABS
   " Explanations from http://tedlogan.com/techblog3.html
@@ -351,7 +353,6 @@
   inoremap <C-Space> <C-x><C-l>
 
   inoremap <expr> + pumvisible() ? "\<c-n>" : "+"
-  inoremap <expr> } pumvisible() ? "\<c-p>" : "}"
 
   " -----------------------------------------------------------
   " => Visual and Select mode mappings
@@ -450,7 +451,8 @@
     autocmd TermOpen * let g:last_terminal_job_id = b:terminal_job_id
     " https://github.com/junegunn/fzf.vim/issues/21
     " https://github.com/junegunn/fzf/issues/426
-    autocmd BufWinEnter,WinEnter term://* call feedkeys('i')
+    autocmd BufWinEnter,WinEnter term://* startinsert
+    " autocmd BufWinEnter,WinEnter term://* call feedkeys('i')
     " autocmd BufWinEnter,WinEnter term://* echom string(reltime())
   augroup END
 "}}}
