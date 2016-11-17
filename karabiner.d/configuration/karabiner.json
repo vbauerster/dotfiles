@@ -3,11 +3,23 @@
         {
             "devices": [
                 {
+                    "disable_built_in_keyboard_if_exists": false,
                     "identifiers": {
                         "is_keyboard": true,
                         "is_pointing_device": false,
                         "product_id": 65535,
                         "vendor_id": 1452
+                    },
+                    "ignore": true,
+                    "keyboard_type": 0
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 1890,
+                        "vendor_id": 1118
                     },
                     "ignore": true,
                     "keyboard_type": 0
