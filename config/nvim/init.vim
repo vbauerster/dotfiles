@@ -241,7 +241,7 @@
   " fold a html tag
   nnoremap <Leader>ft Vatzf
 
-  nnoremap <Leader>df vaBo0d
+  nnoremap <Leader>bx vaBo0d
 
   " Read :help g_ctrl-]
   " same as :tjump
