@@ -1,3 +1,4 @@
+let g:go_gocode_unimported_packages = 1
 " let g:go_auto_type_info = 1
 let g:go_highlight_functions = 1
 " let g:go_highlight_methods = 1
