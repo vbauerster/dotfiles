@@ -215,7 +215,7 @@ show_function_keys() {
   printf "%-5s%5s\n" "key" "value"; infocmp -1  | awk -F= '/kf/ { key=$1; sub("kf", "", key); printf("%-5d %s\n", key, $2) }'  | sort -n
 }
 
-edit() {
+e() {
   SESSION=Session.vim
   if [ -e $SESSION ]; then
     nvim -S $SESSION
