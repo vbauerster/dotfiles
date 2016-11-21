@@ -201,10 +201,6 @@
   nnoremap yY :let b:winview=winsaveview()<bar>exe 'keepjumps keepmarks norm ggVG'.(has('clipboard')?'"*y':'y')<bar>call winrestview(b:winview)<cr>
   inoremap <insert> <C-r>*
 
-  " Select blocks after indenting
-  xnoremap < <gv
-  xnoremap > >gv|
-
   " reselect last paste
   nnoremap gp `[v`]
 
@@ -372,6 +368,10 @@
   " eregex.vim plugin and uses Perl-style regular expressions.
   vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
 
+  " Select blocks after indenting
+  xnoremap < <gv
+  xnoremap > >gv
+
   " -----------------------------------------------------------
   " => Command mode mappings
   " -----------------------------------------------------------
@@ -413,7 +413,7 @@
     autocmd WinLeave * setlocal nocursorline
 
     " Create directory if not exists
-    " autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it for commit messages, when the position is invalid, or when
