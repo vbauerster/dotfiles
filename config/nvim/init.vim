@@ -254,7 +254,7 @@
   " switch between buffers
   " bprev provided by unimpaired [b
   " bnext provided by unimpaired ]b
-  nnoremap <silent><Leader>. <C-^><CR>
+  nnoremap <silent>,. <C-^><CR>
   nnoremap <silent><Leader>xx :bd<CR>
 
   " http://habrahabr.ru/post/183222/
