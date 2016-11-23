@@ -87,7 +87,7 @@ Plug 'fatih/vim-go', {'for': ['go'] }
 Plug 'artur-shaik/vim-javacomplete2', {'for': ['java'] }
 
 " Auto pairs
-Plug 'vbauerster/auto-pairs'
+Plug 'vbauerster/auto-pairs', { 'branch': 'pumvisible' }
 " Plug 'Raimondi/delimitMate'
 
 " HTML
