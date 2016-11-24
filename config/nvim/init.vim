@@ -150,7 +150,10 @@
   " that uses ":" to fail. For instance, "map <f2> :w" would fail, since vim will
   " read ":w" as ";w" because of the below remappings. Use "noremap"s in such
   " situations and you'll be fine.
-  noremap ; :
+  nnoremap ; :
+  nnoremap : ;
+  xnoremap ; :
+  xnoremap : ;
 
   " Swap implementations of ` and ' jump to markers
   nnoremap ' `
