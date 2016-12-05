@@ -72,7 +72,7 @@ imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
 nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
-xnoremap <silent> <Leader>ag y:Ag <C-R>"<CR>
+" xnoremap <silent> <Leader>ag y:Ag <C-R>"<CR>
 
 " File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
 let g:fzf_files_options =
@@ -86,8 +86,9 @@ nnoremap <silent><Leader><Leader> :Buffers<CR>
 nnoremap <silent><Leader>gf :GitFiles<CR>
 nnoremap <silent><Leader>mm :Commits<CR>
 nnoremap <silent><Leader>bb :BCommits<CR>
-nnoremap <silent><Leader>bl :BLines<CR>
-nnoremap <silent><Leader>al :Lines<CR>
+" nnoremap <silent><Leader>bl :BLines<CR>
+" Lines [QUERY] Lines in loaded buffers
+nnoremap <silent><Leader>ll :Lines<CR>
 nnoremap <silent><Leader>' :Marks<CR>
 nnoremap <silent><Leader>; :History:<CR>
 nnoremap <silent><Leader>pp :Plugs<CR>
