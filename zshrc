@@ -15,8 +15,8 @@ export NVM_DIR="$HOME/.nvm"
 # fzf (https://github.com/junegunn/fzf)
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-# export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git -g ""'
-export FZF_DEFAULT_COMMAND='pt --nocolor --hidden --home-ptignore -U -g ""'
+export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git -g ""'
+# export FZF_DEFAULT_COMMAND='pt --nocolor --hidden --home-ptignore -U -g ""'
 # brew install highlight
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview'"
