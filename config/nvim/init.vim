@@ -316,6 +316,9 @@
   " find last search in quickfix
   " nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR><C-w>W
 
+  " buf-search
+  nnoremap <leader>bs :cex []<BAR>bufdo vimgrepadd @@g %<BAR>cw<s-left><s-left><right>
+
   " -----------------------------------------------------------
   " => External cmd mappings
   " -----------------------------------------------------------
