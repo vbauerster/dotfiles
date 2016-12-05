@@ -217,10 +217,10 @@ show_function_keys() {
 
 e() {
   SESSION=Session.vim
-  if [ -e $SESSION ]; then
-    nvim -S $SESSION
-  else
+  if [ $# -gt 0 ]; then
     nvim $@
+  elif [ -e $SESSION ]; then
+    nvim -S $SESSION
   fi
 }
 
