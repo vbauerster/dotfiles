@@ -84,8 +84,8 @@ nnoremap <silent><Leader>hh :History<CR>
 nnoremap <silent><Leader>ww :Windows<CR>
 nnoremap <silent><Leader><Leader> :Buffers<CR>
 nnoremap <silent><Leader>gf :GitFiles<CR>
-nnoremap <silent><Leader>mm :Commits<CR>
-nnoremap <silent><Leader>bb :BCommits<CR>
+nnoremap <silent><Leader>ma :Commits<CR>
+nnoremap <silent><Leader>mm :BCommits<CR>
 " nnoremap <silent><Leader>bl :BLines<CR>
 " Lines [QUERY] Lines in loaded buffers
 nnoremap <silent><Leader>ll :Lines<CR>
