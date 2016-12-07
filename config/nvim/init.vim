@@ -383,10 +383,11 @@
   " -----------------------------------------------------------
   " refer to the directory of the current file, regardless of pwd
   cnoremap %% <C-R>=expand('%:h').'/'<CR>
-  " quick save without hitting enter
-  cnoremap ww <C-u>w<CR>
+  " quick save (hh with strong index finger)
+  cnoremap hh <C-u>w<CR>
   " close location list
   cnoremap cc <C-u>lcl<CR>
+  cnoremap ww <C-u>pwd<CR>
 
   cnoremap <C-A> <Home>
   cnoremap <C-O> <Up>
