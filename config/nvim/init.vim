@@ -268,7 +268,7 @@
 
   " Highlight word
   nnoremap <silent><Leader>hw :Highlight<CR>
-  nnoremap <silent><C-c> :call clearmatches()<CR>:noh<CR>
+  nnoremap <silent><C-_> :call clearmatches()<CR>:noh<CR>
 
   " Start terminal
   nnoremap <silent><Leader>tt <C-w>v:te<CR>
