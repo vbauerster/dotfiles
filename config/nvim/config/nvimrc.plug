@@ -73,7 +73,7 @@ Plug 'zchee/deoplete-go', { 'for': ['go'], 'do': 'make'}
 " deoplete-clang: 'clang' source for C/C++
 " Plug 'zchee/deoplete-clang'
 " deoplete-ternjs: 'ternjs' source for JavaScript
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'jsx'], 'do': 'npm install -g tern' }
 " neco-look: plugin for /usr/bin/look for completing words in English
 Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
 " tmux-complete: 'tmuxcomplete' source for tmux panes
