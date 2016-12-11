@@ -219,8 +219,9 @@
   " nnoremap ^ g^
   " nnoremap $ g$
 
-  noremap + 4gj
-  noremap - 4gk
+  noremap + 5gj
+  noremap } 5gk
+  noremap - }
 
   noremap <m-+> 14gj
   noremap <m--> 14gk
