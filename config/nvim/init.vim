@@ -221,7 +221,8 @@
 
   noremap + 5gj
   noremap } 5gk
-  noremap - }
+  noremap { }
+  noremap - {
 
   noremap <m-+> 14gj
   noremap <m--> 14gk
