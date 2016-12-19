@@ -43,8 +43,7 @@
             "selected": true,
             "simple_modifications": {
                 "caps_lock": "f19",
-                "escape": "fn",
-                "fn": "caps_lock",
+                "escape": "caps_lock",
                 "left_command": "left_control",
                 "left_control": "left_option",
                 "left_option": "left_command",
