@@ -1,0 +1,14 @@
+snippet map "Map type" i
+map[${1:keytype}]${2:valtype}
+endsnippet
+
+snippet "(\w+)~" "Type conversion" r
+${1:T}(`!p snip.rv = match.group(1)`)$0
+endsnippet
+
+# goroutine anonymous function
+snippet gof "go func() { ... }()"
+go func(${2:$1 ${3:T}}) {
+	${0:${VISUAL}}
+}(${1})
+endsnippet
