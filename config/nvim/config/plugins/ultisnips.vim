@@ -7,4 +7,4 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetsDir = $DOTFILES . '/config/nvim/UltiSnips'
 let g:UltiSnipsEditSplit = "vertical"
 
-nnoremap <silent> <Leader>es :UltiSnipsEdit<CR>
+nnoremap <silent> <Leader>eu :UltiSnipsEdit<CR>
