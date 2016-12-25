@@ -268,8 +268,6 @@
   " spell check off
   " nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
-  " Highlight word
-  nnoremap <silent><Leader>hw :Highlight<CR>
   nnoremap <silent><C-_> :call clearmatches()<CR>:noh<CR>
 
   " Start terminal
