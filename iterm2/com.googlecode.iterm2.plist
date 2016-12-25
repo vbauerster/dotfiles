@@ -8967,11 +8967,11 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>392 363 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>407 191 918 495 0 0 1440 877 </string>
+	<string>1464 57 918 495 1440 -124 1280 1001 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
-	<string>366 277 592 584 0 0 1440 877 </string>
+	<string>1737 270 592 584 1440 -124 1280 1001 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>3 2 696 873 0 0 1440 877 </string>
+	<string>870 0 570 877 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>722 450 585 426 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -12952,7 +12952,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Thin Strokes</key>
-			<integer>1</integer>
+			<integer>2</integer>
 			<key>Transparency</key>
 			<real>0.080541846258973357</real>
 			<key>Triggers</key>
@@ -16512,7 +16512,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-11-19T06:20:08Z</date>
+	<date>2016-12-19T11:24:44Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -16544,7 +16544,7 @@
 	<key>TripleClickSelectsFullWrappedLines</key>
 	<false/>
 	<key>UKCrashReporterLastCrashReportDate</key>
-	<real>1470997632</real>
+	<real>1481733504</real>
 	<key>URLHandlersByGuid</key>
 	<dict/>
 	<key>UseBorder</key>
