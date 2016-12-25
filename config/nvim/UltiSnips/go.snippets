@@ -6,6 +6,14 @@ snippet "(\w+)~" "Type conversion" r
 ${1:T}(`!p snip.rv = match.group(1)`)$0
 endsnippet
 
+snippet "(\b[\w\.]+)~c" "Close channel" r
+close(`!p snip.rv = match.group(1)`)$0
+endsnippet
+
+snippet "(\w+)~l" "Length" r
+len(`!p snip.rv = match.group(1)`)$0
+endsnippet
+
 # goroutine anonymous function
 snippet gof "go func() { ... }()"
 go func(${2:$1 ${3:T}}) {
