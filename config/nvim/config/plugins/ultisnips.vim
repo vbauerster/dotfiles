@@ -1,6 +1,6 @@
 " :h popupmenu-keys
 " :h map-<expr>
-let g:UltiSnipsExpandTrigger = "<c-s>"
+let g:UltiSnipsExpandTrigger = "<C-s>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
