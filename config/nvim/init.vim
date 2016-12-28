@@ -225,7 +225,7 @@
   noremap - {
 
   noremap <m-+> 14gj
-  noremap <m--> 14gk
+  noremap <m-}> 14gk
 
   " vim-vertical-move
   noremap <expr> gj <SID>vjump(0)
@@ -355,6 +355,8 @@
   inoremap <C-Space> <C-x><C-l>
 
   inoremap <expr> + pumvisible() ? "\<c-n>" : "+"
+
+  inoremap ;hh <Esc>:w<CR>
 
   " -----------------------------------------------------------
   " => Visual and Select mode mappings
