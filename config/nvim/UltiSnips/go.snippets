@@ -2,7 +2,7 @@ snippet map "Map type" i
 map[${1:keytype}]${2:valtype}
 endsnippet
 
-snippet "(\w+)~" "Type conversion" r
+snippet "(\b[\w\.]+)~" "Type conversion" r
 ${1:T}(`!p snip.rv = match.group(1)`)$0
 endsnippet
 
@@ -10,7 +10,7 @@ snippet "(\b[\w\.]+)~c" "Close channel" r
 close(`!p snip.rv = match.group(1)`)$0
 endsnippet
 
-snippet "(\w+)~l" "Length" r
+snippet "(\b[\w\.]+)~l" "Length" r
 len(`!p snip.rv = match.group(1)`)$0
 endsnippet
 
