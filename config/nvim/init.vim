@@ -179,8 +179,7 @@
   " nnoremap <silent> <C-s> :update<CR>
 
   " Quit nvim
-  nnoremap <silent> <F10> :qa<CR>
-  nnoremap <silent> <F22> :qa!<CR>
+  nnoremap <silent> <F22> :qa<CR>
   " Quit/close window
   " <C-w> c Close the current window
   " <C-w> z Close any 'Preview' window currently open
@@ -260,7 +259,7 @@
   " bprev provided by unimpaired [b
   " bnext provided by unimpaired ]b
   nnoremap <silent>,. <C-^><CR>
-  nnoremap <silent><Leader>xx :bd<CR>
+  nnoremap <silent> <F10> :bd<CR>
 
   " http://habrahabr.ru/post/183222/
   " spell toggle
