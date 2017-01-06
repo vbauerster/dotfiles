@@ -1,3 +1,3 @@
-let g:tagbar_width=30
+let g:tagbar_width=32
 let g:tagbar_left = 1
-nnoremap <F8> :TagbarToggle<CR>
+nnoremap <silent><F20> :TagbarToggle<CR>
