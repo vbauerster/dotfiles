@@ -1,0 +1,1 @@
+abbr bomt // +build OMIT

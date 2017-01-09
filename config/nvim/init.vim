@@ -469,3 +469,7 @@
   " Load plugin specific settings
   for f in split(glob($DOTFILES . "/config/nvim/config/plugins/*.vim"), "\n") | execute 'source ' . fnameescape(f) | endfor
 "}}}
+
+" abbr {{{
+  source ~/.config/nvim/config/abbr.vim
+"}}}
