@@ -1,4 +1,6 @@
 let g:qf_mapping_ack_style = 1
-nmap <Leader>cc <Plug>QfCtoggle
+nmap <F11> <Plug>QfCtoggle
+nmap <F23> <Plug>QfLtoggle
+nmap <C-_> <Plug>QfSwitch
+" nmap <Leader>cc <Plug>QfCtoggle
 " nmap <Leader>ll <Plug>QfLtoggle
-" nmap z. <Plug>QfSwitch

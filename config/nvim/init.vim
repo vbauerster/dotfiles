@@ -267,7 +267,7 @@
   " spell check off
   " nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
-  nnoremap <silent><C-_> :call clearmatches()<CR>:noh<CR>
+  nnoremap <silent><Leader>cc :call clearmatches()<CR>:noh<CR>
 
   " Start terminal
   nnoremap <silent><Leader>tt <C-w>v:te<CR>
@@ -336,14 +336,14 @@
   inoremap <S-Return> <C-o>o
 
   " insert absolute current buffer path
-  inoremap <F2> <C-R>=expand('%:p')<CR>
+  inoremap <F4> <C-R>=expand('%:p')<CR>
 
   " quick movements
   " http://vim.wikia.com/wiki/Quick_command_in_insert_mode
   inoremap II <Esc>I
   inoremap AA <Esc>A
   " <C-\> does not eat last char of the line
-  inoremap CC <C-\><C-O>D
+  inoremap CC <C-\><C-o>D
 
   inoremap ,. <Esc>
 
@@ -355,6 +355,8 @@
 
   inoremap <expr> + pumvisible() ? "\<c-n>" : "+"
 
+  " http://superuser.com/a/1165038/578741
+  inoremap <F2> <C-\><C-o>:w<CR>
   inoremap ;hh <Esc>:w<CR>
 
   " -----------------------------------------------------------
@@ -387,7 +389,7 @@
   " quick save (hh with strong index finger)
   cnoremap hh <C-u>w<CR>
   " close location list
-  cnoremap cc <C-u>lcl<CR>
+  " cnoremap cc <C-u>lcl<CR>
   cnoremap ww <C-u>pwd<CR>
 
   cnoremap <C-A> <Home>
