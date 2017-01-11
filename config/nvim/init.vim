@@ -85,10 +85,11 @@
   set nojoinspaces  " Prevents inserting two spaces after punctuation on a join (J)
 
   " Searching
-  set gdefault   " global search by default
-  set ignorecase " case insensitive searching
-  set smartcase  " case-sensitive if expresson contains a capital letter
-  set lazyredraw " don't redraw while executing macros
+  set gdefault         " global search by default
+  set ignorecase       " case insensitive searching
+  set smartcase        " case-sensitive if expresson contains a capital letter
+  set lazyredraw       " don't redraw while executing macros
+  set inccommand=split " incremental live substitute
 
   " Highlight current line
   " http://stackoverflow.com/questions/8247243/highlighting-the-current-line-number-in-vim
