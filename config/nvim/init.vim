@@ -307,12 +307,12 @@
   nnoremap <M-Down> <C-w>-
 
   " -----------------------------------------------------------
-  " => vimgrep
+  " => search related
   " -----------------------------------------------------------
   nmap <Leader>* ]I
   nmap <Leader># [I
   " find current word in quickfix
-  nnoremap <Leader>g* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
+  " nnoremap <Leader>g* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
   " find last search in quickfix
   " nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR><C-w>W
 
@@ -343,7 +343,7 @@
   " http://vim.wikia.com/wiki/Quick_command_in_insert_mode
   inoremap II <Esc>I
   inoremap AA <Esc>A
-  " <C-\> does not eat last char of the line
+  " CTRL-\ CTRL-O like CTRL-O but don't move the cursor [i_CTRL-\_CTRL-O]
   inoremap CC <C-\><C-o>D
 
   inoremap ,. <Esc>
