@@ -23,7 +23,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/rainbow_parentheses.vim'
 
 " New text objects
-Plug 'tommcdo/vim-exchange' " cx to exchange
+Plug 'tommcdo/vim-exchange'   " cx to exchange
 Plug 'chaoren/vim-wordmotion' " CamelCase motion
 
 " Motions
