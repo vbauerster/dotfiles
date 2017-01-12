@@ -1,5 +1,5 @@
 let g:wordmotion_prefix = '\'
-nmap z. di\w
-nmap <leader>. ci\w
-nmap <M-w> \w
-nmap <M-b> \b
+nmap <Leader>.d di\w
+nmap <Leader>.c ci\w
+nmap <Leader>.w \w
+nmap <Leader>.b \b
