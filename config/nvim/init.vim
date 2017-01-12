@@ -127,7 +127,7 @@
 
 " MAPPINGS {{{
   " open vimrc
-  nnoremap <Leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+  nnoremap <Leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
   " edit vim plugins
   nnoremap <Leader>ep :e ~/.config/nvim/config/nvimrc.plug<CR>
   " edit gitconfig
@@ -137,14 +137,14 @@
   " edit zshrc
   nnoremap <Leader>ez :e ~/.zshrc<CR>
   " edit/view log from wi-fi box
-  nnoremap <Leader>ewm :e scp://root@192.168.2.1//var/log/messages<CR>
-  nnoremap <Leader>ewu :e scp://root@192.168.2.1//jffs/runblock/runblock.dnsmasq<CR>
+  " nnoremap <Leader>ewm :e scp://root@192.168.2.1//var/log/messages<CR>
+  " nnoremap <Leader>ewu :e scp://root@192.168.2.1//jffs/runblock/runblock.dnsmasq<CR>
 
   " set working directory to the current buffer's directory
-  nnoremap cd :lcd %:p:h<bar>pwd<cr>
-  nnoremap cu :lcd ..<bar>pwd<cr>
-  nnoremap cD :cd %:p:h<bar>pwd<cr>
-  nnoremap cU :cd ..<bar>pwd<cr>
+  nnoremap cd :lcd %:p:h<BAR>pwd<CR>
+  nnoremap cu :lcd ..<BAR>pwd<CR>
+  nnoremap cD :cd %:p:h<BAR>pwd<CR>
+  nnoremap cU :cd ..<BAR>pwd<CR>
 
   " In normal mode, we use : much more often than ; so lets swap them.
   " WARNING: this will cause any "ordinary" map command without the "nore" prefix
@@ -316,8 +316,8 @@
   " find last search in quickfix
   " nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR><C-w>W
 
-  " buf-search
-  nnoremap <F3> :cex []<BAR>bufdo vimgrepadd @@g %<BAR>cw<s-left><s-left><right>
+  " buf-search (shift + F3)
+  nnoremap <F15> :cex []<BAR>bufdo vimgrepadd @@g %<BAR>cw<s-left><s-left><right>
 
   " -----------------------------------------------------------
   " => External cmd mappings
