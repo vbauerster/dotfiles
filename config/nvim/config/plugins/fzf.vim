@@ -56,27 +56,36 @@ command! FZFPlugConf call fzf#run(fzf#wrap({
       \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
       \}))
 
+" Augmenting Ag command using fzf#vim#with_preview function
+"   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
+"   * Preview script requires Ruby
+"   * Install Highlight or CodeRay to enable syntax highlighting
+"
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+autocmd VimEnter * command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
 let $FZF_DEFAULT_OPTS .= ' --inline-info'
-
-" let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
-
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
+" File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
+let g:fzf_files_options =
+      \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+" let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
 
 " Replace the default dictionary completion with fzf-based fuzzy completion
-" inoremap <expr> <c-x><c-k> fzf#complete('cat /usr/share/dict/words')
-" sacrifice CTRL-d for something more usefull, read :help i_CTRL-d
+" sacrifice i_CTRL-d for something more usefull
 imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " Line completion (all open buffers)
 " imap <c-l> <plug>(fzf-complete-line)
 " imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
-nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
-" xnoremap <silent> <Leader>ag y:Ag <C-R>"<CR>
-
-" File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
-let g:fzf_files_options =
-      \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+nnoremap <silent><F3> :Ag <C-R><C-W><CR>
+xnoremap <silent><F3> y:Ag <C-R>"<CR>
 
 " avoids opening file in Nerd_tree window
 nnoremap <silent> <expr> <Leader>- (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
