@@ -84,15 +84,17 @@ imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " imap <c-l> <plug>(fzf-complete-line)
 " imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
-nnoremap <silent><F3> :Ag <C-R><C-W><CR>
-xnoremap <silent><F3> y:Ag <C-R>"<CR>
+nnoremap <F3> :Ag<CR>
+nnoremap <silent><C-g>g :Ag <C-R><C-W><CR>
+xnoremap <silent><C-g>g y:Ag <C-R>"<CR>
 
 " avoids opening file in Nerd_tree window
 nnoremap <silent> <expr> <Leader>- (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
+nnoremap <silent><C-_> :GFiles<CR>
+nnoremap <silent>z. :GFiles?<CR>
+nnoremap <silent><Leader><Leader> :Buffers<CR>
 nnoremap <silent><Leader>hh :History<CR>
 nnoremap <silent><Leader>ww :Windows<CR>
-nnoremap <silent><Leader><Leader> :Buffers<CR>
-nnoremap <silent><Leader>gf :GitFiles<CR>
 nnoremap <silent><Leader>ma :Commits<CR>
 nnoremap <silent><Leader>mm :BCommits<CR>
 " nnoremap <silent><Leader>bl :BLines<CR>
