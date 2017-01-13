@@ -30,6 +30,17 @@ function! s:yank_handler(reg)
   endif
 endfunction
 
+function! s:change_branch(e)
+  execute '!git checkout' . a:e
+  :e!
+endfunction
+
+command! Gbranch call fzf#run({
+      \ 'source': 'git branch',
+      \ 'sink': function('<sid>change_branch'),
+      \ 'left': 15
+      \ })
+
 command! FZFYank call fzf#run({
       \ 'source': <sid>yank_list(),
       \ 'sink': function('<sid>yank_handler'),
@@ -46,7 +57,6 @@ command! Plugs call fzf#run({
 command! FZFGopath call fzf#run({
       \ 'source': "ls -1p $GOPATH/src | awk -F/ '/\\/$/ {print $1}'",
       \ 'sink': function('<sid>gopath_handler'),
-      \ 'options': '-m',
       \ 'down': '50%'
       \ })
 
