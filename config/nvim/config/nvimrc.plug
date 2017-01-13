@@ -138,7 +138,7 @@ if has('mac')
 endif
 
 " Clipboard related
-" Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-peekaboo'
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
