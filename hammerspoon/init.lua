@@ -8,7 +8,7 @@ k = hs.hotkey.modal.new({}, 'F18')
 -- Hyper+key for all the below are setup somewhere
 -- The handler already exists, usually in Keyboard Maestro
 -- we just have to get the right keystroke sent
-hyperBindings = {'H','C','J','K','M','T','P','SPACE','+','-'}
+hyperBindings = {'H','C','J','K','M','T','P','SPACE','+','-','LEFT','RIGHT'}
 
 for i,key in ipairs(hyperBindings) do
   k:bind({}, key, nil, function() hs.eventtap.keyStroke(hyper, key)
