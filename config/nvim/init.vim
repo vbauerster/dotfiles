@@ -203,7 +203,6 @@
   xnoremap Y "*y
   " copy entire file contents (to gui-clipboard if available)
   nnoremap yY :let b:winview=winsaveview()<bar>exe 'keepjumps keepmarks norm ggVG'.(has('clipboard')?'"*y':'y')<bar>call winrestview(b:winview)<cr>
-  inoremap <insert> <C-r>*
 
   " reselect last paste
   nnoremap gp `[v`]
@@ -360,6 +359,8 @@
   " http://superuser.com/a/1165038/578741
   inoremap <F2> <C-\><C-o>:w<CR>
   inoremap ;hh <Esc>:w<CR>
+
+  inoremap <insert> <C-r>*
 
   " -----------------------------------------------------------
   " => Visual and Select mode mappings
