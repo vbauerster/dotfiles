@@ -1,3 +1,5 @@
+-- https://gist.github.com/asmagill/c38f75fff9d9ef43d1226329fc1436e4
+
 local alert    = require("hs.alert")
 local timer    = require("hs.timer")
 local eventtap = require("hs.eventtap")
