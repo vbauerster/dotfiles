@@ -34,9 +34,10 @@ end
 -- Bind the Hyper key
 f19 = hs.hotkey.bind({}, 'F19', pressedF19, releasedF19)
 
-hs.hotkey.bind({"ctrl"}, ".", nil, function() hs.eventtap.keyStroke("cmd", ".") end, nil, nil)
-hs.hotkey.bind({"ctrl"}, ",", nil, function() hs.eventtap.keyStroke("cmd", ",") end, nil, nil)
-hs.hotkey.bind({"ctrl"}, ";", nil, function() hs.eventtap.keyStroke("cmd", ";") end, nil, nil)
+hs.hotkey.bind({"ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd"}, ".") end, nil, nil)
+hs.hotkey.bind({"ctrl"}, ",", nil, function() hs.eventtap.keyStroke({"cmd"}, ",") end, nil, nil)
+hs.hotkey.bind({"ctrl"}, ";", nil, function() hs.eventtap.keyStroke({"cmd"}, ";") end, nil, nil)
+hs.hotkey.bind({"cmd", "ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd", "alt"}, ".") end, nil, nil)
 
 -- require 'caffeine'
 -- require 'clipboard'
