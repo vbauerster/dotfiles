@@ -38,6 +38,7 @@ hs.hotkey.bind({"ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd"}, "."
 hs.hotkey.bind({"ctrl"}, ",", nil, function() hs.eventtap.keyStroke({"cmd"}, ",") end, nil, nil)
 hs.hotkey.bind({"ctrl"}, ";", nil, function() hs.eventtap.keyStroke({"cmd"}, ";") end, nil, nil)
 hs.hotkey.bind({"cmd", "ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd", "alt"}, ".") end, nil, nil)
+hs.hotkey.bind({"ctrl"}, "return", nil, function() hs.eventtap.keyStroke({"cmd"}, "return") end, nil, nil)
 
 -- require 'caffeine'
 -- require 'clipboard'
