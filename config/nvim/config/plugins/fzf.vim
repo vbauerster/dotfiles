@@ -104,7 +104,7 @@ nnoremap <silent><C-_> :GFiles<CR>
 nnoremap <silent>z. :GFiles?<CR>
 nnoremap <silent><Leader><Leader> :Buffers<CR>
 nnoremap <silent><Leader>hh :History<CR>
-nnoremap <silent><Leader>ww :Windows<CR>
+" nnoremap <silent><Leader>ww :Windows<CR>
 nnoremap <silent><Leader>ma :Commits<CR>
 nnoremap <silent><Leader>mm :BCommits<CR>
 " nnoremap <silent><Leader>bl :BLines<CR>

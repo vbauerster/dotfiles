@@ -32,6 +32,7 @@ Plug 'justinmk/vim-sneak'
 
 " UI look and feel
 Plug 'vim-airline/vim-airline-themes' | Plug 'vim-airline/vim-airline'
+" Plug 'bling/vim-bufferline'
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'itchyny/lightline.vim'
 
@@ -130,8 +131,9 @@ Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'airblade/vim-rooter'
 Plug 'romainl/vim-qf'
-" Plug 'romainl/vim-qlist'
 Plug 'tpope/vim-characterize' " enhaced ga
+Plug 'tpope/vim-capslock'     " <C-G>c in insert mode
+Plug 'wesQ3/vim-windowswap'
 
 if has('mac')
   Plug 'rizzatti/dash.vim'
