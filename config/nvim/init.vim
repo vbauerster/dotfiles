@@ -177,18 +177,15 @@
   nnoremap <Leader>tn :tabnew<CR>
   nnoremap <Leader>tx :tabclose<CR>
 
-  " Save
-  " nnoremap <silent> <C-s> :update<CR>
-
   " Quit nvim
-  nnoremap <silent> <F22> :qa<CR>
+  " nnoremap <silent> <F22> :qa<CR>
   " Quit/close window
   " <C-w> c Close the current window
   " <C-w> z Close any 'Preview' window currently open
   " <C-w> P Go to preview window
   nnoremap <Leader>q :q<CR>
   nnoremap <Leader>! :q!<CR>
-  nnoremap <Leader>xc <C-w>c
+  nnoremap <Leader><F22> <C-w>c
 
   " Read :help ctrl-w_w
   " Read :help wincmd
@@ -286,10 +283,11 @@
   " -----------------------------------------------------------
   " => h: window-resize
   " -----------------------------------------------------------
-  nnoremap <Leader><Bar> <C-w><Bar>
+  " nnoremap <Leader><Bar> <C-w><Bar>
   nnoremap <Leader>= <C-w>=
   nnoremap <Leader>o <C-w>o
   nnoremap <Leader>v <C-w>v
+  nnoremap <Leader>x <C-w>s
 
   " http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
   " z{nr}<CR>  Set current window height to {nr}.
@@ -394,6 +392,8 @@
   " close location list
   " cnoremap cc <C-u>lcl<CR>
   cnoremap ww <C-u>pwd<CR>
+  " Quit all, but ask to save
+  cnoremap ;; <C-u>qa<CR>
 
   cnoremap <C-A> <Home>
   cnoremap <C-O> <Up>
