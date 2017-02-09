@@ -185,7 +185,7 @@
   " <C-w> P Go to preview window
   nnoremap <Leader>q :q<CR>
   nnoremap <Leader>! :q!<CR>
-  nnoremap <Leader><F22> <C-w>c
+  nnoremap <F22> <C-w>c
 
   " Read :help ctrl-w_w
   " Read :help wincmd
