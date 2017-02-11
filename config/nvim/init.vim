@@ -187,6 +187,9 @@
   nnoremap <Leader>! :q!<CR>
   nnoremap <F22> <C-w>c
 
+  " Save in normal mode
+  nnoremap <F2> :w<CR>
+
   " Read :help ctrl-w_w
   " Read :help wincmd
   nnoremap <Tab> <C-w>w
