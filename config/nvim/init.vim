@@ -253,9 +253,6 @@
   " Remove trailing whitespaces
   " nnoremap <silent><Leader>wx :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
-  " Buffer reload
-  nnoremap <Leader>rr :e!<CR>
-
   " switch between buffers
   " bprev provided by unimpaired [b
   " bnext provided by unimpaired ]b
@@ -359,7 +356,7 @@
 
   " http://superuser.com/a/1165038/578741
   inoremap <F2> <C-\><C-o>:w<CR>
-  inoremap ;hh <Esc>:w<CR>
+  inoremap ;;h <Esc>:w<CR>
 
   inoremap <insert> <C-r>*
 
@@ -390,13 +387,14 @@
   " -----------------------------------------------------------
   " refer to the directory of the current file, regardless of pwd
   cnoremap %% <C-R>=expand('%:h').'/'<CR>
-  " quick save (hh with strong index finger)
-  cnoremap hh <C-u>w<CR>
-  " close location list
-  " cnoremap cc <C-u>lcl<CR>
-  cnoremap ww <C-u>pwd<CR>
+  " quick save (h with strong index finger)
+  cnoremap ;h <C-u>w<CR>
+  " quick pwd
+  cnoremap ;d <C-u>pwd<CR>
   " Quit all without save, also refer to line 187
   cnoremap ;! <C-u>qa!<CR>
+  " Buffer reload
+  cnoremap ;r <C-u>e!<CR>
 
   cnoremap <C-A> <Home>
   cnoremap <C-O> <Up>
