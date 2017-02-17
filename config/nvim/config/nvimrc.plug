@@ -10,14 +10,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'vbauerster/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
-" Plug 'tpope/vim-abolish'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'majutsushi/tagbar'
 Plug 'othree/eregex.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'fszymanski/fzf-gitignore.nvim', {'do': ':UpdateRemotePlugins'}
+" Plug 'fszymanski/fzf-gitignore.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
@@ -133,7 +132,7 @@ Plug 'airblade/vim-rooter'
 Plug 'romainl/vim-qf'
 Plug 'tpope/vim-characterize' " enhaced ga
 Plug 'tpope/vim-capslock'     " <C-G>c in insert mode
-Plug 'wesQ3/vim-windowswap'
+Plug 'wesQ3/vim-windowswap'   " <leader>ww to swap windows
 
 if has('mac')
   Plug 'rizzatti/dash.vim'
