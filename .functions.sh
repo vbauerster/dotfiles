@@ -221,6 +221,8 @@ e() {
     nvim $@
   elif [ -e $SESSION ]; then
     nvim -S $SESSION
+  else
+    nvim
   fi
 }
 
