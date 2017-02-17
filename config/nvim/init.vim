@@ -395,8 +395,8 @@
   " close location list
   " cnoremap cc <C-u>lcl<CR>
   cnoremap ww <C-u>pwd<CR>
-  " Quit all, but ask to save
-  cnoremap ;; <C-u>qa<CR>
+  " Quit all without save, also refer to line 187
+  cnoremap ;! <C-u>qa!<CR>
 
   cnoremap <C-A> <Home>
   cnoremap <C-O> <Up>
