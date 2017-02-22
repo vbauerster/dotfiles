@@ -207,11 +207,11 @@ show_function_keys() {
 }
 
 e() {
-  SESSION=Session.vim
+  local session="Session.vim"
   if [ $# -gt 0 ]; then
     nvim $@
-  elif [ -e $SESSION ]; then
-    nvim -S $SESSION
+  elif [ -e $session ]; then
+    nvim -S $session
   else
     nvim
   fi
