@@ -190,6 +190,9 @@
   " Save in normal mode
   nnoremap <F2> :w<CR>
 
+  " Buffer reload
+  nnoremap <Leader>r :e!<CR>
+
   " Read :help ctrl-w_w
   " Read :help wincmd
   nnoremap <Tab> <C-w>w
@@ -393,8 +396,6 @@
   cnoremap ;d <C-u>pwd<CR>
   " Quit all without save, also refer to line 187
   cnoremap ;! <C-u>qa!<CR>
-  " Buffer reload
-  cnoremap ;r <C-u>e!<CR>
 
   cnoremap <C-A> <Home>
   cnoremap <C-O> <Up>
