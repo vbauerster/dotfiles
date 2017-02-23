@@ -50,12 +50,12 @@ f19Released = function()
   end
 end
 
--- Leave Hyper Mode when F20 (delete) is pressed,
--- send DELETE if no other keys are pressed.
+-- Leave Hyper Mode when F20 (return) is pressed,
+-- send RETURN if no other keys are pressed.
 f20Released = function()
   f18:exit()
   if not f18.triggered then
-    hs.eventtap.keyStroke({}, "delete")
+    hs.eventtap.keyStroke({}, "return")
   end
 end
 
@@ -64,19 +64,22 @@ hs.hotkey.bind({}, "F19", hyperPressed, f19Released)
 
 -- Bind the Hyper key to F20
 hs.hotkey.bind({}, "F20", hyperPressed, f20Released, function()
-  hs.eventtap.event.newKeyEvent({}, "delete", true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+  hs.eventtap.event.newKeyEvent({}, "return", true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
 end)
+
+hs.hotkey.bind({"ctrl"}, "F20", nil, function() hs.eventtap.keyStroke({"ctrl"}, "return") end)
+hs.hotkey.bind({"cmd"}, "F20", nil, function() hs.eventtap.keyStroke({"cmd"}, "return") end)
 
 hs.hotkey.bind({"ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd"}, ".") end)
 hs.hotkey.bind({"ctrl"}, ",", nil, function() hs.eventtap.keyStroke({"cmd"}, ",") end)
 hs.hotkey.bind({"ctrl"}, ";", nil, function() hs.eventtap.keyStroke({"cmd"}, ";") end)
 hs.hotkey.bind({"cmd", "ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd", "alt"}, ".") end)
 
+require 'reload-config'
 -- require 'caffeine'
 -- require 'clipboard'
 -- require 'launch-applications'
 -- require 'window-management'
-require 'reload-config'
 
 -- Lock System
 -- hs.hotkey.bind(hyper, 12, 'Lock system', function() hs.caffeinate.lockScreen() end)
@@ -86,4 +89,3 @@ require 'reload-config'
 -- Window Hints
 -- hs.hints.style = 'vimperator'
 -- hs.hotkey.bind(hyper, 'H', 'Show window hints', hs.hints.windowHints)
-
