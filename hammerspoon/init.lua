@@ -1,69 +1,69 @@
-loggerInfo = hs.logger.new('My Settings', 'info')
+loggerInfo = hs.logger.new("My Settings", "info")
 
 hyper = { "cmd", "alt", "shift", "ctrl" }
 
 -- A global variable for the sub-key Hyper Mode
-k = hs.hotkey.modal.new({}, 'F18')
+f18 = hs.hotkey.modal.new({}, "F18")
 
 -- Hyper+key bindings for external handlers
-extHyperBindings = {'a', 'o', 'u', 'e', 'j', 'k', 'p', ',', '.', 'space', '+', '-'}
+extHyperBindings = {"a", "o", "u", "e", "j", "k", "p", ",", ".", "space", "+", "-"}
 
-for i,key in ipairs(extHyperBindings) do
-  k:bind({}, key, nil, function() hs.eventtap.keyStroke(hyper, key)
-    k.triggered = true
+for i, v in ipairs(extHyperBindings) do
+  f18:bind({}, v, function() hs.eventtap.keyStroke(hyper, v)
+    f18.triggered = true
   end)
 end
 
-k:bind({}, 'h', nil, function() hs.eventtap.keyStroke({}, 'left') k.triggered = true end)
-k:bind({}, 'n', nil, function() hs.eventtap.keyStroke({}, 'right') k.triggered = true end)
-k:bind({}, 'c', nil, function() hs.eventtap.keyStroke({}, 'up') k.triggered = true end)
-k:bind({}, 't', nil, function() hs.eventtap.keyStroke({}, 'down') k.triggered = true end)
+hdic = {h="left", n="right", c="up", t="down", l="pageup", s="pagedown", g="home", r="end", d="delete", f="forwarddelete", b="tab", m="return"}
 
-k:bind({}, 'l', nil, function() hs.eventtap.keyStroke({}, 'pageup') k.triggered = true end)
-k:bind({}, 's', nil, function() hs.eventtap.keyStroke({}, 'pagedown') k.triggered = true end)
-
-k:bind({}, 'g', nil, function() hs.eventtap.keyStroke({}, 'home') k.triggered = true end)
-k:bind({}, 'r', nil, function() hs.eventtap.keyStroke({}, 'end') k.triggered = true end)
-
-k:bind({}, 'd', nil, function() hs.eventtap.keyStroke({}, 'delete') k.triggered = true end)
-k:bind({}, 'b', nil, function() hs.eventtap.keyStroke({}, 'forwarddelete') k.triggered = true end)
-
-k:bind({}, 'm', nil, function() hs.eventtap.keyStroke({}, 'return') k.triggered = true end)
+for k, v in pairs(hdic) do
+  f18:bind({}, k,
+    function()
+      hs.eventtap.keyStroke({}, v)
+      f18.triggered = true
+    end,
+    nil,
+    function()
+      hs.eventtap.event.newKeyEvent({}, v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+    end)
+end
 
 -- Enter Hyper Mode
 hyperPressed = function()
-  k.triggered = false
-  k:enter()
+  f18.triggered = false
+  f18:enter()
 end
 
 -- Leave Hyper Mode when F19 (caps) is pressed,
 -- send ESCAPE if no other keys are pressed.
 f19Released = function()
-  k:exit()
-  if not k.triggered then
-    hs.eventtap.keyStroke({}, 'escape')
+  f18:exit()
+  if not f18.triggered then
+    hs.eventtap.keyStroke({}, "escape")
   end
 end
 
 -- Leave Hyper Mode when F20 (delete) is pressed,
--- send RETURN if no other keys are pressed.
+-- send DELETE if no other keys are pressed.
 f20Released = function()
-  k:exit()
-  if not k.triggered then
-    hs.eventtap.keyStroke({}, 'delete')
+  f18:exit()
+  if not f18.triggered then
+    hs.eventtap.keyStroke({}, "delete")
   end
 end
 
--- Bind the Hyper key to Caps
-hs.hotkey.bind({}, 'F19', hyperPressed, f19Released)
+-- Bind the Hyper key to F19
+hs.hotkey.bind({}, "F19", hyperPressed, f19Released)
 
--- Bind the Hyper key to Return
-hs.hotkey.bind({}, 'F20', hyperPressed, f20Released)
+-- Bind the Hyper key to F20
+hs.hotkey.bind({}, "F20", hyperPressed, f20Released, function()
+  hs.eventtap.event.newKeyEvent({}, "delete", true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+end)
 
-hs.hotkey.bind({"ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd"}, ".") end, nil, nil)
-hs.hotkey.bind({"ctrl"}, ",", nil, function() hs.eventtap.keyStroke({"cmd"}, ",") end, nil, nil)
-hs.hotkey.bind({"ctrl"}, ";", nil, function() hs.eventtap.keyStroke({"cmd"}, ";") end, nil, nil)
-hs.hotkey.bind({"cmd", "ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd", "alt"}, ".") end, nil, nil)
+hs.hotkey.bind({"ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd"}, ".") end)
+hs.hotkey.bind({"ctrl"}, ",", function() hs.eventtap.keyStroke({"cmd"}, ",") end)
+hs.hotkey.bind({"ctrl"}, ";", function() hs.eventtap.keyStroke({"cmd"}, ";") end)
+hs.hotkey.bind({"cmd", "ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd", "alt"}, ".") end)
 
 -- require 'caffeine'
 -- require 'clipboard'
