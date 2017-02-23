@@ -10,8 +10,10 @@ extHyperBindings = {"a", "o", "u", "e", "j", "k", "p", ",", ".", "space", "+", "
 
 for i, v in ipairs(extHyperBindings) do
   f18:bind({}, v, function()
+        -- Pressed:
         hs.eventtap.event.newKeyEvent(hyper, v, true):post()
       end, function()
+        -- Released:
         hs.eventtap.event.newKeyEvent(hyper, v, false):post()
         f18.triggered = true
       end)
@@ -21,11 +23,14 @@ hdic = {h="left", n="right", c="up", t="down", l="pageup", s="pagedown", g="home
 
 for k, v in pairs(hdic) do
   f18:bind({}, k, function()
+      -- Pressed:
       hs.eventtap.event.newKeyEvent({}, v, true):post()
     end, function()
+      -- Released:
       hs.eventtap.event.newKeyEvent({}, v, false):post()
       f18.triggered = true
     end, function()
+      -- Repeat:
       hs.eventtap.event.newKeyEvent({}, v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
     end)
 end
