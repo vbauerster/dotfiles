@@ -9,21 +9,23 @@ f18 = hs.hotkey.modal.new({}, "F18")
 extHyperBindings = {"a", "o", "u", "e", "j", "k", "p", ",", ".", "space", "+", "-"}
 
 for i, v in ipairs(extHyperBindings) do
-  f18:bind({}, v, function() hs.eventtap.keyStroke(hyper, v)
-    f18.triggered = true
-  end)
+  f18:bind({}, v, function()
+        hs.eventtap.event.newKeyEvent(hyper, v, true):post()
+      end, function()
+        hs.eventtap.event.newKeyEvent(hyper, v, false):post()
+        f18.triggered = true
+      end)
 end
 
 hdic = {h="left", n="right", c="up", t="down", l="pageup", s="pagedown", g="home", r="end", d="delete", f="forwarddelete", b="tab", m="return"}
 
 for k, v in pairs(hdic) do
-  f18:bind({}, k,
-    function()
-      hs.eventtap.keyStroke({}, v)
+  f18:bind({}, k, function()
+      hs.eventtap.event.newKeyEvent({}, v, true):post()
+    end, function()
+      hs.eventtap.event.newKeyEvent({}, v, false):post()
       f18.triggered = true
-    end,
-    nil,
-    function()
+    end, function()
       hs.eventtap.event.newKeyEvent({}, v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
     end)
 end
@@ -60,10 +62,10 @@ hs.hotkey.bind({}, "F20", hyperPressed, f20Released, function()
   hs.eventtap.event.newKeyEvent({}, "delete", true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
 end)
 
-hs.hotkey.bind({"ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd"}, ".") end)
-hs.hotkey.bind({"ctrl"}, ",", function() hs.eventtap.keyStroke({"cmd"}, ",") end)
-hs.hotkey.bind({"ctrl"}, ";", function() hs.eventtap.keyStroke({"cmd"}, ";") end)
-hs.hotkey.bind({"cmd", "ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd", "alt"}, ".") end)
+hs.hotkey.bind({"ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd"}, ".") end)
+hs.hotkey.bind({"ctrl"}, ",", nil, function() hs.eventtap.keyStroke({"cmd"}, ",") end)
+hs.hotkey.bind({"ctrl"}, ";", nil, function() hs.eventtap.keyStroke({"cmd"}, ";") end)
+hs.hotkey.bind({"cmd", "ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd", "alt"}, ".") end)
 
 -- require 'caffeine'
 -- require 'clipboard'
