@@ -66,11 +66,11 @@
             "selected": true,
             "simple_modifications": {
                 "caps_lock": "f19",
-                "delete_or_backspace": "f20",
                 "escape": "caps_lock",
                 "left_command": "left_control",
                 "left_control": "left_option",
                 "left_option": "left_command",
+                "return_or_enter": "f20",
                 "right_command": "right_control",
                 "right_option": "right_command"
             },
@@ -143,6 +143,7 @@
                 "escape": "caps_lock",
                 "left_control": "left_option",
                 "left_option": "left_control",
+                "return_or_enter": "f20",
                 "right_control": "right_option",
                 "right_option": "right_control"
             },
