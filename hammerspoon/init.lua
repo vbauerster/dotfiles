@@ -69,6 +69,7 @@ end)
 
 hs.hotkey.bind({"ctrl"}, "F20", nil, function() hs.eventtap.keyStroke({"ctrl"}, "return") end)
 hs.hotkey.bind({"cmd"}, "F20", nil, function() hs.eventtap.keyStroke({"cmd"}, "return") end)
+hs.hotkey.bind({"shift"}, "F20", nil, function() hs.eventtap.keyStroke({"shift"}, "return") end)
 
 hs.hotkey.bind({"ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd"}, ".") end)
 hs.hotkey.bind({"ctrl"}, ",", nil, function() hs.eventtap.keyStroke({"cmd"}, ",") end)
