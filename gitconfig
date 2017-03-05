@@ -30,6 +30,9 @@
 [difftool "sourcetree"]
 	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
 	path =
+[diff]
+	tool = sourcetree
+	compactionHeuristic = true
 [mergetool "sourcetree"]
 	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
 	trustExitCode = true
@@ -39,9 +42,6 @@
 	cmd = $HOME/bin/gitmerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [merge]
 	tool = gitmerge
-[diff]
-	tool = sourcetree
-	compactionHeuristic = true
 [commit]
 	template = /Users/vbauer/.stCommitMsg
 [color "diff"]
