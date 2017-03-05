@@ -6,42 +6,42 @@
 [push]
 	default = current
 [alias]
-  co = checkout
-  ci = commit
-  st = status
-  b = branch -v
-  br = branch -av
+	co = checkout
+	ci = commit
+	st = status
+	b = branch -v
+	br = branch -av
 	d = diff -w
-  r = remote -v
-  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-  stat = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
-  last = cat-file commit HEAD
+	r = remote -v
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	stat = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
+	last = cat-file commit HEAD
 [credential]
 	helper = osxkeychain
 [core]
 	excludesfile = /Users/vbauer/.gitignore
-  editor = nvim
+	editor = nvim
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
 [github]
-  user = vbauerster
+	user = vbauerster
 [difftool "sourcetree"]
 	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
 	trustExitCode = true
-[mergetool "nvimd3"]
-cmd = nvim -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
-[mergetool "gitmerge"]
-cmd = gitmerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool "diff3compact"]
+	cmd = nvim -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+[mergetool "diff3big"]
+	cmd = $HOME/bin/gitmerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [diff]
 	tool = sourcetree
 	compactionHeuristic = true
 [merge]
-	tool = nvimd3
+	tool = diff3big
 [commit]
 	template = /Users/vbauer/.stCommitMsg
 [color "diff"]
