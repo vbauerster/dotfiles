@@ -80,7 +80,7 @@
   set tabstop=2     " How many columns a tab counts for
   set softtabstop=2 " How many columns vim uses when pressing TAB in insert mode
   set shiftwidth=0  " Follow tabstop value
-  set expandtab     " Use spaces
+  " set expandtab     " Use spaces
   set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
   set ruler         " show the cursor position all the time
   set nojoinspaces  " Prevents inserting two spaces after punctuation on a join (J)
