@@ -1,7 +1,7 @@
 #!/bin/sh
 sn=gitmerge
 
-tmux new-session -d -s "$sn" -n "$sn" "nvim -d $2 $4 $3"
+tmux new-session -d -s "$sn" -n "diff3" "nvim -d $2 $4 $3"
 tmux split-window -t "$sn:1" -v "nvim -d $2 $1"
 tmux split-window -t "$sn:1" -h "nvim -d $1 $3"
 
