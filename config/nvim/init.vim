@@ -286,8 +286,8 @@
   " -----------------------------------------------------------
   " => h: window-resize
   " -----------------------------------------------------------
-  " nnoremap <Leader><Bar> <C-w><Bar>
   nnoremap <Leader>= <C-w>=
+  nnoremap <Leader>z <C-w><Bar>
   nnoremap <Leader>o <C-w>o
   nnoremap <Leader>v <C-w>v
   nnoremap <Leader>x <C-w>s
