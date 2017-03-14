@@ -17,16 +17,21 @@ export NVM_DIR="$HOME/.nvm"
 
 export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git -g ""'
 # export FZF_DEFAULT_COMMAND='pt --nocolor --hidden --home-ptignore -U -g ""'
-# brew install highlight
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden --bind '?:toggle-preview' --bind 'ctrl-y:execute(echo -n {2..} | pbcopy)' --header 'Press CTRL-Y to copy command into clipboard'"
+[ -n "$NVIM_LISTEN_ADDRESS" ] && export FZF_DEFAULT_OPTS='--no-height'
+
+if [ -x ~/.config/nvim/plugged/fzf.vim/bin/preview.rb ]; then
+	export FZF_CTRL_T_OPTS="--preview '~/.config/nvim/plugged/fzf.vim/bin/preview.rb {} | head -200'"
+fi
+
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --header 'Press CTRL-Y to copy command into clipboard' --border"
+
 # https://github.com/junegunn/blsd
 command -v blsd > /dev/null && export FZF_ALT_C_COMMAND='blsd'
 # brew install tree
 command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 # Source functions
-[[ -f "$DOTFILES/.functions.sh" ]] && source "$DOTFILES/.functions.sh"
+[[ -f "$DOTFILES/.functions.zsh" ]] && source "$DOTFILES/.functions.zsh"
 
 # Golang
 export GOPATH=$HOME/gocode
