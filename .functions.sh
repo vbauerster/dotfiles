@@ -2,6 +2,10 @@
 # http://junegunn.kr/2016/07/fzf-git
 # -------------
 
+fzf-down() {
+  fzf --height 50% "$@" --border
+}
+
 is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
 }
@@ -9,14 +13,14 @@ is_in_git_repo() {
 fzf-gt() {
   is_in_git_repo || return
   git tag --sort -version:refname |
-  fzf-tmux --multi --preview-window right:70% \
+  fzf-down --multi --preview-window right:70% \
     --preview 'git show --color=always {} | head -200'
 }
 
 fzf-gh() {
   is_in_git_repo || return
   git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
-  fzf-tmux --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
+  fzf-down --ansi --no-sort --reverse --multi --bind 'ctrl-s:toggle-sort' \
     --header 'Press CTRL-S to toggle sort' \
     --preview 'grep -o "[a-f0-9]\{7,\}" <<< {} | xargs git show --color=always | head -200' |
   grep -o "[a-f0-9]\{7,\}"
@@ -25,7 +29,7 @@ fzf-gh() {
 fzf-gf() {
   is_in_git_repo || return
   git -c color.status=always status --short |
-  fzf-tmux -m --ansi --nth 2..,.. \
+  fzf-down -m --ansi --nth 2..,.. \
     --preview '(git diff --color=always -- {-1} | sed 1,4d; cat {-1}) | head -500' |
   cut -c4- | sed 's/.* -> //'
 }
@@ -33,7 +37,7 @@ fzf-gf() {
 fzf-gb() {
   is_in_git_repo || return
   git branch -a --color=always | grep -v '/HEAD\s' | sort |
-  fzf-tmux --ansi --multi --tac --preview-window right:70% \
+  fzf-down --ansi --multi --tac --preview-window right:70% \
     --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -200' |
   sed 's/^..//' | cut -d' ' -f1 |
   sed 's#^remotes/##'
@@ -42,7 +46,7 @@ fzf-gb() {
 fzf-gr() {
   is_in_git_repo || return
   git remote -v | awk '{print $1 "\t" $2}' | uniq |
-  fzf-tmux --tac \
+  fzf-down --tac \
     --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
   cut -d$'\t' -f1
 }
@@ -125,16 +129,50 @@ ee() {
   [ -n "$file" ] && ${EDITOR:-vim} "$file"
 }
 
+if [ -n "$TMUX_PANE" ]; then
+  # https://github.com/wellle/tmux-complete.vim
+  fzf_tmux_words() {
+    tmuxwords.rb --all --scroll 500 --min 5 | fzf-down --multi | paste -sd" " -
+  }
+
+  fzf-tmux-words-widget() LBUFFER+=$(fzf_tmux_words | join-lines)
+  zle -N fzf-tmux-words-widget
+  bindkey '^T' undefined-key
+  bindkey '^Tt' fzf-file-widget
+  bindkey '^Tw' fzf-tmux-words-widget
+
+  # tmps - switch pane (@george-b)
+  tmps() {
+    local panes current_window current_pane target target_window target_pane
+    panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
+    current_pane=$(tmux display-message -p '#I:#P')
+    current_window=$(tmux display-message -p '#I')
+
+    target=$(echo "$panes" | grep -v "$current_pane" | fzf +m --reverse) || return
+
+    target_window=$(echo $target | awk 'BEGIN{FS=":|-"} {print$1}')
+    target_pane=$(echo $target | awk 'BEGIN{FS=":|-"} {print$2}' | cut -c 1)
+
+    if [[ $current_window -eq $target_window ]]; then
+      tmux select-pane -t ${target_window}.${target_pane}
+    else
+      tmux select-pane -t ${target_window}.${target_pane} &&
+      tmux select-window -t $target_window
+    fi
+  }
+
+fi
+
 # Switch tmux-sessions
-tms() {
+tmss() {
   local session
   session=$(tmux list-sessions -F "#{session_name}" | \
-    fzf-tmux --query="$1" --select-1 --exit-0) &&
+    fzf --height 40% --reverse --query="$1" --select-1 --exit-0) &&
   tmux switch-client -t "$session"
 }
 
-# c - browse chrome history
-c() {
+# ch - browse chrome history
+ch() {
   local cols sep
   export cols=$(( COLUMNS / 3 ))
   export sep='{::}'
