@@ -79,12 +79,17 @@ autocmd VimEnter * command! -bang -nargs=* Ag
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
 
-let $FZF_DEFAULT_OPTS .= ' --inline-info'
+if has('nvim')
+	let $FZF_DEFAULT_OPTS .= ' --inline-info'
+endif
+
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
-" File preview using Highlight (http://www.andre-simon.de/doku/highlight/en/highlight.php)
-let g:fzf_files_options =
-      \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+
+" Augmenting Files command
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
 " let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
 
 " Replace the default dictionary completion with fzf-based fuzzy completion
