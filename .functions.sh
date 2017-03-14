@@ -255,6 +255,11 @@ e() {
   fi
 }
 
+..cd() {
+	cd ..
+	cd "$@"
+}
+
 # searches the current directory subtree for files with names containing a
 # string (ignoring case). f png would find all PNG files in the current subtree,
 # as well as “PNGisMyFavorite.txt” and so forth.
