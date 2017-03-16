@@ -1,1 +1,1 @@
-abbr bomt // +build OMIT
+inoreabbrev bomt // +build OMIT
