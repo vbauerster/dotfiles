@@ -14,9 +14,10 @@ snippet "(\b[\w\.]+)~l" "Length" r
 len(`!p snip.rv = match.group(1)`)$0
 endsnippet
 
-# goroutine anonymous function
-snippet gof "go func() { ... }()"
-go func(${2:$1 ${3:T}}) {
+# self-invoking anonymous function
+# use anon to assign fn to a var
+snippet fn "func() { ... }()"
+func(${2:$1 ${3:T}}) {
 	${0:${VISUAL}}
 }(${1})
 endsnippet
