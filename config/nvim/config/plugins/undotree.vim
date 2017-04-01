@@ -1,2 +1,2 @@
 let g:undotree_SetFocusWhenToggle=1
-nnoremap <silent> <Leader>ut :UndotreeToggle<CR>
+nnoremap <silent> <F4> :UndotreeToggle<CR>
