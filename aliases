@@ -3,7 +3,7 @@ alias reload!='source ~/.zshrc'
 
 # Unix
 alias ln='ln -v'
-alias rmf="rm -rf"
+alias rmm="rm -rf"
 alias q='exit'
 alias u='ll'
 alias uh='la'
