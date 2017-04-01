@@ -58,7 +58,7 @@ Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 
 " AutoComplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" neco-syntax: 'syntax' source
+" neco-syntax: syntax files as completion source
 Plug 'Shougo/neco-syntax'
 " neco-vim: 'vim' source for Vim script
 Plug 'Shougo/neco-vim'
@@ -147,6 +147,8 @@ Plug 'roxma/vim-tmux-clipboard'
 
 " my plugins
 Plug 'vbauerster/vim-highlighter'
+
+" Plug 'cosminadrianpopescu/vim-sql-workbench'
 
 " Add plugins to &runtimepath
 call plug#end()
