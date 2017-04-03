@@ -74,10 +74,12 @@ zle -N fzf-gb-widget
 fzf-gr-widget() LBUFFER+=$(fzf-gr | join-lines)
 zle -N fzf-gr-widget
 
-# Figlet font selector
+# Figlet font selector => copy to clipboard
 fgl() (
+  [ $# -eq 0 ] && return
   cd /usr/local/Cellar/figlet/*/share/figlet/fonts
-  ls *.flf | sort | fzf --no-multi --reverse --preview "figlet -f {} Hello World!"
+  local font=$(ls *.flf | sort | fzf --no-multi --reverse --preview "figlet -f {} $@") &&
+  figlet -f "$font" "$@" | pbcopy
 )
 
 # fzf related functions
