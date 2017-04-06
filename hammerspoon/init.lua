@@ -58,6 +58,7 @@ for k, v in pairs(hdic) do
 	end, function()
 		-- Repeat:
 		hs.eventtap.event.newKeyEvent('', v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+		f18.triggered = true
 	end)
 end
 
