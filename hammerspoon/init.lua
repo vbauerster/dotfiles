@@ -1,16 +1,16 @@
 loggerInfo = hs.logger.new("My Settings", "info")
 
-hyper = { "cmd", "alt", "shift", "ctrl" }
+hyper = {"cmd", "alt", "shift", "ctrl"}
 
 -- A global variable for the sub-key Hyper Mode
-f18 = hs.hotkey.modal.new({}, "F18")
+f18 = hs.hotkey.modal.new('', "F18")
 
 -- w: Window management mode
 -- u: Quicksilver
 extHyperBindings = {"w", "u"}
 
 for i, v in ipairs(extHyperBindings) do
-  f18:bind({}, v, function()
+  f18:bind('', v, function()
         -- Pressed:
         hs.eventtap.event.newKeyEvent(hyper, v, true):post()
       end, function()
@@ -48,16 +48,16 @@ hdic[1] = "pad8"
 hdic[2] = "pad9"
 
 for k, v in pairs(hdic) do
-  f18:bind({}, k, function()
+  f18:bind('', k, function()
       -- Pressed:
-      hs.eventtap.event.newKeyEvent({}, v, true):post()
+      hs.eventtap.event.newKeyEvent('', v, true):post()
     end, function()
       -- Released:
-      hs.eventtap.event.newKeyEvent({}, v, false):post()
+      hs.eventtap.event.newKeyEvent('', v, false):post()
       f18.triggered = true
     end, function()
       -- Repeat:
-      hs.eventtap.event.newKeyEvent({}, v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+      hs.eventtap.event.newKeyEvent('', v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
     end)
 end
 
@@ -72,7 +72,7 @@ end
 f19Released = function()
   f18:exit()
   if not f18.triggered then
-    -- hs.eventtap.keyStroke({}, "escape")
+    -- hs.eventtap.keyStroke('', "escape")
 		-- https://github.com/Hammerspoon/hammerspoon/issues/1009
 		hs.eventtap.event.newSystemKeyEvent('CAPS_LOCK', true)
 		hs.eventtap.event.newSystemKeyEvent('CAPS_LOCK', false)
@@ -84,26 +84,26 @@ end
 f20Released = function()
   f18:exit()
   if not f18.triggered then
-    hs.eventtap.keyStroke({}, "return")
+    hs.eventtap.keyStroke('', "return")
   end
 end
 
 -- Bind the Hyper key to F19
-hs.hotkey.bind({}, "F19", hyperPressed, f19Released)
+hs.hotkey.bind('', "F19", hyperPressed, f19Released)
 
 -- Bind the Hyper key to F20
-hs.hotkey.bind({}, "F20", hyperPressed, f20Released, function()
-  hs.eventtap.event.newKeyEvent({}, "return", true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+hs.hotkey.bind('', "F20", hyperPressed, f20Released, function()
+  hs.eventtap.event.newKeyEvent('', "return", true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
 end)
 
-hs.hotkey.bind({"ctrl"}, "F20", nil, function() hs.eventtap.keyStroke({"ctrl"}, "return") end)
-hs.hotkey.bind({"cmd"}, "F20", nil, function() hs.eventtap.keyStroke({"cmd"}, "return") end)
-hs.hotkey.bind({"shift"}, "F20", nil, function() hs.eventtap.keyStroke({"shift"}, "return") end)
+hs.hotkey.bind({"ctrl"}, "F20", function() hs.eventtap.keyStroke({"ctrl"}, "return") end)
+hs.hotkey.bind({"cmd"}, "F20", function() hs.eventtap.keyStroke({"cmd"}, "return") end)
+hs.hotkey.bind({"shift"}, "F20", function() hs.eventtap.keyStroke({"shift"}, "return") end)
 
-hs.hotkey.bind({"ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd"}, "v") end)
-hs.hotkey.bind({"ctrl"}, ",", nil, function() hs.eventtap.keyStroke({"cmd"}, "c") end)
-hs.hotkey.bind({"ctrl"}, ";", nil, function() hs.eventtap.keyStroke({"cmd"}, "x") end)
-hs.hotkey.bind({"cmd", "ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd", "alt"}, "v") end)
+hs.hotkey.bind({"ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd"}, "v") end)
+hs.hotkey.bind({"ctrl"}, ",", function() hs.eventtap.keyStroke({"cmd"}, "c") end)
+hs.hotkey.bind({"ctrl"}, ";", function() hs.eventtap.keyStroke({"cmd"}, "x") end)
+hs.hotkey.bind({"cmd", "ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd", "alt"}, "v") end)
 
 require 'window-management'
 require 'reload-config'
