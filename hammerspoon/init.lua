@@ -1,26 +1,41 @@
-loggerInfo = hs.logger.new("My Settings", "info")
+-- loggerInfo = hs.logger.new("My Settings", "info")
 
 hyper = {"cmd", "alt", "shift", "ctrl"}
 
--- A global variable for the sub-key Hyper Mode
-f18 = hs.hotkey.modal.new('', "F18")
+-- left M layer
+lM = hs.hotkey.modal.new()
+-- right M layer
+rM = hs.hotkey.modal.new()
 
--- w: Window management mode
--- u: Quicksilver
-extHyperBindings = {"w", "u"}
+-- U: Quicksilver
+-- W: Window Management
+hyperBindings = {"U", "W"}
 
-for i, v in ipairs(extHyperBindings) do
-	f18:bind('', v, function()
+for i, v in ipairs(hyperBindings) do
+	lM:bind('', v, function()
 		-- Pressed:
 		hs.eventtap.event.newKeyEvent(hyper, v, true):post()
 	end, function()
 		-- Released:
 		hs.eventtap.event.newKeyEvent(hyper, v, false):post()
-		f18.triggered = true
+	end, function()
+		-- Repeat:
+		hs.eventtap.event.newKeyEvent(hyper, v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+	end)
+	rM:bind('', v, function()
+		-- Pressed:
+		hs.eventtap.event.newKeyEvent(hyper, v, true):post()
+		rM.triggered = true
+	end, function()
+		-- Released:
+		hs.eventtap.event.newKeyEvent(hyper, v, false):post()
+	end, function()
+		-- Repeat:
+		hs.eventtap.event.newKeyEvent(hyper, v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
 	end)
 end
 
-hdic = {
+lMdic = {
 	h="left",
 	n="right",
 	c="up",
@@ -33,67 +48,77 @@ hdic = {
 	f="forwarddelete",
 	b="tab",
 	m="return",
-	space="escape",
-	tab="pad0"
+	space="escape"
 }
 
-hdic[18] = "pad1"
-hdic[19] = "pad2"
-hdic[20] = "pad3"
-hdic[12] = "pad4"
-hdic[13] = "pad5"
-hdic[14] = "pad6"
-hdic[0] = "pad7"
-hdic[1] = "pad8"
-hdic[2] = "pad9"
-
-for k, v in pairs(hdic) do
-	f18:bind('', k, function()
+for k, v in pairs(lMdic) do
+	lM:bind('', k, function()
 		-- Pressed:
 		hs.eventtap.event.newKeyEvent('', v, true):post()
 	end, function()
 		-- Released:
 		hs.eventtap.event.newKeyEvent('', v, false):post()
-		f18.triggered = true
 	end, function()
 		-- Repeat:
 		hs.eventtap.event.newKeyEvent('', v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
-		f18.triggered = true
 	end)
 end
 
--- Enter Hyper Mode
-hyperPressed = function()
-	f18.triggered = false
-	f18:enter()
+rMdic = {f19 = "pad0"}
+rMdic[18] = "pad1"
+rMdic[19] = "pad2"
+rMdic[20] = "pad3"
+rMdic[12] = "pad4"
+rMdic[13] = "pad5"
+rMdic[14] = "pad6"
+rMdic[0] = "pad7"
+rMdic[1] = "pad8"
+rMdic[2] = "pad9"
+
+for k, v in pairs(rMdic) do
+	rM:bind('', k, function()
+		-- Pressed:
+		hs.eventtap.event.newKeyEvent('', v, true):post()
+		rM.triggered = true
+	end, function()
+		-- Released:
+		hs.eventtap.event.newKeyEvent('', v, false):post()
+	end, function()
+		-- Repeat:
+		hs.eventtap.event.newKeyEvent('', v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+	end)
+end
+
+-- Enter left M layer
+leftMPressed = function()
+	lM:enter()
+end
+
+-- Enter right M layer
+rightMPressed = function()
+	rM.triggered = false
+	rM:enter()
 end
 
 -- Leave Hyper Mode when F19 (caps) is pressed,
--- send ESCAPE if no other keys are pressed.
 f19Released = function()
-	f18:exit()
-	if not f18.triggered then
-		-- hs.eventtap.keyStroke('', "escape")
-		-- https://github.com/Hammerspoon/hammerspoon/issues/1009
-		hs.eventtap.event.newSystemKeyEvent('CAPS_LOCK', true)
-		hs.eventtap.event.newSystemKeyEvent('CAPS_LOCK', false)
-	end
+	lM:exit()
 end
 
 -- Leave Hyper Mode when F20 (return) is pressed,
 -- send RETURN if no other keys are pressed.
 f20Released = function()
-	f18:exit()
-	if not f18.triggered then
-		hs.eventtap.keyStroke('', "return")
+	rM:exit()
+	if not rM.triggered then
+		hs.eventtap.keyStroke('', "return", 100000)
 	end
 end
 
 -- Bind the Hyper key to F19
-hs.hotkey.bind('', "F19", hyperPressed, f19Released)
+hs.hotkey.bind('', "F19", leftMPressed, f19Released)
 
 -- Bind the Hyper key to F20
-hs.hotkey.bind('', "F20", hyperPressed, f20Released, function()
+hs.hotkey.bind('', "F20", rightMPressed, f20Released, function()
 	hs.eventtap.event.newKeyEvent('', "return", true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
 end)
 
