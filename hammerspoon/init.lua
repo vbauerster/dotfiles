@@ -5,8 +5,9 @@ hyper = { "cmd", "alt", "shift", "ctrl" }
 -- A global variable for the sub-key Hyper Mode
 f18 = hs.hotkey.modal.new({}, "F18")
 
--- Hyper+key bindings for external handlers
-extHyperBindings = {"a", "o", "u", "e", "j", "k", "p", ",", ".", "space", "+", "-"}
+-- w: Window management mode
+-- u: Quicksilver
+extHyperBindings = {"w", "u"}
 
 for i, v in ipairs(extHyperBindings) do
   f18:bind({}, v, function()
@@ -19,7 +20,32 @@ for i, v in ipairs(extHyperBindings) do
       end)
 end
 
-hdic = {h="left", n="right", c="up", t="down", l="pageup", s="pagedown", g="home", r="end", d="delete", f="forwarddelete", b="tab", m="return"}
+hdic = {
+	h="left",
+	n="right",
+	c="up",
+	t="down",
+	l="pageup",
+	s="pagedown",
+	g="home",
+	r="end",
+	d="delete",
+	f="forwarddelete",
+	b="tab",
+	m="return",
+	space="escape",
+	tab="pad0"
+}
+
+hdic[18] = "pad1"
+hdic[19] = "pad2"
+hdic[20] = "pad3"
+hdic[12] = "pad4"
+hdic[13] = "pad5"
+hdic[14] = "pad6"
+hdic[0] = "pad7"
+hdic[1] = "pad8"
+hdic[2] = "pad9"
 
 for k, v in pairs(hdic) do
   f18:bind({}, k, function()
@@ -46,7 +72,10 @@ end
 f19Released = function()
   f18:exit()
   if not f18.triggered then
-    hs.eventtap.keyStroke({}, "escape")
+    -- hs.eventtap.keyStroke({}, "escape")
+		-- https://github.com/Hammerspoon/hammerspoon/issues/1009
+		hs.eventtap.event.newSystemKeyEvent('CAPS_LOCK', true)
+		hs.eventtap.event.newSystemKeyEvent('CAPS_LOCK', false)
   end
 end
 
@@ -76,11 +105,11 @@ hs.hotkey.bind({"ctrl"}, ",", nil, function() hs.eventtap.keyStroke({"cmd"}, "c"
 hs.hotkey.bind({"ctrl"}, ";", nil, function() hs.eventtap.keyStroke({"cmd"}, "x") end)
 hs.hotkey.bind({"cmd", "ctrl"}, ".", nil, function() hs.eventtap.keyStroke({"cmd", "alt"}, "v") end)
 
+require 'window-management'
 require 'reload-config'
 -- require 'caffeine'
 -- require 'clipboard'
 -- require 'launch-applications'
--- require 'window-management'
 
 -- Lock System
 -- hs.hotkey.bind(hyper, 12, 'Lock system', function() hs.caffeinate.lockScreen() end)

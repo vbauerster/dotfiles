@@ -53,28 +53,28 @@ end
 
 hs.window.animationDuration = 0
 
-modalKey:bind('', 'N', 'Move window to next monitor screen' , hs.grid.pushWindowNextScreen)
+-- modalKey:bind('', 'N', 'Move window to next monitor screen' , hs.grid.pushWindowNextScreen)
 
 modalKey:bind('', 'H', 'Resize window to left half of screen', function() push(0, 0, 0.5, 1) end)
-modalKey:bind('', 'J', 'Resize window to bottom half of screen', function() push(0, 0.5, 1, 0.5) end)
-modalKey:bind('', 'K', 'Resize window to top half of screen', function() push(0, 0, 1, 0.5) end)
-modalKey:bind('', 'C', 'Resize window to right half of screen', function() push(0.5, 0, 0.5, 1) end)
+modalKey:bind('', 'T', 'Resize window to bottom half of screen', function() push(0, 0.5, 1, 0.5) end)
+modalKey:bind('', 'C', 'Resize window to top half of screen', function() push(0, 0, 1, 0.5) end)
+modalKey:bind('', 'N', 'Resize window to right half of screen', function() push(0.5, 0, 0.5, 1) end)
 
--- modalKey:bind('', 'X', 'Resize window to half of screen, center vertically', function() push(0, 0.25, 1, 0.5) end)
--- modalKey:bind('', 'B', 'Resize window to half of screen, center horizontally', function() push(0.25, 0, 0.5, 1) end)
--- modalKey:bind('', 'E', 'Resize window to quarter of screen, center vertically, align to left', function() push(0, 0.25, 0.5, 0.5) end)
+-- modalKey:bind('', 'G', 'Resize window to half of screen, center vertically', function() push(0, 0.25, 1, 0.5) end)
+-- modalKey:bind('', 'R', 'Resize window to half of screen, center horizontally', function() push(0.25, 0, 0.5, 1) end)
+-- modalKey:bind('', 'G', 'Resize window to quarter of screen, center vertically, align to left', function() push(0, 0.25, 0.5, 0.5) end)
 -- modalKey:bind('', 'R', 'Resize window to quarter of screen, center vertically, align to right', function() push(0.5, 0.25, 0.5, 0.5) end)
--- modalKey:bind('', 'l', 'Resize window to quarter of screen, center horizontally, align to top', function() push(0.25, 0, 0.5, 0.5) end)
--- modalKey:bind('', 'Y', 'Resize window to quarter of screen, center horizontally, align to bottom', function() push(0.25, 0.5, 0.5, 0.5) end)
+-- modalKey:bind('', 'G', 'Resize window to quarter of screen, center horizontally, align to top', function() push(0.25, 0, 0.5, 0.5) end)
+-- modalKey:bind('', 'R', 'Resize window to quarter of screen, center horizontally, align to bottom', function() push(0.25, 0.5, 0.5, 0.5) end)
 
-modalKey:bind('', 'O', 'Resize window to top left quarter of screen', function() push(0, 0, 0.5, 0.5) end)
-modalKey:bind('', 'I', 'Resize window to top right quarter of screen', function() push(0.5, 0, 0.5, 0.5) end)
-modalKey:bind('', 'E', 'Resize window to bottom left quarter of screen', function() push(0, 0.5, 0.5, 0.5) end)
-modalKey:bind('', 'U', 'Resize window to bottom right quarter of screen', function() push(0.5, 0.5, 0.5, 0.5) end)
+modalKey:bind('', 'G', 'Resize window to top left quarter of screen', function() push(0, 0, 0.5, 0.5) end)
+modalKey:bind('', 'R', 'Resize window to top right quarter of screen', function() push(0.5, 0, 0.5, 0.5) end)
+modalKey:bind('', 'M', 'Resize window to bottom left quarter of screen', function() push(0, 0.5, 0.5, 0.5) end)
+modalKey:bind('', 'V', 'Resize window to bottom right quarter of screen', function() push(0.5, 0.5, 0.5, 0.5) end)
 
-modalKey:bind('', 'T', 'Resize window to center', function() push(0.15, 0.15, 0.7, 0.7) end)
--- modalKey:bind('', 'F', 'Toggle full screen', function() fullScreen() end)
-modalKey:bind('', 'M', 'Maximize window', hs.grid.maximizeWindow)
+-- modalKey:bind('', 'T', 'Resize window to center', function() push(0.15, 0.15, 0.7, 0.7) end)
+modalKey:bind('', 'F', 'Toggle full screen', function() fullScreen() end)
+modalKey:bind('', 'W', 'Maximize window', hs.grid.maximizeWindow)
 
 local positionDelta = 100
 modalKey:bind('', 'left', 'Move window to left', function() nudge(-positionDelta, 0) end)
@@ -97,4 +97,3 @@ modalKey:bind('', '[', 'Decrease window width', function() yank(-sizeDelta, 0) e
 
 -- modalKey:bind('', 'G', 'Show Grid', function() hs.grid.show() end)
 -- modalKey:bind('', 'S', 'Snap active window to grid', function() hs.grid.snap(hs.window.focusedWindow()) end)
-
