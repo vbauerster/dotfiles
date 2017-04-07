@@ -347,7 +347,7 @@
   " CTRL-\ CTRL-O like CTRL-O but don't move the cursor [i_CTRL-\_CTRL-O]
   inoremap CC <C-\><C-o>D
 
-  inoremap ,. <Esc>:up<CR>
+  inoremap <silent> ,. <Esc>:up<CR>
 
   " upper case
   inoremap UU <Esc>gUiw`]a
