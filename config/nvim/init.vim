@@ -77,8 +77,8 @@
 
   " SPACES & TABS
   " Explanations from http://tedlogan.com/techblog3.html
-  set tabstop=2     " How many columns a tab counts for
-  set softtabstop=2 " How many columns vim uses when pressing TAB in insert mode
+  set tabstop=4     " How many columns a tab counts for
+  set softtabstop=4 " How many columns vim uses when pressing TAB in insert mode
   set shiftwidth=0  " Follow tabstop value
   " set expandtab     " Use spaces
   set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
