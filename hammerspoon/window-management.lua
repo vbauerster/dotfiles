@@ -1,7 +1,17 @@
+-- Based on https://github.com/exark/dotfiles/blob/master/.hammerspoon/init.lua
+
+-- None of this animation shit:
+hs.window.animationDuration = 0
+-- Get list of screens and refresh that list whenever screens are plugged or unplugged:
+local screens = hs.screen.allScreens()
+local screenwatcher = hs.screen.watcher.new(function()
+	screens = hs.screen.allScreens()
+end)
+screenwatcher:start()
+
 -- --------------------------------------------------------
 -- Helper functions - these do all the heavy lifting below.
 -- Names are roughly stolen from same functions in Slate :)
--- Based on https://github.com/exark/dotfiles/blob/master/.hammerspoon/init.lua
 -- --------------------------------------------------------
 
 -- Move a window a number of pixels in x and y
@@ -43,57 +53,56 @@ function fullScreen()
 	local win = hs.window.focusedWindow()
     win:setFullScreen(not win:isFullScreen())
 end
--- End of Helper Functions
+
+-- Move to monitor x. Checks to make sure monitor exists, if not moves to last monitor that exists
+function moveToMonitor(x)
+	local win = hs.window.focusedWindow()
+	local newScreen = nil
+	while not newScreen do
+		newScreen = screens[x]
+		x = x-1
+	end
+
+	win:moveToScreen(newScreen)
+end
+
+-- -----------------
+-- Window management
+-- -----------------
 
 local modalKey = hs.hotkey.modal.new(hyper, 'W', 'Window Management mode')
-modalKey:bind('', 'escape', function() modalKey:exit() end)
+modalKey:bind('', 'space', function() modalKey:exit() end)
 function modalKey:exited()
     hs.alert.show('Window Management mode exited', 1)
 end
 
-hs.window.animationDuration = 0
-
 -- modalKey:bind('', 'N', 'Move window to next monitor screen' , hs.grid.pushWindowNextScreen)
 
-modalKey:bind('', 'H', 'Resize window to left half of screen', function() push(0, 0, 0.5, 1) end)
-modalKey:bind('', 'T', 'Resize window to bottom half of screen', function() push(0, 0.5, 1, 0.5) end)
 modalKey:bind('', 'C', 'Resize window to top half of screen', function() push(0, 0, 1, 0.5) end)
+modalKey:bind('', 'T', 'Resize window to bottom half of screen', function() push(0, 0.5, 1, 0.5) end)
+modalKey:bind('', 'H', 'Resize window to left half of screen', function() push(0, 0, 0.5, 1) end)
 modalKey:bind('', 'N', 'Resize window to right half of screen', function() push(0.5, 0, 0.5, 1) end)
-
--- modalKey:bind('', 'G', 'Resize window to half of screen, center vertically', function() push(0, 0.25, 1, 0.5) end)
--- modalKey:bind('', 'R', 'Resize window to half of screen, center horizontally', function() push(0.25, 0, 0.5, 1) end)
--- modalKey:bind('', 'G', 'Resize window to quarter of screen, center vertically, align to left', function() push(0, 0.25, 0.5, 0.5) end)
--- modalKey:bind('', 'R', 'Resize window to quarter of screen, center vertically, align to right', function() push(0.5, 0.25, 0.5, 0.5) end)
--- modalKey:bind('', 'G', 'Resize window to quarter of screen, center horizontally, align to top', function() push(0.25, 0, 0.5, 0.5) end)
--- modalKey:bind('', 'R', 'Resize window to quarter of screen, center horizontally, align to bottom', function() push(0.25, 0.5, 0.5, 0.5) end)
 
 modalKey:bind('', 'G', 'Resize window to top left quarter of screen', function() push(0, 0, 0.5, 0.5) end)
 modalKey:bind('', 'R', 'Resize window to top right quarter of screen', function() push(0.5, 0, 0.5, 0.5) end)
 modalKey:bind('', 'M', 'Resize window to bottom left quarter of screen', function() push(0, 0.5, 0.5, 0.5) end)
 modalKey:bind('', 'V', 'Resize window to bottom right quarter of screen', function() push(0.5, 0.5, 0.5, 0.5) end)
 
--- modalKey:bind('', 'T', 'Resize window to center', function() push(0.15, 0.15, 0.7, 0.7) end)
-modalKey:bind('', 'F', 'Toggle full screen', function() fullScreen() end)
-modalKey:bind('', 'W', 'Maximize window', hs.grid.maximizeWindow)
+modalKey:bind('', 'U', 'Resize window to center', function() push(0.15, 0.15, 0.7, 0.7) end)
+modalKey:bind('', 'F', 'Toggle full screen', fullScreen)
+modalKey:bind('', 'W', 'Maximize window', function() push(0,0,1,1) end)
 
-local positionDelta = 100
-modalKey:bind('', 'left', 'Move window to left', function() nudge(-positionDelta, 0) end)
-modalKey:bind('', 'down', 'Move window down', function() nudge(0, positionDelta) end)
-modalKey:bind('', 'up', 'Move window up', function() nudge(0, -positionDelta) end)
-modalKey:bind('', 'right', 'Move window to right', function() nudge(positionDelta, 0) end)
+local delta = 40
+modalKey:bind('', 'up', 'Move window up', function() nudge(0, -delta) end)
+modalKey:bind('', 'down', 'Move window down', function() nudge(0, delta) end)
+modalKey:bind('', 'left', 'Move window to left', function() nudge(-delta, 0) end)
+modalKey:bind('', 'right', 'Move window to right', function() nudge(delta, 0) end)
 
-local sizeDelta = 50
-modalKey:bind('', '+', 'Increase window height', function() yank(0, sizeDelta) end)
-modalKey:bind('', '-', 'Decrease window height', function() yank(0, -sizeDelta) end)
-modalKey:bind('', ']', 'Increase window width', function() yank(sizeDelta, 0) end)
-modalKey:bind('', '[', 'Decrease window width', function() yank(-sizeDelta, 0) end)
+modalKey:bind('', '-', '⍏', function() yank(0, -delta) end)
+modalKey:bind('', '+', '⍖', function() yank(0, delta) end)
+modalKey:bind('', ']', '⍆', function() yank(delta, 0) end)
+modalKey:bind('', '[', '⍅', function() yank(-delta, 0) end)
 
--- Grid Management
-
--- hs.grid.MARGINX 	= 0
--- hs.grid.MARGINY 	= 0
--- hs.grid.GRIDWIDTH 	= 7
--- hs.grid.GRIDHEIGHT 	= 4
-
--- modalKey:bind('', 'G', 'Show Grid', function() hs.grid.show() end)
--- modalKey:bind('', 'S', 'Snap active window to grid', function() hs.grid.snap(hs.window.focusedWindow()) end)
+-- Move a window between monitors
+modalKey:bind('', 'I', function() moveToMonitor(1) end) -- Move to first monitor
+modalKey:bind('', 'D', function() moveToMonitor(2) end) -- Move to second monitor
