@@ -1,4 +1,4 @@
-loggerInfo = hs.logger.new("My Settings", "info")
+-- loggerInfo = hs.logger.new("My Settings", "info")
 
 hyper = {"cmd", "alt", "shift", "ctrl"}
 
