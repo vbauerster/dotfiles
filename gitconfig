@@ -29,7 +29,7 @@
 	user = vbauerster
 [difftool "sourcetree"]
 	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
-	path =
+	path = 
 [diff]
 	tool = sourcetree
 	compactionHeuristic = true
