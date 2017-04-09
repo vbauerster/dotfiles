@@ -262,6 +262,11 @@ e() {
 	cd "$@"
 }
 
+# http://artkoshelev.github.io/posts/sed-for-configs
+catconf() {
+	cat "$@" | sed '/ *#/d; /^ *$/d'
+}
+
 # searches the current directory subtree for files with names containing a
 # string (ignoring case). f png would find all PNG files in the current subtree,
 # as well as “PNGisMyFavorite.txt” and so forth.
