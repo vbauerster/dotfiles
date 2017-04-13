@@ -481,7 +481,7 @@
 		autocmd FileType gitcommit setlocal spell spelllang=ru_yo,en_us
 
 		" Unset paste on InsertLeave
-		" autocmd InsertLeave * silent! set nopaste
+		autocmd InsertLeave * silent! set nopaste
 	augroup END
 
 	augroup tmux_auto_rename
