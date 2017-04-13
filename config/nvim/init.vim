@@ -10,6 +10,36 @@
 "}}}
 
 " Script local functions {{{
+
+" Set tabstop, softtabstop and shiftwidth to the same value
+" http://vimcasts.org/episodes/tabs-and-spaces
+  command! -nargs=* Stab call Stab()
+  function! Stab()
+    let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+    if l:tabstop > 0
+      let &l:sts = l:tabstop
+      let &l:ts = l:tabstop
+      let &l:sw = l:tabstop
+    endif
+    call SummarizeTabs()
+  endfunction
+
+  function! SummarizeTabs()
+    try
+      echohl ModeMsg
+      echon ' tabstop='.&l:ts
+      echon ' shiftwidth='.&l:sw
+      echon ' softtabstop='.&l:sts
+      if &l:et
+        echon ' expandtab'
+      else
+        echon ' noexpandtab'
+      endif
+    finally
+      echohl None
+    endtry
+  endfunction
+
   function! s:HelpTab()
     if &buftype ==# "help"
       wincmd T
@@ -78,8 +108,8 @@
   " SPACES & TABS
   " Explanations from http://tedlogan.com/techblog3.html
   set tabstop=4     " How many columns a tab counts for
-  set softtabstop=4 " How many columns vim uses when pressing TAB in insert mode
-  set shiftwidth=0  " Follow tabstop value
+  set softtabstop=4 " insert mode behaviour of TAB and BS
+  set shiftwidth=0  " When zero the 'ts' value will be used
   " set expandtab     " Use spaces
   set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
   set ruler         " show the cursor position all the time
