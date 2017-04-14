@@ -1,5 +1,5 @@
 " For powerline enabled font.
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
 
 let g:airline_inactive_collapse = 1
 
