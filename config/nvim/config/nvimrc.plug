@@ -84,6 +84,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " Golang
 Plug 'fatih/vim-go', {'for': ['go'] }
+Plug 'jodosha/vim-godebug', {'for': ['go'] }
 
 " Java
 Plug 'artur-shaik/vim-javacomplete2', {'for': ['java'] }
