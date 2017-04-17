@@ -3,11 +3,11 @@
 -- None of this animation shit:
 hs.window.animationDuration = 0
 -- Get list of screens and refresh that list whenever screens are plugged or unplugged:
-local screens = hs.screen.allScreens()
-local screenwatcher = hs.screen.watcher.new(function()
-	screens = hs.screen.allScreens()
-end)
-screenwatcher:start()
+-- local screens = hs.screen.allScreens()
+-- local screenwatcher = hs.screen.watcher.new(function()
+-- 	screens = hs.screen.allScreens()
+-- end)
+-- screenwatcher:start()
 
 -- --------------------------------------------------------
 -- Helper functions - these do all the heavy lifting below.
@@ -76,7 +76,7 @@ function modalKey:exited()
     hs.alert.show('Window Management mode exited', 1)
 end
 
--- modalKey:bind('', 'N', 'Move window to next monitor screen' , hs.grid.pushWindowNextScreen)
+modalKey:bind('', 'D', 'Move window to next Display' , hs.grid.pushWindowNextScreen)
 
 modalKey:bind('', 'C', 'Resize window to top half of screen', function() push(0, 0, 1, 0.5) end)
 modalKey:bind('', 'T', 'Resize window to bottom half of screen', function() push(0, 0.5, 1, 0.5) end)
@@ -104,5 +104,5 @@ modalKey:bind('', ']', '⍆', function() yank(delta, 0) end)
 modalKey:bind('', '[', '⍅', function() yank(-delta, 0) end)
 
 -- Move a window between monitors
-modalKey:bind('', 'I', function() moveToMonitor(1) end) -- Move to first monitor
-modalKey:bind('', 'D', function() moveToMonitor(2) end) -- Move to second monitor
+-- modalKey:bind('', 'I', function() moveToMonitor(1) end) -- Move to first monitor
+-- modalKey:bind('', 'D', function() moveToMonitor(2) end) -- Move to second monitor
