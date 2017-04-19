@@ -5,28 +5,15 @@ Plug 'morhetz/gruvbox'
 " The colorscheme with neovim in mind
 " Plug 'freeo/vim-kalisi'
 
-" General
-Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+" Essential
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
-Plug 'vbauerster/vim-unimpaired'
 Plug 'tpope/vim-speeddating'
+Plug 'vbauerster/vim-unimpaired'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-Plug 'majutsushi/tagbar'
-Plug 'othree/eregex.vim'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 " Plug 'fszymanski/fzf-gitignore.nvim', {'do': ':UpdateRemotePlugins'}
-Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/rainbow_parentheses.vim'
-
-" New text objects
-Plug 'tommcdo/vim-exchange'   " cx to exchange
-Plug 'chaoren/vim-wordmotion' " CamelCase motion
 
 " Motions
 Plug 'justinmk/vim-sneak'
@@ -43,13 +30,25 @@ Plug 'kshenoy/vim-signature'
 " Grep like search
 " Plug 'mhinz/vim-grepper'
 " Plug 'rking/ag.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " General Programming
+Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'majutsushi/tagbar'
 Plug 'benekastah/neomake'
 " Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 Plug 'tpope/vim-commentary'
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
 " Plug 'godlygeek/tabular'
+Plug 'junegunn/vim-easy-align'
+Plug 'FooSoft/vim-argwrap'    " Wrap a paremeter list accross multiple lines
+Plug 'tommcdo/vim-exchange'   " cx to exchange
+Plug 'chaoren/vim-wordmotion' " CamelCase motion
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'othree/eregex.vim'
 
 " Git
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim' | Plug 'tpope/vim-rhubarb'
@@ -57,6 +56,7 @@ Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim' | Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 " Make gists easily from Vim
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
+Plug 'airblade/vim-rooter'
 
 " AutoComplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -131,7 +131,6 @@ Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'json', 'css', 'html'] }
 Plug 'ap/vim-css-color'
 Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
-Plug 'airblade/vim-rooter'
 Plug 'romainl/vim-qf'
 Plug 'tpope/vim-characterize' " enhaced ga
 Plug 'tpope/vim-capslock'     " <C-G>c in insert mode
