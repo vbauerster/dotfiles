@@ -2,6 +2,8 @@ call plug#begin('~/.config/nvim/plugged')
 
 " colorschemes
 Plug 'morhetz/gruvbox'
+" The colorscheme with neovim in mind
+" Plug 'freeo/vim-kalisi'
 
 " General
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
