@@ -88,17 +88,17 @@
 	" Binary images
 	set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
-	set timeoutlen=500									 " mapping timeout
-	set ttimeoutlen=50									 " keycode timeout
 	set number
+	set timeoutlen=500                   " mapping timeout
+	set ttimeoutlen=50                   " keycode timeout
 	set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
-	set wildmode=list:longest						 " TAB auto-completion for file paths
-	set hidden													 " current buffer can be put into background
-	set showcmd													 " show incomplete commands
-	set noshowmode											 " don't show which mode disabled for PowerLine
-	set scrolloff=2											 " lines of text around cursor
-	set foldlevelstart=99								 " all folds open by default
-	set cmdheight=1											 " command bar height
+	set wildmode=list:longest            " TAB auto-completion for file paths
+	set hidden                           " current buffer can be put into background
+	set showcmd                          " show incomplete commands
+	set noshowmode                       " don't show which mode disabled for PowerLine
+	set scrolloff=2                      " lines of text around cursor
+	set foldlevelstart=99                " all folds open by default
+	set cmdheight=1                      " command bar height
 	set noerrorbells
 	set complete=.,w,t
 	set completeopt=menuone,noselect
