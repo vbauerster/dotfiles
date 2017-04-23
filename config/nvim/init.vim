@@ -89,7 +89,7 @@
 	set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
 	set number
-	set timeoutlen=500                   " mapping timeout
+	set timeoutlen=400                   " mapping timeout
 	set ttimeoutlen=50                   " keycode timeout
 	set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
 	set wildmode=list:longest            " TAB auto-completion for file paths
