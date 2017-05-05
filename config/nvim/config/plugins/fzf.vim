@@ -123,6 +123,6 @@ nnoremap <silent><Leader>pc :FZFPlugConf<CR>
 nnoremap <silent><Leader>go :FZFGopath<CR>
 nnoremap <silent><Leader>y :FZFYank<CR>
 
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
+nmap <leader>~ <plug>(fzf-maps-n)
+" xmap <leader><tab> <plug>(fzf-maps-x)
+" omap <leader><tab> <plug>(fzf-maps-o)
