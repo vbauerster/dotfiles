@@ -1,3 +1,6 @@
+" https://github.com/neomake/neomake/blob/master/autoload/neomake/makers/ft/javascript.vim
+" https://github.com/neomake/neomake/blob/master/autoload/neomake/makers/ft/go.vim
+
 let g:neomake_verbose = 0
 " let g:neomake_open_list = 2
 let g:neomake_javascript_enabled_makers = ['eslint']
