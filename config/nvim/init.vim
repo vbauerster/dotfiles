@@ -57,8 +57,7 @@
 		echom string(bot) string(top)
 
 		" norm! m`
-		return a:dir ? (line('.') - (bot > top ? bot : top)).'k'
-			\				 : ((bot < top ? bot : top) - line('.')).'j'
+		return a:dir ? (line('.') - (bot > top ? bot : top)).'k' : ((bot < top ? bot : top) - line('.')).'j'
 	endfunction
 "}}}
 
@@ -112,19 +111,19 @@
 
 	" SPACES & TABS
 	" Explanations from http://tedlogan.com/techblog3.html
-	set tabstop=4			" How many columns a tab counts for
+	set tabstop=4     " How many columns a tab counts for
 	set softtabstop=4 " insert mode behaviour of TAB and BS
-	set shiftwidth=0	" When zero the 'ts' value will be used
-	" set expandtab			" Use spaces
-	set smartindent		" Normally 'autoindent' should also be on when using 'smartindent'
-	set ruler					" show the cursor position all the time
-	set nojoinspaces	" Prevents inserting two spaces after punctuation on a join (J)
+	set shiftwidth=0  " When zero the 'ts' value will be used
+	" set expandtab     " Use spaces
+	set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
+	set ruler         " show the cursor position all the time
+	set nojoinspaces  " Prevents inserting two spaces after punctuation on a join (J)
 
 	" Searching
-	set gdefault				 " global search by default
-	set ignorecase			 " case insensitive searching
-	set smartcase				 " case-sensitive if expresson contains a capital letter
-	set lazyredraw			 " don't redraw while executing macros
+	set gdefault         " global search by default
+	set ignorecase       " case insensitive searching
+	set smartcase        " case-sensitive if expresson contains a capital letter
+	set lazyredraw       " don't redraw while executing macros
 	set inccommand=split " incremental live substitute
 
 	" Highlight current line
