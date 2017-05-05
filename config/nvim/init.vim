@@ -81,6 +81,9 @@
 	" see :help 'guicursor'
 	" let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+	" https://github.com/neovim/neovim/wiki/Following-HEAD#20170403
+	set mouse=a
+
 	" Excluding version control directories
 	set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 	" OS X
