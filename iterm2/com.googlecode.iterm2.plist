@@ -8906,7 +8906,7 @@
 	<key>NSFontPanelAttributes</key>
 	<string>1, 4</string>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/dotfiles/iterm2</string>
+	<string>~/Pictures</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{1043, 706}</string>
 	<key>NSNavPanelExpandedSizeForSaveMode</key>
@@ -8969,7 +8969,7 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>120 382 918 495 0 0 1440 877 </string>
+	<string>452 220 796 473 0 0 1440 877 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1737 270 592 584 1440 -124 1280 1001 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
@@ -12800,7 +12800,7 @@
 			<key>Normal Font</key>
 			<string>Iosevka-Term 14</string>
 			<key>Only The Default BG Color Uses Transparency</key>
-			<true/>
+			<false/>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -16514,7 +16514,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-03-23T15:56:27Z</date>
+	<date>2017-04-23T08:51:04Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Selection Respects Soft Boundaries</key>
