@@ -119,6 +119,9 @@
 	set ruler         " show the cursor position all the time
 	set nojoinspaces  " Prevents inserting two spaces after punctuation on a join (J)
 
+	set linebreak
+	set nowrap
+
 	" Searching
 	set gdefault         " global search by default
 	set ignorecase       " case insensitive searching
