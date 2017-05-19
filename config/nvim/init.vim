@@ -202,7 +202,8 @@
 	" quickly access yank reg
 	noremap "" "0
 
-	nmap <Enter> %
+	" don't override enter behavior in quickfix/location windows
+	nnoremap <expr> <Enter> (&buftype is# "quickfix" ? "\<cr>" : "%")
 
 	" F1 will search help for the word under the cursor
 	nnoremap <F1> :help <C-r><C-w><CR>
