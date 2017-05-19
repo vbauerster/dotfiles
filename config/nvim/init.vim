@@ -265,12 +265,13 @@
 	" nnoremap $ g$
 
 	noremap + 5gj
-	noremap } 5gk
-	noremap { }
-	noremap - {
+	" noremap } 5gk
+	" noremap { }
+	" noremap - {
+	noremap - 5gk
 
 	noremap <m-+> 14gj
-	noremap <m-}> 14gk
+	noremap <m--> 14gk
 
 	" vim-vertical-move
 	noremap <expr> gj <SID>vjump(0)
