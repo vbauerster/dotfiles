@@ -68,16 +68,22 @@ command! FZFPlugConf call fzf#run(fzf#wrap({
 
 " Augmenting Ag command using fzf#vim#with_preview function
 "   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
-"   * Preview script requires Ruby
-"   * Install Highlight or CodeRay to enable syntax highlighting
+"     * For syntax-highlighting, Ruby and any of the following tools are required:
+"       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
+"       - CodeRay: http://coderay.rubychan.de/
+"       - Rouge: https://github.com/jneen/rouge
 "
 "   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
 "   :Ag! - Start fzf in fullscreen and display the preview window above
-autocmd VimEnter * command! -bang -nargs=* Ag
+command! -bang -nargs=* Ag
   \ call fzf#vim#ag(<q-args>,
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
+
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 if has('nvim')
 	let $FZF_DEFAULT_OPTS .= ' --inline-info'
@@ -85,10 +91,6 @@ endif
 
 " [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
-
-" Augmenting Files command
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
 
@@ -99,9 +101,10 @@ imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " imap <c-l> <plug>(fzf-complete-line)
 " imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
-nnoremap <F3> :Ag<CR>
-nnoremap <silent><C-g>g :Ag <C-R><C-W><CR>
-xnoremap <silent><C-g>g y:Ag <C-R>"<CR>
+nnoremap <silent><F3> :Ag <C-R><C-W><CR>
+xnoremap <silent><F3> y:Ag <C-R>"<CR>
+" buf-search (shift + F3)
+nnoremap <F15> :Ag<CR>
 
 " avoids opening file in Nerd_tree window
 nnoremap <silent> <expr> <Leader>- (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
