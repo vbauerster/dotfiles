@@ -36,7 +36,7 @@ Plug 'junegunn/fzf.vim'
 " General Programming
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
-Plug 'benekastah/neomake'
+Plug 'neomake/neomake'
 " Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 Plug 'tpope/vim-commentary'
 " http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
@@ -132,6 +132,7 @@ Plug 'ap/vim-css-color'
 Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'romainl/vim-qf'
+Plug 'blueyed/vim-qf_resize'
 Plug 'tpope/vim-characterize' " enhaced ga
 Plug 'tpope/vim-capslock'     " <C-G>c in insert mode
 Plug 'wesQ3/vim-windowswap'   " <leader>ww to swap windows

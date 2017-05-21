@@ -329,7 +329,8 @@
 	" -----------------------------------------------------------
 	" => h: window-resize
 	" -----------------------------------------------------------
-	nnoremap <Leader>= <C-w>=
+	" nnoremap <Leader>= <C-w>=
+	nnoremap <silent> <Leader>= :wincmd =<cr>:QfResizeWindows<cr>
 	nnoremap <Leader>z <C-w><Bar>
 	nnoremap <Leader>o <C-w>o
 	nnoremap <Leader>v <C-w>v
@@ -361,7 +362,7 @@
 	" nnoremap <Leader>/ :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR><C-w>W
 
 	" buf-search (shift + F3)
-	nnoremap <F15> :cex []<BAR>bufdo vimgrepadd @@g %<BAR>cw<s-left><s-left><right>
+	" nnoremap <F15> :cex []<BAR>bufdo vimgrepadd @@g %<BAR>cw<s-left><s-left><right>
 
 	" -----------------------------------------------------------
 	" => External cmd mappings
