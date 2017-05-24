@@ -9,7 +9,9 @@ local lM = hs.hotkey.modal.new()
 -- P: flycut
 -- U: numpad
 -- W: Window Management
-local hyperBindings = {"space", "P", "U", "W"}
+-- -: Select the previous input source
+-- +: Select next source in input menu
+local hyperBindings = {"space", "P", "U", "W", "-", "+"}
 
 for i, v in ipairs(hyperBindings) do
 	lM:bind('', v, function()
