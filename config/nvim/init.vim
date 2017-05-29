@@ -190,10 +190,11 @@
 	" that uses ":" to fail. For instance, "map <f2> :w" would fail, since vim will
 	" read ":w" as ";w" because of the below remappings. Use "noremap"s in such
 	" situations and you'll be fine.
-	nnoremap ; :
-	nnoremap : ;
-	xnoremap ; :
-	xnoremap : ;
+	" https://github.com/junegunn/fzf.vim/issues/313
+	" nnoremap ; :
+	" nnoremap : ;
+	" xnoremap ; :
+	" xnoremap : ;
 
 	" Swap implementations of ` and ' jump to markers
 	nnoremap ' `
@@ -435,11 +436,13 @@
 	" refer to the directory of the current file, regardless of pwd
 	cnoremap %% <C-R>=expand('%:h').'/'<CR>
 	" quick save (h with strong index finger)
-	cnoremap ;h <C-u>w<CR>
+	" cnoremap ;h <C-u>w<CR>
 	" quick pwd
-	cnoremap ;d <C-u>pwd<CR>
+	" cnoremap ;d <C-u>pwd<CR>
+	cnoremap c} <C-u>pwd<CR>
 	" Quit all without save, also refer to line 187
-	cnoremap ;! <C-u>qa!<CR>
+	" cnoremap ;! <C-u>qa!<CR>
+	cnoremap c; <C-u>qa!<CR>
 
 	cnoremap <C-A> <Home>
 	cnoremap <C-O> <Up>
