@@ -78,19 +78,19 @@ end
 
 modalKey:bind('', 'D', 'Move window to next Display' , hs.grid.pushWindowNextScreen)
 
-modalKey:bind('', 'C', 'Resize window to top half of screen', function() push(0, 0, 1, 0.5) end)
-modalKey:bind('', 'T', 'Resize window to bottom half of screen', function() push(0, 0.5, 1, 0.5) end)
-modalKey:bind('', 'H', 'Resize window to left half of screen', function() push(0, 0, 0.5, 1) end)
-modalKey:bind('', 'N', 'Resize window to right half of screen', function() push(0.5, 0, 0.5, 1) end)
+modalKey:bind('', 'C', function() push(0, 0, 1, 0.5) end)
+modalKey:bind('', 'T', function() push(0, 0.5, 1, 0.5) end)
+modalKey:bind('', 'H', function() push(0, 0, 0.5, 1) end)
+modalKey:bind('', 'N', function() push(0.5, 0, 0.5, 1) end)
 
-modalKey:bind('', 'G', 'Resize window to top left quarter of screen', function() push(0, 0, 0.5, 0.5) end)
-modalKey:bind('', 'R', 'Resize window to top right quarter of screen', function() push(0.5, 0, 0.5, 0.5) end)
-modalKey:bind('', 'M', 'Resize window to bottom left quarter of screen', function() push(0, 0.5, 0.5, 0.5) end)
-modalKey:bind('', 'V', 'Resize window to bottom right quarter of screen', function() push(0.5, 0.5, 0.5, 0.5) end)
+modalKey:bind('', 'G', function() push(0, 0, 0.5, 0.5) end)
+modalKey:bind('', 'R', function() push(0.5, 0, 0.5, 0.5) end)
+modalKey:bind('', 'M', function() push(0, 0.5, 0.5, 0.5) end)
+modalKey:bind('', 'V', function() push(0.5, 0.5, 0.5, 0.5) end)
 
-modalKey:bind('', 'U', 'Resize window to center', function() push(0.15, 0.15, 0.7, 0.7) end)
-modalKey:bind('', 'F', 'Toggle full screen', fullScreen)
-modalKey:bind('', 'W', 'Maximize window', function() push(0,0,1,1) end)
+modalKey:bind('', 'U', function() push(0.15, 0.15, 0.7, 0.7) end)
+modalKey:bind('', 'F', fullScreen)
+modalKey:bind('', 'W', function() push(0,0,1,1) end)
 
 local delta = 40
 modalKey:bind('', 'up', 'Move window up', function() nudge(0, -delta) end)
