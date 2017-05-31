@@ -265,18 +265,22 @@
 	" nnoremap ^ g^
 	" nnoremap $ g$
 
+	nnoremap '+ z+
+	nnoremap '- z-
+
 	noremap + 5gj
-	" noremap } 5gk
-	" noremap { }
-	" noremap - {
 	noremap - 5gk
 
 	noremap <m-+> 14gj
 	noremap <m--> 14gk
 
 	" vim-vertical-move
-	noremap <expr> gj <SID>vjump(0)
-	noremap <expr> gk <SID>vjump(1)
+	nnoremap <expr> <M-j> <SID>vjump(0)
+	nnoremap <expr> <M-k> <SID>vjump(1)
+	" xnoremap <expr> <C-j> <SID>vjump(0)
+	" xnoremap <expr> <C-k> <SID>vjump(1)
+	" onoremap <expr> <C-j> <SID>vjump(0)
+	" onoremap <expr> <C-k> <SID>vjump(1)
 
 	" auto center
 	nnoremap <silent> n nzz
