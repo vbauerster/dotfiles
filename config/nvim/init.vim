@@ -291,7 +291,9 @@
 	nnoremap <silent> g# g#zz
 
 	" fold a html tag
-	nnoremap <Leader>ft Vatzf
+	" nnoremap <Leader>ft Vatzf
+	nnoremap <Leader>ft zfat
+	nnoremap <Leader>fb zfaB
 
 	nnoremap <Leader>bx vaBo0d
 
