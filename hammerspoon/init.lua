@@ -2,22 +2,20 @@
 
 hyper = {"cmd", "alt", "shift", "ctrl"}
 
--- layer M
-local lM = hs.hotkey.modal.new()
+-- hyper layer
+local hyperMode = hs.hotkey.modal.new()
 
 -- space: Quicksilver
 -- P: flycut
 -- U: numpad
 -- W: Window Management
--- -: Select the previous input source
--- +: Select next source in input menu
-local hyperBindings = {"space", "P", "U", "W", "-", "+"}
+local hyperModeExternalBindings = {"space", "P", "U", "W"}
 
-for i, v in ipairs(hyperBindings) do
-	lM:bind('', v, function()
+for i, v in ipairs(hyperModeExternalBindings) do
+	hyperMode:bind('', v, function()
 		-- Pressed:
 		hs.eventtap.event.newKeyEvent(hyper, v, true):post()
-		lM.triggered = true
+		hyperMode.triggered = true
 	end, function()
 		-- Released:
 		hs.eventtap.event.newKeyEvent(hyper, v, false):post()
@@ -27,11 +25,9 @@ for i, v in ipairs(hyperBindings) do
 	end)
 end
 
-local lMbindings = {
+local hyperModeBindings = {
 	h="left",
 	n="right",
-	c="up",
-	t="down",
 	l="pageup",
 	s="pagedown",
 	g="home",
@@ -42,11 +38,11 @@ local lMbindings = {
 	m="return"
 }
 
-for k, v in pairs(lMbindings) do
-	lM:bind('', k, function()
+for k, v in pairs(hyperModeBindings) do
+	hyperMode:bind('', k, function()
 		-- Pressed:
 		hs.eventtap.event.newKeyEvent('', v, true):post()
-		lM.triggered = true
+		hyperMode.triggered = true
 	end, function()
 		-- Released:
 		hs.eventtap.event.newKeyEvent('', v, false):post()
@@ -56,22 +52,41 @@ for k, v in pairs(lMbindings) do
 	end)
 end
 
--- Enter layer M
-function lMEnter()
-	lM.triggered = false
-	lM:enter()
+local hyperModeVimBindings = {
+	c="k",
+	t="j",
+}
+
+for k, v in pairs(hyperModeVimBindings) do
+	hyperMode:bind('', k, function()
+		-- Pressed:
+		hs.eventtap.event.newKeyEvent({"alt"}, v, true):post()
+		hyperMode.triggered = true
+	end, function()
+		-- Released:
+		hs.eventtap.event.newKeyEvent({"alt"}, v, false):post()
+	end, function()
+		-- Repeat:
+		hs.eventtap.event.newKeyEvent({"alt"}, v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+	end)
 end
 
--- Exit layer M
-function lMExit()
-	lM:exit()
-	if not lM.triggered then
+-- Enter hyper layer
+function hyperModeEnter()
+	hyperMode.triggered = false
+	hyperMode:enter()
+end
+
+-- Exit hyper layer
+function hyperModeExit()
+	hyperMode:exit()
+	if not hyperMode.triggered then
 		hs.eventtap.keyStroke('', "escape", 100000)
 	end
 end
 
--- Bind the layer M to F19
-hs.hotkey.bind('', "F19", lMEnter, lMExit)
+-- Bind the hyper layer to F19
+hs.hotkey.bind('', "F19", hyperModeEnter, hyperModeExit)
 
 hs.hotkey.bind({"ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd"}, "v") end)
 hs.hotkey.bind({"ctrl"}, ",", function() hs.eventtap.keyStroke({"cmd"}, "c") end)
