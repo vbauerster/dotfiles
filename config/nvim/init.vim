@@ -191,7 +191,7 @@
 	" read ":w" as ";w" because of the below remappings. Use "noremap"s in such
 	" situations and you'll be fine.
 	" https://github.com/junegunn/fzf.vim/issues/313
-	" nnoremap ; :
+	nnoremap ; :
 	" nnoremap : ;
 	" xnoremap ; :
 	" xnoremap : ;
