@@ -93,10 +93,10 @@ modalKey:bind('', 'F', fullScreen)
 modalKey:bind('', 'W', function() push(0,0,1,1) end)
 
 local delta = 40
-modalKey:bind('', 'up', 'Move window up', function() nudge(0, -delta) end)
-modalKey:bind('', 'down', 'Move window down', function() nudge(0, delta) end)
-modalKey:bind('', 'left', 'Move window to left', function() nudge(-delta, 0) end)
-modalKey:bind('', 'right', 'Move window to right', function() nudge(delta, 0) end)
+modalKey:bind('', 'up', function() nudge(0, -delta) end)
+modalKey:bind('', 'down', function() nudge(0, delta) end)
+modalKey:bind('', 'left', function() nudge(-delta, 0) end)
+modalKey:bind('', 'right', function() nudge(delta, 0) end)
 
 modalKey:bind('', '-', '⍏', function() yank(0, -delta) end)
 modalKey:bind('', '+', '⍖', function() yank(0, delta) end)
