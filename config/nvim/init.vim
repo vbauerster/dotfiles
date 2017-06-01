@@ -339,7 +339,7 @@
 	" -----------------------------------------------------------
 	" nnoremap <Leader>= <C-w>=
 	nnoremap <silent> <Leader>= :wincmd =<cr>:QfResizeWindows<cr>
-	nnoremap <Leader>z <C-w><Bar>
+	nnoremap <Leader>z <C-w><Bar><C-w>_
 	nnoremap <Leader>o <C-w>o
 	nnoremap <Leader>v <C-w>v
 	nnoremap <Leader>x <C-w>s
