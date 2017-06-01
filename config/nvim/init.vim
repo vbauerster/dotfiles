@@ -47,6 +47,7 @@
 		endif
 	endfunction
 
+	" Original: https://github.com/justinmk/config/blob/347aecb4f74dc755e000c97eae17d80598c80d42/.config/nvim/init.vim#L272-L289
 	" vim-vertical-move replacement
 	" credit: cherryberryterry: https://www.reddit.com/r/vim/comments/4j4duz/a/d33s213
 	function! s:vjump(dir)
