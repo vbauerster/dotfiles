@@ -12,10 +12,14 @@ augroup GoLang
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
   autocmd FileType go nmap <F1> <Plug>(go-describe)
 
+  " shift F2
+  autocmd FileType go nnoremap <F14> :GoFmtAutoSaveToggle<CR>
+
   autocmd FileType go nmap <F9> <Plug>(go-test)
   autocmd FileType go nmap <F21> <Plug>(go-test-func)
 
   autocmd FileType go nmap <F5> <Plug>(go-build)
+
   autocmd FileType go nmap <F6> <Plug>(go-rename)
 
   autocmd FileType go nmap <F7> <Plug>(go-sameids-toggle)
