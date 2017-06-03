@@ -57,6 +57,10 @@ local hyperModeVimBindings = {
 	t="j",
 }
 
+-- table lookup: https://github.com/Hammerspoon/hammerspoon/issues/1307
+hyperModeVimBindings[25] = "pad+"
+hyperModeVimBindings[39] = "pad-"
+
 for k, v in pairs(hyperModeVimBindings) do
 	hyperMode:bind('', k, function()
 		-- Pressed:
