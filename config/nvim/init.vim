@@ -207,16 +207,13 @@
 	" don't override enter behavior in quickfix/location windows
 	nnoremap <expr> <Enter> (&buftype is# "quickfix" ? "\<cr>" : "%")
 
-	" F1 will search help for the word under the cursor
-	nnoremap <F1> :help <C-r><C-w><CR>
-
 	" tab shortcuts
 	nnoremap g{ gT
 	nnoremap g} gt
 	nnoremap gt :tablast<CR>
 	nnoremap gT :tabfirst<CR>
 	nnoremap <Leader>tn :tabnew<CR>
-	nnoremap <Leader>tx :tabclose<CR>
+	" nnoremap <Leader>tx :tabclose<CR>
 
 	" Quit nvim
 	" nnoremap <silent> <F22> :qa<CR>
@@ -226,7 +223,11 @@
 	" <C-w> P Go to preview window
 	nnoremap <Leader>q :q<CR>
 	nnoremap <Leader>! :q!<CR>
-	nnoremap <F22> <C-w>c
+	nnoremap <silent> <F10> :bd<CR>
+	" nnoremap <F22> <C-w>c
+
+	" F1 will search help for the word under the cursor
+	nnoremap <F1> :help <C-r><C-w><CR>
 
 	" Save in normal mode
 	nnoremap <F2> :w<CR>
@@ -311,7 +312,6 @@
 	" bprev provided by unimpaired [b
 	" bnext provided by unimpaired ]b
 	nnoremap <silent>,. <C-^><CR>
-	nnoremap <silent> <F10> :bd<CR>
 
 	" http://habrahabr.ru/post/183222/
 	" spell toggle
