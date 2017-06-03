@@ -120,8 +120,8 @@
 	set ruler         " show the cursor position all the time
 	set nojoinspaces  " Prevents inserting two spaces after punctuation on a join (J)
 
-	set linebreak
-	set nowrap
+	" set linebreak
+	" set nowrap
 
 	" Searching
 	set gdefault         " global search by default
@@ -273,8 +273,8 @@
 	noremap + 5gj
 	noremap - 5gk
 
-	noremap <m-+> 14gj
-	noremap <m--> 14gk
+	noremap <M-+> 14gj
+	noremap <M--> 14gk
 
 	" vim-vertical-move
 	nnoremap <expr> <M-j> <SID>vjump(0)
