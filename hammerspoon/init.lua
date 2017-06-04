@@ -34,7 +34,7 @@ local hyperModeBindings = {
 	r="end",
 	d="delete",
 	f="forwarddelete",
-	b="tab",
+	-- b="tab",
 	m="return"
 }
 
@@ -52,16 +52,12 @@ for k, v in pairs(hyperModeBindings) do
 	end)
 end
 
-local hyperModeVimBindings = {
-	c="k",
-	t="j",
-}
-
+local hyperModeVimAltBindings = { c="k", t="j", b="x" }
 -- table lookup: https://github.com/Hammerspoon/hammerspoon/issues/1307
-hyperModeVimBindings[25] = "pad+"
-hyperModeVimBindings[39] = "pad-"
+hyperModeVimAltBindings[25] = "pad+"
+hyperModeVimAltBindings[39] = "pad-"
 
-for k, v in pairs(hyperModeVimBindings) do
+for k, v in pairs(hyperModeVimAltBindings) do
 	hyperMode:bind('', k, function()
 		-- Pressed:
 		hs.eventtap.event.newKeyEvent({"alt"}, v, true):post()
