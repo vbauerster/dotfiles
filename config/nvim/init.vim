@@ -58,7 +58,24 @@
 		echom string(bot) string(top)
 
 		" norm! m`
-		return a:dir ? (line('.') - (bot > top ? bot : top)).'k' : ((bot < top ? bot : top) - line('.')).'j'
+		return a:dir ? (line('.') - (bot > top ? bot : top)).'k'
+			\					: ((bot < top ? bot : top) - line('.')).'j'
+	endfunction
+
+	function! s:deleteParam()
+		let line = getline('.')
+		let bc = col('.')-2
+		let i = bc
+		while i >= 0 && line[i] !~ '[ ,(]'
+			let i -= 1
+		endwhile
+		if len(split(line[i:], ",")) > 1
+			let op = "df,"
+			return bc - i == 0 ? op : bc - i . "h" . op
+		else
+			let op = "dt)"
+			return bc - i == 0 ? op : bc - i . "h" . op
+		endif
 	endfunction
 "}}}
 
@@ -298,6 +315,7 @@
 	nnoremap <Leader>fb zfaB
 
 	nnoremap <Leader>bx vaBo0d
+	nnoremap <expr><Leader>dp <SID>deleteParam()
 
 	" Read :help g_ctrl-]
 	" same as :tjump
