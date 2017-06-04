@@ -26,8 +26,8 @@ for i, v in ipairs(hyperModeExternalBindings) do
 end
 
 local hyperModeBindings = {
-	h="left",
-	n="right",
+	-- h="left",
+	-- n="right",
 	l="pageup",
 	s="pagedown",
 	g="home",
@@ -52,7 +52,13 @@ for k, v in pairs(hyperModeBindings) do
 	end)
 end
 
-local hyperModeVimAltBindings = { c="k", t="j", b="x" }
+local hyperModeVimAltBindings = {
+	c="k",
+	t="j",
+	h="left",
+	n="right",
+	b="x"
+}
 -- table lookup: https://github.com/Hammerspoon/hammerspoon/issues/1307
 hyperModeVimAltBindings[25] = "pad+"
 hyperModeVimAltBindings[39] = "pad-"
