@@ -449,7 +449,7 @@
 	cnoremap c} <C-u>pwd<CR>
 	" Quit all without save, also refer to line 187
 	" cnoremap ;! <C-u>qa!<CR>
-	cnoremap c; <C-u>qa!<CR>
+	cnoremap !; <C-u>qa!<CR>
 
 	cnoremap <C-A> <Home>
 	cnoremap <C-O> <Up>
