@@ -294,8 +294,8 @@
 	noremap <M--> 14gk
 
 	" vim-vertical-move
-	nnoremap <expr> <M-j> <SID>vjump(0)
-	nnoremap <expr> <M-k> <SID>vjump(1)
+	noremap <expr> gj <SID>vjump(0)
+	noremap <expr> gk <SID>vjump(1)
 	" xnoremap <expr> <C-j> <SID>vjump(0)
 	" xnoremap <expr> <C-k> <SID>vjump(1)
 	" onoremap <expr> <C-j> <SID>vjump(0)
