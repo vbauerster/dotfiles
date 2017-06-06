@@ -13,6 +13,7 @@ augroup GoLang
   autocmd FileType go nmap <F1> <Plug>(go-describe)
 
   " shift F2
+  autocmd FileType go nnoremap <F2> :up<CR>:Neomake<CR>
   autocmd FileType go nnoremap <F14> :GoFmtAutoSaveToggle<CR>
 
   autocmd FileType go nmap <F9> <Plug>(go-test)
