@@ -26,15 +26,12 @@ for i, v in ipairs(hyperModeExternalBindings) do
 end
 
 local hyperModeBindings = {
-	-- h="left",
-	-- n="right",
 	l="pageup",
 	s="pagedown",
 	g="home",
 	r="end",
 	d="delete",
 	f="forwarddelete",
-	-- b="tab",
 	m="return"
 }
 
@@ -53,8 +50,8 @@ for k, v in pairs(hyperModeBindings) do
 end
 
 local hyperModeVimAltBindings = {
-	c="k",
-	t="j",
+	c="up",
+	t="down",
 	h="left",
 	n="right",
 	b="x"
