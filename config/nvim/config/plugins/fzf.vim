@@ -117,7 +117,7 @@ nnoremap <F15> :Ag<CR>
 " avoids opening file in Nerd_tree window
 nnoremap <silent> <expr> <Leader>- (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
 nnoremap <silent><C-_> :GFiles<CR>
-nnoremap <silent>z. :GFiles?<CR>
+nnoremap <silent>g. :GFiles?<CR>
 nnoremap <silent><Leader><Leader> :Buffers<CR>
 nnoremap <silent><Leader>hh :History<CR>
 " nnoremap <silent><Leader>ww :Windows<CR>
