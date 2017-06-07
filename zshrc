@@ -15,7 +15,8 @@ export NVM_DIR="$HOME/.nvm"
 # fzf (https://github.com/junegunn/fzf)
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git --ignore vendor -g ""'
+# export FZF_DEFAULT_COMMAND="rg -uu -g '!vendor' -g '!.git' --files"
 # export FZF_DEFAULT_COMMAND='pt --nocolor --hidden --home-ptignore -U -g ""'
 [ -n "$NVIM_LISTEN_ADDRESS" ] && export FZF_DEFAULT_OPTS='--no-height'
 
