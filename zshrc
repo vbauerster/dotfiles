@@ -119,10 +119,14 @@ bindkey '^Gr' fzf-gr-widget
 
 # https://github.com/kurkale6ka/zsh/blob/master/.zshrc
 ### ^x0 IPs
-bindkey -s '^x0' '127.0.0.1'
-bindkey -s '^x1' '10.0.0.'
-bindkey -s '^x7' '172.16.0.'
-bindkey -s '^x9' '192.168.0.'
+# bindkey -s '^x0' '127.0.0.1'
+bindkey -s '^x*' '127.0.0.1'
+# bindkey -s '^x1' '10.0.0.'
+bindkey -s '^x(' '10.0.0.'
+# bindkey -s '^x7' '172.16.0.'
+bindkey -s '^x[' '172.16.0.'
+# bindkey -s '^x9' '192.168.0.'
+bindkey -s '^x=' '192.168.0.'
 
 ### ^x_ /dev/null
 bindkey -s '^x_' '/dev/null'
