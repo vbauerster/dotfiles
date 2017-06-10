@@ -467,7 +467,7 @@
 "}}}
 
 " AUTOCMD {{{
-	augroup vimrcEx
+	augroup Vimrc_au
 		autocmd!
 
 		" Remove trailing whitespaces
@@ -492,12 +492,6 @@
 					\  exe 'normal! g`"zvzz' |
 					\ endif
 
-		" Enable spellchecking for Markdown
-		autocmd FileType markdown setlocal spell spelllang=ru_yo,en_us
-
-		" Automatically wrap at 80 characters for Markdown
-		autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-
 		" Automatically wrap at 72 characters and spell check git commit messages
 		autocmd FileType gitcommit setlocal textwidth=72
 		autocmd FileType gitcommit setlocal spell spelllang=ru_yo,en_us
@@ -506,7 +500,21 @@
 		autocmd InsertLeave * silent! set nopaste
 	augroup END
 
-	augroup tmux_auto_rename
+	augroup Markdown_au
+		" Enable spellchecking for Markdown
+		autocmd FileType markdown setlocal spell spelllang=ru_yo,en_us
+		" Automatically wrap at 80 characters for Markdown
+		autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+	augroup END
+
+	augroup JS_au
+		autocmd FileType json setlocal conceallevel&
+		" https://stackoverflow.com/a/20127451/1351845
+		autocmd FileType json setlocal equalprg=js-beautify\ -
+		autocmd FileType javascript setlocal equalprg=js-beautify\ -
+	augroup END
+
+	augroup Tmux_au
 		autocmd!
 		if exists('$TMUX') && !exists('$NORENAME')
 			autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
@@ -514,7 +522,7 @@
 		endif
 	augroup END
 
-	augroup Terminal
+	augroup Terminal_au
 		autocmd!
 		autocmd TermOpen * let g:last_terminal_job_id = b:terminal_job_id
 		" https://github.com/junegunn/fzf.vim/issues/21
