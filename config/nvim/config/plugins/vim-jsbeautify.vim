@@ -11,7 +11,6 @@ augroup jsbeautify_conf
   " autocmd FileType jsx vnoremap <buffer> <leader>f :call RangeJsxBeautify()<cr>
   " autocmd FileType html,xml vnoremap <buffer> <leader>f :call RangeHtmlBeautify()<cr>
   " autocmd FileType css,scss vnoremap <buffer> <leader>f :call RangeCSSBeautify()<cr>
-  autocmd BufWritePre *.js call JsBeautify()
-  autocmd BufWritePre *.json call JsonBeautify()
-  autocmd FileType json setlocal conceallevel&
+  " autocmd BufWritePre *.js call JsBeautify()
+  " autocmd BufWritePre *.json call JsonBeautify()
 augroup END

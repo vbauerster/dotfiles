@@ -116,7 +116,7 @@ Plug 'othree/javascript-libraries-syntax.vim'
 
 " JavaScript
 " Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'json', 'css', 'html'] }
+" Plug 'maksimr/vim-jsbeautify', {'for': ['javascript', 'json', 'css', 'html'] }
 " Plug 'pangloss/vim-javascript' | Plug 'mxw/vim-jsx'
 " Plug 'burnettk/vim-angular'
 
