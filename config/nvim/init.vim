@@ -9,6 +9,10 @@
 	source ~/.config/nvim/config/termcolors.vim
 "}}}
 
+" abbr {{{
+	source ~/.config/nvim/config/abbr.vim
+"}}}
+
 " Script local functions {{{
 
 " Set tabstop, softtabstop and shiftwidth to the same value
@@ -536,8 +540,4 @@
 " plugin settings BLOCK {{{
 	" Load plugin specific settings
 	for f in split(glob($DOTFILES . "/config/nvim/config/plugins/*.vim"), "\n") | execute 'source ' . fnameescape(f) | endfor
-"}}}
-
-" abbr {{{
-	source ~/.config/nvim/config/abbr.vim
 "}}}
