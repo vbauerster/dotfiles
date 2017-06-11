@@ -2,7 +2,7 @@
 
 " VIM-PLUG BLOCK {{{
 	" https://github.com/junegunn/vim-plug
-	source ~/.config/nvim/config/nvimrc.plug
+	source ~/.config/nvim/config/plugs.vim
 "}}}
 
 " termcolors {{{
