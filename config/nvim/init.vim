@@ -66,6 +66,21 @@
 			return bc - i == 0 ? op : bc - i . "h" . op
 		endif
 	endfunction
+
+" Original: https://github.com/justinmk/config/blob/347aecb4f74dc755e000c97eae17d80598c80d42/.config/nvim/init.vim#L272-L289
+" vim-vertical-move replacement
+" credit: cherryberryterry: https://www.reddit.com/r/vim/comments/4j4duz/a/d33s213
+function! s:vjump(dir)
+		let c = '%'.virtcol('.').'v'
+		let flags = a:dir ? 'bnW' : 'nW'
+		let bot = search('\v'.c.'.*\n^(.*'.c.'.)@!.*$', flags)
+		let top = search('\v^(.*'.c.'.)@!.*$\n.*\zs'.c, flags)
+		echom string(bot) string(top)
+
+		" norm! m`
+		return a:dir ? (line('.') - (bot > top ? bot : top)).'k'
+			\		: ((bot < top ? bot : top) - line('.')).'j'
+endfunction
 "}}}
 
 " BASIC SETTINGS {{{
@@ -283,8 +298,9 @@
 	noremap <M--> 14gk
 
 	" vim-vertical-move
-	nmap gj <Plug>(vjump-down)
-	nmap gk <Plug>(vjump-up)
+	nnoremap <expr> <M-j> <SID>vjump(0)
+	nnoremap <expr> <M-k> <SID>vjump(1)
+
 
 	" auto center
 	nnoremap <silent> n nzz

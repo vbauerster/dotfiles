@@ -150,7 +150,7 @@ Plug 'roxma/vim-tmux-clipboard'
 Plug 'tmux-plugins/vim-tmux'
 
 " my plugins
-Plug 'vbauerster/vim-vjump'
+" Plug 'vbauerster/vim-vjump'
 " Plug 'vbauerster/vim-highlighter'
 
 " Plug 'cosminadrianpopescu/vim-sql-workbench'

@@ -41,7 +41,8 @@ local hyperModeBindings = {
 	{ 'n', {'alt'}, 'right'},
 	{ '+', {'alt'}, 'pad+'},
 	{ '-', {'alt'}, 'pad-'},
-	{ '}', {'alt'}, 'pad-'},
+	{ '}', {'alt'}, 'j'},
+	{ '{', {'alt'}, 'k'},
 	{ 'delete', {'cmd'}, 6}, -- cmd + z
 }
  for i,bnd in ipairs(hyperModeBindings) do
