@@ -1,15 +1,15 @@
 -- loggerInfo = hs.logger.new("My Settings", "info")
 
-hyper = {"cmd", "alt", "shift", "ctrl"}
+hyper = {'cmd', 'alt', 'shift', 'ctrl'}
 
 -- hyper layer
 local hyperMode = hs.hotkey.modal.new()
 
 -- space: Quicksilver
 -- P: flycut
--- U: numpad
--- W: Window Management
-local hyperModeExternalBindings = {"space", "P", "U", "W"}
+-- return: Npad mode
+-- W: Window Management mode
+local hyperModeExternalBindings = {'space', 'P', 'return', 'W'}
 
 for i, v in ipairs(hyperModeExternalBindings) do
 	hyperMode:bind({}, v, function()
@@ -25,7 +25,8 @@ for i, v in ipairs(hyperModeExternalBindings) do
 	end)
 end
 
--- table lookup: https://github.com/Hammerspoon/hammerspoon/issues/1307
+-- table lookup: hs.inspect(hs.keycodes.map)
+-- https://github.com/Hammerspoon/hammerspoon/issues/1307
 local hyperModeBindings = {
 	{ 'l', {}, 'pageup'},
 	{ 's', {}, 'pagedown'},
@@ -38,8 +39,8 @@ local hyperModeBindings = {
 	{ 't', {'alt'}, 'down'},
 	{ 'h', {'alt'}, 'left'},
 	{ 'n', {'alt'}, 'right'},
-	{ 25, {'alt'}, 'pad+'},
-	{ 39, {'alt'}, 'pad-'},
+	{ '+', {'alt'}, 'pad+'},
+	{ '-', {'alt'}, 'pad-'},
 	{ '}', {'alt'}, 'pad-'},
 	{ 'delete', {'cmd'}, 6}, -- cmd + z
 }
