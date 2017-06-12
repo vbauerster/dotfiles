@@ -12,7 +12,7 @@ local hyperMode = hs.hotkey.modal.new()
 local hyperModeExternalBindings = {"space", "P", "U", "W"}
 
 for i, v in ipairs(hyperModeExternalBindings) do
-	hyperMode:bind('', v, function()
+	hyperMode:bind({}, v, function()
 		-- Pressed:
 		hs.eventtap.event.newKeyEvent(hyper, v, true):post()
 		hyperMode.triggered = true
@@ -25,54 +25,36 @@ for i, v in ipairs(hyperModeExternalBindings) do
 	end)
 end
 
-local hyperModeBindings = {
-	l="pageup",
-	s="pagedown",
-	g="home",
-	r="end",
-	d="delete",
-	f="forwarddelete",
-	m="return"
-}
-
-for k, v in pairs(hyperModeBindings) do
-	hyperMode:bind('', k, function()
-		-- Pressed:
-		hs.eventtap.event.newKeyEvent('', v, true):post()
-		hyperMode.triggered = true
-	end, function()
-		-- Released:
-		hs.eventtap.event.newKeyEvent('', v, false):post()
-	end, function()
-		-- Repeat:
-		hs.eventtap.event.newKeyEvent('', v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
-	end)
-end
-
-local hyperModeVimAltBindings = {
-	c="up",
-	t="down",
-	h="left",
-	n="right",
-	b="x"
-}
 -- table lookup: https://github.com/Hammerspoon/hammerspoon/issues/1307
-hyperModeVimAltBindings[25] = "pad+"
-hyperModeVimAltBindings[39] = "pad-"
-
-for k, v in pairs(hyperModeVimAltBindings) do
-	hyperMode:bind('', k, function()
+local hyperModeBindings = {
+	{ 'l', {}, 'pageup'},
+	{ 's', {}, 'pagedown'},
+	{ 'g', {}, 'home'},
+	{ 'r', {}, 'end'},
+	{ 'd', {}, 'delete'},
+	{ 'f', {}, 'forwarddelete'},
+	{ 'm', {}, 'return'},
+	{ 'c', {'alt'}, 'up'},
+	{ 't', {'alt'}, 'down'},
+	{ 'h', {'alt'}, 'left'},
+	{ 'n', {'alt'}, 'right'},
+	{ 25, {'alt'}, 'pad+'},
+	{ 39, {'alt'}, 'pad-'},
+	{ '}', {'alt'}, 'pad-'},
+}
+ for i,bnd in ipairs(hyperModeBindings) do
+	hyperMode:bind({}, bnd[1], function()
 		-- Pressed:
-		hs.eventtap.event.newKeyEvent({"alt"}, v, true):post()
+		hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], true):post()
 		hyperMode.triggered = true
 	end, function()
 		-- Released:
-		hs.eventtap.event.newKeyEvent({"alt"}, v, false):post()
+		hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], false):post()
 	end, function()
 		-- Repeat:
-		hs.eventtap.event.newKeyEvent({"alt"}, v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+		hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
 	end)
-end
+ end
 
 -- Enter hyper layer
 function hyperModeEnter()
