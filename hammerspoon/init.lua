@@ -41,6 +41,7 @@ local hyperModeBindings = {
 	{ 25, {'alt'}, 'pad+'},
 	{ 39, {'alt'}, 'pad-'},
 	{ '}', {'alt'}, 'pad-'},
+	{ 'delete', {'cmd'}, 6}, -- cmd + z
 }
  for i,bnd in ipairs(hyperModeBindings) do
 	hyperMode:bind({}, bnd[1], function()
