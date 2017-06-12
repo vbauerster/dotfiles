@@ -396,7 +396,7 @@ endfunction
 	" => External cmd mappings
 	" -----------------------------------------------------------
 	" http://stackoverflow.com/questions/3166413/execute-a-script-directly-within-vim-mvim-gvim
-	nnoremap <Leader>nh :write !node --harmony<CR>
+	" nnoremap <Leader>nh :write !node --harmony<CR>
 
 	" make tags, --fields=+l needs by YCM
 	" http://stackoverflow.com/questions/25819649/exuberant-ctags-exclude-directories#25819720
