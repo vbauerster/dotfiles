@@ -10,7 +10,7 @@ end)
 
 function modalKey:exited()
 	exit_timer:stop()
-	hs.alert.show('Npad mode exited', 1)
+	hs.alert.show('Exit Npad mode', 1)
 end
 
 local npad = {}
