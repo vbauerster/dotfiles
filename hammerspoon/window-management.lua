@@ -70,39 +70,45 @@ end
 -- Window management
 -- -----------------
 
-local modalKey = hs.hotkey.modal.new(hyper, 'W', 'Window Management mode')
-modalKey:bind('', 'space', function() modalKey:exit() end)
+local modalKey = hs.hotkey.modal.new(hyper, 'W', 'WM mode')
+modalKey:bind({}, 'space', function() modalKey:exit() end)
+
+local exit_timer = hs.timer.delayed.new(2, function()
+	modalKey:exit()
+end)
+
 function modalKey:exited()
-    hs.alert.show('Window Management mode exited', 1)
+	exit_timer:stop()
+    hs.alert.show('Exit WM mode', 1)
 end
 
-modalKey:bind('', 'D', 'Move window to next Display' , hs.grid.pushWindowNextScreen)
+modalKey:bind({}, 'D', 'Push window to the next screen' , hs.grid.pushWindowNextScreen)
 
-modalKey:bind('', 'C', function() push(0, 0, 1, 0.5) end)
-modalKey:bind('', 'T', function() push(0, 0.5, 1, 0.5) end)
-modalKey:bind('', 'H', function() push(0, 0, 0.5, 1) end)
-modalKey:bind('', 'N', function() push(0.5, 0, 0.5, 1) end)
+modalKey:bind({}, 'C', function() exit_timer:start() push(0, 0, 1, 0.5) end)
+modalKey:bind({}, 'T', function() exit_timer:start() push(0, 0.5, 1, 0.5) end)
+modalKey:bind({}, 'H', function() exit_timer:start() push(0, 0, 0.5, 1) end)
+modalKey:bind({}, 'N', function() exit_timer:start() push(0.5, 0, 0.5, 1) end)
 
-modalKey:bind('', 'G', function() push(0, 0, 0.5, 0.5) end)
-modalKey:bind('', 'R', function() push(0.5, 0, 0.5, 0.5) end)
-modalKey:bind('', 'M', function() push(0, 0.5, 0.5, 0.5) end)
-modalKey:bind('', 'V', function() push(0.5, 0.5, 0.5, 0.5) end)
+modalKey:bind({}, 'G', function() exit_timer:start() push(0, 0, 0.5, 0.5) end)
+modalKey:bind({}, 'R', function() exit_timer:start() push(0.5, 0, 0.5, 0.5) end)
+modalKey:bind({}, 'M', function() exit_timer:start() push(0, 0.5, 0.5, 0.5) end)
+modalKey:bind({}, 'V', function() exit_timer:start() push(0.5, 0.5, 0.5, 0.5) end)
 
-modalKey:bind('', 'U', function() push(0.15, 0.15, 0.7, 0.7) end)
-modalKey:bind('', 'F', fullScreen)
-modalKey:bind('', 'W', function() push(0,0,1,1) end)
+modalKey:bind({}, 'U', function() exit_timer:start() push(0.15, 0.15, 0.7, 0.7) end)
+modalKey:bind({}, 'F', function() exit_timer:start() fullScreen() end)
+modalKey:bind({}, 'W', function() exit_timer:start() push(0,0,1,1) end)
 
 local delta = 40
-modalKey:bind('', 'up', function() nudge(0, -delta) end)
-modalKey:bind('', 'down', function() nudge(0, delta) end)
-modalKey:bind('', 'left', function() nudge(-delta, 0) end)
-modalKey:bind('', 'right', function() nudge(delta, 0) end)
+modalKey:bind({}, 'up', function() exit_timer:start() nudge(0, -delta) end)
+modalKey:bind({}, 'down', function() exit_timer:start() nudge(0, delta) end)
+modalKey:bind({}, 'left', function() exit_timer:start() nudge(-delta, 0) end)
+modalKey:bind({}, 'right', function() exit_timer:start() nudge(delta, 0) end)
 
-modalKey:bind('', '-', '⍏', function() yank(0, -delta) end)
-modalKey:bind('', '+', '⍖', function() yank(0, delta) end)
-modalKey:bind('', ']', '⍆', function() yank(delta, 0) end)
-modalKey:bind('', '[', '⍅', function() yank(-delta, 0) end)
+modalKey:bind({}, '-', '⍏', function() exit_timer:start() yank(0, -delta) end)
+modalKey:bind({}, '+', '⍖', function() exit_timer:start() yank(0, delta) end)
+modalKey:bind({}, ']', '⍆', function() exit_timer:start() yank(delta, 0) end)
+modalKey:bind({}, '[', '⍅', function() exit_timer:start() yank(-delta, 0) end)
 
 -- Move a window between monitors
--- modalKey:bind('', 'I', function() moveToMonitor(1) end) -- Move to first monitor
--- modalKey:bind('', 'D', function() moveToMonitor(2) end) -- Move to second monitor
+-- modalKey:bind({}, 'I', function() moveToMonitor(1) end) -- Move to first monitor
+-- modalKey:bind({}, 'D', function() moveToMonitor(2) end) -- Move to second monitor
