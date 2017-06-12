@@ -190,7 +190,7 @@ endfunction
 	nnoremap <Leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 	nnoremap <Leader>so :so $MYVIMRC<CR>
 	" edit vim plugins
-	nnoremap <Leader>ep :e ~/.config/nvim/config/nvimrc.plug<CR>
+	nnoremap <Leader>ep :e ~/.config/nvim/config/plugs.vim<CR>
 	" edit gitconfig
 	nnoremap <Leader>eg :e ~/.gitconfig<CR>
 	" edit tmux.conf
