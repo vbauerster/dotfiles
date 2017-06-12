@@ -8959,21 +8959,21 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>387 140 872 354 0 0 1440 877 </string>
+	<string>321 378 872 220 0 0 1440 877 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>80 421 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
-	<string>500 578 400 129 0 0 1440 900 </string>
+	<string>518 578 400 129 0 0 1440 900 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>392 363 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>332 331 1016 502 0 0 1440 877 </string>
+	<string>332 309 918 495 0 0 1440 877 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1737 270 592 584 1440 -124 1280 1001 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>831 0 570 877 0 0 1440 877 </string>
+	<string>0 0 1440 900 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>722 450 585 426 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -12798,7 +12798,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>Iosevka-Term 14</string>
+			<string>Iosevka 14</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -16514,7 +16514,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-06-06T11:18:16Z</date>
+	<date>2017-06-11T09:39:30Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Selection Respects Soft Boundaries</key>
