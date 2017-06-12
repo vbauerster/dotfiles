@@ -277,8 +277,8 @@ endfunction
 	nnoremap gp `[v`]
 
 	" Search in normal mode with very magic on
-	nnoremap / /\v
-	nnoremap ? ?\v
+	" nnoremap / /\v
+	" nnoremap ? ?\v
 
 	" This makes j and k work on "screen lines" instead of on "file lines"; now, when
 	" we have a long line that wraps to multiple screen lines, j and k behave as we
@@ -300,7 +300,6 @@ endfunction
 	" vim-vertical-move
 	nnoremap <expr> <M-j> <SID>vjump(0)
 	nnoremap <expr> <M-k> <SID>vjump(1)
-
 
 	" auto center
 	nnoremap <silent> n nzz
