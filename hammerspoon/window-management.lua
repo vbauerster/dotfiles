@@ -73,7 +73,7 @@ end
 local modalKey = hs.hotkey.modal.new(hyper, 'W', 'WM mode')
 modalKey:bind({}, 'space', function() modalKey:exit() end)
 
-local exit_timer = hs.timer.delayed.new(2, function()
+local exit_timer = hs.timer.delayed.new(3, function()
 	modalKey:exit()
 end)
 
