@@ -74,7 +74,7 @@ Plug 'Shougo/neoinclude.vim'
 " deoplete-go: 'golang' source
 Plug 'zchee/deoplete-go', { 'for': ['go'], 'do': 'make'}
 " deoplete-clang: 'clang' source for C/C++
-" Plug 'zchee/deoplete-clang'
+" Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
 " deoplete-ternjs: 'ternjs' source for JavaScript
 Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'jsx'], 'do': 'npm install -g tern' }
 " neco-look: plugin for /usr/bin/look for completing words in English
@@ -125,6 +125,9 @@ Plug 'othree/javascript-libraries-syntax.vim'
 
 " CoffeScript
 " Plug 'kchmck/vim-coffee-script' " Syntax
+
+" c/cpp
+" Plug 'lyuts/vim-rtags', { 'for': ['c', 'cpp'] }
 
 " Misc.
 " Plug 'chrisbra/Colorizer'
