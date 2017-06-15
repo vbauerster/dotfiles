@@ -136,6 +136,7 @@ Plug 'blueyed/vim-qf_resize'
 Plug 'tpope/vim-characterize' " enhaced ga
 Plug 'tpope/vim-capslock'     " <C-G>c in insert mode
 Plug 'wesQ3/vim-windowswap'   " <leader>ww to swap windows
+Plug 'justinmk/vim-gtfo'      " got/gof mappings
 
 if has('mac')
   Plug 'rizzatti/dash.vim'
