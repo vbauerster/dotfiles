@@ -6,10 +6,10 @@ hyper = {'cmd', 'alt', 'shift', 'ctrl'}
 local hyperMode = hs.hotkey.modal.new()
 
 -- space: Quicksilver
--- P: flycut
--- return: Npad mode
+-- F7: flycut
+-- P: Npad mode
 -- W: Window Management mode
-local hyperModeExternalBindings = {'space', 'P', 'return', 'W'}
+local hyperModeExternalBindings = {'space', 'F7', 'P', 'W'}
 
 for i, v in ipairs(hyperModeExternalBindings) do
 	hyperMode:bind({}, v, function()
@@ -28,24 +28,24 @@ end
 -- table lookup: hs.inspect(hs.keycodes.map)
 -- https://github.com/Hammerspoon/hammerspoon/issues/1307
 local hyperModeBindings = {
-	{ 'l', {}, 'pageup'},
-	{ 's', {}, 'pagedown'},
+	{ 'f', {}, 'pageup'},
+	{ 'd', {}, 'pagedown'},
 	{ 'g', {}, 'home'},
 	{ 'r', {}, 'end'},
-	{ 'd', {}, 'delete'},
-	{ 'f', {}, 'forwarddelete'},
 	{ 'm', {}, 'return'},
+	{ 's', {}, 'tab'},
+	{ 'delete', {}, 'forwarddelete'},
+	{ 'b', {'alt'}, 'x'}, -- for autopairs.vim
 	{ 'c', {'alt'}, 'up'},
 	{ 't', {'alt'}, 'down'},
 	{ 'h', {'alt'}, 'left'},
 	{ 'n', {'alt'}, 'right'},
 	{ '+', {'alt'}, 'pad+'},
 	{ '-', {'alt'}, 'pad-'},
-	{ '}', {'alt'}, 'j'},
-	{ '{', {'alt'}, 'k'},
-	{ 'delete', {'cmd'}, 6}, -- cmd + z
+	{ 'u', {'cmd'}, 6}, -- cmd + z
 }
- for i,bnd in ipairs(hyperModeBindings) do
+
+for i,bnd in ipairs(hyperModeBindings) do
 	hyperMode:bind({}, bnd[1], function()
 		-- Pressed:
 		hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], true):post()
@@ -57,7 +57,7 @@ local hyperModeBindings = {
 		-- Repeat:
 		hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
 	end)
- end
+end
 
 -- Enter hyper layer
 function hyperModeEnter()
