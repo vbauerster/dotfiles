@@ -1,4 +1,4 @@
-nnoremap <silent> <leader>gg :Gstatus<CR>
+nnoremap <silent> <leader>gg :Gstatus<CR><C-w>J<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
