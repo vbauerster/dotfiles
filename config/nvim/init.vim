@@ -302,6 +302,8 @@ endfunction
 	" vim-vertical-move
 	nnoremap <expr> <M-j> <SID>vjump(0)
 	nnoremap <expr> <M-k> <SID>vjump(1)
+	nnoremap <expr> gj <SID>vjump(0)
+	nnoremap <expr> gk <SID>vjump(1)
 
 	" auto center
 	nnoremap <silent> n nzz
