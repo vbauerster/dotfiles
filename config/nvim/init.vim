@@ -374,8 +374,8 @@ endfunction
 	" nmap <Leader>l <C-W>h500<C-W>>
 	" nmap <Leader>h <C-W>l500<C-W>>
 
-	nnoremap <M-Left> <C-w><
-	nnoremap <M-Right> <C-w>>
+	nnoremap <M-Left> <C-w>>
+	nnoremap <M-Right> <C-w><
 	nnoremap <M-Up> <C-w>+
 	nnoremap <M-Down> <C-w>-
 
