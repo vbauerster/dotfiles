@@ -109,10 +109,8 @@ imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 " imap <c-l> <plug>(fzf-complete-line)
 " imap <c-x><c-f> <plug>(fzf-complete-file-ag)
 
-nnoremap <silent><F3> :Ag <C-R><C-W><CR>
-xnoremap <silent><F3> y:Ag <C-R>"<CR>
-" buf-search (shift + F3)
-nnoremap <F15> :Ag<CR>
+nnoremap <silent><F3> :Rg <C-R><C-W><CR>
+xnoremap <silent><F3> y:Rg <C-R>"<CR>
 
 " avoids opening file in Nerd_tree window
 nnoremap <silent> <expr> <Leader>- (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
