@@ -48,3 +48,6 @@ alias t2='tree -Fth -L 2 --du |less' #see tree with size up to 2 levels deep
 alias tma='tmux attach -d -t'
 alias tmn='tmux new -s $(basename $(pwd))'
 alias tmu='tmux list-sessions'
+
+# git
+alias g='git'
