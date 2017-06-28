@@ -28,13 +28,15 @@ end
 -- table lookup: hs.inspect(hs.keycodes.map)
 -- https://github.com/Hammerspoon/hammerspoon/issues/1307
 local hyperModeBindings = {
-	{ 'f', {}, 'pageup'},
-	{ 'd', {}, 'pagedown'},
+	-- { ')', {}, 'pageup'},
+	-- { ']', {}, 'pagedown'},
 	{ 'g', {}, 'home'},
 	{ 'r', {}, 'end'},
 	{ 'm', {}, 'return'},
 	{ 's', {}, 'tab'},
 	{ 'delete', {}, 'forwarddelete'},
+	{ 'f', {'alt'}, 'k'}, -- for vjump
+	{ 'd', {'alt'}, 'j'}, -- for vjump
 	{ 'b', {'alt'}, 'x'}, -- for autopairs.vim
 	{ 'c', {'alt'}, 'up'},
 	{ 't', {'alt'}, 'down'},
@@ -42,7 +44,7 @@ local hyperModeBindings = {
 	{ 'n', {'alt'}, 'right'},
 	{ '+', {'alt'}, 'pad+'},
 	{ '-', {'alt'}, 'pad-'},
-	{ 'u', {'cmd'}, 6}, -- cmd + z
+	{ 'u', {'cmd'}, 'z'},
 }
 
 for i,bnd in ipairs(hyperModeBindings) do
