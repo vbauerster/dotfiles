@@ -3,7 +3,7 @@
 local modalKey = hs.hotkey.modal.new(hyper, 'P', 'Npad mode')
 modalKey:bind({}, 'escape', function() modalKey:exit() end)
 
-local exit_timer = hs.timer.delayed.new(4, function()
+local exit_timer = hs.timer.delayed.new(5, function()
 	-- log.i("timer fired")
 	modalKey:exit()
 end)
