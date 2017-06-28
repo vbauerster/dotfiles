@@ -213,7 +213,7 @@ endfunction
 	" read ":w" as ";w" because of the below remappings. Use "noremap"s in such
 	" situations and you'll be fine.
 	" https://github.com/junegunn/fzf.vim/issues/313
-	" nnoremap ; :
+	nnoremap ; :
 	" nnoremap : ;
 	" xnoremap ; :
 	" xnoremap : ;
@@ -422,21 +422,19 @@ endfunction
 	" CTRL-\ CTRL-O like CTRL-O but don't move the cursor [i_CTRL-\_CTRL-O]
 	inoremap CC <C-\><C-o>D
 
-	inoremap <silent> ,. <Esc>:up<CR>
-
 	" upper case
 	inoremap UU <Esc>gUiw`]a
 
-	imap		 <Nul> <C-Space>
+	imap <Nul> <C-Space>
 	inoremap <C-Space> <C-x><C-l>
 
 	inoremap <expr> + pumvisible() ? "\<c-n>" : "+"
 
 	" http://superuser.com/a/1165038/578741
 	inoremap <F2> <C-\><C-o>:w<CR>
-	inoremap ;;h <Esc>:w<CR>
+	inoremap <silent> ,. <Esc>:up<CR>
 
-	inoremap <insert> <C-r>*
+	" inoremap <insert> <C-r>*
 
 	" -----------------------------------------------------------
 	" => Visual and Select mode mappings
