@@ -1,3 +1,3 @@
 inoreabbrev bomt // +build OMIT
-inoreabbrev mnm Vladimir Bauer
-inoreabbrev @@ vbauerster@gmail.com
+inoreabbrev vbb Vladimir Bauer
+inoreabbrev vb@ vbauerster@gmail.com
