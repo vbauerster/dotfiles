@@ -10,7 +10,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
-Plug 'vbauerster/vim-unimpaired', { 'branch': 'pdvorak' }
+Plug 'tpope/vim-unimpaired'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 " Plug 'fszymanski/fzf-gitignore.nvim', {'do': ':UpdateRemotePlugins'}
