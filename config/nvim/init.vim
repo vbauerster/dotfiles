@@ -213,9 +213,9 @@ endfunction
 	" read ":w" as ";w" because of the below remappings. Use "noremap"s in such
 	" situations and you'll be fine.
 	" https://github.com/junegunn/fzf.vim/issues/313
-	nnoremap ; :
+	" nnoremap ; :
 	" nnoremap : ;
-	xnoremap ; :
+	" xnoremap ; :
 	" xnoremap : ;
 
 	" Swap implementations of ` and ' jump to markers
@@ -318,6 +318,7 @@ endfunction
 	nnoremap <Leader>ft zfat
 	nnoremap <Leader>fb zfaB
 
+	" Wipe xxx {} block
 	nnoremap <Leader>bx vaBo0d
 	nnoremap <expr><Leader>dp <SID>deleteParam()
 
@@ -440,7 +441,7 @@ endfunction
 	" -----------------------------------------------------------
 	" => Visual and Select mode mappings
 	" -----------------------------------------------------------
-	vnoremap ,. <Esc>
+	" vnoremap ,. <Esc>
 
 	" Search in visually selected block only
 	vnoremap / <Esc>/\%V\v
@@ -468,7 +469,7 @@ endfunction
 	" cnoremap ;h <C-u>w<CR>
 	" quick pwd
 	" cnoremap ;d <C-u>pwd<CR>
-	cnoremap c} <C-u>pwd<CR>
+	" cnoremap c} <C-u>pwd<CR>
 	" Quit all without save, also refer to line 187
 	" cnoremap ;! <C-u>qa!<CR>
 	cnoremap !; <C-u>qa!<CR>
