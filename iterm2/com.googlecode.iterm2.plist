@@ -8959,17 +8959,17 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>321 378 872 220 0 0 1440 877 </string>
+	<string>307 36 839 266 0 0 1440 877 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>80 421 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
-	<string>518 578 400 129 0 0 1440 900 </string>
+	<string>500 578 400 129 0 0 1440 900 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>392 363 620 392 0 0 1440 877 </string>
+	<string>-1270 473 620 392 -1920 -43 1920 1080 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>332 309 918 495 0 0 1440 877 </string>
+	<string>432 428 918 416 0 0 1440 877 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1737 270 592 584 1440 -124 1280 1001 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
@@ -12170,6 +12170,8 @@
 		<dict>
 			<key>ASCII Anti Aliased</key>
 			<true/>
+			<key>ASCII Ligatures</key>
+			<false/>
 			<key>AWDS Pane Directory</key>
 			<string></string>
 			<key>AWDS Pane Option</key>
@@ -12743,6 +12745,13 @@
 					<key>Text</key>
 					<string>[24;2~</string>
 				</dict>
+				<key>0xf729-0x0</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[H</string>
+				</dict>
 				<key>0xf729-0x20000</key>
 				<dict>
 					<key>Action</key>
@@ -12756,6 +12765,13 @@
 					<integer>10</integer>
 					<key>Text</key>
 					<string>[1;5H</string>
+				</dict>
+				<key>0xf72b-0x0</key>
+				<dict>
+					<key>Action</key>
+					<integer>10</integer>
+					<key>Text</key>
+					<string>[F</string>
 				</dict>
 				<key>0xf72b-0x20000</key>
 				<dict>
@@ -12954,7 +12970,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Thin Strokes</key>
-			<integer>2</integer>
+			<integer>1</integer>
 			<key>Transparency</key>
 			<real>0.080541846258973357</real>
 			<key>Triggers</key>
@@ -16514,7 +16530,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-06-11T09:39:30Z</date>
+	<date>2017-06-29T12:41:41Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Selection Respects Soft Boundaries</key>
@@ -16572,7 +16588,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.15</string>
+	<string>3.1.beta.5</string>
 	<key>kCPFavoritesUserDefaultsKey</key>
 	<array>
 		<data>
