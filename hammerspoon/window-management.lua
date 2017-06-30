@@ -70,7 +70,7 @@ end
 -- Window management
 -- -----------------
 
-local modalKey = hs.hotkey.modal.new(hyper, 'W', 'WM mode')
+local modalKey = hs.hotkey.modal.new(hyper, 'w', 'WM mode')
 modalKey:bind({}, 'space', function() modalKey:exit() end)
 
 local exit_timer = hs.timer.delayed.new(3, function()

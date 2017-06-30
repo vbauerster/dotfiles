@@ -1,29 +1,12 @@
 -- loggerInfo = hs.logger.new("My Settings", "info")
 
-hyper = {'cmd', 'alt', 'shift', 'ctrl'}
+hyper = {'ctrl', 'alt', 'shift'}
 
--- hyper layer
-local hyperMode = hs.hotkey.modal.new()
-
+-- external bindings:
 -- space: Quicksilver
 -- F7: flycut
 -- P: Npad mode
 -- W: Window Management mode
-local hyperModeExternalBindings = {'space', 'F7', 'P', 'W'}
-
-for i, v in ipairs(hyperModeExternalBindings) do
-	hyperMode:bind({}, v, function()
-		-- Pressed:
-		hs.eventtap.event.newKeyEvent(hyper, v, true):post()
-		hyperMode.triggered = true
-	end, function()
-		-- Released:
-		hs.eventtap.event.newKeyEvent(hyper, v, false):post()
-	end, function()
-		-- Repeat:
-		hs.eventtap.event.newKeyEvent(hyper, v, true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
-	end)
-end
 
 -- table lookup: hs.inspect(hs.keycodes.map)
 -- https://github.com/Hammerspoon/hammerspoon/issues/1307
@@ -48,10 +31,9 @@ local hyperModeBindings = {
 }
 
 for i,bnd in ipairs(hyperModeBindings) do
-	hyperMode:bind({}, bnd[1], function()
+	hs.hotkey.bind(hyper, bnd[1], function()
 		-- Pressed:
 		hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], true):post()
-		hyperMode.triggered = true
 	end, function()
 		-- Released:
 		hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], false):post()
@@ -60,23 +42,6 @@ for i,bnd in ipairs(hyperModeBindings) do
 		hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
 	end)
 end
-
--- Enter hyper layer
-function hyperModeEnter()
-	hyperMode.triggered = false
-	hyperMode:enter()
-end
-
--- Exit hyper layer
-function hyperModeExit()
-	hyperMode:exit()
-	if not hyperMode.triggered then
-		hs.eventtap.keyStroke('', "escape", 100000)
-	end
-end
-
--- Bind the hyper layer to F19
-hs.hotkey.bind('', "F19", hyperModeEnter, hyperModeExit)
 
 hs.hotkey.bind({"ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd"}, "v") end)
 hs.hotkey.bind({"ctrl"}, ",", function() hs.eventtap.keyStroke({"cmd"}, "c") end)
