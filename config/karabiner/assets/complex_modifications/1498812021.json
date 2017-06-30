@@ -1,8 +1,39 @@
 {
   "title": "Change caps_lock key",
   "rules": [
+	{
+	  "description": "Change caps_lock key to command+control+option+shift. (Post escape key when pressed alone)",
+	  "manipulators": [
+		{
+		  "type": "basic",
+		  "from": {
+			"key_code": "caps_lock",
+			"modifiers": {
+			  "optional": [
+				"any"
+			  ]
+			}
+		  },
+		  "to": [
+			{
+			  "key_code": "left_shift",
+			  "modifiers": [
+				"left_command",
+				"left_control",
+				"left_option"
+			  ]
+			}
+		  ],
+		  "to_if_alone": [
+			{
+			  "key_code": "escape"
+			}
+		  ]
+		}
+	  ]
+	},
     {
-      "description": "Change caps_lock key to command+control+option+shift. (Post escape key when pressed alone)",
+      "description": "Change caps_lock key to control+option+shift. (Post escape key when pressed alone)",
       "manipulators": [
         {
           "type": "basic",
@@ -18,7 +49,6 @@
             {
               "key_code": "left_shift",
               "modifiers": [
-                "left_command",
                 "left_control",
                 "left_option"
               ]
