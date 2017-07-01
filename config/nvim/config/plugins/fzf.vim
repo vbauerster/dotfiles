@@ -117,8 +117,8 @@ nnoremap <silent> <expr> <Leader>- (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '')
 nnoremap <silent><C-_> :GFiles<CR>
 nnoremap <silent>g. :GFiles?<CR>
 nnoremap <silent><Leader><Leader> :Buffers<CR>
-nnoremap <silent><Leader>hh :History<CR>
-" nnoremap <silent><Leader>ww :Windows<CR>
+" nnoremap <silent><Leader>hh :History<CR>
+nnoremap <silent><Leader>hh :Windows<CR>
 nnoremap <silent><Leader>mm :Commits<CR>
 nnoremap <silent><Leader>bb :BCommits<CR>
 " nnoremap <silent><Leader>bl :BLines<CR>
@@ -132,6 +132,6 @@ nnoremap <silent><Leader>pc :FZFPlugConf<CR>
 nnoremap <silent><Leader>go :FZFGopath<CR>
 nnoremap <silent><Leader>y :FZFYank<CR>
 
-nmap <leader>~ <plug>(fzf-maps-n)
+nmap <leader>nn <plug>(fzf-maps-n)
 " xmap <leader><tab> <plug>(fzf-maps-x)
 " omap <leader><tab> <plug>(fzf-maps-o)
