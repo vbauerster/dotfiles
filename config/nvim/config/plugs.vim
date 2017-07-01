@@ -11,9 +11,10 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-
-" Plug 'fszymanski/fzf-gitignore.nvim', {'do': ':UpdateRemotePlugins'}
+Plug 'tpope/vim-capslock' " <C-G>c in insert mode
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-obsession'
+" Plug 'tpope/vim-characterize' " enhaced ga
 
 " Motions
 Plug 'justinmk/vim-sneak'
@@ -28,8 +29,6 @@ Plug 'vim-airline/vim-airline-themes' | Plug 'vim-airline/vim-airline'
 Plug 'kshenoy/vim-signature'
 
 " Grep like search
-" Plug 'mhinz/vim-grepper'
-" Plug 'rking/ag.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -37,10 +36,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'majutsushi/tagbar'
 Plug 'neomake/neomake'
-" Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
-Plug 'tpope/vim-commentary'
-" http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
-" Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align'
 Plug 'FooSoft/vim-argwrap'    " Wrap a paremeter list accross multiple lines
 Plug 'tommcdo/vim-exchange'   " cx to exchange
@@ -50,13 +45,14 @@ Plug 'junegunn/limelight.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'othree/eregex.vim'
 
-" Git
+" Git related
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim' | Plug 'tpope/vim-rhubarb'
 " Plug 'SevereOverfl0w/deoplete-github'
 Plug 'airblade/vim-gitgutter'
 " Make gists easily from Vim
 Plug 'mattn/webapi-vim' | Plug 'mattn/gist-vim'
 Plug 'airblade/vim-rooter'
+" Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 
 " AutoComplete
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -93,7 +89,6 @@ Plug 'artur-shaik/vim-javacomplete2', {'for': ['java'] }
 
 " Auto pairs
 Plug 'vbauerster/auto-pairs', { 'branch': 'pumvisible' }
-" Plug 'Raimondi/delimitMate'
 
 " HTML
 " Plug 'docunext/closetag.vim' "close HTML tag
@@ -103,11 +98,6 @@ Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
 
 " Emmet
 Plug 'mattn/emmet-vim'
-
-" Extended session management for Vim
-" Plug 'vim-scripts/sessionman.vim'
-" Plug 'xolox/vim-session'
-Plug 'tpope/vim-obsession'
 
 " Syntax
 Plug 'othree/yajs.vim'
@@ -136,10 +126,9 @@ Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'romainl/vim-qf'
 Plug 'blueyed/vim-qf_resize'
-Plug 'tpope/vim-characterize' " enhaced ga
-Plug 'tpope/vim-capslock'     " <C-G>c in insert mode
 Plug 'wesQ3/vim-windowswap'   " <leader>ww to swap windows
 Plug 'justinmk/vim-gtfo'      " got/gof mappings
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 if has('mac')
   Plug 'rizzatti/dash.vim'
