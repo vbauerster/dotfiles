@@ -11,7 +11,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-capslock' " <C-G>c in insert mode
+Plug 'tpope/vim-capslock' " <C-g>c or <C-l> in insert mode
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-characterize' " enhaced ga
