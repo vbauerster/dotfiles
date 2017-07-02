@@ -34,6 +34,7 @@ Plug 'junegunn/fzf.vim'
 
 " General Programming
 Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'majutsushi/tagbar'
 Plug 'neomake/neomake'
 Plug 'junegunn/vim-easy-align'
@@ -126,9 +127,9 @@ Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'romainl/vim-qf'
 Plug 'blueyed/vim-qf_resize'
-Plug 'wesQ3/vim-windowswap'   " <leader>ww to swap windows
-Plug 'justinmk/vim-gtfo'      " got/gof mappings
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+Plug 'wesQ3/vim-windowswap'      " <leader>ww to swap windows
+Plug 'justinmk/vim-gtfo'         " got/gof mappings
+Plug 'ron89/thesaurus_query.vim' " <Leader>cs
 
 if has('mac')
   Plug 'rizzatti/dash.vim'
