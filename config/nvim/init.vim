@@ -234,7 +234,8 @@ endfunction
 	nnoremap gt :tablast<CR>
 	nnoremap gT :tabfirst<CR>
 	nnoremap <Leader>tn :tabnew<CR>
-	" nnoremap <Leader>tx :tabclose<CR>
+	nnoremap <Leader>tx :tabclose<CR>
+	nnoremap <Leader>to :tabonly<CR>
 
 	" Quit nvim
 	" nnoremap <silent> <F22> :qa<CR>
