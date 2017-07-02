@@ -104,10 +104,16 @@ let g:fzf_buffers_jump = 1
 
 " Replace the default dictionary completion with fzf-based fuzzy completion
 " sacrifice i_CTRL-d for something more usefull
-imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
+" imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
+
+" Path completion using find (file + dir)
+imap <c-x><c-d> <plug>(fzf-complete-path)
+" File only completion using find
+imap <c-x><c-f> <plug>(fzf-complete-file)
 " Line completion (all open buffers)
-" imap <c-l> <plug>(fzf-complete-line)
-" imap <c-x><c-f> <plug>(fzf-complete-file-ag)
+" use i_CTRL-x_CTRL-l for built-in line completion
+" also see h: cpt
+imap <c-x><c-h> <plug>(fzf-complete-line)
 
 nnoremap <silent><F3> :Rg <C-R><C-W><CR>
 xnoremap <silent><F3> y:Rg <C-R>"<CR>
