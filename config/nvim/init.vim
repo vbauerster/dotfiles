@@ -229,7 +229,7 @@ endfunction
 	nnoremap <expr> <Enter> (&buftype is# "quickfix" ? "\<cr>" : "%")
 
 	" tab shortcuts
-	nnoremap g{ gT
+	nnoremap g+ gT
 	nnoremap g} gt
 	nnoremap gt :tablast<CR>
 	nnoremap gT :tabfirst<CR>
