@@ -1,3 +1,6 @@
+" noinsert adds auto select feature to deoplete
+" set completeopt+=noinsert
+
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
 " Use smartcase.
