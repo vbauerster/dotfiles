@@ -426,8 +426,8 @@ endfunction
 	" upper case
 	inoremap UU <Esc>gUiw`]a
 
-	imap <Nul> <C-Space>
-	inoremap <C-Space> <C-x><C-l>
+	" imap <Nul> <C-Space>
+	" inoremap <C-Space> <C-x><C-l>
 
 	inoremap <expr> + pumvisible() ? "\<c-n>" : "+"
 
