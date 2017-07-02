@@ -1,3 +1,5 @@
+" https://github.com/junegunn/fzf/wiki/Examples-(vim)
+
 function! s:gopath_handler(dir)
   execute 'lcd $GOPATH/src/'.a:dir
   execute 'FZF' . '$GOPATH/src/'.a:dir
@@ -38,7 +40,7 @@ endfunction
 command! Gbranch call fzf#run({
       \ 'source': 'git branch',
       \ 'sink': function('<sid>change_branch'),
-      \ 'left': 15
+      \ 'left': 30
       \ })
 
 command! FZFYank call fzf#run({
@@ -61,8 +63,15 @@ command! FZFGopath call fzf#run({
       \ })
 
 command! FZFPlugConf call fzf#run(fzf#wrap({
-      \ 'source': "ls -1 $DOTFILES/config/nvim/config/plugins",
-      \ 'dir': "$DOTFILES/config/nvim/config/plugins",
+	  \ 'source': "ls -1 $DOTFILES/config/nvim/config/plugins",
+	  \ 'dir': "$DOTFILES/config/nvim/config/plugins",
+	  \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+	  \}))
+
+" Show source files that depends for the current package
+" Same as :GoFiles but with fzf
+command! FZFGoFiles call fzf#run(fzf#wrap({
+      \ 'source': go#tool#Files(),
       \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
       \}))
 

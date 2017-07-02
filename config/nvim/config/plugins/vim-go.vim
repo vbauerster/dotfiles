@@ -16,6 +16,8 @@ augroup GoLang
   autocmd FileType go nnoremap <F2> :up<CR>:Neomake<CR>
   autocmd FileType go nnoremap <F14> :GoFmtAutoSaveToggle<CR>
 
+  autocmd FileType go nnoremap <leader>gf :FZFGoFiles<CR>
+
   autocmd FileType go nmap <F9> <Plug>(go-test)
   autocmd FileType go nmap <F21> <Plug>(go-test-func)
 
