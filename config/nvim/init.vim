@@ -117,7 +117,7 @@ endfunction
 	set number
 	set timeoutlen=400                   " mapping timeout
 	set ttimeoutlen=50                   " keycode timeout
-	set dictionary=/usr/share/dict/words " CTRL-X CTRL-K to autocomplete
+	set dictionary=/usr/share/dict/words " :h i_CTRL-x_CTRL-k
 	set wildmode=list:longest            " TAB auto-completion for file paths
 	set hidden                           " current buffer can be put into background
 	set showcmd                          " show incomplete commands
@@ -125,11 +125,9 @@ endfunction
 	set scrolloff=2                      " lines of text around cursor
 	set foldlevelstart=99                " all folds open by default
 	set cmdheight=1                      " command bar height
+	set complete=.,w,t                   " :h cpt
+	set completeopt=menuone,noselect     " :h cot
 	set noerrorbells
-	set complete=.,w,t
-	set completeopt=menuone,noselect
-	" noinsert adds auto select feature to deoplete
-	" set completeopt=menu,noinsert
 
 	" SPACES & TABS
 	" Explanations from http://tedlogan.com/techblog3.html
