@@ -213,7 +213,7 @@ endfunction
 	" https://github.com/junegunn/fzf.vim/issues/313
 	nnoremap ; :
 	" nnoremap : ;
-	" xnoremap ; :
+	xnoremap ; :
 	" xnoremap : ;
 
 	" Swap implementations of ` and ' jump to markers
