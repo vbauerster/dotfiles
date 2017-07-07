@@ -18,10 +18,10 @@ call deoplete#custom#set('ultisnips', 'rank', 1000)
 " imap     <Nul> <C-Space>
 " inoremap <expr><C-Space> deoplete#mappings#manual_complete()
 
-inoremap <expr><C-z> deoplete#undo_completion()
+" inoremap <expr><C-z> deoplete#undo_completion()
 
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-  return deoplete#close_popup() . "\<CR>"
-endfunction
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function() abort
+"   return deoplete#close_popup() . "\<CR>"
+" endfunction

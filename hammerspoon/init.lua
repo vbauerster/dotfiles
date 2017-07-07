@@ -20,7 +20,8 @@ local hyperModeBindings = {
 	{ 'delete', {}, 'forwarddelete'},
 	{ 'f', {'alt'}, 'k'}, -- for vjump
 	{ 'd', {'alt'}, 'j'}, -- for vjump
-	{ 'b', {'alt'}, 'x'}, -- for autopairs.vim
+	{ 'b', {'alt'}, 'x'}, -- autopairs.vim BackInstert
+	{ ')', {'alt'}, 'n'}, -- autopairs.vim Jump to next closed pair
 	{ 'c', {'alt'}, 'up'},
 	{ 't', {'alt'}, 'down'},
 	{ 'h', {'alt'}, 'left'},
