@@ -38,42 +38,42 @@ function! s:change_branch(e)
 endfunction
 
 command! Gbranch call fzf#run({
-      \ 'source': 'git branch',
-      \ 'sink': function('<sid>change_branch'),
-      \ 'left': 30
-      \ })
+    \ 'source': 'git branch',
+    \ 'sink': function('<sid>change_branch'),
+    \ 'left': 30
+    \ })
 
 command! FZFYank call fzf#run({
-      \ 'source': <sid>yank_list(),
-      \ 'sink': function('<sid>yank_handler'),
-      \ 'options': '-m',
-      \ 'down': 12
-      \ })
+    \ 'source': <sid>yank_list(),
+    \ 'sink': function('<sid>yank_handler'),
+    \ 'options': '-m',
+    \ 'down': 12
+    \ })
 
 command! Plugs call fzf#run({
-      \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
-      \ 'options': '--delimiter / --nth -1',
-      \ 'down':    '~40%',
-      \ 'sink':    'Explore'})
+    \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
+    \ 'options': '--delimiter / --nth -1',
+    \ 'down':    '~40%',
+    \ 'sink':    'Explore'})
 
 command! FZFGopath call fzf#run({
-      \ 'source': "ls -1p $GOPATH/src | awk -F/ '/\\/$/ {print $1}'",
-      \ 'sink': function('<sid>gopath_handler'),
-      \ 'down': '50%'
-      \ })
+    \ 'source': "ls -1p $GOPATH/src | awk -F/ '/\\/$/ {print $1}'",
+    \ 'sink': function('<sid>gopath_handler'),
+    \ 'down': '50%'
+    \ })
 
 command! FZFPlugConf call fzf#run(fzf#wrap({
-	  \ 'source': "ls -1 $DOTFILES/config/nvim/config/plugins",
-	  \ 'dir': "$DOTFILES/config/nvim/config/plugins",
-	  \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
-	  \}))
+    \ 'source': "ls -1 $DOTFILES/config/nvim/config/plugins",
+    \ 'dir': "$DOTFILES/config/nvim/config/plugins",
+    \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+    \}))
 
 " Show source files that depends for the current package
 " Same as :GoFiles but with fzf
 command! FZFGoFiles call fzf#run(fzf#wrap({
-      \ 'source': go#tool#Files(),
-      \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
-      \}))
+    \ 'source': go#tool#Files(),
+    \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+    \}))
 
 " Augmenting Ag command using fzf#vim#with_preview function
 "   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
@@ -103,7 +103,7 @@ command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 if has('nvim')
-	let $FZF_DEFAULT_OPTS .= ' --inline-info'
+    let $FZF_DEFAULT_OPTS .= ' --inline-info'
 endif
 
 " [Buffers] Jump to the existing window if possible
@@ -136,7 +136,8 @@ nnoremap <silent><Leader><Leader> :Buffers<CR>
 nnoremap <silent><Leader>hh :Windows<CR>
 nnoremap <silent><Leader>mm :Commits<CR>
 nnoremap <silent><Leader>bb :BCommits<CR>
-" nnoremap <silent><Leader>bl :BLines<CR>
+" jump to buffel line. Mnemonic Buffer Search
+nnoremap <silent><Leader>bs :BLines<CR>
 " Lines [QUERY] Lines in loaded buffers
 nnoremap <silent><Leader>ll :Lines<CR>
 nnoremap <silent><Leader>' :Marks<CR>
@@ -145,7 +146,7 @@ nnoremap <silent><Leader>/ :History/<CR>
 nnoremap <silent><Leader>pp :Plugs<CR>
 nnoremap <silent><Leader>pc :FZFPlugConf<CR>
 nnoremap <silent><Leader>go :FZFGopath<CR>
-nnoremap <silent><Leader>y :FZFYank<CR>
+nnoremap <silent><Leader>yy :FZFYank<CR>
 
 nmap <leader>nn <plug>(fzf-maps-n)
 " xmap <leader><tab> <plug>(fzf-maps-x)
