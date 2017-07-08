@@ -7,4 +7,4 @@ let g:rooter_use_lcd = 1
 " To stop vim-rooter echoing the project directory:
 let g:rooter_silent_chdir = 1
 
-" nnoremap <silent><F5> :Rooter<CR>
+nnoremap <leader>rt :Rooter<CR>:pwd<CR>
