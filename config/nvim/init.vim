@@ -134,7 +134,7 @@ endfunction
 	set tabstop=4     " How many columns a tab counts for
 	set softtabstop=4 " insert mode behaviour of TAB and BS
 	set shiftwidth=0  " When zero the 'ts' value will be used
-	" set expandtab     " Use spaces
+	set expandtab     " Use spaces
 	set smartindent   " Normally 'autoindent' should also be on when using 'smartindent'
 	set ruler         " show the cursor position all the time
 	set nojoinspaces  " Prevents inserting two spaces after punctuation on a join (J)
