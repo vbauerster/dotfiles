@@ -143,7 +143,7 @@ nnoremap <silent><Leader>ll :Lines<CR>
 nnoremap <silent><Leader>' :Marks<CR>
 nnoremap <silent><Leader>; :History:<CR>
 nnoremap <silent><Leader>/ :History/<CR>
-nnoremap <silent><Leader>pp :Plugs<CR>
+nnoremap <silent><Leader>pl :Plugs<CR>
 nnoremap <silent><Leader>pc :FZFPlugConf<CR>
 nnoremap <silent><Leader>go :FZFGopath<CR>
 nnoremap <silent><Leader>yy :FZFYank<CR>

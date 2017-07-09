@@ -204,6 +204,7 @@ endfunction
   nnoremap cu :lcd ..<BAR>pwd<CR>
   nnoremap cD :cd %:p:h<BAR>pwd<CR>
   nnoremap cU :cd ..<BAR>pwd<CR>
+  nnoremap <leader>pp :pwd<CR>
 
   " In normal mode, we use : much more often than ; so lets swap them.
   " WARNING: this will cause any "ordinary" map command without the "nore" prefix
