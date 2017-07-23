@@ -123,7 +123,8 @@ endfunction
   set showcmd                          " show incomplete commands
   set noshowmode                       " don't show which mode disabled for PowerLine
   set scrolloff=2                      " lines of text around cursor
-  set foldlevelstart=99                " all folds open by default
+  " set foldlevelstart=99                " all folds open by default
+  set foldmethod=syntax
   set cmdheight=1                      " command bar height
   set complete=.,w,t                   " :h cpt
   set completeopt=menuone,noselect     " :h cot

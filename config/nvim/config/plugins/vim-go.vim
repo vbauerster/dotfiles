@@ -5,12 +5,14 @@ let g:go_highlight_functions = 1
 " let g:go_highlight_types = 1
 let g:go_term_enabled = 1
 let g:go_fmt_command = "goimports"
-" let g:go_snippet_engine = "neosnippet"
+let g:go_fold_enable = ['import']
+
 
 augroup GoLang
   autocmd!
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
   autocmd FileType go nmap <F1> <Plug>(go-describe)
+  autocmd FileType go nmap <F13> <Plug>(go-implements)
 
   " shift F2
   autocmd FileType go nnoremap <F2> :up<CR>:Neomake<CR>
