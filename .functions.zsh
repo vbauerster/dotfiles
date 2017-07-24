@@ -199,7 +199,7 @@ ch() {
 # ----------------------
 # export BACKGROUND env var
 if [ -z "$BACKGROUND" ]; then
-    export BACKGROUND="dark"
+    export BACKGROUND="light"
 fi
 
 # set the background color to light
@@ -259,13 +259,13 @@ e() {
 }
 
 ..cd() {
-	cd ..
-	cd "$@"
+    cd ..
+    cd "$@"
 }
 
 # http://artkoshelev.github.io/posts/sed-for-configs
 catconf() {
-	cat "$@" | sed '/ *#/d; /^ *$/d'
+    cat "$@" | sed '/ *#/d; /^ *$/d'
 }
 
 # searches the current directory subtree for files with names containing a
