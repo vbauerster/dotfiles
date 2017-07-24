@@ -68,12 +68,19 @@ command! FZFPlugConf call fzf#run(fzf#wrap({
     \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
     \}))
 
-" Show source files that depends for the current package
+" Show go source files that depends for the current package
 " Same as :GoFiles but with fzf
-command! FZFGoFiles call fzf#run(fzf#wrap({
+command! -bang FZFGoFiles call fzf#run(fzf#wrap({
     \ 'source': go#tool#Files(),
     \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
-    \}))
+    \}, <bang>0))
+
+" Show go test files
+" Same as :GoFiles TestGoFiles XTestGoFiles but with fzf
+command! -bang FZFTestGoFiles call fzf#run(fzf#wrap({
+    \ 'source': go#tool#Files('TestGoFiles', 'XTestGoFiles'),
+    \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+    \}, <bang>0))
 
 " Augmenting Ag command using fzf#vim#with_preview function
 "   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
@@ -151,3 +158,18 @@ nnoremap <silent><Leader>yy :FZFYank<CR>
 nmap <leader>nn <plug>(fzf-maps-n)
 " xmap <leader><tab> <plug>(fzf-maps-x)
 " omap <leader><tab> <plug>(fzf-maps-o)
+
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
