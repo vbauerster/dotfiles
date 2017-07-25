@@ -11,21 +11,17 @@ hyper = {'ctrl', 'alt', 'shift'}
 -- table lookup: hs.inspect(hs.keycodes.map)
 -- https://github.com/Hammerspoon/hammerspoon/issues/1307
 local hyperModeBindings = {
-	-- { ')', {}, 'pageup'},
-	-- { ']', {}, 'pagedown'},
-	{ 'g', {}, 'home'},
-	{ 'r', {}, 'end'},
+	{ 'g', {}, 'pageup'},
+	{ 'r', {}, 'pagedown'},
 	{ 'm', {}, 'return'},
 	{ 's', {}, 'tab'},
 	{ 'delete', {}, 'forwarddelete'},
-	{ 'f', {'alt'}, 'k'}, -- for vjump
-	{ 'd', {'alt'}, 'j'}, -- for vjump
+	{ 'h', {}, 'home'},
+	{ 'n', {}, 'end'},
+	{ 'c', {'alt'}, 'k'}, -- for vjump
+	{ 't', {'alt'}, 'j'}, -- for vjump
 	{ 'b', {'alt'}, 'x'}, -- autopairs.vim BackInstert
 	{ ')', {'alt'}, 'n'}, -- autopairs.vim Jump to next closed pair
-	{ 'c', {'alt'}, 'up'},
-	{ 't', {'alt'}, 'down'},
-	{ 'h', {'alt'}, 'left'},
-	{ 'n', {'alt'}, 'right'},
 	{ '+', {'alt'}, 'pad+'},
 	{ '-', {'alt'}, 'pad-'},
 	{ 'u', {'cmd'}, 'z'},
@@ -42,6 +38,26 @@ for i,bnd in ipairs(hyperModeBindings) do
 		-- Repeat:
 		hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
 	end)
+end
+
+local hyperCmdModeBindings = {
+	{ 'c', {'alt'}, 'up'},
+	{ 't', {'alt'}, 'down'},
+	{ 'h', {'alt'}, 'left'},
+	{ 'n', {'alt'}, 'right'},
+}
+
+for i,bnd in ipairs(hyperCmdModeBindings) do
+    hs.hotkey.bind({'ctrl', 'alt', 'shift', 'cmd'}, bnd[1], function()
+        -- Pressed:
+        hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], true):post()
+    end, function()
+        -- Released:
+        hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], false):post()
+    end, function()
+        -- Repeat:
+        hs.eventtap.event.newKeyEvent(bnd[2], bnd[3], true):setProperty(hs.eventtap.event.properties.keyboardEventAutorepeat, 1):post()
+    end)
 end
 
 hs.hotkey.bind({"ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd"}, "v") end)
