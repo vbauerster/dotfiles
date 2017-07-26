@@ -277,7 +277,8 @@ endfunction
   " copy entire file contents (to gui-clipboard if available)
   nnoremap gy :let b:winview=winsaveview()<bar>exe 'keepjumps keepmarks norm ggVG'.(has('clipboard')?'"*y':'y')<bar>call winrestview(b:winview)<cr>
   " https://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
-  nnoremap <silent> cp :exe ':let '.(has('clipboard')?'@*':'@"').'=expand("%")'<cr>
+  nnoremap <silent> cp :exe ':let '.(has('clipboard')?'@*':'@"').'=expand("%:p")'<cr>
+        \ :echon '"'expand("%:p")'" copied into 'has('clipboard')?'*':'"' 'register'<cr>
 
   " make U consistent with H
   nnoremap U L
