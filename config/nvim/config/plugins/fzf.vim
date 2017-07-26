@@ -72,14 +72,16 @@ command! FZFPlugConf call fzf#run(fzf#wrap({
 " Same as :GoFiles but with fzf
 command! -bang FZFGoFiles call fzf#run(fzf#wrap({
     \ 'source': go#tool#Files(),
-    \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+    \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"',
+    \ 'down':    '40%',
     \}, <bang>0))
 
 " Show go test files
 " Same as :GoFiles TestGoFiles XTestGoFiles but with fzf
 command! -bang FZFTestGoFiles call fzf#run(fzf#wrap({
     \ 'source': go#tool#Files('TestGoFiles', 'XTestGoFiles'),
-    \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+    \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"',
+    \ 'down':    '40%',
     \}, <bang>0))
 
 " Augmenting Ag command using fzf#vim#with_preview function
