@@ -1,9 +1,10 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " colorschemes
-Plug 'morhetz/gruvbox'
-" The colorscheme with neovim in mind
+Plug 'rakr/vim-one'
+" Plug 'morhetz/gruvbox'
 " Plug 'freeo/vim-kalisi'
+" Plug 'junegunn/seoul256.vim'
 
 " Essential
 Plug 'tpope/vim-repeat'

@@ -6,7 +6,7 @@
 "}}}
 
 " termcolors {{{
-  source ~/.config/nvim/config/termcolors.vim
+  " source ~/.config/nvim/config/termcolors.vim
 "}}}
 
 " abbr {{{
@@ -83,18 +83,24 @@ function! s:vjump(dir)
 endfunction
 "}}}
 
+" COLORSCHEME {{{
+  " let g:gruvbox_contrast_light='hard'
+  " let g:gruvbox_contrast_dark='soft'
+  " let g:gruvbox_italic=1
+  " let g:gruvbox_improved_strings=1
+  " let g:gruvbox_improved_warnings=1
+  execute "set background=".$BACKGROUND
+  let g:one_allow_italics = 1
+  colorscheme one
+  call one#highlight('function', '', '', 'bold')
+"}}}
+
 " BASIC SETTINGS {{{
   let mapleader = ' '
   let maplocalleader = ' '
 
   let g:python_host_prog = "/usr/local/bin/python2"
   let g:python3_host_prog = "/usr/local/bin/python3"
-
-  let g:gruvbox_contrast_light='medium'
-  let g:gruvbox_contrast_dark='soft'
-  let g:gruvbox_italic=1
-  execute "set background=".$BACKGROUND
-  colorscheme gruvbox
 
   " https://github.com/neovim/neovim/pull/4690
   set termguicolors
