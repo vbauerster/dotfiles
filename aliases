@@ -51,3 +51,5 @@ alias tmu='tmux list-sessions'
 
 # git
 alias g='git'
+
+alias eV='cd ~/dotfiles/config/nvim && nvim init.vim'
