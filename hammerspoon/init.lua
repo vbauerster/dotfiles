@@ -60,10 +60,10 @@ for i,bnd in ipairs(hyperCmdModeBindings) do
     end)
 end
 
-hs.hotkey.bind({"ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd"}, "v") end)
-hs.hotkey.bind({"ctrl"}, ",", function() hs.eventtap.keyStroke({"cmd"}, "c") end)
-hs.hotkey.bind({"ctrl"}, ";", function() hs.eventtap.keyStroke({"cmd"}, "x") end)
-hs.hotkey.bind({"cmd", "ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd", "alt"}, "v") end)
+hs.hotkey.bind({"ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd"}, 47) end)
+hs.hotkey.bind({"ctrl"}, ",", function() hs.eventtap.keyStroke({"cmd"}, 34) end)
+hs.hotkey.bind({"ctrl"}, ";", function() hs.eventtap.keyStroke({"cmd"}, 7) end)
+hs.hotkey.bind({"ctrl", "shift"}, ".", function() hs.eventtap.keyStroke({"cmd", "alt"}, 47) end)
 
 require 'window-management'
 require 'numpad'
