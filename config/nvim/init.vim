@@ -121,7 +121,7 @@ endfunction
   set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
   set number
-  set timeoutlen=400                   " mapping timeout
+  set timeoutlen=450                   " mapping timeout
   set ttimeoutlen=50                   " keycode timeout
   set dictionary=/usr/share/dict/words " :h i_CTRL-x_CTRL-k
   set wildmode=list:longest            " TAB auto-completion for file paths
