@@ -195,13 +195,13 @@ endfunction
   nnoremap <Leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
   nnoremap <Leader>so :so $MYVIMRC<CR>
   " edit vim plugins
-  nnoremap <Leader>ep :e ~/.config/nvim/config/plugs.vim<CR>
+  nnoremap <Leader>ep :e ~/dotfiles/config/nvim/config/plugs.vim<CR>
   " edit gitconfig
-  nnoremap <Leader>eg :e ~/.gitconfig<CR>
+  nnoremap <Leader>eg :e ~/dotfiles/gitconfig<CR>
   " edit tmux.conf
-  nnoremap <Leader>et :e ~/.tmux.conf<CR>
+  nnoremap <Leader>et :e ~/dotfiles/tmux.conf<CR>
   " edit zshrc
-  nnoremap <Leader>ez :e ~/.zshrc<CR>
+  nnoremap <Leader>ez :e ~/dotfiles/zshrc<CR>
   " edit/view log from wi-fi box
   " nnoremap <Leader>ewm :e scp://root@192.168.2.1//var/log/messages<CR>
   " nnoremap <Leader>ewu :e scp://root@192.168.2.1//jffs/runblock/runblock.dnsmasq<CR>
