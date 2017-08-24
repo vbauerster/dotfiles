@@ -19,6 +19,7 @@ augroup GoLang
   autocmd FileType go nnoremap <F14> :GoFmtAutoSaveToggle<CR>
 
   autocmd FileType go nnoremap <leader>gf :FZFGoFiles<CR>
+  autocmd FileType go nnoremap <leader>gt :FZFTestGoFiles<CR>
 
   autocmd FileType go nmap <F9> <Plug>(go-test)
   autocmd FileType go nmap <F21> <Plug>(go-test-func)
@@ -30,8 +31,8 @@ augroup GoLang
   autocmd FileType go nmap <F7> <Plug>(go-sameids-toggle)
   autocmd FileType go nmap <F19> <Plug>(go-callers)
 
-  autocmd FileType go nmap <Leader>dx <Plug>(go-def-split)
-  autocmd FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+  autocmd FileType go nmap <Leader>di <Plug>(go-def-split)
+  autocmd FileType go nmap <Leader>ds <Plug>(go-def-vertical)
   autocmd FileType go nmap <Leader>dt <Plug>(go-def-tab)
   autocmd FileType go setlocal tabstop=4
   autocmd FileType go setlocal softtabstop=4
