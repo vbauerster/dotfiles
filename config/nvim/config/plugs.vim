@@ -39,7 +39,7 @@ Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'majutsushi/tagbar'
 Plug 'neomake/neomake'
 Plug 'junegunn/vim-easy-align'
-Plug 'FooSoft/vim-argwrap'    " Wrap a paremeter list accross multiple lines
+Plug 'FooSoft/vim-argwrap'    " <Leader>aw
 Plug 'tommcdo/vim-exchange'   " cx to exchange
 Plug 'chaoren/vim-wordmotion' " CamelCase motion
 Plug 'junegunn/goyo.vim'
@@ -128,7 +128,7 @@ Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'romainl/vim-qf'
 Plug 'blueyed/vim-qf_resize'
-Plug 'wesQ3/vim-windowswap'      " <leader>ww to swap windows
+Plug 'wesQ3/vim-windowswap'      " <Leader>ww to swap windows
 Plug 'justinmk/vim-gtfo'         " got/gof mappings
 Plug 'ron89/thesaurus_query.vim' " <Leader>cs
 
