@@ -156,6 +156,7 @@ nnoremap <silent><Leader>pl :Plugs<CR>
 nnoremap <silent><Leader>pc :FZFPlugConf<CR>
 nnoremap <silent><Leader>go :FZFGopath<CR>
 nnoremap <silent><Leader>yy :FZFYank<CR>
+nnoremap <silent><Leader>cb :Gbranch<CR>
 
 nmap <leader>nn <plug>(fzf-maps-n)
 " xmap <leader><tab> <plug>(fzf-maps-x)
