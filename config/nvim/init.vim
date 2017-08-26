@@ -499,6 +499,7 @@ endfunction
   tmap <C-h> ,.<C-h>
   tmap <C-l> ,.<C-l>
   tmap <C-\> ,.<C-\>
+  tmap <C-w> ,.<C-w>
 "}}}
 
 " AUTOCMD {{{
