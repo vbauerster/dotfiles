@@ -8734,17 +8734,17 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>359 211 801 295 0 0 1440 877 </string>
+	<string>359 211 801 161 0 0 1440 877 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>80 421 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
-	<string>-1160 803 400 129 -1920 0 1920 1200 </string>
+	<string>518 578 400 129 0 0 1440 900 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>390 381 620 392 0 0 1440 900 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>397 422 918 416 0 0 1440 877 </string>
+	<string>336 440 918 394 0 0 1440 877 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1737 270 592 584 1440 -124 1280 1001 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
@@ -14724,13 +14724,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.73338055610656738</real>
+				<real>0.84313725490196079</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.93639552593231201</real>
+				<real>0.96078431372549022</real>
 				<key>Red Component</key>
-				<real>0.97939503192901611</real>
+				<real>0.97647058823529409</real>
 			</dict>
 			<key>Ansi 1 Color</key>
 			<dict>
@@ -15589,7 +15589,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Thin Strokes</key>
-			<integer>1</integer>
+			<integer>0</integer>
 			<key>Transparency</key>
 			<real>0.080541846258973357</real>
 			<key>Triggers</key>
@@ -15792,7 +15792,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-08-17T20:11:02Z</date>
+	<date>2017-08-21T16:57:29Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Selection Respects Soft Boundaries</key>
@@ -15852,7 +15852,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.beta.6</string>
+	<string>3.1.beta.7</string>
 	<key>kCPFavoritesUserDefaultsKey</key>
 	<array>
 		<data>
