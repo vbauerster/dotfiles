@@ -21,8 +21,8 @@ augroup GoLang
   autocmd FileType go nnoremap <leader>gf :FZFGoFiles<CR>
   autocmd FileType go nnoremap <leader>gt :FZFTestGoFiles<CR>
 
-  autocmd FileType go nmap <F9> <Plug>(go-test)
-  autocmd FileType go nmap <F21> <Plug>(go-test-func)
+  autocmd FileType go nmap <F8> <Plug>(go-test)
+  autocmd FileType go nmap <F20> <Plug>(go-test-func)
 
   autocmd FileType go nmap <F5> <Plug>(go-build)
 
