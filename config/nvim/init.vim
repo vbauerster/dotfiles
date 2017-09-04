@@ -277,6 +277,7 @@ endfunction
   " copy selection to gui-clipboard
   xnoremap Y "*y
   " copy entire file contents (to gui-clipboard if available)
+  " mnemomic: global yank
   nnoremap gy :let b:winview=winsaveview()<bar>exe 'keepjumps keepmarks norm ggVG'.(has('clipboard')?'"*y':'y')<bar>call winrestview(b:winview)<cr>
   " copy full path into clipboard if available otherwise into unnamed register (" and 0)
   " https://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
