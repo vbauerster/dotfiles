@@ -141,7 +141,7 @@ nnoremap <silent> <expr> <Leader>- (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '')
 nnoremap <silent><C-_> :GFiles<CR>
 nnoremap <silent>g. :GFiles?<CR>
 nnoremap <silent><Leader><Leader> :Buffers<CR>
-" nnoremap <silent><Leader>hh :History<CR>
+nnoremap <silent><Leader>mu :History<CR>
 nnoremap <silent><Leader>hh :Windows<CR>
 nnoremap <silent><Leader>mm :Commits<CR>
 nnoremap <silent><Leader>bb :BCommits<CR>
