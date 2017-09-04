@@ -84,15 +84,17 @@ endfunction
 "}}}
 
 " COLORSCHEME {{{
-  " let g:gruvbox_contrast_light='hard'
-  " let g:gruvbox_contrast_dark='soft'
-  " let g:gruvbox_italic=1
+  execute "set background=".$BACKGROUND
+  let g:gruvbox_contrast_light='hard'
+  let g:gruvbox_contrast_dark='soft'
+  let g:gruvbox_italic=1
   " let g:gruvbox_improved_strings=1
   " let g:gruvbox_improved_warnings=1
-  execute "set background=".$BACKGROUND
-  let g:one_allow_italics = 1
-  colorscheme one
-  call one#highlight('function', '', '', 'bold')
+  colorscheme gruvbox
+
+  " let g:one_allow_italics = 1
+  " colorscheme one
+  " call one#highlight('function', '', '', 'bold')
 "}}}
 
 " BASIC SETTINGS {{{

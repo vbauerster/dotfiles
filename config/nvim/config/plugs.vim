@@ -1,8 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " colorschemes
-Plug 'rakr/vim-one'
-" Plug 'morhetz/gruvbox'
+" Plug 'rakr/vim-one'
+Plug 'morhetz/gruvbox'
 " Plug 'freeo/vim-kalisi'
 " Plug 'junegunn/seoul256.vim'
 
