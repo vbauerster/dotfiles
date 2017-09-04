@@ -263,7 +263,7 @@ endfunction
   nnoremap <F2> :w<CR>
 
   " Buffer reload
-  nnoremap <Leader>rr :e!<CR>
+  nnoremap <Leader>R :e!<CR>
 
   " Read :help ctrl-w_w
   " Read :help wincmd
