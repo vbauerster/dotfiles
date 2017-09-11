@@ -416,8 +416,12 @@ endfunction
   " -----------------------------------------------------------
   " => search related
   " -----------------------------------------------------------
-  nmap <Leader>* ]I
-  nmap <Leader># [I
+  " nmap <Leader>* ]I
+  " nmap <Leader># [I
+
+  " <leader>ff shows list for relative jump
+  nmap <leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
   " find current word in quickfix
   " nnoremap <Leader>g* :execute "vimgrep ".expand("<cword>")." %"<CR>:copen<CR><C-w>W
   " find last search in quickfix
