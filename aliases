@@ -7,6 +7,7 @@ alias rmm="rm -rf"
 alias q='exit'
 alias u='ll'
 alias uh='la'
+alias ut='lt'
 alias cdu='cdls'
 alias md='mkdcd'
 
