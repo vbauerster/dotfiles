@@ -240,10 +240,10 @@ endfunction
   nnoremap <expr> <Enter> (&buftype is# "quickfix" ? "\<cr>" : "%")
 
   " tab shortcuts
-  nnoremap g+ gT
-  nnoremap g} gt
-  nnoremap gt :tablast<CR>
-  nnoremap gT :tabfirst<CR>
+  nnoremap g+ gt
+  nnoremap g- gT
+  " nnoremap gt :tablast<CR>
+  " nnoremap gT :tabfirst<CR>
   nnoremap <Leader>tn :tabnew<CR>
   nnoremap <Leader>tx :tabclose<CR>
   nnoremap <Leader>to :tabonly<CR>
