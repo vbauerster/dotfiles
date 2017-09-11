@@ -13,8 +13,8 @@ let g:qf_auto_resize = 0
 nmap <F11> <Plug>qf_loc_stay_toggle
 nmap <F12> <Plug>qf_qf_stay_toggle
 nmap <Leader><tab> <Plug>qf_qf_switch
-nmap [x <Plug>qf_loc_previous
-nmap ]x <Plug>qf_loc_next
+nmap [- <Plug>qf_loc_previous
+nmap ]- <Plug>qf_loc_next
 
 " nnoremap <silent> <F11> :lcl<CR>
 " nnoremap <silent> <F12> :ccl<CR>
