@@ -280,11 +280,15 @@ endfunction
 
   " Read :help ctrl-w_w
   " Read :help wincmd
-  nnoremap <Tab> <C-w>w
-  nnoremap <S-Tab> <C-w>W
-  " Go to previous (last accessed) window
-  " nnoremap <Leader><Tab> <C-w>p
+  "  <C-w>w
+  "  <C-w>W
+  "  <C-w>T "Move the current window to a new tab page
+  "  <C-w>p "Go to previous (last accessed) window
+  "  <C-w>p "Go to preview window
+  "  <C-w>z "Close any 'Preview' window currently open
 
+  " quick access to yank reg
+  noremap "" "0
   " make Y consistent with C and D. See :help Y.
   nnoremap Y y$
   " copy selection to gui-clipboard
