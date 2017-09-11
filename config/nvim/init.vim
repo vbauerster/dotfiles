@@ -233,17 +233,27 @@ endfunction
   nnoremap ' `
   nnoremap ` '
 
-  " quick access to yank reg
-  noremap "" "0
+  " reselect last paste
+  nnoremap gp '[V']
+
+  " переместить одну строку
+  nmap <S-Home> ddkP
+  nmap <S-End> ddp
+  " переместить несколько выделенных строк http://www.vim.org/scripts/script.php?script_id=1590
+  vmap <S-Home> xkP'[V']
+  vmap <S-End> xp'[V']
 
   " don't override enter behavior in quickfix/location windows
   nnoremap <expr> <Enter> (&buftype is# "quickfix" ? "\<cr>" : "%")
 
   " tab shortcuts
-  nnoremap g+ gt
-  nnoremap g- gT
-  " nnoremap gt :tablast<CR>
-  " nnoremap gT :tabfirst<CR>
+  " nnoremap g+ gt
+  " nnoremap g- gT
+  " Tab and Shift-Tab switches opened tabs in normal mode
+  nnoremap <Tab> gt
+  nnoremap <S-Tab> gT
+  nnoremap gt :tablast<CR>
+  nnoremap gT :tabfirst<CR>
   nnoremap <Leader>tn :tabnew<CR>
   nnoremap <Leader>tx :tabclose<CR>
   nnoremap <Leader>to :tabonly<CR>
