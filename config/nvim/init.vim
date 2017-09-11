@@ -306,9 +306,6 @@ endfunction
   " make U consistent with H
   nnoremap U L
 
-  " reselect last paste
-  nnoremap gp `[v`]
-
   " Search in normal mode with very magic on
   " nnoremap / /\v
   " nnoremap ? ?\v
@@ -395,8 +392,8 @@ endfunction
   nnoremap <silent> <Leader>= :wincmd =<cr>:QfResizeWindows<cr>
   nnoremap <Leader>z <C-w><Bar><C-w>_
   nnoremap <Leader>o <C-w>o
-  nnoremap <Leader>v <C-w>v
-  nnoremap <Leader>x <C-w>s
+  nnoremap <Leader>ws <C-w>v
+  " nnoremap <Leader>x <C-w>s
 
   " http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
   " z{nr}<CR>  Set current window height to {nr}.
