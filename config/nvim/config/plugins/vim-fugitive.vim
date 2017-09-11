@@ -6,10 +6,11 @@ nnoremap <silent> <leader>gl :Glog<CR>
 nnoremap <silent> <leader>gs :Gvsplit<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 " Git add %
-nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>g+ :Gwrite<CR>
 " Git rm %
-nnoremap <silent> <leader>gx :Gremove<CR>
+nnoremap <silent> <leader>g- :Gremove<CR>
 " Git checkout %
+" mnemominc git undo
 nnoremap <silent> <leader>gu :Gread<CR>
 
 au FileType gitcommit nnoremap <buffer> <silent> cn :<C-U>Gcommit --amend --date="$(date)"<CR>
