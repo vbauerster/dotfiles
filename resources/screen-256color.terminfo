@@ -1,3 +1,4 @@
+# https://wiki.archlinux.org/index.php/Tmux#xterm-keys
 # A screen- based TERMINFO that declares the escape sequences
 # enabled by the tmux config "set-window-option -g xterm-keys".
 #
@@ -11,7 +12,7 @@
 #
 # Prefix the name with xterm- since some applications inspect
 # the TERM *name* in addition to the terminal capabilities advertised.
-xterm-256color|GNU Screen with 256 colors bce and tmux xterm-keys,
+screen-256color|GNU Screen with 256 colors bce and tmux xterm-keys,
 
 # As of Nov'11, the below keys are picked up by
 # .../tmux/blob/master/trunk/xterm-keys.c:
@@ -19,7 +20,10 @@ xterm-256color|GNU Screen with 256 colors bce and tmux xterm-keys,
     kIC=\E[2;2~, kLFT=\E[1;2D, kNXT=\E[6;2~, kPRV=\E[5;2~,
     kRIT=\E[1;2C,
 
-# italic
+# smso/rmso(standout)
+    smso=\E[7m, rmso=\E[27m,
+
+# sitm/ritm(italics)
     sitm=\E[3m, ritm=\E[23m,
 
 # Change this to screen-256color if the terminal you run tmux in
