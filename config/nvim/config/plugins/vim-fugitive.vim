@@ -6,9 +6,9 @@ nnoremap <silent> <leader>gl :Glog<CR>
 nnoremap <silent> <leader>gs :Gvsplit<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 " Git add %
-nnoremap <silent> <leader>g+ :Gwrite<CR>
+nnoremap <silent> g+ :Gwrite<CR>
 " Git rm %
-nnoremap <silent> <leader>g- :Gremove<CR>
+nnoremap <silent> g- :Gremove<CR>
 " Git checkout %
 " mnemominc git undo
 nnoremap <silent> <leader>gu :Gread<CR>
