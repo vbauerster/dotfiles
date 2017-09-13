@@ -12,24 +12,24 @@ augroup GoLang
   autocmd!
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
   autocmd FileType go nmap <F1> <Plug>(go-describe)
-  autocmd FileType go nmap <F13> <Plug>(go-implements)
+  autocmd FileType go nmap <S-F1> <Plug>(go-implements)
 
   " shift F2
   autocmd FileType go nnoremap <F2> :up<CR>:Neomake<CR>
-  autocmd FileType go nnoremap <F14> :GoFmtAutoSaveToggle<CR>
+  autocmd FileType go nnoremap <S-F2> :GoFmtAutoSaveToggle<CR>
 
   autocmd FileType go nnoremap <leader>gf :FZFGoFiles<CR>
   autocmd FileType go nnoremap <leader>gt :FZFTestGoFiles<CR>
 
   autocmd FileType go nmap <F8> <Plug>(go-test)
-  autocmd FileType go nmap <F20> <Plug>(go-test-func)
+  autocmd FileType go nmap <S-F8> <Plug>(go-test-func)
 
   autocmd FileType go nmap <F5> <Plug>(go-build)
 
   autocmd FileType go nmap <F6> <Plug>(go-rename)
 
   autocmd FileType go nmap <F7> <Plug>(go-sameids-toggle)
-  autocmd FileType go nmap <F19> <Plug>(go-callers)
+  autocmd FileType go nmap <S-F7> <Plug>(go-callers)
 
   autocmd FileType go nmap <Leader>di <Plug>(go-def-split)
   autocmd FileType go nmap <Leader>ds <Plug>(go-def-vertical)
