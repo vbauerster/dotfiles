@@ -237,11 +237,11 @@ endfunction
   nnoremap gp '[V']
 
   " переместить одну строку
-  nmap <S-Home> ddkP
-  nmap <S-End> ddp
+  nmap <Home> ddkP
+  nmap <End> ddp
   " переместить несколько выделенных строк http://www.vim.org/scripts/script.php?script_id=1590
-  vmap <S-Home> xkP'[V']
-  vmap <S-End> xp'[V']
+  vmap <Home> xkP'[V']
+  vmap <End> xp'[V']
 
   " don't override enter behavior in quickfix/location windows
   nnoremap <expr> <Enter> (&buftype is# "quickfix" ? "\<cr>" : "%")
