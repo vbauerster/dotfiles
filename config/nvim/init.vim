@@ -303,9 +303,6 @@ endfunction
   nnoremap <silent> cp :exe ':let '.(has('clipboard')?'@*':'@"').'=expand("%:p")'<cr>
         \ :echon '"'expand("%:p")'" copied into 'has('clipboard')?'*':'"' 'register'<cr>
 
-  " make U consistent with H
-  nnoremap U L
-
   " Search in normal mode with very magic on
   " nnoremap / /\v
   " nnoremap ? ?\v
