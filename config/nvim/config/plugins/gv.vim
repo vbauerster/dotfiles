@@ -1,6 +1,6 @@
 " Commits All
-nnoremap <silent> <leader>gh :GV<CR>
+nnoremap  g/ :GV<CR>
 " Commits Only of the current file
-nnoremap <silent> <leader>g! :GV!<CR>
+nnoremap  g= :GV!<CR>
 " Commits Revisions of the current file
-nnoremap <silent> g= :GV?<CR>
+nnoremap  g! :GV?<CR>
