@@ -1,6 +1,6 @@
 [user]
-    name = Vladimir Bauer
-    email = vbauerster@gmail.com
+	name = Vladimir Bauer
+	email = vbauerster@gmail.com
 [color]
     ui = auto
 [push]
@@ -27,7 +27,7 @@
 [credential]
     helper = osxkeychain
 [core]
-    excludesfile = /Users/vbauer/.gitignore
+	excludesfile = /Users/vbauer/.gitignore
     editor = nvim
 [filter "lfs"]
     clean = git-lfs clean %f
@@ -51,7 +51,7 @@
 [merge]
     tool = gitmerge
 [commit]
-    template = /Users/vbauer/.stCommitMsg
+	template = /Users/vbauer/.stCommitMsg
 [color "diff"]
     old = red dim
     new = green italic
