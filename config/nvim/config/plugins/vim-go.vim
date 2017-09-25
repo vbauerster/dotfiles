@@ -14,12 +14,14 @@ augroup GoLang
   autocmd FileType go nmap <F1> <Plug>(go-describe)
   autocmd FileType go nmap <S-F1> <Plug>(go-implements)
 
-  " shift F2
   autocmd FileType go nnoremap <F2> :up<CR>:Neomake<CR>
   autocmd FileType go nnoremap <S-F2> :GoFmtAutoSaveToggle<CR>
 
-  autocmd FileType go nnoremap <leader>gf :FZFGoFiles<CR>
-  autocmd FileType go nnoremap <leader>gt :FZFTestGoFiles<CR>
+  autocmd FileType go nnoremap <leader>of :FZFGoFiles<CR>
+  autocmd FileType go nnoremap <leader>ot :FZFTestGoFiles<CR>
+
+  autocmd FileType go nnoremap <leader>oc :GoDecls<CR>
+  autocmd FileType go nnoremap <leader>od :GoDeclsDir<CR>
 
   autocmd FileType go nmap <F8> <Plug>(go-test)
   autocmd FileType go nmap <S-F8> <Plug>(go-test-func)
