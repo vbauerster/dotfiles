@@ -247,16 +247,18 @@ endfunction
   nnoremap <expr> <Enter> (&buftype is# "quickfix" ? "\<cr>" : "%")
 
   " tab shortcuts
-  " nnoremap g+ gt
-  " nnoremap g- gT
   " Tab and Shift-Tab switches opened tabs in normal mode
   nnoremap <Tab> gt
   nnoremap <S-Tab> gT
-  nnoremap gt :tablast<CR>
-  nnoremap gT :tabfirst<CR>
   nnoremap <Leader>tn :tabnew<CR>
   nnoremap <Leader>tc :tabclose<CR>
   nnoremap <Leader>to :tabonly<CR>
+
+  " Go to last active tab
+  " https://stackoverflow.com/questions/2119754/switch-to-last-active-tab-in-vim#2120168
+  " https://superuser.com/questions/410982/in-vim-how-can-i-quickly-switch-between-tabs
+  au TabLeave * let g:lasttab = tabpagenr()
+  nnoremap <Leader>tt :exe "tabn ".g:lasttab<CR>
 
   " Quit nvim
   " nnoremap <silent> <F22> :qa<CR>
@@ -370,8 +372,8 @@ endfunction
   nnoremap <silent><Leader>cc :call clearmatches()<CR>:noh<CR>
 
   " Start terminal
-  nnoremap <silent><Leader>tt <C-w>v:te<CR>
-  nnoremap <silent><Leader>tm <C-w>s<C-w>J8<C-w>-:te<CR>
+  nnoremap <silent><Leader>ts <C-w>v:te<CR>
+  nnoremap <silent><Leader>th <C-w>s<C-w>J8<C-w>-:te<CR>
   " resize terminal horizontally
   nnoremap <expr><Up> &buftype ==# "terminal" ? "\<C-w>+<CR>" : "\<Up>"
   nnoremap <expr><Down> &buftype ==# "terminal" ? "\<C-w>-<CR>" : "\<Down>"
