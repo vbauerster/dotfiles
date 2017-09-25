@@ -261,15 +261,9 @@ endfunction
   nnoremap <Leader>tt :exe "tabn ".g:lasttab<CR>
 
   " Quit nvim
-  " nnoremap <silent> <F22> :qa<CR>
-  " Quit/close window
-  " <C-w> c Close the current window
-  " <C-w> z Close any 'Preview' window currently open
-  " <C-w> P Go to preview window
   nnoremap <Leader>q :q<CR>
   nnoremap <Leader>! :q!<CR>
   nnoremap <silent> <F10> :bd<CR>
-  " nnoremap <F22> <C-w>c
 
   " F1 will search help for the word under the cursor
   nnoremap <F1> :help <C-r><C-w><CR>
@@ -284,10 +278,11 @@ endfunction
   " Read :help wincmd
   "  <C-w>w
   "  <C-w>W
-  "  <C-w>T "Move the current window to a new tab page
-  "  <C-w>p "Go to previous (last accessed) window
-  "  <C-w>p "Go to preview window
-  "  <C-w>z "Close any 'Preview' window currently open
+  "  <C-w>p Go to previous (last accessed) window
+  "  <C-w>P Go to preview window
+  "  <C-w>z Close any 'Preview' window currently open
+  "  <C-w>c Close the current window
+  "  <C-w>T Move the current window to a new tab page
 
   " quick access to yank reg
   noremap "" "0
