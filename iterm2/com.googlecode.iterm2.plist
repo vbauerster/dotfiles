@@ -8737,6 +8737,8 @@
 	<string>359 211 801 161 0 0 1440 877 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>80 421 606 456 0 0 1440 877 </string>
+	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
+	<string>1928 796 616 174 1536 252 1440 900 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>518 578 400 129 0 0 1440 900 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
@@ -8744,11 +8746,11 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>336 440 918 394 0 0 1440 877 </string>
+	<string>1536 505 796 473 1536 252 1440 877 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>1737 270 592 584 1440 -124 1280 1001 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1440 900 0 0 1440 877 </string>
+	<string>0 0 1536 1152 0 0 1536 1129 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>722 450 585 426 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -15425,9 +15427,11 @@
 			<key>Normal Font</key>
 			<string>Iosevka 12</string>
 			<key>Only The Default BG Color Uses Transparency</key>
-			<false/>
+			<true/>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
+			<key>Place Prompt at First Column</key>
+			<false/>
 			<key>Prompt Before Closing 2</key>
 			<integer>0</integer>
 			<key>Reduce Flicker</key>
@@ -15485,6 +15489,8 @@
 			<true/>
 			<key>Shortcut</key>
 			<string></string>
+			<key>Show Mark Indicators</key>
+			<false/>
 			<key>Silence Bell</key>
 			<true/>
 			<key>Smart Cursor Color</key>
@@ -15792,7 +15798,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-08-21T16:57:29Z</date>
+	<date>2017-09-15T16:09:07Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Selection Respects Soft Boundaries</key>
@@ -15852,7 +15858,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.beta.7</string>
+	<string>3.1.beta.8</string>
 	<key>kCPFavoritesUserDefaultsKey</key>
 	<array>
 		<data>
