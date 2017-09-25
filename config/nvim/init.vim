@@ -198,7 +198,7 @@ endfunction
   " nnoremap <Leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
   nnoremap <Leader>ev <C-w><C-v><C-l>:e ~/dotfiles/config/nvim/init.vim<CR>
   " reload vimrc
-  nnoremap <Leader>so :source $MYVIMRC<CR>
+  nnoremap <Leader>rs :source $MYVIMRC<CR>
   " edit vim plugins
   nnoremap <Leader>ep :e ~/dotfiles/config/nvim/config/plugs.vim<CR>
   " edit gitconfig
