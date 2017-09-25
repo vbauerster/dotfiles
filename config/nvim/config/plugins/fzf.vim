@@ -71,7 +71,7 @@ command! FZFPlugConf call fzf#run(fzf#wrap({
 " Show go source files that depends for the current package
 " Same as :GoFiles but with fzf
 command! -bang FZFGoFiles call fzf#run(fzf#wrap({
-    \ 'source': go#tool#Files(),
+    \ 'source': map(go#tool#Files(), 'fnamemodify(v:val, ":p:.")'),
     \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"',
     \ 'down':    '40%',
     \}, <bang>0))
@@ -79,7 +79,7 @@ command! -bang FZFGoFiles call fzf#run(fzf#wrap({
 " Show go test files
 " Same as :GoFiles TestGoFiles XTestGoFiles but with fzf
 command! -bang FZFTestGoFiles call fzf#run(fzf#wrap({
-    \ 'source': go#tool#Files('TestGoFiles', 'XTestGoFiles'),
+    \ 'source': map(go#tool#Files('TestGoFiles', 'XTestGoFiles'), 'fnamemodify(v:val, ":p:.")'),
     \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"',
     \ 'down':    '40%',
     \}, <bang>0))
