@@ -16,8 +16,8 @@ local hyperModeBindings = {
 	{ 'm', {}, 'return'},
 	{ 's', {}, 'tab'},
 	{ 'delete', {}, 'forwarddelete'},
-	{ 'h', {}, 'home'},
-	{ 'n', {}, 'end'},
+	{ 'h', {'shift'}, 'home'},
+	{ 'n', {'shift'}, 'end'},
 	{ 'c', {'alt'}, 'k'}, -- for vjump
 	{ 't', {'alt'}, 'j'}, -- for vjump
 	{ 'b', {'alt'}, 'x'}, -- autopairs.vim BackInstert
