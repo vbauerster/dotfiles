@@ -348,7 +348,9 @@ endfunction
   " same as :tjump
   " jump to tag if there's only one matching tag, but show list of
   " options when there is more than one definition
-  nnoremap <c-]> g<c-]>
+  nnoremap <C-]> g<C-]>
+  " prefer :ptjump to :ptag
+  nnoremap <C-w>} <C-w>g}
 
   " Remove trailing whitespaces
   " nnoremap <silent><Leader>wx :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
