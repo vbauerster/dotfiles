@@ -297,8 +297,10 @@ endfunction
   " https://stackoverflow.com/questions/916875/yank-file-name-path-of-current-buffer-in-vim
   " just filename :let @+ = expand("%:t")
   " also see :h filename-modifiers
-  nnoremap <silent> cp :exe ':let '.(has('clipboard')?'@*':'@"').'=expand("%:p")'<cr>
+  nnoremap <silent> cp* :exe ':let '.(has('clipboard')?'@*':'@"').'=expand("%:p")'<cr>
         \ :echon '"'expand("%:p")'" copied into 'has('clipboard')?'*':'"' 'register'<cr>
+  nnoremap <silent> cpp :let @" = expand("%:p:.")<cr>
+  nnoremap <silent> cpn :let @" = expand("%:p:.") . ":" . line(".")<cr>
 
   " Search in normal mode with very magic on
   " nnoremap / /\v
@@ -441,7 +443,7 @@ endfunction
   inoremap <S-Return> <C-o>o
 
   " insert absolute current buffer path
-  inoremap <F4> <C-R>=expand('%:p')<CR>
+  " inoremap <F4> <C-R>=expand('%:p')<CR>
 
   " quick movements
   " http://vim.wikia.com/wiki/Quick_command_in_insert_mode
