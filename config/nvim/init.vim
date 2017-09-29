@@ -392,7 +392,7 @@ endfunction
   nnoremap <silent> <Leader>= :wincmd =<cr>:QfResizeWindows<cr>
   nnoremap <Leader>z <C-w><Bar><C-w>_
   nnoremap <Leader>o <C-w>o
-  nnoremap <Leader>ws <C-w>v
+  nnoremap <Leader>v <C-w>v
   " nnoremap <Leader>x <C-w>s
 
   " http://stackoverflow.com/questions/1262154/minimizing-vertical-vim-window-splits
