@@ -360,8 +360,6 @@ endfunction
   " nnoremap <silent><Leader>wx :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
   " switch between buffers
-  " bprev provided by unimpaired [b
-  " bnext provided by unimpaired ]b
   nnoremap <silent>,. <C-^><CR>
 
   " http://habrahabr.ru/post/183222/
