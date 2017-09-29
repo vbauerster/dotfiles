@@ -248,8 +248,10 @@ endfunction
 
   " tab shortcuts
   " Tab and Shift-Tab switches opened tabs in normal mode
-  nnoremap <Tab> gt
-  nnoremap <S-Tab> gT
+  " nnoremap <Tab> gt
+  " nnoremap <S-Tab> gT
+  nnoremap g} gt
+  nnoremap g{ gT
   nnoremap <Leader>tn :tabnew<CR>
   nnoremap <Leader>tc :tabclose<CR>
   nnoremap <Leader>to :tabonly<CR>
