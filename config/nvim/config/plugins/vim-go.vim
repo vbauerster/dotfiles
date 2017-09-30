@@ -11,11 +11,6 @@ let g:go_fold_enable = ['import']
 augroup GoLang
   autocmd!
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
-  autocmd FileType go nmap <F1> <Plug>(go-describe)
-  autocmd FileType go nmap <S-F1> <Plug>(go-implements)
-
-  autocmd FileType go nnoremap <F2> :up<CR>:Neomake<CR>
-  autocmd FileType go nnoremap <S-F2> :GoFmtAutoSaveToggle<CR>
 
   autocmd FileType go nnoremap <leader>of :FZFGoFiles<CR>
   autocmd FileType go nnoremap <leader>ot :FZFTestGoFiles<CR>
@@ -23,15 +18,26 @@ augroup GoLang
   autocmd FileType go nnoremap <leader>oc :GoDecls<CR>
   autocmd FileType go nnoremap <leader>od :GoDeclsDir<CR>
 
-  autocmd FileType go nmap <F8> <Plug>(go-test)
-  autocmd FileType go nmap <S-F8> <Plug>(go-test-func)
+  autocmd FileType go nmap <F1> <Plug>(go-describe)
+  autocmd FileType go nmap <S-F1> <Plug>(go-implements)
 
-  autocmd FileType go nmap <F5> <Plug>(go-build)
+  autocmd FileType go nnoremap <F2> :up<CR>:Neomake<CR>
+  autocmd FileType go nnoremap <S-F2> :GoFmtAutoSaveToggle<CR>
+
+  autocmd FileType go nmap <F4> <Plug>(go-callers)
+  autocmd FileType go nmap <S-F4> <Plug>(go-referrers)
+
+  autocmd FileType go nmap <F5> <Plug>(go-channelpeers)
+  autocmd FileType go nmap <S-F5> <Plug>(go-freevars)
 
   autocmd FileType go nmap <F6> <Plug>(go-rename)
 
   autocmd FileType go nmap <F7> <Plug>(go-sameids-toggle)
-  autocmd FileType go nmap <S-F7> <Plug>(go-callers)
+  " not related to go but...
+  nnoremap <S-F7> :Highlight<CR>
+
+  autocmd FileType go nmap <F8> <Plug>(go-test)
+  autocmd FileType go nmap <S-F8> <Plug>(go-test-func)
 
   autocmd FileType go nmap <Leader>di <Plug>(go-def-split)
   autocmd FileType go nmap <Leader>ds <Plug>(go-def-vertical)
