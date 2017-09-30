@@ -86,23 +86,16 @@ bindkey '^[[Z' autosuggest-accept
 
 # following just for reference
 # ^Q push-line-or-edit
-# ^U vi-kill-line
-# ^W vi-backward-kill-word
-# ^H vi-backward-delete-char
-# ^I fzf-completion
-# ^T fzf-file-widget
-# ^R fzf-history-widget
-# ^[c fzf-cd-widget = alt+c
 
 # history-incremental is from editor module
 # in vi mode / = history-incremental-search-forward
 # in vi mode ? = history-incremental-search-backward
 
-# bindkey '^S' insert-last-word
-# bindkey -M vicmd "u" undo
-# bindkey -M vicmd "ga" what-cursor-position
+# To view all vicmd bindings: bindkey -M vicmd
+bindkey -M vicmd '^U' vi-kill-line
 
 # fzf bindings
+# to view all: bindkey-all | rg -i fzf
 # http://junegunn.kr/2016/07/fzf-git/
 # first unbind '^G', which is bound to list-expand by default
 bindkey '^G' undefined-key
