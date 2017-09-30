@@ -588,5 +588,5 @@ endfunction
 
 " plugin settings BLOCK {{{
   " Load plugin specific settings
-  for f in split(glob($DOTFILES . "/config/nvim/config/plugins/*.vim"), "\n") | execute 'source ' . fnameescape(f) | endfor
+  for f in split(glob('~/.config/nvim/config/plugins/*.vim'), "\n") | execute 'source ' . fnameescape(f) | endfor
 "}}}
