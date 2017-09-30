@@ -567,13 +567,13 @@ endfunction
     autocmd FileType javascript setlocal equalprg=js-beautify\ -
   augroup END
 
-  augroup Tmux_au
-    autocmd!
-    if exists('$TMUX') && !exists('$NORENAME')
-      autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
-      autocmd VimLeave * call system('tmux set-window automatic-rename on')
-    endif
-  augroup END
+  " augroup Tmux_au
+  "   autocmd!
+  "   if exists('$TMUX') && !exists('$NORENAME')
+  "     autocmd BufEnter * if empty(&buftype) | call system('tmux rename-window '.expand('%:t:S')) | endif
+  "     autocmd VimLeave * call system('tmux set-window automatic-rename on')
+  "   endif
+  " augroup END
 
   augroup Terminal_au
     autocmd!
