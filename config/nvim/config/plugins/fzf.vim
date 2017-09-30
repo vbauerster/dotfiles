@@ -63,15 +63,15 @@ command! FZFGopath call fzf#run({
     \ })
 
 command! FZFPlugConf call fzf#run(fzf#wrap({
-    \ 'source': "ls -1 $DOTFILES/config/nvim/config/plugins",
-    \ 'dir': "$DOTFILES/config/nvim/config/plugins",
+    \ 'source': map(split(glob('~/.config/nvim/config/plugins/*.vim'), "\n"), 'fnamemodify(v:val, ":t")'),
+    \ 'dir': '~/.config/nvim/config/plugins',
     \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
     \}))
 
 " Show go source files that depends for the current package
 " Same as :GoFiles but with fzf
 command! -bang FZFGoFiles call fzf#run(fzf#wrap({
-    \ 'source': map(go#tool#Files(), 'fnamemodify(v:val, ":p:.")'),
+    \ 'source': map(go#tool#Files(), 'fnamemodify(v:val, ":.")'),
     \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"',
     \ 'down':    '40%',
     \}, <bang>0))
@@ -79,7 +79,7 @@ command! -bang FZFGoFiles call fzf#run(fzf#wrap({
 " Show go test files
 " Same as :GoFiles TestGoFiles XTestGoFiles but with fzf
 command! -bang FZFTestGoFiles call fzf#run(fzf#wrap({
-    \ 'source': map(go#tool#Files('TestGoFiles', 'XTestGoFiles'), 'fnamemodify(v:val, ":p:.")'),
+    \ 'source': map(go#tool#Files('TestGoFiles', 'XTestGoFiles'), 'fnamemodify(v:val, ":.")'),
     \ 'options': '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"',
     \ 'down':    '40%',
     \}, <bang>0))
