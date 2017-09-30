@@ -131,13 +131,14 @@ Plug 'blueyed/vim-qf_resize'
 Plug 'wesQ3/vim-windowswap'      " <Leader>ww to swap windows
 Plug 'justinmk/vim-gtfo'         " got/gof mappings
 Plug 'ron89/thesaurus_query.vim' " <Leader>cs
+Plug 'vbauerster/vim-highlighter'
 
 if has('mac')
   Plug 'rizzatti/dash.vim'
 endif
 
 " Clipboard related
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 
 " Tmux
 Plug 'christoomey/vim-tmux-navigator'
