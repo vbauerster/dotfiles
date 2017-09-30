@@ -301,8 +301,8 @@ endfunction
   " also see :h filename-modifiers
   nnoremap <silent> cp* :exe ':let '.(has('clipboard')?'@*':'@"').'=expand("%:p")'<cr>
         \ :echon '"'expand("%:p")'" copied into 'has('clipboard')?'*':'"' 'register'<cr>
-  nnoremap <silent> cpp :let @" = expand("%:p:.")<cr>
-  nnoremap <silent> cpn :let @" = expand("%:p:.") . ":" . line(".")<cr>
+  nnoremap <silent> cpp :let @" = expand("%:.")<cr>
+  nnoremap <silent> cpn :let @" = expand("%:.") . ":" . line(".")<cr>
 
   " Search in normal mode with very magic on
   " nnoremap / /\v
