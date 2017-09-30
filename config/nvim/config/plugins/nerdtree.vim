@@ -1,4 +1,4 @@
-nnoremap <silent><F21> :NERDTreeToggle<CR>
+nnoremap <silent><S-F9> :NERDTreeToggle<CR>
 nnoremap <silent><Leader>nt :NERDTreeFind<CR>
 
 let g:NERDTreeIgnore=['\.py[cd]$', '\~$', '\.sw[op]$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.js.map$']
