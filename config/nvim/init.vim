@@ -86,7 +86,7 @@ endfunction
 
 " COLORSCHEME {{{
   execute "set background=".$BACKGROUND
-  let g:gruvbox_contrast_light='hard'
+  " let g:gruvbox_contrast_light='hard'
   let g:gruvbox_contrast_dark='soft'
   let g:gruvbox_italic=1
   " let g:gruvbox_improved_strings=1
@@ -354,7 +354,7 @@ endfunction
   " options when there is more than one definition
   nnoremap <C-]> g<C-]>
   " prefer :ptjump to :ptag
-  nnoremap <C-w>} <C-w>g}
+  " nnoremap <C-w>} <C-w>g}
 
   " Remove trailing whitespaces
   " nnoremap <silent><Leader>wx :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
@@ -441,6 +441,8 @@ endfunction
   " -----------------------------------------------------------
   " Start new line
   inoremap <S-Return> <C-o>o
+
+  imap <F11> <C-o><F11>
 
   " insert absolute current buffer path
   " inoremap <F4> <C-R>=expand('%:p')<CR>
@@ -534,7 +536,7 @@ endfunction
     autocmd WinLeave * setlocal nocursorline
 
     " Create directory if not exists
-    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+    " autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it for commit messages, when the position is invalid, or when
