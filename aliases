@@ -51,7 +51,7 @@ alias tmn='tmux new -s $(basename $(pwd))'
 alias tmu='tmux list-sessions'
 
 # git
-alias g='git'
+# alias g='git'
 
 # rg
 alias rg='rg --type-add "proto:*proto"'
@@ -61,3 +61,11 @@ alias eV='cd ~/dotfiles/config/nvim && nvim init.vim'
 alias eH='cd ~/dotfiles/hammerspoon && nvim init.lua'
 alias cdGosrc='cd /usr/local/Cellar/go/1.8.3/libexec/src'
 alias cdPlug='cd ~/.config/nvim/plugged'
+
+# http://grml.org/zsh/zsh-lovers.html [Aliases section]
+alias -s md=nvim
+alias -g C='| wc -l'
+alias -g L="| less"
+alias -g LS='| less -S'
+alias -g G='| rg'
+alias -g Sk="*~(*.bz2|*.gz|*.tgz|*.zip|*.z)"
