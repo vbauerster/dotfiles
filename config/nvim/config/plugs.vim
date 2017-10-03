@@ -15,6 +15,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-capslock' " <C-g>c or <C-l> in insert mode
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
+" Plug 'pbrisbin/vim-mkdir'
 " Plug 'tpope/vim-characterize' " enhaced ga
 
 " Motions

@@ -195,7 +195,6 @@ endfunction
 
 " MAPPINGS {{{
   " open vimrc
-  " nnoremap <Leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
   nnoremap <Leader>ev <C-w><C-v><C-l>:e ~/dotfiles/config/nvim/init.vim<CR>
   " reload vimrc
   nnoremap <Leader>rs :source $MYVIMRC<CR>
@@ -536,7 +535,7 @@ endfunction
     autocmd WinLeave * setlocal nocursorline
 
     " Create directory if not exists
-    " autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it for commit messages, when the position is invalid, or when
