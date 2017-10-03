@@ -33,7 +33,10 @@ fmt.Printf("${1:${VISUAL}}\n", $2)
 endsnippet
 
 # implement http.Handler interface
-snippet serve "ServeHTTP"
+# hf   = http.HandlerFunc
+# hhf  = mux.HandleFunc
+# tsrv = httptest.NewServer
+snippet hhs "http.Handler"
 func (${1:receiver} ${2:type}) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	${0:${VISUAL}}
 }
