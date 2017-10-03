@@ -17,7 +17,7 @@ function! s:OpenGoImport()
 endfunction
 
 nnoremap <leader>px :call <SID>OpenPluginRepo()<CR>
-nnoremap <leader>go :call <SID>OpenGoImport()<CR>
+nnoremap <leader>oo :call <SID>OpenGoImport()<CR>
 
 let g:netrw_nogx = 1
 nmap gx <Plug>(openbrowser-smart-search)
