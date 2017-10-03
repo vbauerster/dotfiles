@@ -118,7 +118,7 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-if has('nvim')
+if has('nvim') || has('gui_running')
     let $FZF_DEFAULT_OPTS .= ' --inline-info'
 endif
 
