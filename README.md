@@ -34,14 +34,14 @@ $ brew install caskroom/cask/brew-cask
 
 **[iterm2-nightly](http://iterm2.com/nightly/latest)**
 
-**MacVim**
+**Macvim**
 
 I prefer NeoVim to Vim, but keep MacVim installed just in case.
 ```
 $ brew install macvim --with-override-system-vim --with-python3
 ```
 
-**NeoVim**
+**Neovim**
 ```
 $ brew tap neovim/homebrew-neovim
 $ brew install --HEAD neovim
@@ -57,9 +57,13 @@ $ brew tap rogual/neovim-dot-app
 $ brew install --HEAD neovim-dot-app
 ```
 
-**Exuberant CTAGS**
+**Universal ctags**
 ```
-$ brew install ctags
+$ brew install universal-ctags
+```
+
+**jsctags**
+```
 $ npm install -g git+https://github.com/ramitos/jsctags.git
 ```
 
@@ -75,4 +79,4 @@ I use [prezto](https://github.com/sorin-ionescu/prezto), lightweight zsh configu
 ***Disclaimer***
 
 If you have noticed that, most mappings are kind a weird in my [vimrc](https://github.com/vbauerster/dotfiles/blob/master/config/nvim/init.vim)
-that because I use [Deep Dvorak](https://github.com/vbauerster/DeepDvorak) keyboard layout. :banana:
+that because I use [Programmer Dvorak](https://github.com/vbauerster/PDvorak) keyboard layout. :banana:
