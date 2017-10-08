@@ -8,33 +8,63 @@ function! s:gopath_handler(dir)
   endif
 endfunction
 
-function! s:yank_list()
-  if exists(":Yanks")
-    redir => ys
-    silent Yanks
-    redir END
-    return split(ys, '\n')[1:]
-  else
-    return reverse(['0 ' . @0, '1 ' . @1, '2 ' . @2, '3 ' . @3, '4 ' . @4, '5 ' . @5, '6 ' . @6, '7 ' . @7, '8 ' . @8, '9 ' . @9])
-  endif
+function! s:reglist()
+  return [
+    \     'Special:',
+    \     '": ' . @",
+    \     '*: ' . @*,
+    \     '+: ' . @+,
+    \     '-: ' . @-,
+    \     'Numbered:',
+    \     '0: ' . @0,
+    \     '1: ' . @1,
+    \     '2: ' . @2,
+    \     '3: ' . @3,
+    \     '4: ' . @4,
+    \     '5: ' . @5,
+    \     '6: ' . @6,
+    \     '7: ' . @7,
+    \     '8: ' . @8,
+    \     '9: ' . @9,
+    \     'Named:',
+    \     'a: ' . @a,
+    \     'b: ' . @b,
+    \     'c: ' . @c,
+    \     'd: ' . @d,
+    \     'e: ' . @e,
+    \     'f: ' . @f,
+    \     'g: ' . @g,
+    \     'h: ' . @h,
+    \     'i: ' . @i,
+    \     'j: ' . @j,
+    \     'k: ' . @k,
+    \     'l: ' . @l,
+    \     'm: ' . @m,
+    \     'n: ' . @n,
+    \     'o: ' . @o,
+    \     'p: ' . @p,
+    \     'q: ' . @q,
+    \     'r: ' . @r,
+    \     's: ' . @s,
+    \     't: ' . @t,
+    \     'u: ' . @u,
+    \     'v: ' . @v,
+    \     'w: ' . @w,
+    \     'x: ' . @x,
+    \     'y: ' . @y,
+    \     'z: ' . @z
+    \ ]
 endfunction
 
-function! s:yank_handler(reg)
-  if empty(a:reg)
-    echo "aborted register paste"
-  else
-    let token = split(a:reg, ' ')
-    if exists(":Yanks")
-      execute 'Paste' . token[0]
-    else
+function! s:regpaste(reg)
+  let token = split(a:reg, ':')
+  if len(token) > 1
       execute 'normal! "' . token[0] . 'p'
-    endif
   endif
 endfunction
 
 function! s:change_branch(e)
-  execute '!git checkout' . a:e
-  :e!
+  execute 'Git checkout' . a:e
 endfunction
 
 command! Gbranch call fzf#run({
@@ -43,11 +73,11 @@ command! Gbranch call fzf#run({
     \ 'left': 30
     \ })
 
-command! FZFYank call fzf#run({
-    \ 'source': <sid>yank_list(),
-    \ 'sink': function('<sid>yank_handler'),
-    \ 'options': '-m',
-    \ 'down': 12
+command! FZFRegisters call fzf#run({
+    \ 'source': <sid>reglist(),
+    \ 'sink': function('<sid>regpaste'),
+    \ 'options': '--reverse',
+    \ 'right': '35%'
     \ })
 
 command! Plugs call fzf#run({
@@ -162,7 +192,7 @@ nnoremap <silent><Leader>; :History:<CR>
 nnoremap <silent><Leader>/ :History/<CR>
 nnoremap <silent><Leader>pl :Plugs<CR>
 nnoremap <silent><Leader>pc :FZFPlugConf<CR>
-nnoremap <silent><Leader>yy :FZFYank<CR>
+nnoremap <silent><Leader>yy :FZFRegisters<CR>
 nnoremap <silent><Leader>cb :Gbranch<CR>
 " nnoremap <silent><Leader>go :FZFGopath<CR>
 
