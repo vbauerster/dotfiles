@@ -132,7 +132,8 @@ let g:fzf_buffers_jump = 1
 " imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 
 " Path completion using find (file + dir)
-imap <c-x><c-d> <plug>(fzf-complete-path)
+" imap <c-x><c-d> <plug>(fzf-complete-path)
+inoremap <expr> <c-x><c-d> fzf#vim#complete#path('blsd')
 " File only completion using find
 imap <c-x><c-f> <plug>(fzf-complete-file)
 " Line completion (all open buffers)
