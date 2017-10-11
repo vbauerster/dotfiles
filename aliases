@@ -59,7 +59,7 @@ alias rg='rg --type-add "proto:*proto"'
 # convenience
 alias eV='cd ~/dotfiles/config/nvim && nvim init.vim'
 alias eH='cd ~/dotfiles/hammerspoon && nvim init.lua'
-alias cdGosrc='cd /usr/local/Cellar/go/1.8.3/libexec/src'
+alias cdGosrc='cd /usr/local/opt/go/libexec/src'
 alias cdPlug='cd ~/.config/nvim/plugged'
 
 # http://grml.org/zsh/zsh-lovers.html [Aliases section]
