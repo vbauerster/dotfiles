@@ -197,12 +197,7 @@ ch() {
 
 # some custotm functions
 # ----------------------
-# export BACKGROUND env var
-if [ -z "$BACKGROUND" ]; then
-    export BACKGROUND="light"
-fi
 
-# set the background color to light
 light() {
     export BACKGROUND="light"
 }

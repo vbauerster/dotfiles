@@ -3,6 +3,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+export BACKGROUND="dark"
+
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
 # http://zsh.sourceforge.net/Guide/zshguide04.html
 # http://www.geekmind.net/2011/01/shortcuts-to-improve-your-bash-zsh.html
