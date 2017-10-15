@@ -224,13 +224,9 @@ endfunction
   " situations and you'll be fine.
   " https://github.com/junegunn/fzf.vim/issues/313
   nnoremap ; :
-  " nnoremap : ;
   xnoremap ; :
-  " xnoremap : ;
 
-  " Swap implementations of ` and ' jump to markers
   nnoremap ' `
-  nnoremap ` '
 
   " reselect last paste
   nnoremap gp '[V']
