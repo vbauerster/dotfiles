@@ -203,7 +203,7 @@ endfunction
   " edit gitconfig
   nnoremap <Leader>eg :e ~/dotfiles/gitconfig<CR>
   " edit tmux.conf
-  nnoremap <Leader>et :e ~/dotfiles/tmux.conf<CR>
+  nnoremap <Leader>et :e ~/dotfiles/tmux/tmux.conf<CR>
   " edit zshrc
   nnoremap <Leader>ez :e ~/dotfiles/zshrc<CR>
   " edit/view log from wi-fi box
