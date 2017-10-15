@@ -479,7 +479,7 @@ endfunction
   " file.
   " NOTE: We're using %S here instead of %s; the capital S version comes from the
   " eregex.vim plugin and uses Perl-style regular expressions.
-  vnoremap <C-r> "hy:%S/<C-r>h//c<left><left>
+  vnoremap <C-r> "hy:%s/<C-r>h//c<left><left>
 
   " Select blocks after indenting
   xnoremap < <gv
