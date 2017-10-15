@@ -1,21 +1,19 @@
 " https://github.com/junegunn/fzf/wiki/Examples-(vim)
 
-function! s:gopath_handler(dir)
-  execute 'lcd $GOPATH/src/'.a:dir
-  execute 'FZF' . '$GOPATH/src/'.a:dir
-  if has("nvim")
-      call feedkeys('i')
-  endif
-endfunction
+" function! s:gopath_handler(dir)
+"   execute 'lcd $GOPATH/src/'.a:dir
+"   execute 'FZF' . '$GOPATH/src/'.a:dir
+"   if has("nvim")
+"       call feedkeys('i')
+"   endif
+" endfunction
 
 function! s:reglist()
   return [
-    \     'Special:',
     \     '": ' . @",
     \     '*: ' . @*,
     \     '+: ' . @+,
     \     '-: ' . @-,
-    \     'Numbered:',
     \     '0: ' . @0,
     \     '1: ' . @1,
     \     '2: ' . @2,
@@ -26,7 +24,6 @@ function! s:reglist()
     \     '7: ' . @7,
     \     '8: ' . @8,
     \     '9: ' . @9,
-    \     'Named:',
     \     'a: ' . @a,
     \     'b: ' . @b,
     \     'c: ' . @c,
@@ -86,11 +83,11 @@ command! Plugs call fzf#run({
     \ 'down':    '~40%',
     \ 'sink':    'Explore'})
 
-command! FZFGopath call fzf#run({
-    \ 'source': "ls -1p $GOPATH/src | awk -F/ '/\\/$/ {print $1}'",
-    \ 'sink': function('<sid>gopath_handler'),
-    \ 'down': '50%'
-    \ })
+" command! FZFGopath call fzf#run({
+"     \ 'source': "ls -1p $GOPATH/src | awk -F/ '/\\/$/ {print $1}'",
+"     \ 'sink': function('<sid>gopath_handler'),
+"     \ 'down': '50%'
+"     \ })
 
 command! FZFPlugConf call fzf#run(fzf#wrap({
     \ 'source': map(split(glob('~/.config/nvim/config/plugins/*.vim'), "\n"), 'fnamemodify(v:val, ":t")'),
