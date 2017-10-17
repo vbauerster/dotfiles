@@ -218,7 +218,10 @@
           },
           "to": [
             {
-              "key_code": "keypad_slash"
+              "key_code": "q",
+              "modifiers": [
+                "left_shift"
+              ]
             }
           ],
           "conditions": [
