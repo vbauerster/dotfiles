@@ -34,24 +34,6 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "7"
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
             "key_code": "8"
           },
           "to": [
@@ -106,6 +88,24 @@
         {
           "type": "basic",
           "from": {
+            "key_code": "y"
+          },
+          "to": [
+            {
+              "key_code": "delete_forward"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numeric_keypad_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
             "key_code": "u"
           },
           "to": [
@@ -147,6 +147,24 @@
           "to": [
             {
               "key_code": "keypad_9"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numeric_keypad_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "h"
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace"
             }
           ],
           "conditions": [
