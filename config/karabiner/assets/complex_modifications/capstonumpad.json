@@ -336,24 +336,6 @@
               "value": 1
             }
           ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "right_option"
-          },
-          "to": [
-            {
-              "key_code": "keypad_period"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
         }
       ]
     },
