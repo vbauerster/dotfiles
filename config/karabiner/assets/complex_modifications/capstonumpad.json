@@ -74,7 +74,7 @@
           },
           "to": [
             {
-              "key_code": "keypad_slash"
+              "key_code": "keypad_hyphen"
             }
           ],
           "conditions": [
@@ -160,24 +160,6 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "p"
-          },
-          "to": [
-            {
-              "key_code": "keypad_hyphen"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
             "key_code": "j"
           },
           "to": [
@@ -236,7 +218,25 @@
           },
           "to": [
             {
-              "key_code": "keypad_plus"
+              "key_code": "keypad_slash"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "numeric_keypad_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "quote"
+          },
+          "to": [
+            {
+              "key_code": "tab"
             }
           ],
           "conditions": [
