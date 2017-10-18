@@ -1,12 +1,16 @@
 -- local log = hs.logger.new("numpad", "info")
 
-local modalKey = hs.hotkey.modal.new(hyper, 'return', 'Npad mode')
+local modalKey = hs.hotkey.modal.new(hyper, 'm', 'Npad mode')
 modalKey:bind({}, 'escape', function() modalKey:exit() end)
 
-local exit_timer = hs.timer.delayed.new(5, function()
+local exit_timer = hs.timer.delayed.new(4, function()
 	-- log.i("timer fired")
 	modalKey:exit()
 end)
+
+function modalKey:entered()
+	exit_timer:start()
+end
 
 function modalKey:exited()
 	exit_timer:stop()

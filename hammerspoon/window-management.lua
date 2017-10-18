@@ -73,9 +73,13 @@ end
 local modalKey = hs.hotkey.modal.new(hyper, 'w', 'WM mode')
 modalKey:bind({}, 'space', function() modalKey:exit() end)
 
-local exit_timer = hs.timer.delayed.new(3, function()
+local exit_timer = hs.timer.delayed.new(4, function()
 	modalKey:exit()
 end)
+
+function modalKey:entered()
+	exit_timer:start()
+end
 
 function modalKey:exited()
 	exit_timer:stop()
@@ -94,7 +98,9 @@ modalKey:bind({}, 'R', function() exit_timer:start() push(0.5, 0, 0.5, 0.5) end)
 modalKey:bind({}, 'M', function() exit_timer:start() push(0, 0.5, 0.5, 0.5) end)
 modalKey:bind({}, 'V', function() exit_timer:start() push(0.5, 0.5, 0.5, 0.5) end)
 
-modalKey:bind({}, 'U', function() exit_timer:start() push(0.15, 0.15, 0.7, 0.7) end)
+-- modalKey:bind({}, 'U', function() exit_timer:start() push(0.15, 0.15, 0.7, 0.7) end)
+-- modalKey:bind({}, 'U', function() exit_timer:start() push(0.15, 0.1, 0.7, 0.8) end)
+modalKey:bind({}, 'U', function() exit_timer:start() push(0.15, 0, 0.7, 1) end)
 modalKey:bind({}, 'F', function() exit_timer:start() fullScreen() end)
 modalKey:bind({}, 'W', function() exit_timer:start() push(0,0,1,1) end)
 
@@ -104,10 +110,10 @@ modalKey:bind({}, 'down', function() exit_timer:start() nudge(0, delta) end)
 modalKey:bind({}, 'left', function() exit_timer:start() nudge(-delta, 0) end)
 modalKey:bind({}, 'right', function() exit_timer:start() nudge(delta, 0) end)
 
-modalKey:bind({}, '-', '⍏', function() exit_timer:start() yank(0, -delta) end)
-modalKey:bind({}, '+', '⍖', function() exit_timer:start() yank(0, delta) end)
-modalKey:bind({}, ']', '⍆', function() exit_timer:start() yank(delta, 0) end)
-modalKey:bind({}, '[', '⍅', function() exit_timer:start() yank(-delta, 0) end)
+modalKey:bind({'alt'}, 'up', function() exit_timer:start() yank(0, -delta) end)
+modalKey:bind({'alt'}, 'down', function() exit_timer:start() yank(0, delta) end)
+modalKey:bind({'alt'}, 'left', function() exit_timer:start() yank(-delta, 0) end)
+modalKey:bind({'alt'}, 'right', function() exit_timer:start() yank(delta, 0) end)
 
 -- Move a window between monitors
 -- modalKey:bind({}, 'I', function() moveToMonitor(1) end) -- Move to first monitor
