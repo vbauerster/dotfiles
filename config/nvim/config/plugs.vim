@@ -1,11 +1,12 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " colorschemes
-Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox', { 'do': 'git co lowcontrast && git rebase master' }
 " Plug 'rakr/vim-one'
 " Plug 'freeo/vim-kalisi'
 " Plug 'junegunn/seoul256.vim'
 " Plug 'mhartington/oceanic-next'
+" Plug 'zefei/vim-colortuner'
 
 " Essential
 Plug 'tpope/vim-repeat'
