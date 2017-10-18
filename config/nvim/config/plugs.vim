@@ -47,7 +47,7 @@ Plug 'chaoren/vim-wordmotion' " CamelCase motion
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'othree/eregex.vim'
+" Plug 'othree/eregex.vim'
 
 " Git related
 Plug 'tpope/vim-fugitive' | Plug 'junegunn/gv.vim' | Plug 'tpope/vim-rhubarb'
