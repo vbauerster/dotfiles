@@ -70,8 +70,8 @@ end
 -- Window management
 -- -----------------
 
-local modalKey = hs.hotkey.modal.new(hyper, 'w', 'WM mode')
-modalKey:bind({}, 'space', function() modalKey:exit() end)
+local modalKey = hs.hotkey.modal.new({'command', 'ctrl', 'alt', 'shift'}, 39, 'WM mode')
+modalKey:bind({}, 'escape', function() modalKey:exit() end)
 
 local exit_timer = hs.timer.delayed.new(4, function()
 	modalKey:exit()
@@ -86,7 +86,7 @@ function modalKey:exited()
     hs.alert.show('Exit WM mode', 1)
 end
 
-modalKey:bind({}, 'D', 'Push window to the next screen' , hs.grid.pushWindowNextScreen)
+modalKey:bind({}, 39, 'Push window to the next screen' , hs.grid.pushWindowNextScreen)
 
 modalKey:bind({}, 'C', function() exit_timer:start() push(0, 0, 1, 0.5) end)
 modalKey:bind({}, 'T', function() exit_timer:start() push(0, 0.5, 1, 0.5) end)
@@ -99,10 +99,10 @@ modalKey:bind({}, 'M', function() exit_timer:start() push(0, 0.5, 0.5, 0.5) end)
 modalKey:bind({}, 'V', function() exit_timer:start() push(0.5, 0.5, 0.5, 0.5) end)
 
 -- modalKey:bind({}, 'U', function() exit_timer:start() push(0.15, 0.15, 0.7, 0.7) end)
--- modalKey:bind({}, 'U', function() exit_timer:start() push(0.15, 0.1, 0.7, 0.8) end)
-modalKey:bind({}, 'U', function() exit_timer:start() push(0.15, 0, 0.7, 1) end)
+modalKey:bind({}, 'W', function() exit_timer:start() push(0.15, 0.1, 0.7, 0.8) end)
+modalKey:bind({'shift'}, 'W', function() exit_timer:start() push(0.15, 0, 0.7, 1) end)
 modalKey:bind({}, 'F', function() exit_timer:start() fullScreen() end)
-modalKey:bind({}, 'W', function() exit_timer:start() push(0,0,1,1) end)
+modalKey:bind({}, 'space', function() exit_timer:start() push(0,0,1,1) end)
 
 local delta = 40
 modalKey:bind({}, 'up', function() exit_timer:start() nudge(0, -delta) end)
