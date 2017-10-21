@@ -15,7 +15,6 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 
 " let g:neomake_error_sign = {'text': '✖', 'texthl': 'GruvboxRedSign'}
 " let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'GruvboxYellowSign'}
-let g:neomake_warning_sign = {'texthl': 'GruvboxYellowSign'}
 
 " run neomake on the current file on every write
 " augroup Neomake
