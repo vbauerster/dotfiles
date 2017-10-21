@@ -1,8 +1,8 @@
 {
-  "title": "Caps hold layer (Numpad and misc)",
+  "title": "Caps hold layer, if alone Esc",
   "rules": [
     {
-      "description": "Caps hold layer, if alone Esc [Numpad and misc]",
+      "description": "Caps hold layer [Numpad]",
       "manipulators": [
         {
           "type": "basic",
@@ -28,81 +28,6 @@
                 "name": "caps_hold_mode",
                 "value": 0
               }
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "8"
-          },
-          "to": [
-            {
-              "key_code": "keypad_equal_sign"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "9"
-          },
-          "to": [
-            {
-              "key_code": "9",
-              "modifiers": [
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "0"
-          },
-          "to": [
-            {
-              "key_code": "keypad_asterisk"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "y"
-          },
-          "to": [
-            {
-              "key_code": "delete_forward"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
             }
           ]
         },
@@ -150,24 +75,6 @@
           "to": [
             {
               "key_code": "keypad_9"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "h"
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace"
             }
           ],
           "conditions": [
@@ -235,66 +142,6 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "semicolon"
-          },
-          "to": [
-            {
-              "key_code": "tab"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "quote"
-          },
-          "to": [
-            {
-              "key_code": "quote",
-              "modifiers": [
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "n"
-          },
-          "to": [
-            {
-              "key_code": "n",
-              "modifiers": [
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
             "key_code": "m"
           },
           "to": [
@@ -349,24 +196,6 @@
         {
           "type": "basic",
           "from": {
-            "key_code": "slash"
-          },
-          "to": [
-            {
-              "key_code": "keypad_enter"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
             "key_code": "spacebar"
           },
           "to": [
@@ -385,16 +214,70 @@
       ]
     },
     {
-      "description": "Numeric Keypad Mode Trigger + right_option to keypad_period",
+      "description": "Caps hold layer [h:backspace, y:delete, semicolon:tab, slash:enter]",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "right_option"
+            "key_code": "y"
           },
           "to": [
             {
-              "key_code": "keypad_period"
+              "key_code": "delete_forward"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "caps_hold_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "h"
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "caps_hold_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "semicolon"
+          },
+          "to": [
+            {
+              "key_code": "tab"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "caps_hold_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "slash"
+          },
+          "to": [
+            {
+              "key_code": "keypad_enter"
             }
           ],
           "conditions": [
@@ -408,16 +291,94 @@
       ]
     },
     {
-      "description": "Numeric Keypad Mode Trigger + right_control to keypad_period",
+      "description": "Caps hold layer [n:hyper+n, f:hyper+f, r:hyper+r, quote:hyper+quote]",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "right_control"
+            "key_code": "n"
           },
           "to": [
             {
-              "key_code": "keypad_period"
+              "key_code": "n",
+              "modifiers": [
+                "left_shift",
+                "left_command",
+                "left_control",
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "caps_hold_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "f"
+          },
+          "to": [
+            {
+              "key_code": "f",
+              "modifiers": [
+                "left_shift",
+                "left_command",
+                "left_control",
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "caps_hold_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "r"
+          },
+          "to": [
+            {
+              "key_code": "r",
+              "modifiers": [
+                "left_shift",
+                "left_command",
+                "left_control",
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "caps_hold_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "quote"
+          },
+          "to": [
+            {
+              "key_code": "quote",
+              "modifiers": [
+                "left_shift",
+                "left_command",
+                "left_control",
+                "left_option"
+              ]
             }
           ],
           "conditions": [
