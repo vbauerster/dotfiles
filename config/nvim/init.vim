@@ -86,16 +86,31 @@ endfunction
 
 " COLORSCHEME {{{
   execute "set background=".$BACKGROUND
-  " let g:gruvbox_contrast_light='hard'
-  let g:gruvbox_contrast_dark='soft'
+
+  " let g:gruvbox_contrast_light="soft"
+  let g:gruvbox_contrast_dark="soft"
   let g:gruvbox_italic=1
-  " let g:gruvbox_improved_strings=1
-  " let g:gruvbox_improved_warnings=1
+  " https://github.com/morhetz/gruvbox/wiki/Configuration
+  let g:gruvbox_italicize_comments=1
+  let g:gruvbox_italicize_strings=0
+  let g:gruvbox_invert_selection=1
+  let g:gruvbox_invert_signs=0
+  let g:gruvbox_invert_indent_guides=0
+  let g:gruvbox_invert_tabline=0
+  let g:gruvbox_improved_strings=0
+  let g:gruvbox_improved_warnings=1
   colorscheme gruvbox
+  nnoremap <silent> com :call gruvbox#invert_signs_toggle()<cr>
 
   " let g:one_allow_italics = 1
   " colorscheme one
-  " call one#highlight('function', '', '', 'bold')
+  " call one#highlight('function', '', '', 'bold,italic')
+
+  " Find out to which highlight-group a particular keyword/symbol belongs
+  command! Wcolor echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") .
+            \ "> trans<" . synIDattr(synID(line("."),col("."),0),"name") .
+            \ "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") .
+            \ "> fg:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")
 "}}}
 
 " BASIC SETTINGS {{{
