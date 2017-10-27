@@ -39,8 +39,8 @@ alias psg='ps aux | grep $(echo $1 | sed "s/^\(.\)/[\1]/g")'
 
 alias pbsort='pbpaste | sort | pbcopy'
 
-alias pon='networksetup -setsocksfirewallproxystate "Wi-Fi" on'
-alias poff='networksetup -setsocksfirewallproxystate "Wi-Fi" off'
+alias pxon='networksetup -setsocksfirewallproxystate "Wi-Fi" on'
+alias pxoff='networksetup -setsocksfirewallproxystate "Wi-Fi" off'
 
 alias myip='curl icanhazip.com'
 alias t2='tree -Fth -L 2 --du |less' #see tree with size up to 2 levels deep
