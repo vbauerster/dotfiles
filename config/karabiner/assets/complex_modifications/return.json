@@ -1,16 +1,18 @@
 {
-  "title": "Change slash and z key",
+  "title": "Change return key",
   "rules": [
     {
-      "description": "Change slash key to option. (Post slash key when pressed alone)",
+      "description": "Change return to option. (Post return when pressed alone)",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "slash",
+            "key_code": "return_or_enter",
             "modifiers": {
               "optional": [
-                "any"
+                "shift",
+                "command",
+                "control"
               ]
             }
           },
@@ -21,22 +23,24 @@
           ],
           "to_if_alone": [
             {
-              "key_code": "slash"
+              "key_code": "return_or_enter"
             }
           ]
         }
       ]
     },
     {
-      "description": "Change z key to option. (Post z key when pressed alone)",
+      "description": "Change Quote to option. (Post Quote when pressed alone)",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "z",
+            "key_code": "quote",
             "modifiers": {
               "optional": [
-                "any"
+                "shift",
+                "command",
+                "control"
               ]
             }
           },
@@ -47,7 +51,7 @@
           ],
           "to_if_alone": [
             {
-              "key_code": "z"
+              "key_code": "quote"
             }
           ]
         }
