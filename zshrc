@@ -3,6 +3,14 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# use the Dvorak keyboard for the basis for examining spelling mistakes
+setopt DVORAK
+
+# The time the shell waits, in hundredths of seconds, (default is 40)
+# for another key to be pressed when reading bound multi-character sequences.
+# 100ms for key sequences
+export KEYTIMEOUT=10
+
 export BACKGROUND="light"
 
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
@@ -11,8 +19,8 @@ export BACKGROUND="light"
 export DOTFILES=$HOME/dotfiles
 
 # Node Version Manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # fzf (https://github.com/junegunn/fzf)
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
@@ -36,29 +44,10 @@ command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | he
 # Source functions
 [[ -f "$DOTFILES/.functions.zsh" ]] && source "$DOTFILES/.functions.zsh"
 
-# Golang
-export GOPATH=$HOME/gocode
-if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
-  export PATH=$GOPATH/bin:$PATH
-fi
-
-export GEMPATH=$HOME/.gem/ruby/2.0.0
-if [[ ! "$PATH" == *$GEMPATH/bin* ]]; then
-  export PATH=$GEMPATH/bin:$PATH
-fi
-
 # check for user bin directory and add to path
 if [[ ! "$PATH" == *$HOME/bin* && -d $HOME/bin ]]; then
     export PATH=$HOME/bin:$PATH
 fi
-
-# The time the shell waits, in hundredths of seconds, (default is 40)
-# for another key to be pressed when reading bound multi-character sequences.
-# 100ms for key sequences
-export KEYTIMEOUT=10
-
-# use the Dvorak keyboard for the basis for examining spelling mistakes
-setopt DVORAK
 
 # no ^s freezing the screen
 unsetopt flow_control
