@@ -341,7 +341,7 @@
       ]
     },
     {
-      "description": "Caps hold [9:alt '+']",
+      "description": "Caps hold [9:M-+, 0:[, [:M-/]",
       "manipulators": [
         {
           "type": "basic",
@@ -351,6 +351,45 @@
           "to": [
             {
               "key_code": "9",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "caps_hold_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "0"
+          },
+          "to": [
+            {
+              "key_code": "2"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "caps_hold_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "open_bracket"
+          },
+          "to": [
+            {
+              "key_code": "open_bracket",
               "modifiers": [
                 "left_option"
               ]
