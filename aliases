@@ -62,7 +62,7 @@ alias eT='cd ~/dotfiles/tmux && nvim tmux.conf'
 alias eH='cd ~/dotfiles/hammerspoon && nvim init.lua'
 alias cdGosrc='cd /usr/local/opt/go/libexec/src'
 alias cdPlug='cd ~/.config/nvim/plugged'
-alias cdGist='cd ~/gocode/src/github.com/vbauerster/gists'
+alias cdGist='cd ~/gopath/src/github.com/vbauerster/gists'
 
 # http://grml.org/zsh/zsh-lovers.html [Aliases section]
 alias -s md=nvim
