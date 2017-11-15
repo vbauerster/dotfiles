@@ -311,7 +311,8 @@ nnoremap <Leader>ft Vatzf
 " same as :tjump
 " jump to tag if there's only one matching tag, but show list of
 " options when there is more than one definition
-nnoremap <c-]> g<c-]>
+nnoremap <C-]> g<C-]>
+nnoremap <C-w>} <C-w>g}
 
 " Switch to the directory of the open buffer
 nnoremap <silent><Leader>cd :cd %:p:h<CR>
@@ -340,8 +341,8 @@ nnoremap <Leader>sp :setlocal spell! spelllang=ru_yo,en_us<CR>
 " nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
 " Highlight All
-nnoremap <Leader>ha :Highlight<CR>
-nnoremap <silent><C-c> :call clearmatches()<CR>:noh<CR>
+" nnoremap <Leader>ha :Highlight<CR>
+" nnoremap <silent><C-c> :call clearmatches()<CR>:noh<CR>
 
 " https://github.com/neovim/neovim/issues/2048#issuecomment-78045837
 " After applying above fix, below line is no longer necessary
