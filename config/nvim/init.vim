@@ -331,17 +331,14 @@ endfunction
   nnoremap '+ z+
   nnoremap '- z-
 
-  noremap + 5gj
-  noremap - 5gk
-
-  noremap <M-+> 14gj
-  noremap <M--> 14gk
+  " noremap + 6gj
+  " noremap <M-+> 6gk
 
   " vim-vertical-move
   nnoremap <expr> <M-j> <SID>vjump(0)
   nnoremap <expr> <M-k> <SID>vjump(1)
-  nnoremap <expr> gj <SID>vjump(0)
-  nnoremap <expr> gk <SID>vjump(1)
+  " nnoremap <expr> gj <SID>vjump(0)
+  " nnoremap <expr> gk <SID>vjump(1)
 
   " auto center
   nnoremap <silent> n nzz
@@ -472,7 +469,8 @@ endfunction
   " imap <Nul> <C-Space>
   " inoremap <C-Space> <C-x><C-l>
 
-  inoremap <expr> + pumvisible() ? "\<c-n>" : "+"
+  " inoremap <expr> + pumvisible() ? "\<c-n>" : "+"
+  " inoremap <expr> <M-+> pumvisible() ? "\<c-p>" : "\<M-+>"
 
   " http://superuser.com/a/1165038/578741
   inoremap <F2> <C-\><C-o>:w<CR>
