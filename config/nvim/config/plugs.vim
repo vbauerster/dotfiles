@@ -95,7 +95,8 @@ Plug 'jodosha/vim-godebug', {'for': ['go'] }
 " Plug 'artur-shaik/vim-javacomplete2', {'for': ['java'] }
 
 " Auto pairs
-Plug 'vbauerster/auto-pairs', { 'branch': 'pumvisible' }
+" Plug 'vbauerster/auto-pairs', { 'branch': 'pumvisible' }
+Plug 'jiangmiao/auto-pairs'
 
 " HTML
 " Plug 'docunext/closetag.vim' "close HTML tag
