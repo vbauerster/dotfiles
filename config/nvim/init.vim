@@ -452,7 +452,7 @@ endfunction
   " => Insert mode mappings
   " -----------------------------------------------------------
   " Start new line
-  inoremap <S-Return> <C-o>o
+  " inoremap <S-Return> <C-o>o
 
   imap <F11> <C-o><F11>
 
