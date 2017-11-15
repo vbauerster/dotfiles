@@ -295,6 +295,8 @@ endfunction
   "  <C-w>z Close any 'Preview' window currently open
   "  <C-w>c Close the current window
   "  <C-w>T Move the current window to a new tab page
+  nnoremap <C-W>n <C-w>l
+  nnoremap <C-W>l <C-w>n
 
   " quick access to yank reg
   noremap "" "0
