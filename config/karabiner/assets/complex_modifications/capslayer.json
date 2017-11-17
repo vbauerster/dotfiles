@@ -1,447 +1,386 @@
 {
-  "title": "Caps hold layer, if alone Esc",
-  "rules": [
-    {
-      "description": "Caps Hyper [spacebar:kb_layout, hyper-cmd+comma:wm, m:numpad, u:spotlight, r:flycut]",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "caps_lock",
-            "modifiers": {
-              "optional": [
-                "control",
-                "command",
-                "shift"
-              ]
-            }
-          },
-          "to": [
-            {
-              "set_variable": {
-                "name": "caps_hold_mode",
-                "value": 1
-              }
-            }
-          ],
-          "to_if_alone": [
-            {
-              "key_code": "escape"
-            }
-          ],
-          "to_after_key_up": [
-            {
-              "set_variable": {
-                "name": "caps_hold_mode",
-                "value": 0
-              }
-            }
-          ]
+    "title": "Caps hold layer, if alone Esc",
+    "rules": [{
+            "description": "Caps Hyper [quote, m, u, r, f]",
+            "manipulators": [{
+                    "type": "basic",
+                    "from": {
+                        "key_code": "caps_lock",
+                        "modifiers": {
+                            "optional": [
+                                "control",
+                                "command",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [{
+                        "set_variable": {
+                            "name": "caps_hold_mode",
+                            "value": 1
+                        }
+                    }],
+                    "to_if_alone": [{
+                        "key_code": "escape"
+                    }],
+                    "to_after_key_up": [{
+                        "set_variable": {
+                            "name": "caps_hold_mode",
+                            "value": 0
+                        }
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "quote"
+                    },
+                    "to": [{
+                        "key_code": "quote",
+                        "modifiers": [
+                            "left_shift",
+                            "left_command",
+                            "left_control",
+                            "left_option"
+                        ]
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "u"
+                    },
+                    "to": [{
+                        "key_code": "u",
+                        "modifiers": [
+                            "left_shift",
+                            "left_command",
+                            "left_control",
+                            "left_option"
+                        ]
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "r"
+                    },
+                    "to": [{
+                        "key_code": "r",
+                        "modifiers": [
+                            "left_shift",
+                            "left_command",
+                            "left_control",
+                            "left_option"
+                        ]
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "m"
+                    },
+                    "to": [{
+                        "key_code": "m",
+                        "modifiers": [
+                            "left_shift",
+                            "left_command",
+                            "left_control",
+                            "left_option"
+                        ]
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "f"
+                    },
+                    "to": [{
+                        "key_code": "f",
+                        "modifiers": [
+                            "left_shift",
+                            "left_command",
+                            "left_control",
+                            "left_option"
+                        ]
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                }
+            ]
         },
         {
-          "type": "basic",
-          "from": {
-            "key_code": "spacebar"
-          },
-          "to": [
-            {
-              "key_code": "spacebar",
-              "modifiers": [
-                "left_shift",
-                "left_command",
-                "left_control",
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
+            "description": "Caps HyperWithoutCmd [comma]",
+            "manipulators": [{
+                "type": "basic",
+                "from": {
+                    "key_code": "comma"
+                },
+                "to": [{
+                    "key_code": "comma",
+                    "modifiers": [
+                        "left_shift",
+                        "left_control",
+                        "left_option"
+                    ]
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "caps_hold_mode",
+                    "value": 1
+                }]
+            }]
         },
         {
-          "type": "basic",
-          "from": {
-            "key_code": "comma"
-          },
-          "to": [
-            {
-              "key_code": "comma",
-              "modifiers": [
-                "left_shift",
-                "left_control",
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
+            "description": "Caps hold [arrows]",
+            "manipulators": [{
+                    "type": "basic",
+                    "from": {
+                        "key_code": "i"
+                    },
+                    "to": [{
+                        "key_code": "up_arrow"
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "k"
+                    },
+                    "to": [{
+                        "key_code": "down_arrow"
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "j"
+                    },
+                    "to": [{
+                        "key_code": "left_arrow"
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "l"
+                    },
+                    "to": [{
+                        "key_code": "right_arrow"
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "i",
+                        "modifiers": {
+                            "mandatory": [
+                                "control"
+                            ]
+                        }
+                    },
+                    "to": [{
+                        "key_code": "up_arrow",
+                        "modifiers": [
+                            "left_option"
+                        ]
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "k",
+                        "modifiers": {
+                            "mandatory": [
+                                "control"
+                            ]
+                        }
+                    },
+                    "to": [{
+                        "key_code": "down_arrow",
+                        "modifiers": [
+                            "left_option"
+                        ]
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "j",
+                        "modifiers": {
+                            "mandatory": [
+                                "control"
+                            ]
+                        }
+                    },
+                    "to": [{
+                        "key_code": "left_arrow",
+                        "modifiers": [
+                            "left_option"
+                        ]
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "l",
+                        "modifiers": {
+                            "mandatory": [
+                                "control"
+                            ]
+                        }
+                    },
+                    "to": [{
+                        "key_code": "right_arrow",
+                        "modifiers": [
+                            "left_option"
+                        ]
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                }
+            ]
         },
         {
-          "type": "basic",
-          "from": {
-            "key_code": "u"
-          },
-          "to": [
-            {
-              "key_code": "u",
-              "modifiers": [
-                "left_shift",
-                "left_command",
-                "left_control",
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
+            "description": "Caps Option [open_bracket:M-/]",
+            "manipulators": [{
+                "type": "basic",
+                "from": {
+                    "key_code": "open_bracket"
+                },
+                "to": [{
+                    "key_code": "open_bracket",
+                    "modifiers": [
+                        "left_option"
+                    ]
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "caps_hold_mode",
+                    "value": 1
+                }]
+            }]
         },
         {
-          "type": "basic",
-          "from": {
-            "key_code": "r"
-          },
-          "to": [
-            {
-              "key_code": "r",
-              "modifiers": [
-                "left_shift",
-                "left_command",
-                "left_control",
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "m"
-          },
-          "to": [
-            {
-              "key_code": "m",
-              "modifiers": [
-                "left_shift",
-                "left_command",
-                "left_control",
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
+            "description": "Caps hold [h:backspace, y:delete, semicolon:tab, spacebar:enter]",
+            "manipulators": [{
+                    "type": "basic",
+                    "from": {
+                        "key_code": "y"
+                    },
+                    "to": [{
+                        "key_code": "delete_forward"
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "h"
+                    },
+                    "to": [{
+                        "key_code": "delete_or_backspace"
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "semicolon"
+                    },
+                    "to": [{
+                        "key_code": "tab"
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "spacebar"
+                    },
+                    "to": [{
+                        "key_code": "keypad_enter"
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                }
+            ]
         }
-      ]
-    },
-    {
-      "description": "Caps hold [arrows]",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "i"
-          },
-          "to": [
-            {
-              "key_code": "up_arrow"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "k"
-          },
-          "to": [
-            {
-              "key_code": "down_arrow"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "j"
-          },
-          "to": [
-            {
-              "key_code": "left_arrow"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "l"
-          },
-          "to": [
-            {
-              "key_code": "right_arrow"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "i",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "up_arrow",
-              "modifiers": [
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "k",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "down_arrow",
-              "modifiers": [
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "j",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "left_arrow",
-              "modifiers": [
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "l",
-            "modifiers": {
-              "mandatory": [
-                "control"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": [
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "Caps hold [[:M-/]",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "open_bracket"
-          },
-          "to": [
-            {
-              "key_code": "open_bracket",
-              "modifiers": [
-                "left_option"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "Caps hold [h:backspace, y:delete, semicolon:tab, quote:enter]",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "y"
-          },
-          "to": [
-            {
-              "key_code": "delete_forward"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "h"
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "semicolon"
-          },
-          "to": [
-            {
-              "key_code": "tab"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "quote"
-          },
-          "to": [
-            {
-              "key_code": "keypad_enter"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "caps_hold_mode",
-              "value": 1
-            }
-          ]
-        }
-      ]
-    }
-  ]
+    ]
 }
