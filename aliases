@@ -54,7 +54,7 @@ alias tmu='tmux list-sessions'
 # alias g='git'
 
 # rg
-alias rg='rg --type-add "proto:*proto"'
+alias rg='rg --type-add "proto:*.proto"'
 
 # convenience
 alias eV='cd ~/dotfiles/config/nvim && nvim init.vim'
