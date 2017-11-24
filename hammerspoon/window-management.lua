@@ -71,7 +71,7 @@ end
 -- -----------------
 
 local modalKey = hs.hotkey.modal.new({'ctrl', 'alt', 'shift'}, 'w', 'WM mode')
-modalKey:bind({}, 'escape', function() modalKey:exit() end)
+modalKey:bind({}, 'q', function() modalKey:exit() end)
 
 local exit_timer = hs.timer.delayed.new(4, function()
 	modalKey:exit()
