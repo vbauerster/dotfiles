@@ -1,7 +1,7 @@
 -- local log = hs.logger.new("numpad", "info")
 
 local modalKey = hs.hotkey.modal.new({'command', 'ctrl', 'alt', 'shift'}, 'm', 'Npad mode')
-modalKey:bind({}, 'escape', function() modalKey:exit() end)
+modalKey:bind({}, 'q', function() modalKey:exit() end)
 
 local exit_timer = hs.timer.delayed.new(4, function()
 	-- log.i("timer fired")
@@ -18,6 +18,10 @@ function modalKey:exited()
 end
 
 local npad = {}
+npad[50] = 'pad*'
+npad[18] = 'pad+'
+npad[24] = 'pad='
+
 npad[26] = 'pad0'
 npad[28] = 'pad2'
 npad[25] = 'pad4'
