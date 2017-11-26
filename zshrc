@@ -60,9 +60,6 @@ if [[ ! "$PATH" == *$HOME/bin* && -d $HOME/bin ]]; then
     export PATH=$HOME/bin:$PATH
 fi
 
-# no ^s freezing the screen
-unsetopt flow_control
-
 # history settings
 setopt EXTENDED_HISTORY    # writes the history file in the *:start:elapsed;command* format
 setopt INC_APPEND_HISTORY  # writes to the history file immediately, not when the shell exits
