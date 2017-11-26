@@ -18,6 +18,17 @@ export BACKGROUND="light"
 # http://www.geekmind.net/2011/01/shortcuts-to-improve-your-bash-zsh.html
 export DOTFILES=$HOME/dotfiles
 
+# Golang
+export GOPATH=$HOME/gopath
+if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
+  export PATH=$GOPATH/bin:$PATH
+fi
+
+export GEMPATH=$HOME/.gem/ruby/2.0.0
+if [[ ! "$PATH" == *$GEMPATH/bin* ]]; then
+  export PATH=$GEMPATH/bin:$PATH
+fi
+
 # Node Version Manager
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
