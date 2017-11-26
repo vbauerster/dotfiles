@@ -22,7 +22,7 @@
 
 hs.hotkey.bind({"ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd"}, 47) end)
 hs.hotkey.bind({"ctrl"}, ",", function() hs.eventtap.keyStroke({"cmd"}, 34) end)
-hs.hotkey.bind({"ctrl"}, ";", function() hs.eventtap.keyStroke({"cmd"}, 7) end)
+hs.hotkey.bind({"ctrl"}, ";", function() hs.eventtap.keyStroke({"cmd"}, 11) end)
 hs.hotkey.bind({"ctrl", "shift"}, ".", function() hs.eventtap.keyStroke({"cmd", "alt"}, 47) end)
 
 require 'window-management'
