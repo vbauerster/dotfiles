@@ -12,19 +12,20 @@ let g:go_fold_enable = ['import']
 augroup GoLang
   autocmd!
 
-  autocmd FileType go nmap <Leader>K <Plug>(go-doc-vertical)
   autocmd FileType go nmap <Leader>i <Plug>(go-info)
+  autocmd FileType go nmap <Leader>jk <Plug>(go-doc-vertical)
 
   autocmd FileType go nnoremap <leader>jf :FZFGoFiles<CR>
   autocmd FileType go nnoremap <leader>jt :FZFTestGoFiles<CR>
 
   autocmd FileType go nnoremap <leader>ji :GoDecls<CR>
-  autocmd FileType go nnoremap <leader>jd :GoDeclsDir<CR>
+  " jump g = packaGe scope
+  autocmd FileType go nnoremap <leader>jg :GoDeclsDir<CR>
 
   autocmd FileType go nmap <F1> <Plug>(go-describe)
   autocmd FileType go nmap <S-F1> <Plug>(go-implements)
 
-  autocmd FileType go nnoremap <F2> :up<CR>:Neomake<CR>
+  " autocmd FileType go nnoremap <F2> :up<CR>:Neomake<CR>
   autocmd FileType go nnoremap <S-F2> :GoFmtAutoSaveToggle<CR>
 
   autocmd FileType go nmap <F4> <Plug>(go-referrers)

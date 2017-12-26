@@ -1,11 +1,14 @@
 " https://github.com/neomake/neomake/blob/master/autoload/neomake/makers/ft/javascript.vim
 " https://github.com/neomake/neomake/blob/master/autoload/neomake/makers/ft/go.vim
 
-let g:neomake_verbose = 0
-" preserve the cursor position
+" let g:neomake_verbose = 0
+" Auto open list and preserve the cursor position
 let g:neomake_open_list = 2
 
 let g:neomake_javascript_enabled_makers = ['eslint']
+
+" When writing a buffer, and on normal mode changes (after 750ms).
+call neomake#configure#automake('nw', 750)
 
 " gometalinter --install
 " https://github.com/alecthomas/gometalinter

@@ -19,6 +19,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-capslock' " <C-g>c or <C-l> in insert mode
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-obsession'
+Plug 'machakann/vim-highlightedyank'
 " Plug 'pbrisbin/vim-mkdir'
 " Plug 'tpope/vim-characterize' " enhaced ga
 
@@ -46,6 +47,7 @@ Plug 'neomake/neomake'
 Plug 'junegunn/vim-easy-align'
 Plug 'FooSoft/vim-argwrap'    " <Leader>aw
 Plug 'tommcdo/vim-exchange'   " cx to exchange
+Plug 'machakann/vim-swap'     " g> g< gs
 Plug 'chaoren/vim-wordmotion' " CamelCase motion
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -62,28 +64,28 @@ Plug 'airblade/vim-rooter'
 " Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 
 " AutoComplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/nvim-completion-manager'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " neco-syntax: syntax files as completion source
-Plug 'Shougo/neco-syntax'
+" Plug 'Shougo/neco-syntax'
 " neco-vim: 'vim' source for Vim script
-Plug 'Shougo/neco-vim'
+" Plug 'Shougo/neco-vim'
 " context_filetype: It adds the context filetype feature
-Plug 'Shougo/context_filetype.vim'
+" Plug 'Shougo/context_filetype.vim'
 " echodoc: It prints the documentation you have completed
 Plug 'Shougo/echodoc.vim'
 " neoinclude: 'include' and 'file/include' sources
 " You can completes the candidates from the included files and included path
-Plug 'Shougo/neoinclude.vim'
+" Plug 'Shougo/neoinclude.vim'
 " deoplete-go: 'golang' source
-Plug 'zchee/deoplete-go', { 'for': ['go'], 'do': 'make'}
+" Plug 'zchee/deoplete-go', { 'for': ['go'], 'do': 'make'}
 " deoplete-clang: 'clang' source for C/C++
 " Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
 " deoplete-ternjs: 'ternjs' source for JavaScript
-Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'jsx'], 'do': 'npm install -g tern' }
+" Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'jsx'], 'do': 'npm install -g tern' }
 " neco-look: plugin for /usr/bin/look for completing words in English
-Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
-" tmux-complete: 'tmuxcomplete' source for tmux panes
-Plug 'wellle/tmux-complete.vim'
+" Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
+
 " UltiSnips source: 'ultisnips' source for UltiSnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
@@ -129,14 +131,14 @@ Plug 'othree/javascript-libraries-syntax.vim'
 
 " Misc.
 " Plug 'chrisbra/Colorizer'
-Plug 'ap/vim-css-color'
+" Plug 'ap/vim-css-color'
 Plug 'lyokha/vim-xkbswitch'
 Plug 'tyru/open-browser.vim'
 Plug 'romainl/vim-qf'
 Plug 'blueyed/vim-qf_resize'
 Plug 'wesQ3/vim-windowswap'      " <Leader>ww to swap windows
-Plug 'justinmk/vim-gtfo'         " got/gof mappings
 Plug 'ron89/thesaurus_query.vim' " <Leader>cs
+" Plug 'kana/vim-textobj-entire'   " ae and ie text objects
 Plug 'vbauerster/vim-highlighter'
 
 if has('mac')
@@ -150,6 +152,9 @@ endif
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'tmux-plugins/vim-tmux'
+Plug 'justinmk/vim-gtfo'         " got/gof mappings
+" tmux-complete: 'tmuxcomplete' source for tmux panes
+" Plug 'wellle/tmux-complete.vim'
 
 " Plug 'cosminadrianpopescu/vim-sql-workbench'
 

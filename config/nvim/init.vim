@@ -139,7 +139,7 @@ endfunction
   set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
   set number
-  set timeoutlen=500                   " mapping timeout
+  set timeoutlen=600                   " mapping timeout
   set ttimeoutlen=50                   " keycode timeout
   set dictionary=/usr/share/dict/words " :h i_CTRL-x_CTRL-k
   set wildmode=list:longest            " TAB auto-completion for file paths
@@ -238,8 +238,8 @@ endfunction
   " read ":w" as ";w" because of the below remappings. Use "noremap"s in such
   " situations and you'll be fine.
   " https://github.com/junegunn/fzf.vim/issues/313
-  nnoremap ; :
-  xnoremap ; :
+  " nnoremap ; :
+  " xnoremap ; :
 
   nnoremap ' `
 
@@ -274,17 +274,20 @@ endfunction
 
   " Quit nvim
   nnoremap <Leader>q :q<CR>
+  nnoremap <Leader>q! :qa!<CR>
   nnoremap <Leader>! :q!<CR>
-  nnoremap <silent> <F10> :bd<CR>
+  " buffer delete
+  nnoremap <silent> <leader>xx :bd<CR>
 
   " F1 will search help for the word under the cursor
   nnoremap <F1> :help <C-r><C-w><CR>
 
   " Save in normal mode
-  nnoremap <F2> :w<CR>
+  " nnoremap <F2> :w<CR>
+  nnoremap <F2> :up<CR>
 
   " Buffer reload
-  nnoremap <Leader>R :e!<CR>
+  nnoremap <Leader>er :e!<CR>
 
   " Read :help ctrl-w_w
   " Read :help wincmd
@@ -297,6 +300,8 @@ endfunction
   "  <C-w>T Move the current window to a new tab page
   nnoremap <C-W>n <C-w>l
   nnoremap <C-W>l <C-w>n
+  nnoremap <C-W>N <C-w>L
+  nnoremap <C-W>L <C-w>N
 
   " quick access to yank reg
   noremap "" "0
@@ -320,7 +325,7 @@ endfunction
   " nnoremap / /\v
   " nnoremap ? ?\v
 
-  " This makes j and k work on "screen lines" instead of on "file lines"; now, when
+  " This makes j and k work on 'screen lines' instead of on 'file lines'; now, when
   " we have a long line that wraps to multiple screen lines, j and k behave as we
   " expect them to.
   nnoremap j gj
@@ -335,10 +340,8 @@ endfunction
   " noremap <M-+> 6gk
 
   " vim-vertical-move
-  nnoremap <expr> <M-j> <SID>vjump(0)
-  nnoremap <expr> <M-k> <SID>vjump(1)
-  " nnoremap <expr> gj <SID>vjump(0)
-  " nnoremap <expr> gk <SID>vjump(1)
+  nnoremap <expr> <Down> <SID>vjump(0)
+  nnoremap <expr> <Up> <SID>vjump(1)
 
   " auto center
   nnoremap <silent> n nzz
@@ -354,8 +357,8 @@ endfunction
   nnoremap <Leader>fb zfaB
 
   " Wipe xxx {} block
-  nnoremap <Leader>bx vaBo0d
-  nnoremap <expr><Leader>dp <SID>deleteParam()
+  nnoremap <Leader>xB vaBo0d
+  nnoremap <expr><Leader>xp <SID>deleteParam()
 
   " Read :help g_ctrl-]
   " same as :tjump
@@ -378,13 +381,6 @@ endfunction
   " nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
   nnoremap <silent><Leader>cc :call clearmatches()<CR>:noh<CR>
-
-  " Start terminal
-  nnoremap <silent><Leader>ts <C-w>v:te<CR>
-  nnoremap <silent><Leader>th <C-w>s<C-w>J8<C-w>-:te<CR>
-  " resize terminal horizontally
-  nnoremap <expr><Up> &buftype ==# "terminal" ? "\<C-w>+<CR>" : "\<Up>"
-  nnoremap <expr><Down> &buftype ==# "terminal" ? "\<C-w>-<CR>" : "\<Down>"
 
   " -----------------------------------------------------------
   " => Diff3 merge
@@ -520,6 +516,13 @@ endfunction
   " -----------------------------------------------------------
   " => Terminal mode mappings
   " -----------------------------------------------------------
+  " Start terminal
+  nnoremap <silent><leader>ts <C-w>v:te<CR>
+  nnoremap <silent><leader>th <C-w>s<C-w>J8<C-w>-:te<CR>
+  " resize terminal horizontally
+  " nnoremap <expr><Up> &buftype ==# "terminal" ? "\<C-w>+<CR>" : "\<Up>"
+  " nnoremap <expr><Down> &buftype ==# "terminal" ? "\<C-w>-<CR>" : "\<Down>"
+
   " Read :help nvim-terminal-emulator
   " <C-\><C-n> key combo, exit back to normal mode.
   tnoremap ,. <C-\><C-n>
