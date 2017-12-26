@@ -1,7 +1,7 @@
 {
     "title": "Caps hold layer, if alone Esc",
     "rules": [{
-            "description": "Caps Hyper [quote, m, u, r, f]",
+            "description": "Caps Hyper [semicolon, quote, m, u, r, f]",
             "manipulators": [{
                     "type": "basic",
                     "from": {
@@ -28,6 +28,26 @@
                             "name": "caps_hold_mode",
                             "value": 0
                         }
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "semicolon"
+                    },
+                    "to": [{
+                        "key_code": "semicolon",
+                        "modifiers": [
+                            "left_shift",
+                            "left_command",
+                            "left_control",
+                            "left_option"
+                        ]
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
                     }]
                 },
                 {
@@ -323,7 +343,7 @@
             }]
         },
         {
-            "description": "Caps hold [h:backspace, y:delete, semicolon:tab, spacebar:enter]",
+            "description": "Caps hold [h:backspace, y:delete, spacebar:enter]",
             "manipulators": [{
                     "type": "basic",
                     "from": {
@@ -345,20 +365,6 @@
                     },
                     "to": [{
                         "key_code": "delete_or_backspace"
-                    }],
-                    "conditions": [{
-                        "type": "variable_if",
-                        "name": "caps_hold_mode",
-                        "value": 1
-                    }]
-                },
-                {
-                    "type": "basic",
-                    "from": {
-                        "key_code": "semicolon"
-                    },
-                    "to": [{
-                        "key_code": "tab"
                     }],
                     "conditions": [{
                         "type": "variable_if",
