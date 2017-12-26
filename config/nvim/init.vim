@@ -87,7 +87,7 @@ endfunction
 " COLORSCHEME {{{
   execute "set background=".$BACKGROUND
 
-  " let g:gruvbox_contrast_light="soft"
+  let g:gruvbox_contrast_light="hard"
   let g:gruvbox_contrast_dark="soft"
   let g:gruvbox_italic=1
   " https://github.com/morhetz/gruvbox/wiki/Configuration
