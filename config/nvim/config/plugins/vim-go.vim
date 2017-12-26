@@ -22,20 +22,20 @@ augroup GoLang
   " jump g = packaGe scope
   autocmd FileType go nnoremap <leader>jg :GoDeclsDir<CR>
 
-  autocmd FileType go nmap <F1> <Plug>(go-describe)
-  autocmd FileType go nmap <S-F1> <Plug>(go-implements)
+  autocmd FileType go nnoremap <silent><C-c><C-o>d :GoDescribe<CR>:setl nonumber<CR><C-w>L
+  autocmd FileType go nnoremap <silent><C-c><C-o>i :GoImplements<CR>:setl nonumber<CR><C-w>L
+  autocmd FileType go nnoremap <silent><C-c><C-o>s :GoCallstack<CR>:setl nonumber<CR><C-w>L
+  autocmd FileType go nnoremap <silent><C-c><C-o>c :GoChannelPeers<CR>:setl nonumber<CR><C-w>L
+  autocmd FileType go vnoremap <silent><C-c><C-o>f :GoFreevars<CR>:setl nonumber<CR>
+  autocmd FileType go nnoremap <silent><C-c><C-o>r :GoReferrers<CR>:setl nonumber<CR>
+  autocmd FileType go nnoremap <silent><C-c><C-o>> :GoCallers<CR>:setl nonumber<CR><C-w>L
+  autocmd FileType go nnoremap <silent><C-c><C-o>< :GoCallees<CR>:setl nonumber<CR><C-w>L
+  autocmd FileType go nnoremap <silent><C-c><C-o>e :GoWhicherrs<CR>:setl nonumber<CR><C-w>L
 
   " autocmd FileType go nnoremap <F2> :up<CR>:Neomake<CR>
   autocmd FileType go nnoremap <S-F2> :GoFmtAutoSaveToggle<CR>
 
-  autocmd FileType go nmap <F4> <Plug>(go-referrers)
-  autocmd FileType go nmap <S-F4> <Plug>(go-callers)
-
-  autocmd FileType go nmap <F5> <Plug>(go-channelpeers)
-  autocmd FileType go nmap <S-F5> <Plug>(go-freevars)
-
   autocmd FileType go nmap <F6> <Plug>(go-rename)
-
   autocmd FileType go nmap <F7> <Plug>(go-sameids-toggle)
   " not related to go but...
   nnoremap <S-F7> :Highlight<CR>
