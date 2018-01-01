@@ -1,0 +1,158 @@
+set global tabstop 4
+set global indentwidth 4
+set global scrolloff 3,1
+set global BOM none
+# set global ui_options ncurses_status_on_top=true
+# set global ui_options ncurses_assistant=none:ncurses_change_colors=true
+# set global grepcmd 'rg --column'
+ 
+# simple Kakoune plugin manager
+def plug -params 1..2 %{
+    %sh{
+        if [[ ! -d $HOME/build/$1 ]]; then
+            (cd $HOME/build; git clone https://github.com/$1 2> /dev/null)
+        fi
+        for file in $(echo $HOME/build/$(basename $1)/$2*.kak); do
+            echo source "$file"
+        done
+    }
+}
+
+# plug occivink/kakoune-vertical-selection
+# plug occivink/kakoune-interactive-itersel
+# plug occivink/kakoune-expand
+# plug occivink/kakoune-find
+# plug occivink/kakoune-sudo-write
+# plug danr/kakoune-easymotion
+# plug delapouite/kakoune-livedown
+plug Delapouite/kakoune-registers
+plug fsub/kakoune-mark
+plug alexherbo2/move-line.kak rc/
+
+map global normal ( ':move-line-above %val{count}<ret>'
+map global normal ) ':move-line-below %val{count}<ret>'
+
+map global user m :mark-word<ret> -docstring 'mark word'
+map global user M :mark-clear<ret> -docstring 'mark clear' 
+
+# https://github.com/mawww/kakoune/issues/1791
+map global object q Q
+map global object Q q
+
+# space is my leader
+map global normal <space> ,
+# , remove all selections except main
+map global normal , <space>
+# <a-space> could be mapped to tmux prefix
+# <a-backspace> remove main selection
+map global normal <a-backspace> <a-space>
+
+# vim old habits
+map global normal D '<a-l>d' -docstring 'delete to end of line'
+map global normal Y '<a-l>y' -docstring 'yank to end of line'
+
+map global normal '#' :comment-line<ret> -docstring 'comment line'
+map global normal '<a-#>' :comment-block<ret> -docstring 'comment block'
+
+map global goto p '<esc>m;' -docstring 'matching pair'
+
+# select all occurrences in this buffer
+map global user a '*%s<c-/><ret>' -docstring 'select all'
+map global user . ':edit ~/.config/kak/kakrc<ret>' -docstring 'edit kakrc'
+#map global user c <a-s>:comment-line<ret> -docstring 'comment line'
+
+map global user y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank to sys clipboard'
+map global user p '!pbpaste<ret>' -docstring 'paste from sys clipboard'
+map global user R ':e!<ret>' -docstring 'Reload buffer'
+
+# Insert mode
+#map global insert <c-s> <c-o>    ; # silent: stop completion
+#map global insert <c-c> <c-x>    ; # complete here
+#map global insert <c-k> <c-v>    ; # raw insert, use vim binding
+#map global insert <c-c> <a-\;>   ; # execute one normal kak command
+map global insert <c-y> '<c-r>"' ; # paste from normal yank register, readline key
+
+hook global WinCreate ^[^*]+$ %{
+    addhl window number_lines -hlcursor -separator ' '
+}
+
+hook global WinSetOption filetype=go %{
+    go-enable-autocomplete
+    #auto-pairs-enable
+    map global goto d '<esc>:go-jump<ret>' -docstring 'definition'
+}
+
+hook global BufWritePost .*\.go %{
+    go-format -use-goimports
+}
+
+# tab/backtab to cycle through completions
+hook global InsertCompletionShow .* %{
+    map window insert ] <c-p>
+    map window insert + <c-n>
+    # map window insert <backtab> <c-p>
+    # map window insert <tab> <c-n>
+}
+hook global InsertCompletionHide .* %{
+    unmap window insert + <c-n>
+    unmap window insert ] <c-p>
+    # unmap window insert <tab> <c-n>
+    # unmap window insert <backtab> <c-p>
+}
+
+# auto indent
+# hook -group copyindent global InsertChar \n %{ exec -draft -itersel K<a-&> }
+# hook -group kakrc global WinSetOption ^filetype=markdown$ %{
+#     set window disabled_hooks copyindent
+# }
+
+# by lenormf, see https://github.com/mawww/kakoune/issues/1192
+decl -hidden range-specs show_matching_range
+
+hook global -group kakrc InsertChar [[(<{}>)\]] %{ eval -draft %{
+    try %{
+        exec -no-hooks <esc>\;hm<a-k>..<ret>\;
+        set window show_matching_range "%val{timestamp}:%val{selection_desc}|MatchingChar"
+    }
+
+    hook window -group once-matching InsertChar [^[(<{}>)\]] %{
+        set window show_matching_range ""
+        remove-hooks window once-matching
+    }
+
+    hook window -group once-matching InsertEnd .* %{
+        set window show_matching_range ""
+        remove-hooks window once-matching
+    }
+}}
+
+hook global -group kakrc InsertEnd .* %{
+    set buffer show_matching_range ""
+}
+
+hook global -group kakrc WinCreate .* %{
+    addhl window ranges show_matching_range
+}
+
+# hook global InsertChar \( 'exec )<left>'
+# hook global InsertChar \{ 'exec }<left>'
+# hook global InsertChar \[ 'exec ]<left>'
+# hook global InsertChar ' "exec '<left>"
+
+# set-face SecondaryCursor black,rgb:babaa3
+# set-face Whitespace rgb:363636,default
+# set-face LineNumbersWrapped rgb:606060,default+i
+
+add-highlighter global show_matching
+# add-highlighter global dynregex '%reg{/}' 0:default,+u
+# add-highlighter global wrap -word
+# add-highlighter global show_whitespaces
+
+# escape hatch
+hook global InsertChar \. %{ try %{
+  exec -draft hH <a-k>,\.<ret> d
+  exec <esc>
+  write
+}}
+
+colorscheme github
