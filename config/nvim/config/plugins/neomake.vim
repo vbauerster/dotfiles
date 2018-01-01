@@ -16,8 +16,12 @@ call neomake#configure#automake('nw', 750)
 " https://github.com/dominikh/go-tools/tree/master/cmd/megacheck
 " let g:neomake_go_gometalinter_args = ['--disable-all',  '--enable=vetshadow', '--enable=errcheck', '--enable=megacheck']
 
-" let g:neomake_error_sign = {'text': '✖', 'texthl': 'GruvboxRedSign'}
-" let g:neomake_warning_sign = {'text': '⚠', 'texthl': 'GruvboxYellowSign'}
+" let g:neomake_error_sign = {'text': '✖', 'texthl': 'NeomakeErrorSign'}
+" let g:neomake_warning_sign = {
+"    \   'text': 'ℯ',
+"    \   'texthl': 'NeomakeWarningSign',
+"    \ }
+" call neomake#signs#RedefineErrorSign()
 
 " run neomake on the current file on every write
 " augroup Neomake

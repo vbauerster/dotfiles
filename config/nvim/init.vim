@@ -1,6 +1,13 @@
 " vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
 
 " VIM-PLUG BLOCK {{{
+  " Install Plug -> faster
+  if empty(glob('~/.config/nvim/autoload/plug.vim'))
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+  endif
+
   " https://github.com/junegunn/vim-plug
   source ~/.config/nvim/config/plugs.vim
 "}}}
@@ -85,22 +92,38 @@ endfunction
 "}}}
 
 " COLORSCHEME {{{
-  execute "set background=".$BACKGROUND
+  " execute "set background=".$BACKGROUND
+  set background=light
 
-  let g:gruvbox_contrast_light="hard"
-  let g:gruvbox_contrast_dark="soft"
-  let g:gruvbox_italic=1
+  " let g:PaperColor_Theme_Options = {
+  "   \   'theme': {
+  "   \     'default': {
+  "   \       'transparent_background': 0,
+  "   \       'allow_bold': 1,
+  "   \       'allow_italic': 1
+  "   \     }
+  "   \   }
+  "   \ }
+
+  colorscheme materialbox
+  let g:materialbox_contrast_light="hard"
+  let g:materialbox_italic=1
+  let g:materialbox_italicize_comments=1
+
+  " let g:gruvbox_contrast_light="hard"
+  " let g:gruvbox_contrast_dark="soft"
+  " let g:gruvbox_italic=1
   " https://github.com/morhetz/gruvbox/wiki/Configuration
-  let g:gruvbox_italicize_comments=1
-  let g:gruvbox_italicize_strings=0
-  let g:gruvbox_invert_selection=1
-  let g:gruvbox_invert_signs=0
-  let g:gruvbox_invert_indent_guides=0
-  let g:gruvbox_invert_tabline=0
-  let g:gruvbox_improved_strings=0
-  let g:gruvbox_improved_warnings=1
-  colorscheme gruvbox
-  nnoremap <silent> com :call gruvbox#invert_signs_toggle()<cr>
+  " let g:gruvbox_italicize_comments=1
+  " let g:gruvbox_italicize_strings=0
+  " let g:gruvbox_invert_selection=1
+  " let g:gruvbox_invert_signs=0
+  " let g:gruvbox_invert_indent_guides=0
+  " let g:gruvbox_invert_tabline=0
+  " let g:gruvbox_improved_strings=0
+  " let g:gruvbox_improved_warnings=1
+  " colorscheme gruvbox
+  " nnoremap <silent> com :call gruvbox#invert_signs_toggle()<cr>
 
   " let g:one_allow_italics = 1
   " colorscheme one
@@ -115,7 +138,7 @@ endfunction
 
 " BASIC SETTINGS {{{
   let mapleader = ' '
-  let maplocalleader = ' '
+  " let maplocalleader = ' '
 
   let g:python_host_prog = "/usr/local/bin/python2"
   let g:python3_host_prog = "/usr/local/bin/python3"
@@ -180,7 +203,7 @@ endfunction
 
   set textwidth=80
   " if textwidth > 80 highlight overlength with reddish bg
-  " highlight OverLength ctermbg=223 guibg=#592929
+  " highlight OverLength ctermbg=223 guibg=#FDEEF4
   " match OverLength /\%81v.\+/
 
   " Set spellfile to location that is guaranteed to exist, can be symlinked to
@@ -189,8 +212,8 @@ endfunction
 
   " Open new split panes to right and bottom, which feels more natural
   " https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
-  set splitbelow
-  set splitright
+  " set splitbelow
+  " set splitright
 
   " Always use vertical diffs
   set diffopt+=vertical
@@ -201,9 +224,11 @@ endfunction
   " endif
 
   " Whitespaces
-  set list " col to toggle
-  set listchars=tab:›⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
-  " set showbreak=↪
+  set list
+  " set listchars=tab:›⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
+  " set listchars=tab:¦\ ,trail:⋅,extends:❯,precedes:❮
+  set listchars=tab:│\ ,trail:⋅,extends:❯,precedes:❮
+  set showbreak=↪
 
   set noswapfile
 "}}}
@@ -298,10 +323,10 @@ endfunction
   "  <C-w>z Close any 'Preview' window currently open
   "  <C-w>c Close the current window
   "  <C-w>T Move the current window to a new tab page
-  nnoremap <C-W>n <C-w>l
-  nnoremap <C-W>l <C-w>n
-  nnoremap <C-W>N <C-w>L
-  nnoremap <C-W>L <C-w>N
+  " nnoremap <C-W>n <C-w>l
+  " nnoremap <C-W>l <C-w>n
+  " nnoremap <C-W>N <C-w>L
+  " nnoremap <C-W>L <C-w>N
 
   " quick access to yank reg
   noremap "" "0
@@ -465,8 +490,7 @@ endfunction
   " imap <Nul> <C-Space>
   " inoremap <C-Space> <C-x><C-l>
 
-  " inoremap <expr> + pumvisible() ? "\<c-n>" : "+"
-  " inoremap <expr> <M-+> pumvisible() ? "\<c-p>" : "\<M-+>"
+  inoremap <expr> + pumvisible() ? "\<c-n>" : "+"
 
   " http://superuser.com/a/1165038/578741
   inoremap <F2> <C-\><C-o>:w<CR>
@@ -508,7 +532,7 @@ endfunction
   " cnoremap c} <C-u>pwd<CR>
   " Quit all without save, also refer to line 187
   " cnoremap !; <C-u>qa!<CR>
-  cnoremap !! <C-u>qa!<CR>
+  cnoremap =! <C-u>qa!<CR>
 
   cnoremap <C-A> <Home>
   cnoremap <C-O> <Up>
@@ -536,50 +560,47 @@ endfunction
 
 " AUTOCMD {{{
   augroup Vimrc_au
-    autocmd!
+    au!
 
     " Remove trailing whitespaces
-    autocmd BufWritePre * :%s/\s\+$//e
+    au BufWritePre * :%s/\s\+$//e
 
     " Help in new tabs
-    autocmd BufEnter *.txt call <sid>HelpTab()
+    au BufEnter *.txt call <sid>HelpTab()
 
     " highlight cursorline in active window
-    autocmd WinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
+    au WinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
 
     " Create directory if not exists
-    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+    au BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it for commit messages, when the position is invalid, or when
     " inside an event handler (happens when dropping a file on gvim).
     " :h last-position-jump
-    autocmd BufReadPost *
+    au BufReadPost *
           \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
           \  exe 'normal! g`"zvzz' |
           \ endif
 
-    " Automatically wrap at 72 characters and spell check git commit messages
-    autocmd FileType gitcommit setlocal textwidth=72
-    autocmd FileType gitcommit setlocal spell spelllang=ru_yo,en_us
-
     " Unset paste on InsertLeave
-    autocmd InsertLeave * silent! set nopaste
+    " au InsertLeave * silent! set nopaste
   augroup END
 
-  augroup Markdown_au
-    " Enable spellchecking for Markdown
-    autocmd FileType markdown setlocal spell spelllang=ru_yo,en_us
-    " Automatically wrap at 80 characters for Markdown
-    autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-  augroup END
+  augroup FileType_au
+    au!
+    au FileType sh,xml,html,javascript   setl ts=2 sts=2 sw=2 et
+    au FileType py,markdown              setl ts=4 sts=4 sw=4 et
+    au FileType go                       setl ts=4 sts=4 sw=4 noet
+    au FileType markdown,gitcommit       setl spell spelllang=ru_yo,en_us
+    au FileType gitcommit                setl textwidth=72
+    au FileType markdown                 setl textwidth=80
 
-  augroup JS_au
-    autocmd FileType json setlocal conceallevel&
+    " autocmd FileType json setlocal conceallevel&
     " https://stackoverflow.com/a/20127451/1351845
-    autocmd FileType json setlocal equalprg=js-beautify\ -
-    autocmd FileType javascript setlocal equalprg=js-beautify\ -
+    au FileType json       setl equalprg=js-beautify\ -
+    au FileType javascript setl equalprg=js-beautify\ -
   augroup END
 
   " augroup Tmux_au
@@ -590,15 +611,18 @@ endfunction
   "   endif
   " augroup END
 
-  " augroup Terminal_au
-  "   autocmd!
+  augroup Terminal_au
+    au!
+    au TermOpen * :setl nonumber
+    au TermOpen * startinsert
+    au WinEnter term://* startinsert
     " autocmd TermOpen * let g:last_terminal_job_id = b:terminal_job_id
     " https://github.com/junegunn/fzf.vim/issues/21
     " https://github.com/junegunn/fzf/issues/426
     " autocmd BufWinEnter,WinEnter term://* startinsert
     " autocmd BufWinEnter,WinEnter term://* call feedkeys('i')
     " autocmd BufWinEnter,WinEnter term://* echom string(reltime())
-  " augroup END
+  augroup END
 "}}}
 
 " plugin settings BLOCK {{{
