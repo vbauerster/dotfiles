@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+#
+# Batch extension rename
 
 for file in "$PWD"/*; do
   if [ -d "$file" ]; then
