@@ -1,0 +1,104 @@
+{
+    "title": "Exchange shift keys, for en only",
+    "rules": [{
+            "description": "Exchange q and Q",
+            "manipulators": [{
+                    "conditions": [{
+                        "type": "input_source_if",
+                        "input_sources": [{
+                            "language": "en"
+                        }]
+                    }],
+                    "type": "basic",
+                    "from": {
+                        "key_code": "q",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [{
+                        "key_code": "q",
+                        "modifiers": [
+                            "left_shift"
+                        ]
+                    }]
+                },
+                {
+                    "conditions": [{
+                        "type": "input_source_if",
+                        "input_sources": [{
+                            "language": "en"
+                        }]
+                    }],
+                    "type": "basic",
+                    "from": {
+                        "key_code": "q",
+                        "modifiers": {
+                            "mandatory": [
+                                "shift"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [{
+                        "key_code": "q"
+                    }]
+                }
+            ]
+        },
+        {
+            "description": "Exchange quote and double-quote",
+            "manipulators": [{
+                    "conditions": [{
+                        "type": "input_source_if",
+                        "input_sources": [{
+                            "language": "en"
+                        }]
+                    }],
+                    "type": "basic",
+                    "from": {
+                        "key_code": "quote",
+                        "modifiers": {
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [{
+                        "key_code": "quote",
+                        "modifiers": [
+                            "left_shift"
+                        ]
+                    }]
+                },
+                {
+                    "conditions": [{
+                        "type": "input_source_if",
+                        "input_sources": [{
+                            "language": "en"
+                        }]
+                    }],
+                    "type": "basic",
+                    "from": {
+                        "key_code": "quote",
+                        "modifiers": {
+                            "mandatory": [
+                                "shift"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [{
+                        "key_code": "quote"
+                    }]
+                }
+            ]
+        }
+    ]
+}

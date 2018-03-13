@@ -8,13 +8,14 @@
         {
             "complex_modifications": {
                 "parameters": {
+                    "basic.simultaneous_threshold_milliseconds": 50,
                     "basic.to_delayed_action_delay_milliseconds": 500,
-                    "basic.to_if_alone_timeout_milliseconds": 1000,
+                    "basic.to_if_alone_timeout_milliseconds": 800,
                     "basic.to_if_held_down_threshold_milliseconds": 500
                 },
                 "rules": [
                     {
-                        "description": "Caps Hyper [semicolon, quote, m, u, r, f]",
+                        "description": "Caps Hyper [quote, m, u, r, f]",
                         "manipulators": [
                             {
                                 "from": {
@@ -46,30 +47,6 @@
                                 "to_if_alone": [
                                     {
                                         "key_code": "escape"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_hold_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "semicolon"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "semicolon",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "left_command",
-                                            "left_control",
-                                            "left_option"
-                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -197,7 +174,7 @@
                         ]
                     },
                     {
-                        "description": "Caps HyperWithoutCmd [comma]",
+                        "description": "Caps HyperNoCmd [comma]",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -225,7 +202,7 @@
                         ]
                     },
                     {
-                        "description": "Caps hold [arrows]",
+                        "description": "Caps hold [h:delete, spacebar:enter]",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -236,11 +213,52 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "i"
+                                    "key_code": "h"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "up_arrow"
+                                        "key_code": "delete_forward"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_hold_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "spacebar"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_enter"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Caps hold [arrows dvorak]",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_hold_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow"
                                     }
                                 ],
                                 "type": "basic"
@@ -272,11 +290,11 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "j"
+                                    "key_code": "l"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_arrow"
+                                        "key_code": "up_arrow"
                                     }
                                 ],
                                 "type": "basic"
@@ -290,7 +308,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "l"
+                                    "key_code": "semicolon"
                                 },
                                 "to": [
                                     {
@@ -406,48 +424,31 @@
                         ]
                     },
                     {
-                        "description": "Caps Option [open_bracket:M-/]",
+                        "description": "Numeric Keypad Mode [equal_sign as trigger key]",
                         "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "name": "caps_hold_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
                                 "from": {
-                                    "key_code": "open_bracket"
+                                    "key_code": "equal_sign"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "open_bracket",
-                                        "modifiers": [
-                                            "left_option"
-                                        ]
+                                        "set_variable": {
+                                            "name": "numeric_keypad_mode",
+                                            "value": 1
+                                        }
                                     }
                                 ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Caps hold [h:backspace, y:delete, spacebar:enter]",
-                        "manipulators": [
-                            {
-                                "conditions": [
+                                "to_after_key_up": [
                                     {
-                                        "name": "caps_hold_mode",
-                                        "type": "variable_if",
-                                        "value": 1
+                                        "set_variable": {
+                                            "name": "numeric_keypad_mode",
+                                            "value": 0
+                                        }
                                     }
                                 ],
-                                "from": {
-                                    "key_code": "y"
-                                },
-                                "to": [
+                                "to_if_alone": [
                                     {
-                                        "key_code": "delete_forward"
+                                        "key_code": "equal_sign"
                                     }
                                 ],
                                 "type": "basic"
@@ -455,17 +456,17 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "caps_hold_mode",
+                                        "name": "numeric_keypad_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "h"
+                                    "key_code": "a"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "delete_or_backspace"
+                                        "key_code": "keypad_7"
                                     }
                                 ],
                                 "type": "basic"
@@ -473,7 +474,169 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "caps_hold_mode",
+                                        "name": "numeric_keypad_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "r"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_8"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "numeric_keypad_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "g"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_9"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "numeric_keypad_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "w"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_4"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "numeric_keypad_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "s"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_5"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "numeric_keypad_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "e"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_6"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "numeric_keypad_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "f"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_1"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "numeric_keypad_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "q"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_2"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "numeric_keypad_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "d"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_3"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "numeric_keypad_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "keypad_period"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "numeric_keypad_mode",
                                         "type": "variable_if",
                                         "value": 1
                                     }
@@ -483,7 +646,66 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "keypad_enter"
+                                        "key_code": "keypad_0"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "df -> app_expose",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    },
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "d"
+                                        },
+                                        {
+                                            "key_code": "f"
+                                        }
+                                    ]
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": [
+                                            "left_control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "sf -> mission_control",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    },
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "s"
+                                        },
+                                        {
+                                            "key_code": "f"
+                                        }
+                                    ]
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "mission_control"
                                     }
                                 ],
                                 "type": "basic"
@@ -528,18 +750,18 @@
                         },
                         {
                             "from": {
-                                "key_code": "right_command"
-                            },
-                            "to": {
-                                "key_code": "right_control"
-                            }
-                        },
-                        {
-                            "from": {
                                 "key_code": "left_control"
                             },
                             "to": {
                                 "key_code": "left_command"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "right_command"
+                            },
+                            "to": {
+                                "key_code": "right_control"
                             }
                         }
                     ]
@@ -708,6 +930,76 @@
                     "ignore": true,
                     "manipulate_caps_lock_led": false,
                     "simple_modifications": []
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 1874,
+                        "vendor_id": 1118
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": false,
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "key_code": "application"
+                            },
+                            "to": {
+                                "key_code": "right_command"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_command"
+                            },
+                            "to": {
+                                "key_code": "left_option"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_control"
+                            },
+                            "to": {
+                                "key_code": "left_command"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_option"
+                            },
+                            "to": {
+                                "key_code": "left_control"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "right_command"
+                            },
+                            "to": {
+                                "key_code": "right_option"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "right_control"
+                            },
+                            "to": {
+                                "key_code": "application"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "right_option"
+                            },
+                            "to": {
+                                "key_code": "right_control"
+                            }
+                        }
+                    ]
                 }
             ],
             "fn_function_keys": [
@@ -819,13 +1111,14 @@
         {
             "complex_modifications": {
                 "parameters": {
+                    "basic.simultaneous_threshold_milliseconds": 50,
                     "basic.to_delayed_action_delay_milliseconds": 500,
                     "basic.to_if_alone_timeout_milliseconds": 1000,
                     "basic.to_if_held_down_threshold_milliseconds": 500
                 },
                 "rules": [
                     {
-                        "description": "Caps Hyper [semicolon, quote, m, u, r, f]",
+                        "description": "Caps Hyper [quote, m, u, r, f]",
                         "manipulators": [
                             {
                                 "from": {
@@ -857,30 +1150,6 @@
                                 "to_if_alone": [
                                     {
                                         "key_code": "escape"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_hold_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "semicolon"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "semicolon",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "left_command",
-                                            "left_control",
-                                            "left_option"
-                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1008,7 +1277,7 @@
                         ]
                     },
                     {
-                        "description": "Caps HyperWithoutCmd [comma]",
+                        "description": "Caps HyperNoCmd [comma]",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1036,7 +1305,7 @@
                         ]
                     },
                     {
-                        "description": "Caps hold [arrows]",
+                        "description": "Caps hold [h:delete, spacebar:C-Space]",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -1047,11 +1316,55 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "i"
+                                    "key_code": "h"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "up_arrow"
+                                        "key_code": "delete_forward"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_hold_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "spacebar"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": [
+                                            "left_control"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Caps hold [arrows dvorak]",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_hold_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow"
                                     }
                                 ],
                                 "type": "basic"
@@ -1083,11 +1396,11 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "j"
+                                    "key_code": "l"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "left_arrow"
+                                        "key_code": "up_arrow"
                                     }
                                 ],
                                 "type": "basic"
@@ -1101,7 +1414,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "l"
+                                    "key_code": "semicolon"
                                 },
                                 "to": [
                                     {
@@ -1215,91 +1528,6 @@
                                 "type": "basic"
                             }
                         ]
-                    },
-                    {
-                        "description": "Caps Option [open_bracket:M-/]",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_hold_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "open_bracket"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "open_bracket",
-                                        "modifiers": [
-                                            "left_option"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Caps hold [h:backspace, y:delete, spacebar:enter]",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_hold_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "y"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_forward"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_hold_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "h"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_hold_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "spacebar"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "keypad_enter"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
                     }
                 ]
             },
@@ -1330,6 +1558,60 @@
                             },
                             "to": {
                                 "key_code": "left_command"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 610,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "key_code": "left_command"
+                            },
+                            "to": {
+                                "key_code": "left_option"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_control"
+                            },
+                            "to": {
+                                "key_code": "left_command"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_option"
+                            },
+                            "to": {
+                                "key_code": "left_control"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "right_command"
+                            },
+                            "to": {
+                                "key_code": "right_option"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "right_option"
+                            },
+                            "to": {
+                                "key_code": "right_control"
                             }
                         }
                     ]

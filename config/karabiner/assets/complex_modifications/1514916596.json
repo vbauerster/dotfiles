@@ -1,235 +1,182 @@
 {
-  "title": "Numeric Keypad",
-  "rules": [
-    {
-      "description": "Numeric Keypad Mode [Quote as trigger key]",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "quote"
-          },
-          "to": [
+    "title": "Numeric Keypad",
+    "rules": [{
+        "description": "Numeric Keypad Mode [equal_sign as trigger key]",
+        "manipulators": [{
+                "type": "basic",
+                "from": {
+                    "key_code": "equal_sign"
+                },
+                "to": [{
+                    "set_variable": {
+                        "name": "numeric_keypad_mode",
+                        "value": 1
+                    }
+                }],
+                "to_if_alone": [{
+                    "key_code": "equal_sign"
+                }],
+                "to_after_key_up": [{
+                    "set_variable": {
+                        "name": "numeric_keypad_mode",
+                        "value": 0
+                    }
+                }]
+            },
             {
-              "set_variable": {
-                "name": "numeric_keypad_mode",
-                "value": 1
-              }
-            }
-          ],
-          "to_if_alone": [
+                "type": "basic",
+                "from": {
+                    "key_code": "a"
+                },
+                "to": [{
+                    "key_code": "keypad_7"
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "numeric_keypad_mode",
+                    "value": 1
+                }]
+            },
             {
-              "key_code": "quote"
-            }
-          ],
-          "to_after_key_up": [
+                "type": "basic",
+                "from": {
+                    "key_code": "r"
+                },
+                "to": [{
+                    "key_code": "keypad_8"
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "numeric_keypad_mode",
+                    "value": 1
+                }]
+            },
             {
-              "set_variable": {
-                "name": "numeric_keypad_mode",
-                "value": 0
-              }
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "a"
-          },
-          "to": [
+                "type": "basic",
+                "from": {
+                    "key_code": "g"
+                },
+                "to": [{
+                    "key_code": "keypad_9"
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "numeric_keypad_mode",
+                    "value": 1
+                }]
+            },
             {
-              "key_code": "keypad_7"
-            }
-          ],
-          "conditions": [
+                "type": "basic",
+                "from": {
+                    "key_code": "w"
+                },
+                "to": [{
+                    "key_code": "keypad_4"
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "numeric_keypad_mode",
+                    "value": 1
+                }]
+            },
             {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "r"
-          },
-          "to": [
+                "type": "basic",
+                "from": {
+                    "key_code": "s"
+                },
+                "to": [{
+                    "key_code": "keypad_5"
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "numeric_keypad_mode",
+                    "value": 1
+                }]
+            },
             {
-              "key_code": "keypad_8"
-            }
-          ],
-          "conditions": [
+                "type": "basic",
+                "from": {
+                    "key_code": "e"
+                },
+                "to": [{
+                    "key_code": "keypad_6"
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "numeric_keypad_mode",
+                    "value": 1
+                }]
+            },
             {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "g"
-          },
-          "to": [
+                "type": "basic",
+                "from": {
+                    "key_code": "f"
+                },
+                "to": [{
+                    "key_code": "keypad_1"
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "numeric_keypad_mode",
+                    "value": 1
+                }]
+            },
             {
-              "key_code": "keypad_9"
-            }
-          ],
-          "conditions": [
+                "type": "basic",
+                "from": {
+                    "key_code": "q"
+                },
+                "to": [{
+                    "key_code": "keypad_2"
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "numeric_keypad_mode",
+                    "value": 1
+                }]
+            },
             {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "w"
-          },
-          "to": [
+                "type": "basic",
+                "from": {
+                    "key_code": "d"
+                },
+                "to": [{
+                    "key_code": "keypad_3"
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "numeric_keypad_mode",
+                    "value": 1
+                }]
+            },
             {
-              "key_code": "keypad_4"
-            }
-          ],
-          "conditions": [
+                "type": "basic",
+                "from": {
+                    "key_code": "j"
+                },
+                "to": [{
+                    "key_code": "keypad_period"
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "numeric_keypad_mode",
+                    "value": 1
+                }]
+            },
             {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
+                "type": "basic",
+                "from": {
+                    "key_code": "spacebar"
+                },
+                "to": [{
+                    "key_code": "keypad_0"
+                }],
+                "conditions": [{
+                    "type": "variable_if",
+                    "name": "numeric_keypad_mode",
+                    "value": 1
+                }]
             }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "s"
-          },
-          "to": [
-            {
-              "key_code": "keypad_5"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "e"
-          },
-          "to": [
-            {
-              "key_code": "keypad_6"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "f"
-          },
-          "to": [
-            {
-              "key_code": "keypad_1"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "q"
-          },
-          "to": [
-            {
-              "key_code": "keypad_2"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "d"
-          },
-          "to": [
-            {
-              "key_code": "keypad_3"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "j"
-          },
-          "to": [
-            {
-              "key_code": "keypad_period"
-            }
-          ],
-          "conditions": [
-            {
-             "type": "variable_if",
-             "name": "numeric_keypad_mode",
-             "value": 1
-            }
-          ]
-        },
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "spacebar"
-          },
-          "to": [
-            {
-              "key_code": "keypad_0"
-            }
-          ],
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "numeric_keypad_mode",
-              "value": 1
-            }
-          ]
-        }
-      ]
-    }
-  ]
+        ]
+    }]
 }
