@@ -1,11 +1,19 @@
 set global tabstop 4
 set global indentwidth 4
-set global scrolloff 3,1
-set global BOM none
+set global idle_timeout 50
+set global scrolloff 1,0
+# set global BOM none
 # set global ui_options ncurses_status_on_top=true
 # set global ui_options ncurses_assistant=none:ncurses_change_colors=true
 # set global grepcmd 'rg --column'
- 
+
+alias global sp tmux-new-vertical
+def import -params 1 %{
+    try %{
+        source %sh{echo $HOME/.config/kak/$1.kak}
+    }
+}
+
 # simple Kakoune plugin manager
 def plug -params 1..2 %{
     %sh{
@@ -25,27 +33,45 @@ def plug -params 1..2 %{
 # plug occivink/kakoune-sudo-write
 # plug danr/kakoune-easymotion
 # plug delapouite/kakoune-livedown
-plug Delapouite/kakoune-registers
-plug fsub/kakoune-mark
-plug alexherbo2/move-line.kak rc/
+#plug Delapouite/kakoune-registers
+#plug fsub/kakoune-mark
+#plug alexherbo2/move-line.kak rc/
+
+# Dvorak movement, dodging empty lines
+# import nonempty-lines
+# map global normal t 'j: while-empty j<ret>'
+# map global normal n 'k: while-empty k<ret>'
+# map global normal T 'J: while-empty J<ret>'
+# map global normal N 'K: while-empty K<ret>'
+# map global normal s l
+# map global normal S L
+
+# t on k
+# map global normal k     t
+# map global normal K     T
+# map global normal <a-k> <a-t>
+# map global normal <a-K> <a-T>
+
+# Split and select
+# map global normal -- - s
+# map global normal L S
+# map global normal l <A-s>
+######################################################
 
 map global normal ( ':move-line-above %val{count}<ret>'
 map global normal ) ':move-line-below %val{count}<ret>'
 
 map global user m :mark-word<ret> -docstring 'mark word'
-map global user M :mark-clear<ret> -docstring 'mark clear' 
+map global user M :mark-clear<ret> -docstring 'mark clear'
 
 # https://github.com/mawww/kakoune/issues/1791
 map global object q Q
 map global object Q q
 
 # space is my leader
-map global normal <space> ,
-# , remove all selections except main
-map global normal , <space>
-# <a-space> could be mapped to tmux prefix
-# <a-backspace> remove main selection
-map global normal <a-backspace> <a-space>
+map global normal <space> , -docstring 'leader'
+map global normal <backspace> <space> -docstring 'remove all sels except main'
+map global normal <a-backspace> <a-space> -docstring 'remove main sel'
 
 # vim old habits
 map global normal D '<a-l>d' -docstring 'delete to end of line'
@@ -79,7 +105,9 @@ hook global WinCreate ^[^*]+$ %{
 hook global WinSetOption filetype=go %{
     go-enable-autocomplete
     #auto-pairs-enable
-    map global goto d '<esc>:go-jump<ret>' -docstring 'definition'
+	#set buffer lintcmd '(gometalinter | grep -v "::\w")  <'
+    map global goto d '<esc>:go-jump<ret>' -docstring 'go-jump'
+    map global goto h '<esc>:go-doc-info<ret>' -docstring 'go-doc-info'
 }
 
 hook global BufWritePost .*\.go %{
@@ -134,10 +162,11 @@ hook global -group kakrc WinCreate .* %{
     addhl window ranges show_matching_range
 }
 
-# hook global InsertChar \( 'exec )<left>'
-# hook global InsertChar \{ 'exec }<left>'
-# hook global InsertChar \[ 'exec ]<left>'
+#hook global InsertChar \( 'exec )<left>'
+#hook global InsertChar \{ 'exec }<left>'
+#hook global InsertChar \[ 'exec ]<left>'
 # hook global InsertChar ' "exec '<left>"
+# hook global InsertChar \" 'exec "<left>'
 
 # set-face SecondaryCursor black,rgb:babaa3
 # set-face Whitespace rgb:363636,default
@@ -151,8 +180,11 @@ add-highlighter global show_matching
 # escape hatch
 hook global InsertChar \. %{ try %{
   exec -draft hH <a-k>,\.<ret> d
-  exec <esc>
-  write
+  exec <esc>h
+  #write
 }}
 
-colorscheme github
+alias global ! quit
+alias global !! quit!
+
+colorscheme github-custom
