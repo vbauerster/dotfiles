@@ -92,38 +92,28 @@ endfunction
 "}}}
 
 " COLORSCHEME {{{
-  " execute "set background=".$BACKGROUND
-  set background=light
+  execute "set background=".$BACKGROUND
+  " set background=light
 
-  " let g:PaperColor_Theme_Options = {
-  "   \   'theme': {
-  "   \     'default': {
-  "   \       'transparent_background': 0,
-  "   \       'allow_bold': 1,
-  "   \       'allow_italic': 1
-  "   \     }
-  "   \   }
-  "   \ }
+  " colorscheme materialbox
+  " let g:materialbox_contrast_light="hard"
+  " let g:materialbox_italic=1
+  " let g:materialbox_italicize_comments=1
 
-  colorscheme materialbox
-  let g:materialbox_contrast_light="hard"
-  let g:materialbox_italic=1
-  let g:materialbox_italicize_comments=1
-
-  " let g:gruvbox_contrast_light="hard"
-  " let g:gruvbox_contrast_dark="soft"
-  " let g:gruvbox_italic=1
+  let g:gruvbox_contrast_light="hard"
+  let g:gruvbox_contrast_dark="soft"
+  let g:gruvbox_italic=1
   " https://github.com/morhetz/gruvbox/wiki/Configuration
-  " let g:gruvbox_italicize_comments=1
-  " let g:gruvbox_italicize_strings=0
-  " let g:gruvbox_invert_selection=1
-  " let g:gruvbox_invert_signs=0
-  " let g:gruvbox_invert_indent_guides=0
-  " let g:gruvbox_invert_tabline=0
-  " let g:gruvbox_improved_strings=0
-  " let g:gruvbox_improved_warnings=1
-  " colorscheme gruvbox
-  " nnoremap <silent> com :call gruvbox#invert_signs_toggle()<cr>
+  let g:gruvbox_italicize_comments=1
+  let g:gruvbox_italicize_strings=0
+  let g:gruvbox_invert_selection=1
+  let g:gruvbox_invert_signs=0
+  let g:gruvbox_invert_indent_guides=0
+  let g:gruvbox_invert_tabline=0
+  let g:gruvbox_improved_strings=0
+  let g:gruvbox_improved_warnings=1
+  colorscheme gruvbox
+  nnoremap <silent> com :call gruvbox#invert_signs_toggle()<cr>
 
   " let g:one_allow_italics = 1
   " colorscheme one
@@ -225,9 +215,9 @@ endfunction
 
   " Whitespaces
   set list
-  " set listchars=tab:›⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
+  set listchars=tab:›⋅,trail:⋅,nbsp:⋅,extends:❯,precedes:❮
   " set listchars=tab:¦\ ,trail:⋅,extends:❯,precedes:❮
-  set listchars=tab:│\ ,trail:⋅,extends:❯,precedes:❮
+  " set listchars=tab:│\ ,trail:⋅,extends:❯,precedes:❮
   set showbreak=↪
 
   set noswapfile
@@ -295,14 +285,14 @@ endfunction
   " https://stackoverflow.com/questions/2119754/switch-to-last-active-tab-in-vim#2120168
   " https://superuser.com/questions/410982/in-vim-how-can-i-quickly-switch-between-tabs
   au TabLeave * let g:lasttab = tabpagenr()
-  nnoremap <Leader>tt :exe "tabn ".g:lasttab<CR>
+  nnoremap <Leader><Tab> :exe "tabn ".g:lasttab<CR>
 
   " Quit nvim
   nnoremap <Leader>q :q<CR>
   nnoremap <Leader>q! :qa!<CR>
   nnoremap <Leader>! :q!<CR>
   " buffer delete
-  nnoremap <silent> <leader>xx :bd<CR>
+  nnoremap <silent> <Leader>xx :bd<CR>
 
   " F1 will search help for the word under the cursor
   nnoremap <F1> :help <C-r><C-w><CR>
@@ -405,7 +395,7 @@ endfunction
   " spell check off
   " nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
-  nnoremap <silent><Leader>cc :call clearmatches()<CR>:noh<CR>
+  nnoremap <silent><Leader>sc :call clearmatches()<CR>:noh<CR>
 
   " -----------------------------------------------------------
   " => Diff3 merge
