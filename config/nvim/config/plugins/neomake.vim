@@ -8,7 +8,7 @@ let g:neomake_open_list = 2
 let g:neomake_javascript_enabled_makers = ['eslint']
 
 " When writing a buffer, and on normal mode changes (after 750ms).
-call neomake#configure#automake('nw', 750)
+" call neomake#configure#automake('w', 750)
 
 " gometalinter --install
 " https://github.com/alecthomas/gometalinter

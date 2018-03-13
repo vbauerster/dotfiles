@@ -10,8 +10,8 @@ let g:qf_auto_resize = 0
 " let g:qf_loclist_window_bottom = 0
 " let g:qf_window_bottom = 0
 
-nmap <leader>ck <Plug>qf_loc_stay_toggle
-nmap <leader>cq <Plug>qf_qf_stay_toggle
+nmap <leader>cc <Plug>qf_loc_stay_toggle
+nmap <leader>c<leader> <Plug>qf_qf_stay_toggle
 nmap <Leader><tab> <Plug>qf_qf_switch
 nmap [. <Plug>qf_loc_previous
 nmap ]. <Plug>qf_loc_next

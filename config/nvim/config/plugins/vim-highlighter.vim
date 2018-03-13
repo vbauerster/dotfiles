@@ -1,2 +1,2 @@
   " Highlight word
-  nnoremap <silent><Leader>hw :Highlight<CR>
+  nnoremap <silent><Leader>sh :Highlight<CR>
