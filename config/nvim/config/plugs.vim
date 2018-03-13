@@ -1,11 +1,11 @@
 call plug#begin('~/.config/nvim/plugged')
 
 " colorschemes
-Plug 'mkarmona/materialbox'
+Plug 'morhetz/gruvbox', { 'do': 'git co lowcontrast && git rebase master' }
+" Plug 'mkarmona/materialbox'
 " Plug 'nightsense/carbonized'
 " Plug 'rakr/vim-two-firewatch'
 " Plug 'NLKNguyen/papercolor-theme'
-" Plug 'morhetz/gruvbox', { 'do': 'git co lowcontrast && git rebase master' }
 " Plug 'rakr/vim-one'
 " Plug 'freeo/vim-kalisi'
 " Plug 'junegunn/seoul256.vim'
@@ -67,27 +67,27 @@ Plug 'airblade/vim-rooter'
 " Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 
 " AutoComplete
-Plug 'roxma/nvim-completion-manager'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'roxma/nvim-completion-manager'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " neco-syntax: syntax files as completion source
-" Plug 'Shougo/neco-syntax'
+Plug 'Shougo/neco-syntax'
 " neco-vim: 'vim' source for Vim script
-" Plug 'Shougo/neco-vim'
+Plug 'Shougo/neco-vim'
 " context_filetype: It adds the context filetype feature
-" Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/context_filetype.vim'
 " echodoc: It prints the documentation you have completed
 Plug 'Shougo/echodoc.vim'
 " neoinclude: 'include' and 'file/include' sources
 " You can completes the candidates from the included files and included path
-" Plug 'Shougo/neoinclude.vim'
+Plug 'Shougo/neoinclude.vim'
 " deoplete-go: 'golang' source
-" Plug 'zchee/deoplete-go', { 'for': ['go'], 'do': 'make'}
+Plug 'zchee/deoplete-go', { 'for': ['go'], 'do': 'make'}
 " deoplete-clang: 'clang' source for C/C++
 " Plug 'zchee/deoplete-clang', { 'for': ['c', 'cpp'] }
 " deoplete-ternjs: 'ternjs' source for JavaScript
 " Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'jsx'], 'do': 'npm install -g tern' }
 " neco-look: plugin for /usr/bin/look for completing words in English
-" Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
+Plug 'ujihisa/neco-look', { 'for': ['markdown', 'gitcommit'] }
 
 " UltiSnips source: 'ultisnips' source for UltiSnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
