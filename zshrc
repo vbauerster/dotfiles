@@ -19,7 +19,7 @@ export BACKGROUND="light"
 export DOTFILES=$HOME/dotfiles
 
 # Golang
-export GOPATH=$HOME/gopath
+export GOPATH=$HOME/go
 if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
   export PATH=$GOPATH/bin:$PATH
 fi
