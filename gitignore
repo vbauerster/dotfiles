@@ -1,8 +1,8 @@
 Session.vim
-.DS_Store
+*.DS_Store
 *.sw[nop]
 *~
-.idea
-.tags
-tags
-.projectile
+*.idea
+*.projectile
+*tags     # ignore all paths ending in 'tags'
+!*tags/   # but don't ignore these paths if they are directories.
