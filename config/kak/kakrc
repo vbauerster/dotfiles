@@ -114,6 +114,10 @@ hook global BufWritePost .*\.go %{
     go-format -use-goimports
 }
 
+hook global WinSetOption filetype=markdown %{
+    set window static_words %sh{tr '\n' ':' < /usr/share/dict/words}
+}
+
 # tab/backtab to cycle through completions
 hook global InsertCompletionShow .* %{
     map window insert ] <c-p>
