@@ -26,12 +26,12 @@
             }]
         }]
     }, {
-        "description": "sf -> mission_control",
+        "description": "wf -> mission_control",
         "manipulators": [{
             "type": "basic",
             "from": {
                 "simultaneous": [{
-                        "key_code": "s"
+                        "key_code": "w"
                     },
                     {
                         "key_code": "f"
@@ -45,6 +45,31 @@
             },
             "to": [{
                 "key_code": "mission_control"
+            }]
+        }]
+    }, {
+        "description": "jk -> tmux_ssh_prefix",
+        "manipulators": [{
+            "type": "basic",
+            "from": {
+                "simultaneous": [{
+                        "key_code": "j"
+                    },
+                    {
+                        "key_code": "k"
+                    }
+                ],
+                "modifiers": {
+                    "optional": [
+                        "any"
+                    ]
+                }
+            },
+            "to": [{
+                "key_code": "0",
+                "modifiers": [
+                    "left_control"
+                ]
             }]
         }]
     }]

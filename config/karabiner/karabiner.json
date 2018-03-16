@@ -685,7 +685,7 @@
                         ]
                     },
                     {
-                        "description": "sf -> mission_control",
+                        "description": "wf -> mission_control",
                         "manipulators": [
                             {
                                 "from": {
@@ -696,7 +696,7 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "s"
+                                            "key_code": "w"
                                         },
                                         {
                                             "key_code": "f"
