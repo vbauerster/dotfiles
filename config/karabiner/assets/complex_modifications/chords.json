@@ -26,6 +26,28 @@
             }]
         }]
     }, {
+        "description": "af -> mission_control",
+        "manipulators": [{
+            "type": "basic",
+            "from": {
+                "simultaneous": [{
+                        "key_code": "a"
+                    },
+                    {
+                        "key_code": "f"
+                    }
+                ],
+                "modifiers": {
+                    "optional": [
+                        "any"
+                    ]
+                }
+            },
+            "to": [{
+                "key_code": "mission_control"
+            }]
+        }]
+    }, {
         "description": "fj -> lang_switch",
         "manipulators": [{
             "type": "basic",
@@ -48,28 +70,6 @@
                 "modifiers": [
                     "left_command"
                 ]
-            }]
-        }]
-    }, {
-        "description": "jo -> mission_control",
-        "manipulators": [{
-            "type": "basic",
-            "from": {
-                "simultaneous": [{
-                        "key_code": "j"
-                    },
-                    {
-                        "key_code": "o"
-                    }
-                ],
-                "modifiers": {
-                    "optional": [
-                        "any"
-                    ]
-                }
-            },
-            "to": [{
-                "key_code": "mission_control"
             }]
         }]
     }]

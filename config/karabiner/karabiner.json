@@ -685,6 +685,34 @@
                         ]
                     },
                     {
+                        "description": "af -> mission_control",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    },
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "a"
+                                        },
+                                        {
+                                            "key_code": "f"
+                                        }
+                                    ]
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "mission_control"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "fj -> lang_switch",
                         "manipulators": [
                             {
@@ -709,34 +737,6 @@
                                         "modifiers": [
                                             "left_command"
                                         ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "jo -> mission_control",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    },
-                                    "simultaneous": [
-                                        {
-                                            "key_code": "j"
-                                        },
-                                        {
-                                            "key_code": "o"
-                                        }
-                                    ]
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "mission_control"
                                     }
                                 ],
                                 "type": "basic"
