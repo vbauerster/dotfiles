@@ -26,15 +26,40 @@
             }]
         }]
     }, {
-        "description": "wf -> mission_control",
+        "description": "fj -> lang_switch",
         "manipulators": [{
             "type": "basic",
             "from": {
                 "simultaneous": [{
-                        "key_code": "w"
+                        "key_code": "f"
                     },
                     {
-                        "key_code": "f"
+                        "key_code": "j"
+                    }
+                ],
+                "modifiers": {
+                    "optional": [
+                        "any"
+                    ]
+                }
+            },
+            "to": [{
+                "key_code": "spacebar",
+                "modifiers": [
+                    "left_command"
+                ]
+            }]
+        }]
+    }, {
+        "description": "jo -> mission_control",
+        "manipulators": [{
+            "type": "basic",
+            "from": {
+                "simultaneous": [{
+                        "key_code": "j"
+                    },
+                    {
+                        "key_code": "o"
                     }
                 ],
                 "modifiers": {
@@ -45,31 +70,6 @@
             },
             "to": [{
                 "key_code": "mission_control"
-            }]
-        }]
-    }, {
-        "description": "jk -> tmux_ssh_prefix",
-        "manipulators": [{
-            "type": "basic",
-            "from": {
-                "simultaneous": [{
-                        "key_code": "j"
-                    },
-                    {
-                        "key_code": "k"
-                    }
-                ],
-                "modifiers": {
-                    "optional": [
-                        "any"
-                    ]
-                }
-            },
-            "to": [{
-                "key_code": "0",
-                "modifiers": [
-                    "left_control"
-                ]
             }]
         }]
     }]

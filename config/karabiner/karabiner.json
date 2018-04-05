@@ -685,7 +685,7 @@
                         ]
                     },
                     {
-                        "description": "wf -> mission_control",
+                        "description": "fj -> lang_switch",
                         "manipulators": [
                             {
                                 "from": {
@@ -696,10 +696,41 @@
                                     },
                                     "simultaneous": [
                                         {
-                                            "key_code": "w"
+                                            "key_code": "f"
                                         },
                                         {
-                                            "key_code": "f"
+                                            "key_code": "j"
+                                        }
+                                    ]
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "spacebar",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "jo -> mission_control",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    },
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "j"
+                                        },
+                                        {
+                                            "key_code": "o"
                                         }
                                     ]
                                 },
