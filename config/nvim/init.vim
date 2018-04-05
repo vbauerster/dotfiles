@@ -75,20 +75,26 @@
     endif
   endfunction
 
-" Original: https://github.com/justinmk/config/blob/347aecb4f74dc755e000c97eae17d80598c80d42/.config/nvim/init.vim#L272-L289
-" vim-vertical-move replacement
-" credit: cherryberryterry: https://www.reddit.com/r/vim/comments/4j4duz/a/d33s213
-function! s:vjump(dir)
-    let c = '%'.virtcol('.').'v'
-    let flags = a:dir ? 'bnW' : 'nW'
-    let bot = search('\v'.c.'.*\n^(.*'.c.'.)@!.*$', flags)
-    let top = search('\v^(.*'.c.'.)@!.*$\n.*\zs'.c, flags)
-    echom string(bot) string(top)
+  " Original: https://github.com/justinmk/config/blob/347aecb4f74dc755e000c97eae17d80598c80d42/.config/nvim/init.vim#L272-L289
+  " vim-vertical-move replacement
+  " credit: cherryberryterry: https://www.reddit.com/r/vim/comments/4j4duz/a/d33s213
+  function! s:vjump(dir)
+      let c = '%'.virtcol('.').'v'
+      let flags = a:dir ? 'bnW' : 'nW'
+      let bot = search('\v'.c.'.*\n^(.*'.c.'.)@!.*$', flags)
+      let top = search('\v^(.*'.c.'.)@!.*$\n.*\zs'.c, flags)
+      echom string(bot) string(top)
 
-    " norm! m`
-    return a:dir ? (line('.') - (bot > top ? bot : top)).'k'
-      \   : ((bot < top ? bot : top) - line('.')).'j'
-endfunction
+      " norm! m`
+      return a:dir ? (line('.') - (bot > top ? bot : top)).'k'
+        \   : ((bot < top ? bot : top) - line('.')).'j'
+  endfunction
+  nnoremap <expr> <C-j> <SID>vjump(0)
+  nnoremap <expr> <C-k> <SID>vjump(1)
+  xnoremap <expr> <C-j> <SID>vjump(0)
+  xnoremap <expr> <C-k> <SID>vjump(1)
+  onoremap <expr> <C-j> <SID>vjump(0)
+  onoremap <expr> <C-k> <SID>vjump(1)
 "}}}
 
 " COLORSCHEME {{{
@@ -353,10 +359,6 @@ endfunction
 
   " noremap + 6gj
   " noremap <M-+> 6gk
-
-  " vim-vertical-move
-  nnoremap <expr> <Down> <SID>vjump(0)
-  nnoremap <expr> <Up> <SID>vjump(1)
 
   " auto center
   nnoremap <silent> n nzz

@@ -152,7 +152,7 @@ endif
 " Plug 'junegunn/vim-peekaboo'
 
 " Tmux
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'justinmk/vim-gtfo'         " got/gof mappings
