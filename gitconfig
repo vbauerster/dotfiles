@@ -1,33 +1,37 @@
 [user]
-	name = Vladimir Bauer
-	email = vbauerster@gmail.com
+    name = Vladimir Bauer
+    email = vbauerster@gmail.com
 [color]
     ui = auto
 [push]
     default = current
+
+# https://hackernoon.com/lesser-known-git-commands-151a1918a60
 [alias]
     ls = ls-files
     co = checkout
     ci = commit
-    st = status
+    st = status --short --branch
     bv = branch -v
     br = branch -av
-    df = diff
-    dw = diff -w
-    dc = diff --cached
+    diffw = diff -w
+    diffc = diff --cached
     rv = remote -v
     rau = remote add upstream
     stat = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
     last = cat-file commit HEAD
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    # Show files ignored by git:
-    ign = ls-files -o -i --exclude-standard
-    # hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    ignored = ls-files -o -i --exclude-standard
+    it = !git init && git commit -m “root” --allow-empty
+    commend = commit --amend --no-edit
+    branches = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+    stsh = stash --keep-index
+    staash = stash --include-untracked
+    staaash = stash --all
+    mgnff = merge --no-ff
 [credential]
     helper = osxkeychain
 [core]
-	excludesfile = /Users/vbauer/.gitignore
+    excludesfile = /Users/vbauer/.gitignore
     editor = nvim
 [filter "lfs"]
     clean = git-lfs clean %f
@@ -36,14 +40,14 @@
 [github]
     user = vbauerster
 [difftool "sourcetree"]
-	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
-	path = 
+    cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
+    path =
 [diff]
     tool = sourcetree
     compactionHeuristic = true
 [mergetool "sourcetree"]
-	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
-	trustExitCode = true
+    cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+    trustExitCode = true
 [mergetool "nvimdiff"]
     cmd = nvim -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
 [mergetool "gitmerge"]
@@ -51,7 +55,7 @@
 [merge]
     tool = gitmerge
 [commit]
-	template = /Users/vbauer/.stCommitMsg
+    template = /Users/vbauer/.stCommitMsg
 [color "diff"]
     old = red dim
     new = green italic
