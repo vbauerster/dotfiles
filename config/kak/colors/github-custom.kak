@@ -32,8 +32,8 @@ face global list yellow
 face global Default rgb:121213,rgb:F8F8FF
 face global PrimarySelection default,rgb:A6F3A6
 face global SecondarySelection default,rgb:DBFFDB
-face global PrimaryCursor default,yellow
-face global SecondaryCursor default,white
+face global PrimaryCursor rgb:FFFFFF,rgb:FF9933+b
+face global SecondaryCursor black,rgb:FF9933+b
 face global PrimaryCursorEol black,rgb:A71D5D
 face global SecondaryCursorEol black,rgb:A71D5D
 face global LineNumbers rgb:A0A0A0,rgb:ECECEC
@@ -45,6 +45,6 @@ face global Error rgb:F8F8FF,rgb:BD2C00
 face global StatusLine rgb:434343,rgb:DDDDDD
 face global StatusCursor rgb:434343,yellow
 face global Prompt rgb:F8F8FF,rgb:4078C0
-face global MatchingChar rgb:F8F8FF,rgb:4078C0+b
+face global MatchingChar black,rgb:FFCC99+b
 face global Search default,default+u
 face global BufferPadding rgb:A0A0A0,rgb:F8F8FF
