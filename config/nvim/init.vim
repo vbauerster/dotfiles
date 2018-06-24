@@ -294,9 +294,8 @@
   nnoremap <Leader><Tab> :exe "tabn ".g:lasttab<CR>
 
   " Quit nvim
-  nnoremap <Leader>q :q<CR>
-  nnoremap <Leader>q! :qa!<CR>
-  nnoremap <Leader>! :q!<CR>
+  " nnoremap <Leader>q :q<CR>
+  nnoremap <Leader>!! :qa!<CR>
   " buffer delete
   nnoremap <silent> <Leader>xx :bd<CR>
 
@@ -464,7 +463,7 @@
   " Start new line
   " inoremap <S-Return> <C-o>o
 
-  imap <F11> <C-o><F11>
+  " imap <F11> <C-o><F11>
 
   " insert absolute current buffer path
   " inoremap <F4> <C-R>=expand('%:p')<CR>
@@ -524,7 +523,7 @@
   " cnoremap c} <C-u>pwd<CR>
   " Quit all without save, also refer to line 187
   " cnoremap !; <C-u>qa!<CR>
-  cnoremap =! <C-u>qa!<CR>
+  cnoremap ~> <C-u>qa!<CR>
 
   cnoremap <C-A> <Home>
   cnoremap <C-O> <Up>
