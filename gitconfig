@@ -12,18 +12,19 @@
     co = checkout
     ci = commit
     st = status --short --branch
-    bv = branch -v
-    br = branch -av
+	pp = pull
+    bb = branch -v
+    bba = branch -av
+    bbh = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
     diffw = diff -w
     diffc = diff --cached
-    rv = remote -v
+    rr = remote -v
     rau = remote add upstream
     stat = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
     last = cat-file commit HEAD
     ignored = ls-files -o -i --exclude-standard
     it = !git init && git commit -m “root” --allow-empty
     commend = commit --amend --no-edit
-    branches = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
     stsh = stash --keep-index
     staash = stash --include-untracked
     staaash = stash --all
@@ -40,14 +41,14 @@
 [github]
     user = vbauerster
 [difftool "sourcetree"]
-    cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
-    path =
+	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
+	path = 
 [diff]
     tool = sourcetree
     compactionHeuristic = true
 [mergetool "sourcetree"]
-    cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
-    trustExitCode = true
+	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+	trustExitCode = true
 [mergetool "nvimdiff"]
     cmd = nvim -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
 [mergetool "gitmerge"]
