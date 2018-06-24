@@ -517,6 +517,9 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   ;; evil-leader/set-key = spacemacs/set-leader-keys
   (spacemacs/set-leader-keys
+    "." 'spacemacs/layouts-transient-state/body
+    "$" 'spacemacs/workspaces-transient-state/body
+    "l" nil
     "}" 'next-error
     "{" 'previous-error
     "wu" 'evil-window-right
