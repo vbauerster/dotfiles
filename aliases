@@ -2,13 +2,18 @@
 alias reload!='source ~/.zshrc'
 
 # Unix
-alias ln='ln -v'
+alias u='ls -1A'         # Lists in one column, hidden files.
+alias uh='ls -lh'        # Lists human readable sizes.
+alias ur='uu -R'         # Lists human readable sizes, recursively.
+alias ua='uh -A'         # Lists human readable sizes, hidden files.
+alias um='ua | "$PAGER"' # Lists human readable sizes, hidden files through pager.
+alias uk='uh -Sr'        # Lists sorted by size, largest last.
+alias ut='uh -tr'        # Lists sorted by date, most recent last.
+alias uc='ut -c'         # Lists sorted by date, most recent last, shows change time.
+alias uu='ut -u'         # Lists sorted by date, most recent last, shows access time.
+
 alias rmm="rm -rf"
 alias q='exit'
-alias u='ll'
-alias uh='la'
-alias ut='lt'
-alias cdu='cdls'
 alias md='mkdcd'
 
 # File size
@@ -57,6 +62,7 @@ alias tmu='tmux list-sessions'
 alias rg='rg --type-add "proto:*.proto"'
 
 # convenience
+alias eA='kak ~/.aliases'
 alias eV='cd ~/dotfiles/config/nvim && nvim init.vim'
 alias eT='cd ~/dotfiles/tmux && nvim tmux.conf'
 alias eH='cd ~/dotfiles/hammerspoon && nvim init.lua'
@@ -72,3 +78,6 @@ alias -g L="| less"
 alias -g LS='| less -S'
 alias -g G='| rg'
 alias -g Sk="*~(*.bz2|*.gz|*.tgz|*.zip|*.z)"
+
+# Git
+alias g='git'
