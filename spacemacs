@@ -68,7 +68,7 @@ This function should only modify configuration layer settings."
      ;; (java :variables java-backend 'eclim)
      java
      javascript
-     rust
+     (rust :variables rust-format-on-save t)
      (go :variables
          go-tab-width 4
          gofmt-command "goimports"
@@ -88,7 +88,9 @@ This function should only modify configuration layer settings."
             shell-default-height 30
             shell-default-position 'bottom)
      shell-scripts
-     slack
+     (c-c++ :variables
+            c-c++-enable-clang-support t
+            c-c++-enable-rtags-support t)
      ;; (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ;; (keyboard-layout :variables kl-layout 'dvorak)
      )
