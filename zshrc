@@ -108,6 +108,8 @@ bindkey '^Gf' fzf-gf-widget
 bindkey '^Gb' fzf-gb-widget
 # for remotes
 bindkey '^Gr' fzf-gr-widget
+# for stashes
+bindkey '^Gs' fzf-gs-widget
 
 # https://github.com/kurkale6ka/zsh/blob/master/.zshrc
 ### ^x0 IPs

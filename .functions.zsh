@@ -51,6 +51,12 @@ fzf-gr() {
   cut -d$'\t' -f1
 }
 
+fzf-gs() {
+  is_in_git_repo || return
+  git stash list | fzf-down --reverse -d: --preview 'git show --color=always {1}' |
+  cut -d: -f1
+}
+
 # A helper function to join multi-line output from fzf
 join-lines() {
 local item
@@ -73,6 +79,9 @@ zle -N fzf-gb-widget
 
 fzf-gr-widget() LBUFFER+=$(fzf-gr | join-lines)
 zle -N fzf-gr-widget
+
+fzf-gs-widget() LBUFFER+=$(fzf-gs | join-lines)
+zle -N fzf-gs-widget
 
 # Figlet font selector => copy to clipboard
 fgl() (
