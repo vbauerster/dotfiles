@@ -20,21 +20,11 @@ alias md='mkdcd'
 alias fs="stat -f \"%z bytes\""
 
 # Pretty print the path
-alias path='echo $PATH | tr -s ":" "\n"'
+# alias path='echo $PATH | tr -s ":" "\n"'
+alias path='echo -e ${PATH//:/\\n}'
 
 # Pretty print the path
 alias fpath='echo $FPATH | tr -s ":" "\n"'
-
-# Empty the Trash on all mounted volumes and the main HDD
-alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash'
-
-# Hide/show all desktop icons (useful when presenting)
-alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
-alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
-
-# View HTTP traffic
-alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
-alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # ps aux | grep [h]ttpd
 # Eliminates second instance of grep -v (Inverted search)
@@ -42,11 +32,7 @@ alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 # http://www.manpagez.com/info/grep/grep-2.5.4/grep_21.php#SEC21 paragraph 7
 alias psg='ps aux | grep $(echo $1 | sed "s/^\(.\)/[\1]/g")'
 
-alias pbsort='pbpaste | sort | pbcopy'
-
-alias pxon='networksetup -setsocksfirewallproxystate "Wi-Fi" on'
-alias pxoff='networksetup -setsocksfirewallproxystate "Wi-Fi" off'
-
+alias header='curl -I'
 alias myip='curl icanhazip.com'
 alias t2='tree -Fth -L 2 --du |less' #see tree with size up to 2 levels deep
 
@@ -54,9 +40,6 @@ alias t2='tree -Fth -L 2 --du |less' #see tree with size up to 2 levels deep
 alias tma='tmux attach -d -t'
 alias tmn='tmux new -s $(basename $(pwd))'
 alias tmu='tmux list-sessions'
-
-# git
-# alias g='git'
 
 # rg
 alias rg='rg --type-add "proto:*.proto"'
@@ -79,5 +62,17 @@ alias -g LS='| less -S'
 alias -g G='| rg'
 alias -g Sk="*~(*.bz2|*.gz|*.tgz|*.zip|*.z)"
 
-# Git
-alias g='git'
+# Mac
+alias pbsort='pbpaste | sort | pbcopy'
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
+alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
+# Empty the Trash on all mounted volumes and the main HDD
+alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash'
+alias pxon='networksetup -setsocksfirewallproxystate "Wi-Fi" on'
+alias pxoff='networksetup -setsocksfirewallproxystate "Wi-Fi" off'
+
+# tcpdump
+alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
+alias dnsdump="sudo tcpdump -lvi any 'udp port 53'"
+alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
