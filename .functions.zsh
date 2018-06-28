@@ -58,29 +58,47 @@ fzf-gs() {
 }
 
 # A helper function to join multi-line output from fzf
-join-lines() {
-local item
-while read item; do
-  echo -n "${(q)item} "
-done
-}
+# join-lines() {
+# local item
+# while read item; do
+#   echo -n "${(q)item} "
+# done
+# }
 
-fzf-gt-widget() LBUFFER+=$(fzf-gt | join-lines)
+fzf-gt-widget() {
+    LBUFFER+=$(fzf-gt)
+    zle reset-prompt
+}
 zle -N fzf-gt-widget
 
-fzf-gh-widget() LBUFFER+=$(fzf-gh | join-lines)
+fzf-gh-widget() {
+    LBUFFER+=$(fzf-gh)
+    zle reset-prompt
+}
 zle -N fzf-gh-widget
 
-fzf-gf-widget() LBUFFER+=$(fzf-gf | join-lines)
+fzf-gf-widget() {
+    LBUFFER+=$(fzf-gf)
+    zle reset-prompt
+}
 zle -N fzf-gf-widget
 
-fzf-gb-widget() LBUFFER+=$(fzf-gb | join-lines)
+fzf-gb-widget() {
+    LBUFFER+=$(fzf-gb)
+    zle reset-prompt
+}
 zle -N fzf-gb-widget
 
-fzf-gr-widget() LBUFFER+=$(fzf-gr | join-lines)
+fzf-gr-widget() {
+    LBUFFER+=$(fzf-gr)
+    zle reset-prompt
+}
 zle -N fzf-gr-widget
 
-fzf-gs-widget() LBUFFER+=$(fzf-gs | join-lines)
+fzf-gs-widget() {
+    LBUFFER+=$(fzf-gs)
+    zle reset-prompt
+}
 zle -N fzf-gs-widget
 
 # Figlet font selector => copy to clipboard
