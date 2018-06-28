@@ -19,26 +19,29 @@ export BACKGROUND="light"
 export DOTFILES=$HOME/dotfiles
 
 # Golang
-export GOPATH=$HOME/go
-if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
-  export PATH=$GOPATH/bin:$PATH
-fi
+# export GOPATH=$HOME/go
+# if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
+#   export PATH=$GOPATH/bin:$PATH
+# fi
 
-export GEMPATH=$HOME/.gem/ruby/2.0.0
-if [[ ! "$PATH" == *$GEMPATH/bin* ]]; then
-  export PATH=$GEMPATH/bin:$PATH
-fi
+# export GEMPATH=$HOME/.gem/ruby/2.0.0
+# if [[ ! "$PATH" == *$GEMPATH/bin* ]]; then
+#   export PATH=$GEMPATH/bin:$PATH
+# fi
 
 # Node Version Manager
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # fzf (https://github.com/junegunn/fzf)
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git --ignore vendor -g ""'
+# export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git --ignore vendor -g ""'
 # export FZF_DEFAULT_COMMAND="rg -uu -g '!vendor' -g '!.git' --files"
 # export FZF_DEFAULT_COMMAND='pt --nocolor --hidden --home-ptignore -U -g ""'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND='fd --type f --type d --hidden --follow --exclude .git'
 [ -n "$NVIM_LISTEN_ADDRESS" ] && export FZF_DEFAULT_OPTS='--no-height'
 
 if [ -x ~/.config/nvim/plugged/fzf.vim/bin/preview.rb ]; then
@@ -53,7 +56,7 @@ command -v blsd > /dev/null && export FZF_ALT_C_COMMAND='blsd $dir'
 command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 # Source functions
-[[ -f "$DOTFILES/.functions.zsh" ]] && source "$DOTFILES/.functions.zsh"
+[ -f "$DOTFILES/.functions.zsh" ] && source "$DOTFILES/.functions.zsh"
 
 # check for user bin directory and add to path
 if [[ ! "$PATH" == *$HOME/bin* && -d $HOME/bin ]]; then
@@ -122,4 +125,4 @@ bindkey -s '^x9' '192.168.0.'
 bindkey -s '^x_' '/dev/null'
 
 # Source aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
+[ -f ~/.aliases ] && source ~/.aliases

@@ -121,7 +121,7 @@ ghh() {
 }
 
 # tags - search ctags
-tags() {
+ftags() {
   local line
   [ -e tags ] &&
   line=$(
@@ -204,6 +204,15 @@ ch() {
   sed 's#.*\(https*://\)#\1#' | xargs open
 }
 
+# so - my stackoverflow favorites
+so() {
+    stackoverflow-favorites |
+    fzf --ansi --reverse --with-nth ..-2 --tac --tiebreak index |
+    awk '{print $NF}' | while read -r line; do
+      open "$line"
+    done
+}
+
 # some custotm functions
 # ----------------------
 
@@ -246,7 +255,7 @@ trimmer() {
   ffmpeg -i "$1" -ss "$2" -t "$3" -acodec copy cut_"$1"
 }
 
-show_function_keys() {
+Fkeys() {
   printf "%-5s%5s\n" "key" "value"; infocmp -1  | awk -F= '/kf/ { key=$1; sub("kf", "", key); printf("%-5d %s\n", key, $2) }'  | sort -n
 }
 
@@ -262,6 +271,10 @@ e() {
   fi
 }
 
+csi() {
+  echo -en "\x1b[$*"
+}
+
 ..cd() {
     cd ..
     cd "$@"
@@ -272,15 +285,24 @@ catconf() {
     cat "$@" | sed '/ *#/d; /^ *$/d'
 }
 
-# searches the current directory subtree for files with names containing a
-# string (ignoring case). f png would find all PNG files in the current subtree,
-# as well as “PNGisMyFavorite.txt” and so forth.
-# function f() { find . -iname "*$1*" ${@:2} }
-# function f() { ag -l --nocolor -u -g "$1" ${@:2} }
-# recursively greps the current directory subtree for files matching a pattern.
-# r HTTP would grep for files containing that exact string, while r
-# '"http[^"]*"' -i would search for double-quoted strings starting with “http”,
-# ignoring case.
-# conflicts with zsh r command
-#function r() { grep -rn "$1" ${@:2} . }
+# Tmux tile
+# --------------------------------------------------------------------
 
+tt() {
+  if [ $# -lt 1 ]; then
+    echo 'usage: tt <commands...>'
+    return 1
+  fi
+
+  local head="$1"
+  local tail='echo -n Press enter to finish.; read'
+
+  while [ $# -gt 1 ]; do
+    shift
+    tmux split-window "$SHELL -ci \"$1; $tail\""
+    tmux select-layout tiled > /dev/null
+  done
+
+  tmux set-window-option synchronize-panes on > /dev/null
+  $SHELL -ci "$head; $tail"
+}
