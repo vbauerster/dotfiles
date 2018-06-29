@@ -4,8 +4,32 @@ set global idle_timeout 50
 set global scrolloff 1,0
 # set global BOM none
 # set global ui_options ncurses_status_on_top=true
-# set global ui_options ncurses_assistant=none:ncurses_change_colors=true
+set global ui_options ncurses_assistant=none
 # set global grepcmd 'rg --column'
+
+hook global WinCreate ^[^*]+$ %{
+    addhl window number_lines -hlcursor -separator ' '
+}
+
+add-highlighter global show_matching
+
+# Highlight any files whose names start with "zsh" as sh
+hook global BufCreate (.*/)?\.?zsh.* %{
+  set-option buffer filetype sh
+}
+
+# Highlight files ending in .conf as ini
+# (Will probably be close enough)
+hook global BufCreate .*\.conf %{
+  set-option buffer filetype ini
+}
+
+# escape hatch
+hook global InsertChar \. %{ try %{
+  exec -draft hH <a-k>,\.<ret> d
+  exec <esc>
+  #write
+}}
 
 alias global sp tmux-new-vertical
 def import -params 1 %{
@@ -17,10 +41,10 @@ def import -params 1 %{
 # simple Kakoune plugin manager
 def plug -params 1..2 %{
     %sh{
-        if [[ ! -d $HOME/build/$1 ]]; then
-            (cd $HOME/build; git clone https://github.com/$1 2> /dev/null)
+        if [[ ! -d $HOME/kakplug/$1 ]]; then
+            (cd $HOME/kakplug; git clone https://github.com/$1 2> /dev/null)
         fi
-        for file in $(echo $HOME/build/$(basename $1)/$2*.kak); do
+        for file in $(echo $HOME/kakplug/$(basename $1)/$2*.kak); do
             echo source "$file"
         done
     }
@@ -33,9 +57,11 @@ def plug -params 1..2 %{
 # plug occivink/kakoune-sudo-write
 # plug danr/kakoune-easymotion
 # plug delapouite/kakoune-livedown
-#plug Delapouite/kakoune-registers
-#plug fsub/kakoune-mark
+plug Delapouite/kakoune-registers
+plug fsub/kakoune-mark
 #plug alexherbo2/move-line.kak rc/
+#plug alexherbo2/auto-pairs.kak rc/
+#plug ul/kak-lsp rc/
 
 # Dvorak movement, dodging empty lines
 # import nonempty-lines
@@ -57,21 +83,34 @@ def plug -params 1..2 %{
 # map global normal L S
 # map global normal l <A-s>
 ######################################################
+# https://github.com/mawww/kakoune/wiki/Bc
+# Incrementing / decrementing numbers
+def -hidden -params 2 inc %{%sh{
+    if [ "$1" = 0 ]
+    then
+        count=1
+    else
+        count="$1"
+    fi
+    printf '%s%s\n' 'exec h"_/\d<ret><a-i>na' "$2($count)<esc>|bc<ret>h"
+}}
+map global normal <c-a> ':inc %val{count} +<ret>'
+map global normal <c-x> ':inc %val{count} -<ret>'
 
-map global normal ( ':move-line-above %val{count}<ret>'
-map global normal ) ':move-line-below %val{count}<ret>'
+# map global normal ( ':move-line-above %val{count}<ret>'
+# map global normal ) ':move-line-below %val{count}<ret>'
 
 map global user m :mark-word<ret> -docstring 'mark word'
 map global user M :mark-clear<ret> -docstring 'mark clear'
 
 # https://github.com/mawww/kakoune/issues/1791
-map global object q Q
-map global object Q q
+map global object q Q -docstring 'double quote string'
+map global object Q q -docstring 'single quote string'
 
 # space is my leader
-map global normal <space> , -docstring 'leader'
-map global normal <backspace> <space> -docstring 'remove all sels except main'
-map global normal <a-backspace> <a-space> -docstring 'remove main sel'
+# map global normal <space> , -docstring 'leader'
+# map global normal <backspace> <space> -docstring 'remove all sels except main'
+# map global normal <a-backspace> <a-space> -docstring 'remove main sel'
 
 # vim old habits
 map global normal D '<a-l>d' -docstring 'delete to end of line'
@@ -91,16 +130,27 @@ map global user y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard
 map global user p '!pbpaste<ret>' -docstring 'paste from sys clipboard'
 map global user R ':e!<ret>' -docstring 'Reload buffer'
 
+# https://github.com/alyssais/dotfiles/blob/master/.config/kak/kakrc#L30-L38
+# define-command -docstring "import from the system clipboard" clipboard-import %{
+#   set-register dquote "%sh{pbpaste}"
+#   echo -markup "{Information}imported system clipboard to register \""
+# }
+# 
+# define-command -docstring "export to the system clipboard" clipboard-export %{
+#   nop %sh{ printf "%s" "$kak_reg_dquote" | pbcopy }
+#   echo -markup "{Information}exported register \" to system clipboard"
+# }
+# 
+# map global normal <a-Y> :clipboard-import<ret>
+# map global normal <a-y> :clipboard-export<ret>
+
 # Insert mode
 #map global insert <c-s> <c-o>    ; # silent: stop completion
 #map global insert <c-c> <c-x>    ; # complete here
 #map global insert <c-k> <c-v>    ; # raw insert, use vim binding
 #map global insert <c-c> <a-\;>   ; # execute one normal kak command
-map global insert <c-y> '<c-r>"' ; # paste from normal yank register, readline key
-
-hook global WinCreate ^[^*]+$ %{
-    addhl window number_lines -hlcursor -separator ' '
-}
+#map global insert <c-y> '<c-r>"' ; # paste from normal yank register, readline key
+map global insert <c-y> '<a-;>!pbpaste<ret>'
 
 hook global WinSetOption filetype=go %{
     go-enable-autocomplete
@@ -119,21 +169,22 @@ hook global WinSetOption filetype=markdown %{
 }
 
 # tab/backtab to cycle through completions
-hook global InsertCompletionShow .* %{
-    map window insert ] <c-p>
-    map window insert + <c-n>
-    # map window insert <backtab> <c-p>
-    # map window insert <tab> <c-n>
-}
-hook global InsertCompletionHide .* %{
-    unmap window insert + <c-n>
-    unmap window insert ] <c-p>
-    # unmap window insert <tab> <c-n>
-    # unmap window insert <backtab> <c-p>
-}
+# hook global InsertCompletionShow .* %{
+#     map window insert ] <c-p>
+#     map window insert + <c-n>
+#     # map window insert <backtab> <c-p>
+#     # map window insert <tab> <c-n>
+# }
+# hook global InsertCompletionHide .* %{
+#     unmap window insert + <c-n>
+#     unmap window insert ] <c-p>
+#     # unmap window insert <tab> <c-n>
+#     # unmap window insert <backtab> <c-p>
+# }
 
 # auto indent
-# hook -group copyindent global InsertChar \n %{ exec -draft -itersel K<a-&> }
+#hook -group copyindent global InsertChar \n %{ exec -draft -itersel K<a-&> }
+
 # hook -group kakrc global WinSetOption ^filetype=markdown$ %{
 #     set window disabled_hooks copyindent
 # }
@@ -156,7 +207,7 @@ hook global -group kakrc InsertChar [[(<{}>)\]] %{ eval -draft %{
         set window show_matching_range ""
         remove-hooks window once-matching
     }
-}}
+} }
 
 hook global -group kakrc InsertEnd .* %{
     set buffer show_matching_range ""
@@ -169,26 +220,50 @@ hook global -group kakrc WinCreate .* %{
 #hook global InsertChar \( 'exec )<left>'
 #hook global InsertChar \{ 'exec }<left>'
 #hook global InsertChar \[ 'exec ]<left>'
-# hook global InsertChar ' "exec '<left>"
-# hook global InsertChar \" 'exec "<left>'
+#hook global InsertChar ' "exec '<left>"
+#hook global InsertChar \" 'exec "<left>'
 
 # set-face SecondaryCursor black,rgb:babaa3
 # set-face Whitespace rgb:363636,default
 # set-face LineNumbersWrapped rgb:606060,default+i
 
-add-highlighter global show_matching
 # add-highlighter global dynregex '%reg{/}' 0:default,+u
 # add-highlighter global wrap -word
 # add-highlighter global show_whitespaces
 
-# escape hatch
-hook global InsertChar \. %{ try %{
-  exec -draft hH <a-k>,\.<ret> d
-  exec <esc>h
-  #write
-}}
+# alias global ! quit
+# alias global !! quit!
 
-alias global ! quit
-alias global !! quit!
+# fzf
+def -docstring 'invoke fzf to open a file' \
+  fzf-file %{ %sh{
+    if [ -z "$TMUX" ]; then
+      echo echo only works inside tmux
+    else
+      FILE=$(find * -type f | fzf-tmux -d 15)
+      if [ -n "$FILE" ]; then
+        printf 'eval -client %%{%s} edit %%{%s}\n' "${kak_client}" "${FILE}" | kak -p "${kak_session}"
+      fi
+    fi
+} }
+
+def -docstring 'invoke fzf to select a buffer' \
+  fzf-buffer %{ %sh{
+    if [ -z "$TMUX" ]; then
+      echo echo only works inside tmux
+    else
+      BUFFER=$(printf %s\\n "${kak_buflist}" | tr : '\n' | fzf-tmux -d 15)
+      if [ -n "$BUFFER" ]; then
+        echo "eval -client '$kak_client' 'buffer ${BUFFER}'" | kak -p ${kak_session}
+      fi
+    fi
+} }
+
+map -docstring "bufzf"      global user b ": fzf-buffer<ret>"
+map -docstring "bufzf"      global user f ": fzf-file<ret>"
+#map global normal <c-c> ': fzf-cd<ret>'
+
+# Format using fmt
+map -docstring format global user q '|fmt -w 80<ret>: echo -markup {green}[sel] | fmt -w 80<ret>'
 
 colorscheme github-custom
