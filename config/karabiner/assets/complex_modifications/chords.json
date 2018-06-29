@@ -1,12 +1,12 @@
 {
     "title": "Simultaneous chords",
     "rules": [{
-        "description": "df -> app_expose",
+        "description": "ef -> app_expose",
         "manipulators": [{
             "type": "basic",
             "from": {
                 "simultaneous": [{
-                        "key_code": "d"
+                        "key_code": "e"
                     },
                     {
                         "key_code": "f"
@@ -26,12 +26,12 @@
             }]
         }]
     }, {
-        "description": "af -> mission_control",
+        "description": "wf -> mission_control",
         "manipulators": [{
             "type": "basic",
             "from": {
                 "simultaneous": [{
-                        "key_code": "a"
+                        "key_code": "w"
                     },
                     {
                         "key_code": "f"
