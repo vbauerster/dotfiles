@@ -99,7 +99,6 @@
 
 " COLORSCHEME {{{
   execute "set background=".$BACKGROUND
-  " set background=light
 
   " colorscheme materialbox
   " let g:materialbox_contrast_light="hard"
@@ -136,8 +135,8 @@
   let mapleader = ' '
   " let maplocalleader = ' '
 
-  let g:python_host_prog = "/usr/local/bin/python2"
-  let g:python3_host_prog = "/usr/local/bin/python3"
+  " let g:python_host_prog = "/usr/local/bin/python2"
+  " let g:python3_host_prog = "/usr/local/bin/python3"
 
   " https://github.com/neovim/neovim/pull/4690
   set termguicolors
@@ -295,22 +294,22 @@
 
   " Quit nvim
   " nnoremap <Leader>q :q<CR>
-  nnoremap <Leader>!! :qa!<CR>
+  " nnoremap <Leader>!! :qa!<CR>
   " buffer delete
-  nnoremap <silent> <Leader>xx :bd<CR>
+  nnoremap <Leader><F10> :bd<CR>
 
   " F1 will search help for the word under the cursor
-  nnoremap <F1> :help <C-r><C-w><CR>
+  nnoremap <Leader><F1> :help <C-r><C-w><CR>
 
   " Save in normal mode
-  " nnoremap <F2> :w<CR>
-  nnoremap <F2> :up<CR>
+  nnoremap <Leader><F2> :up<CR>
 
   " Buffer reload
-  nnoremap <Leader>er :e!<CR>
+  nnoremap <Leader><F5> :e!<CR>
 
   " Read :help ctrl-w_w
   " Read :help wincmd
+  "  <C-w>q
   "  <C-w>w
   "  <C-w>W
   "  <C-w>p Go to previous (last accessed) window
@@ -481,7 +480,9 @@
   " imap <Nul> <C-Space>
   " inoremap <C-Space> <C-x><C-l>
 
-  inoremap <expr> + pumvisible() ? "\<c-n>" : "+"
+  inoremap <expr> <c-t> pumvisible() ? "\<c-p>" : "\<c-t>"
+  " inoremap <expr> <c-j> pumvisible() ? "\<c-n>" : "\<c-j>"
+  " inoremap <expr> <c-h> pumvisible() ? "\<c-y>" : "\<c-h>"
 
   " http://superuser.com/a/1165038/578741
   inoremap <F2> <C-\><C-o>:w<CR>
@@ -523,7 +524,7 @@
   " cnoremap c} <C-u>pwd<CR>
   " Quit all without save, also refer to line 187
   " cnoremap !; <C-u>qa!<CR>
-  cnoremap ~> <C-u>qa!<CR>
+  cnoremap >> <C-u>qa!<CR>
 
   cnoremap <C-A> <Home>
   cnoremap <C-O> <Up>
