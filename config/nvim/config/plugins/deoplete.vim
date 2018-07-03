@@ -10,10 +10,10 @@ let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_camel_case = 1
 
 " https://github.com/Shougo/deoplete.nvim/issues/288
-call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
+call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 " https://github.com/Shougo/deoplete.nvim/issues/150
-call deoplete#custom#set('_', 'converters', ['converter_remove_paren'])
-call deoplete#custom#set('ultisnips', 'rank', 1000)
+call deoplete#custom#source('_', 'converters', ['converter_remove_paren'])
+call deoplete#custom#source('ultisnips', 'rank', 1000)
 
 " imap     <Nul> <C-Space>
 " inoremap <expr><C-Space> deoplete#mappings#manual_complete()
