@@ -12,25 +12,26 @@ let g:go_fold_enable = ['import']
 augroup GoLang
   au!
 
-  au FileType go nmap <Leader>i <Plug>(go-info)
-  au FileType go nmap <Leader>jk <Plug>(go-doc-vertical)
+  " au FileType go nmap <Leader>i <Plug>(go-info)
+  " au FileType go nmap <silent><C-c><C-d> <Plug>(go-doc-vertical)
+  au FileType go nmap <silent><Leader><Enter> :GoInfo<CR>
+  au FileType go nmap <silent><C-c><C-d> :GoDoc<CR>
 
   au FileType go nnoremap <leader>jf :FZFGoFiles<CR>
   au FileType go nnoremap <leader>jt :FZFTestGoFiles<CR>
 
-  au FileType go nnoremap <leader>ji :GoDecls<CR>
-  " jump g = packaGe scope
-  au FileType go nnoremap <leader>jg :GoDeclsDir<CR>
+  au FileType go nnoremap <leader>jj :GoDecls<CR>
+  au FileType go nnoremap <leader>jk :GoDeclsDir<CR>
 
-  au FileType go nnoremap <silent><C-c><C-o>d :GoDescribe<CR>:setl nonumber<CR>
-  au FileType go nnoremap <silent><C-c><C-o>i :GoImplements<CR>:setl nonumber<CR><C-w>L
-  au FileType go nnoremap <silent><C-c><C-o>s :GoCallstack<CR>:setl nonumber<CR><C-w>L
-  au FileType go nnoremap <silent><C-c><C-o>c :GoChannelPeers<CR>:setl nonumber<CR><C-w>L
-  au FileType go vnoremap <silent><C-c><C-o>f :GoFreevars<CR>:setl nonumber<CR>
-  au FileType go nnoremap <silent><C-c><C-o>r :GoReferrers<CR>:setl nonumber<CR>
-  au FileType go nnoremap <silent><C-c><C-o>> :GoCallers<CR>:setl nonumber<CR><C-w>L
-  au FileType go nnoremap <silent><C-c><C-o>< :GoCallees<CR>:setl nonumber<CR><C-w>L
-  au FileType go nnoremap <silent><C-c><C-o>e :GoWhicherrs<CR>:setl nonumber<CR><C-w>L
+  au FileType go nnoremap <silent><C-c><C-o>d :GoDescribe<CR>
+  au FileType go nnoremap <silent><C-c><C-o>i :GoImplements<CR>
+  au FileType go nnoremap <silent><C-c><C-o>s :GoCallstack<CR>
+  au FileType go nnoremap <silent><C-c><C-o>c :GoChannelPeers<CR>
+  au FileType go vnoremap <silent><C-c><C-o>f :GoFreevars<CR>
+  au FileType go nnoremap <silent><C-c><C-o>r :GoReferrers<CR>
+  au FileType go nnoremap <silent><C-c><C-o>> :GoCallers<CR>
+  au FileType go nnoremap <silent><C-c><C-o>< :GoCallees<CR>
+  au FileType go nnoremap <silent><C-c><C-o>e :GoWhicherrs<CR>
 
   " autocmd FileType go nnoremap <F2> :up<CR>:Neomake<CR>
   au FileType go nnoremap <S-F2> :GoFmtAutoSaveToggle<CR>
