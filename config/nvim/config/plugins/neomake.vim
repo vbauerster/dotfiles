@@ -12,7 +12,7 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 
 " gometalinter --install
 " https://github.com/alecthomas/gometalinter
-" let g:neomake_go_enabled_makers = ['gometalinter']
+let g:neomake_go_enabled_makers = ['gometalinter']
 " https://github.com/dominikh/go-tools/tree/master/cmd/megacheck
 " let g:neomake_go_gometalinter_args = ['--disable-all',  '--enable=vetshadow', '--enable=errcheck', '--enable=megacheck']
 
