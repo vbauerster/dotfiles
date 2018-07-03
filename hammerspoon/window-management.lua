@@ -73,7 +73,7 @@ end
 local modalKey = hs.hotkey.modal.new({'ctrl', 'alt', 'shift'}, 'w', 'WM mode')
 modalKey:bind({}, 'q', function() modalKey:exit() end)
 
-local exit_timer = hs.timer.delayed.new(4, function()
+local exit_timer = hs.timer.delayed.new(5, function()
 	modalKey:exit()
 end)
 
@@ -88,15 +88,18 @@ end
 
 modalKey:bind({}, 'space', 'Push window to the next screen' , hs.grid.pushWindowNextScreen)
 
-modalKey:bind({}, 'c', function() exit_timer:start() push(0, 0, 1, 0.5) end)
-modalKey:bind({}, 't', function() exit_timer:start() push(0, 0.5, 1, 0.5) end)
 modalKey:bind({}, 'h', function() exit_timer:start() push(0, 0, 0.5, 1) end)
-modalKey:bind({}, 'n', function() exit_timer:start() push(0.5, 0, 0.5, 1) end)
+modalKey:bind({}, 'd', function() exit_timer:start() push(0, 0.5, 1, 0.5) end)
+modalKey:bind({}, 'i', function() exit_timer:start() push(0, 0, 1, 0.5) end)
+modalKey:bind({}, 'u', function() exit_timer:start() push(0.5, 0, 0.5, 1) end)
 
-modalKey:bind({}, 'g', function() exit_timer:start() push(0, 0, 0.5, 0.5) end)
-modalKey:bind({}, 'r', function() exit_timer:start() push(0.5, 0, 0.5, 0.5) end)
-modalKey:bind({'alt'}, 'g', function() exit_timer:start() push(0, 0.5, 0.5, 0.5) end)
-modalKey:bind({'alt'}, 'r', function() exit_timer:start() push(0.5, 0.5, 0.5, 0.5) end)
+modalKey:bind({}, 'c', function() exit_timer:start() push(0, 0, 0.5, 0.5) end)
+modalKey:bind({}, '.', function() exit_timer:start() push(0.5, 0, 0.5, 0.5) end)
+modalKey:bind({}, 't', function() exit_timer:start() push(0, 0.5, 0.5, 0.5) end)
+modalKey:bind({}, 'e', function() exit_timer:start() push(0.5, 0.5, 0.5, 0.5) end)
+
+modalKey:bind({}, 'p', function() exit_timer:start() push(0.4, 0, 0.6, 1) end)
+modalKey:bind({}, 'g', function() exit_timer:start() push(0, 0, 0.6, 1) end)
 
 -- modalKey:bind({}, 'U', function() exit_timer:start() push(0.15, 0.15, 0.7, 0.7) end)
 modalKey:bind({'alt'}, 'w', function() exit_timer:start() push(0.15, 0.1, 0.7, 0.8) end)
@@ -105,6 +108,10 @@ modalKey:bind({}, 'w', function() exit_timer:start() push(0.15, 0, 0.7, 1) end)
 modalKey:bind({}, 'm', function() exit_timer:start() push(0,0,1,1) end)
 
 local delta = 40
+-- modalKey:bind({}, 'h', function() exit_timer:start() push(0, 0, 0.5, 1) end)
+-- modalKey:bind({}, 'h', function() exit_timer:start() push(0, 0, 0.5, 1) end)
+-- modalKey:bind({}, 'h', function() exit_timer:start() push(0, 0, 0.5, 1) end)
+-- modalKey:bind({}, 'h', function() exit_timer:start() push(0, 0, 0.5, 1) end)
 modalKey:bind({}, 'up', function() exit_timer:start() nudge(0, -delta) end)
 modalKey:bind({}, 'down', function() exit_timer:start() nudge(0, delta) end)
 modalKey:bind({}, 'left', function() exit_timer:start() nudge(-delta, 0) end)
