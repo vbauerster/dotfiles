@@ -1,4 +1,10 @@
 " https://github.com/junegunn/fzf/wiki/Examples-(vim)
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+if has('nvim') || has('gui_running')
+    let $FZF_DEFAULT_OPTS .= ' --inline-info'
+endif
 
 " function! s:gopath_handler(dir)
 "   execute 'lcd $GOPATH/src/'.a:dir
@@ -77,11 +83,11 @@ command! FZFRegisters call fzf#run({
     \ 'right': '35%'
     \ })
 
-command! Plugs call fzf#run({
-    \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
-    \ 'options': '--delimiter / --nth -1',
-    \ 'down':    '~40%',
-    \ 'sink':    'Explore'})
+" command! PlugDir call fzf#run({
+"     \ 'source':  map(sort(keys(g:plugs)), 'g:plug_home."/".v:val'),
+"     \ 'options': '--delimiter / --nth -1',
+"     \ 'down':    '~40%',
+"     \ 'sink':    'Explore'})
 
 " command! FZFGopath call fzf#run({
 "     \ 'source': "ls -1p $GOPATH/src | awk -F/ '/\\/$/ {print $1}'",
@@ -145,19 +151,14 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 
-if has('nvim') || has('gui_running')
-    let $FZF_DEFAULT_OPTS .= ' --inline-info'
-endif
-
-" [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
-
 " let g:fzf_tags_command = 'gtags -R --fields=+l --exclude=.git --exclude=node_modules --exclude=jspm_packages --exclude=log --exclude=tmp'
 
 " Replace the default dictionary completion with fzf-based fuzzy completion
 " sacrifice i_CTRL-d for something more usefull
 " imap <expr> <c-d> fzf#vim#complete#word({'left': '15%'})
 
+inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
+imap <c-x><c-k> <plug>(fzf-complete-word)
 " Path completion using find (file + dir)
 " imap <c-x><c-d> <plug>(fzf-complete-path)
 inoremap <expr> <c-x><c-d> fzf#vim#complete#path('blsd')
@@ -168,32 +169,33 @@ imap <c-x><c-f> <plug>(fzf-complete-file)
 " also see h: cpt
 imap <c-x><c-h> <plug>(fzf-complete-line)
 
-nnoremap <silent><F3> :Rg <C-R><C-W><CR>
-xnoremap <silent><F3> y:Rg <C-R>"<CR>
+nnoremap <Leader><F3> :Rg <C-R><C-W><CR>
+xnoremap <Leader><F3> y:Rg <C-R>"<CR>
 
 " avoids opening file in Nerd_tree window
 nnoremap <silent> <expr> <Leader>- (expand('%') =~ 'NERD_tree' ? "\<C-w>w" : '').":Files\<cr>"
-nnoremap <silent><C-_> :GFiles<CR>
-nnoremap <silent>g. :GFiles?<CR>
 nnoremap <silent><Leader><Leader> :Buffers<CR>
-nnoremap <silent><Leader>mu :History<CR>
-nnoremap <silent><Leader>hh :Windows<CR>
+nnoremap <silent><Leader>p. :GFiles?<CR>
+nnoremap <silent><Leader>pf :GFiles<CR>
+nnoremap <silent><Leader>pb :Gbranch<CR>
+nnoremap <silent><Leader>pr :History<CR>
+nnoremap <silent><Leader>ww :Windows<CR>
 nnoremap <silent><Leader>mm :Commits<CR>
 nnoremap <silent><Leader>bb :BCommits<CR>
-" jump to buffel line. Mnemonic Buffer Search
-nnoremap <silent><Leader>bs :BLines<CR>
+" Swoop like
+nnoremap <silent><Leader>ss :BLines<CR>
 " Lines [QUERY] Lines in loaded buffers
-nnoremap <silent><Leader>ll :Lines<CR>
+nnoremap <silent><Leader>s* :Lines<CR>
 nnoremap <silent><Leader>' :Marks<CR>
 nnoremap <silent><Leader>; :History:<CR>
 nnoremap <silent><Leader>/ :History/<CR>
-nnoremap <silent><Leader>pl :Plugs<CR>
-nnoremap <silent><Leader>pc :FZFPlugConf<CR>
+" nnoremap <silent><Leader>pl :PlugDir<CR>
+nnoremap <silent><Leader>yh :PlugHelp<CR>
+nnoremap <silent><Leader>yc :FZFPlugConf<CR>
 nnoremap <silent><Leader>yy :FZFRegisters<CR>
-nnoremap <silent><Leader>cb :Gbranch<CR>
 " nnoremap <silent><Leader>go :FZFGopath<CR>
 
-nmap <leader>nn <plug>(fzf-maps-n)
+nmap <Leader>nn <Plug>(fzf-maps-n)
 " xmap <leader><tab> <plug>(fzf-maps-x)
 " omap <leader><tab> <plug>(fzf-maps-o)
 
@@ -212,3 +214,20 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+function! s:plug_help_sink(line)
+  let dir = g:plugs[a:line].dir
+  for pat in ['doc/*.txt', 'README.md']
+    let match = get(split(globpath(dir, pat), "\n"), 0, '')
+    if len(match)
+      execute 'tabedit' match
+      return
+    endif
+  endfor
+  tabnew
+  execute 'Explore' dir
+endfunction
+
+command! PlugHelp call fzf#run(fzf#wrap({
+  \ 'source': sort(keys(g:plugs)),
+  \ 'sink':   function('s:plug_help_sink')}))
