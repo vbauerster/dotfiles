@@ -42,7 +42,7 @@ alias tmn='tmux new -s $(basename $(pwd))'
 alias tmu='tmux list-sessions'
 
 # rg
-alias rg='rg --type-add "proto:*.proto"'
+# alias rg='rg --type-add "proto:*.proto"'
 
 # convenience
 alias eA='kak ~/.aliases'
