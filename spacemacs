@@ -43,7 +43,8 @@ This function should only modify configuration layer settings."
      helm
      emacs-lisp
      org
-     git
+     (git :variables
+          git-magit-status-fullscreen t)
      (version-control :variables
                       ;; default diff-tool is 'git-gutter+
                       ;; version-control-diff-tool 'diff-hl
