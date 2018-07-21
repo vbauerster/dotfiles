@@ -28,7 +28,7 @@ hs.hotkey.bind({"ctrl", "shift"}, ".", function() hs.eventtap.keyStroke({"cmd", 
 require 'window-management'
 require 'numpad'
 require 'reload-config'
--- require 'ctrlDoublePress'
+require 'ctrlDoublePress'
 -- require 'caffeine'
 -- require 'clipboard'
 -- require 'launch-applications'
