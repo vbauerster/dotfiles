@@ -285,7 +285,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-distinguish-gui-tab t
 
    ;; If non-nil `Y' is remapped to `y$' in Evil states. (default nil)
-   ;; dotspacemacs-remap-Y-to-y$ t
+   dotspacemacs-remap-Y-to-y$ t
 
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
