@@ -89,8 +89,8 @@ end
 modalKey:bind({}, 'space', 'Push window to the next screen' , hs.grid.pushWindowNextScreen)
 
 modalKey:bind({}, 'h', function() exit_timer:start() push(0, 0, 0.5, 1) end)
-modalKey:bind({}, 'd', function() exit_timer:start() push(0, 0.5, 1, 0.5) end)
-modalKey:bind({}, 'i', function() exit_timer:start() push(0, 0, 1, 0.5) end)
+modalKey:bind({}, 'j', function() exit_timer:start() push(0, 0.5, 1, 0.5) end)
+modalKey:bind({}, 'k', function() exit_timer:start() push(0, 0, 1, 0.5) end)
 modalKey:bind({}, 'u', function() exit_timer:start() push(0.5, 0, 0.5, 1) end)
 
 modalKey:bind({}, 'c', function() exit_timer:start() push(0, 0, 0.5, 0.5) end)
@@ -99,7 +99,9 @@ modalKey:bind({}, 't', function() exit_timer:start() push(0, 0.5, 0.5, 0.5) end)
 modalKey:bind({}, 'e', function() exit_timer:start() push(0.5, 0.5, 0.5, 0.5) end)
 
 modalKey:bind({}, 'p', function() exit_timer:start() push(0.4, 0, 0.6, 1) end)
+modalKey:bind({}, 'i', function() exit_timer:start() push(0.6, 0, 0.4, 1) end)
 modalKey:bind({}, 'g', function() exit_timer:start() push(0, 0, 0.6, 1) end)
+modalKey:bind({}, 'd', function() exit_timer:start() push(0, 0, 0.4, 1) end)
 
 -- modalKey:bind({}, 'U', function() exit_timer:start() push(0.15, 0.15, 0.7, 0.7) end)
 modalKey:bind({'alt'}, 'w', function() exit_timer:start() push(0.15, 0.1, 0.7, 0.8) end)
