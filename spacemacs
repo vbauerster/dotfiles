@@ -526,6 +526,7 @@ before packages are loaded."
     "jt" 'avy-goto-line-below
     "jh" 'avy-goto-word-or-subword-1
     "rh" 'helm-resume
+    "r'" 'evil-show-marks
     ;; SPC o reserved for user space
     "os" 'just-one-space
     "oc" 'evil-mc-mode
