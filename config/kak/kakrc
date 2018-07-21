@@ -1,17 +1,35 @@
+## Sources.
+# source "%val{config}/plugins/kakoune-buffers/buffers.kak"
+source "%val{config}/plugins/kakoune-find/find.kak"
+# source "%val{config}/plugins/kakoune-mark/mark.kak"
+
+## General settings.
+set global ui_options ncurses_assistant=off
 set global tabstop 4
 set global indentwidth 4
-set global idle_timeout 50
-set global scrolloff 1,0
+# set global idle_timeout 50
+# set global scrolloff 1,0
 # set global BOM none
 # set global ui_options ncurses_status_on_top=true
-set global ui_options ncurses_assistant=none
 # set global grepcmd 'rg --column'
 
-hook global WinCreate ^[^*]+$ %{
-    addhl window number_lines -hlcursor -separator ' '
-}
+# hook global WinCreate ^[^*]+$ %{
+#     addhl window number_lines -hlcursor -separator ' '
+# }
 
-add-highlighter global show_matching
+hook global WinCreate .* %{
+  addhl window/wrap wrap
+  addhl window/number-lines number-lines -relative -hlcursor
+  addhl window/show-whitespaces show-whitespaces -tab '›' -tabpad '⋅' -lf ' ' -spc ' ' -nbsp '⍽'
+  addhl window/show-matching show-matching
+  addhl window/VisibleWords regex \b(?:FIXME|TODO|XXX)\b 0:default+rb
+
+  # smarttab-enable
+  # tab-completion-enable
+  show-trailing-whitespace-enable; face window TrailingWhitespace default,magenta
+  # search-highlighting-enable; face window Search +bi
+  # volatile-highlighting-enable; face window Volatile +bi
+}
 
 # Highlight any files whose names start with "zsh" as sh
 hook global BufCreate (.*/)?\.?zsh.* %{
@@ -39,16 +57,16 @@ def import -params 1 %{
 }
 
 # simple Kakoune plugin manager
-def plug -params 1..2 %{
-    %sh{
-        if [[ ! -d $HOME/kakplug/$1 ]]; then
-            (cd $HOME/kakplug; git clone https://github.com/$1 2> /dev/null)
-        fi
-        for file in $(echo $HOME/kakplug/$(basename $1)/$2*.kak); do
-            echo source "$file"
-        done
-    }
-}
+# def plug -params 1..2 %{
+#     %sh{
+#         if [[ ! -d $HOME/kakplug/$1 ]]; then
+#             (cd $HOME/kakplug; git clone https://github.com/$1 2> /dev/null)
+#         fi
+#         for file in $(echo $HOME/kakplug/$(basename $1)/$2*.kak); do
+#             echo source "$file"
+#         done
+#     }
+# }
 
 # plug occivink/kakoune-vertical-selection
 # plug occivink/kakoune-interactive-itersel
@@ -57,26 +75,15 @@ def plug -params 1..2 %{
 # plug occivink/kakoune-sudo-write
 # plug danr/kakoune-easymotion
 # plug delapouite/kakoune-livedown
-plug Delapouite/kakoune-registers
-plug fsub/kakoune-mark
-#plug alexherbo2/move-line.kak rc/
-#plug alexherbo2/auto-pairs.kak rc/
-#plug ul/kak-lsp rc/
+# plug Delapouite/kakoune-registers
+# plug fsub/kakoune-mark
+# plug alexherbo2/move-line.kak rc/
+# plug alexherbo2/auto-pairs.kak rc/
+# plug ul/kak-lsp rc/
 
-# Dvorak movement, dodging empty lines
-# import nonempty-lines
-# map global normal t 'j: while-empty j<ret>'
-# map global normal n 'k: while-empty k<ret>'
-# map global normal T 'J: while-empty J<ret>'
-# map global normal N 'K: while-empty K<ret>'
-# map global normal s l
-# map global normal S L
-
-# t on k
-# map global normal k     t
-# map global normal K     T
-# map global normal <a-k> <a-t>
-# map global normal <a-K> <a-T>
+## Maps.
+map global normal <%> '<c-s>%' # Save position before %
+map global normal <x> <a-x>
 
 # Split and select
 # map global normal -- - s
@@ -85,7 +92,7 @@ plug fsub/kakoune-mark
 ######################################################
 # https://github.com/mawww/kakoune/wiki/Bc
 # Incrementing / decrementing numbers
-def -hidden -params 2 inc %{%sh{
+def -hidden -params 2 inc %{ %sh{
     if [ "$1" = 0 ]
     then
         count=1
@@ -93,15 +100,9 @@ def -hidden -params 2 inc %{%sh{
         count="$1"
     fi
     printf '%s%s\n' 'exec h"_/\d<ret><a-i>na' "$2($count)<esc>|bc<ret>h"
-}}
+} }
 map global normal <c-a> ':inc %val{count} +<ret>'
 map global normal <c-x> ':inc %val{count} -<ret>'
-
-# map global normal ( ':move-line-above %val{count}<ret>'
-# map global normal ) ':move-line-below %val{count}<ret>'
-
-map global user m :mark-word<ret> -docstring 'mark word'
-map global user M :mark-clear<ret> -docstring 'mark clear'
 
 # https://github.com/mawww/kakoune/issues/1791
 map global object q Q -docstring 'double quote string'
@@ -121,26 +122,17 @@ map global normal '<a-#>' :comment-block<ret> -docstring 'comment block'
 
 map global goto p '<esc>m;' -docstring 'matching pair'
 
-# select all occurrences in this buffer
-map global user a '*%s<c-/><ret>' -docstring 'select all'
-map global user . ':edit ~/.config/kak/kakrc<ret>' -docstring 'edit kakrc'
-#map global user c <a-s>:comment-line<ret> -docstring 'comment line'
-
-map global user y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank to sys clipboard'
-map global user p '!pbpaste<ret>' -docstring 'paste from sys clipboard'
-map global user R ':e!<ret>' -docstring 'Reload buffer'
-
 # https://github.com/alyssais/dotfiles/blob/master/.config/kak/kakrc#L30-L38
 # define-command -docstring "import from the system clipboard" clipboard-import %{
 #   set-register dquote "%sh{pbpaste}"
 #   echo -markup "{Information}imported system clipboard to register \""
 # }
-# 
+#
 # define-command -docstring "export to the system clipboard" clipboard-export %{
 #   nop %sh{ printf "%s" "$kak_reg_dquote" | pbcopy }
 #   echo -markup "{Information}exported register \" to system clipboard"
 # }
-# 
+#
 # map global normal <a-Y> :clipboard-import<ret>
 # map global normal <a-y> :clipboard-export<ret>
 
@@ -259,11 +251,90 @@ def -docstring 'invoke fzf to select a buffer' \
     fi
 } }
 
-map -docstring "bufzf"      global user b ": fzf-buffer<ret>"
-map -docstring "bufzf"      global user f ": fzf-file<ret>"
-#map global normal <c-c> ': fzf-cd<ret>'
-
+map global user b       -docstring 'fzf buffers…'           ': fzf-buffer<ret>'
+map global user f       -docstring 'fzf files…'             ': fzf-file<ret>'
+map global user g       -docstring 'git'                    ': enter-user-mode git<ret>'
+map global user <plus>  -docstring 'switch to [+] buffer'   ': switch-to-modified-buffer<ret>'
 # Format using fmt
 map -docstring format global user q '|fmt -w 80<ret>: echo -markup {green}[sel] | fmt -w 80<ret>'
+
+# User map
+# map global user m :mark-word<ret> -docstring 'mark word'
+# map global user M :mark-clear<ret> -docstring 'mark clear'
+# select all occurrences in this buffer
+map global user a '*%s<c-/><ret>' -docstring 'select all'
+map global user . ':edit ~/.config/kak/kakrc<ret>' -docstring 'edit kakrc'
+#map global user c <a-s>:comment-line<ret> -docstring 'comment line'
+
+map global user y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank to sys clipboard'
+map global user p '!pbpaste<ret>' -docstring 'paste from sys clipboard'
+map global user R ':e!<ret>' -docstring 'Reload buffer'
+
+# map global user b       -docstring 'buffers…'               ': enter-buffers-mode<ret>'
+# map global user B       -docstring 'buffers (lock)…'        ': enter-user-mode -lock buffers<ret>'
+
+## More:
+# Git extras.
+def git-show-blamed-commit %{
+  git show %sh{git blame -L "$kak_cursor_line,$kak_cursor_line" "$kak_buffile" | awk '{print $1}'}
+}
+def git-log-lines %{
+  git log -L %sh{
+    anchor="${kak_selection_desc%,*}"
+    anchor_line="${anchor%.*}"
+    echo "$anchor_line,$kak_cursor_line:$kak_buffile"
+  }
+}
+def git-toggle-blame %{
+  try %{
+    addhl window/git-blame group
+    rmhl window/git-blame
+    git blame
+  } catch %{
+    git hide-blame
+  }
+}
+def git-hide-diff %{ rmhl window/git-diff }
+
+declare-user-mode git
+map global git b ': git-toggle-blame<ret>'       -docstring 'blame (toggle)'
+map global git l ': git log<ret>'                -docstring 'log'
+map global git c ': git commit<ret>'             -docstring 'commit'
+map global git d ': git diff<ret>'               -docstring 'diff'
+map global git s ': git status<ret>'             -docstring 'status'
+map global git h ': git show-diff<ret>'          -docstring 'show diff'
+map global git H ': git-hide-diff<ret>'          -docstring 'hide diff'
+map global git w ': git-show-blamed-commit<ret>' -docstring 'show blamed commit'
+map global git L ': git-log-lines<ret>'          -docstring 'log blame'
+
+# Highlight trailing whitespace in normal mode, with the TrailingWhitespace face.
+# What I really want is to only not highlight trailing whitespace as I'm
+# inserting it, but that doesn't seem possible right now.
+def show-trailing-whitespace-enable %{
+  # addhl window/TrailingWhitespace regex \h+$ 0:TrailingWhitespaceActive
+  # face window TrailingWhitespaceActive TrailingWhitespace
+  hook -group trailing-whitespace window ModeChange 'normal:insert' \
+    %{ face window TrailingWhitespaceActive '' }
+  hook -group trailing-whitespace window ModeChange 'insert:normal' \
+    %{ face window TrailingWhitespaceActive TrailingWhitespace }
+}
+def show-trailing-whitespace-disable %{
+  rmhl window/TrailingWhitespace
+  rmhooks window trailing-whitespace
+}
+face global TrailingWhitespace ''
+
+def switch-to-modified-buffer %{
+  eval -save-regs a %{
+    reg a ''
+    try %{
+      eval -buffer * %{
+        eval %sh{[ "$kak_modified" = true ] && echo "reg a %{$kak_bufname}; fail"}
+      }
+    }
+    eval %sh{[ -z "$kak_main_reg_a" ] && echo "fail 'No modified buffers!'"}
+    buffer %reg{a}
+  }
+}
 
 colorscheme github-custom
