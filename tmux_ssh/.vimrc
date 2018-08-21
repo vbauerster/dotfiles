@@ -301,7 +301,7 @@ nnoremap <Leader>sp :setlocal spell! spelllang=ru_yo,en_us<CR>
 
 " Highlight word
 nnoremap <Leader>hw :Highlight<CR>
-nnoremap <silent><Leader>sc :call clearmatches()<CR>:noh<CR>
+nnoremap <silent><Leader>hc :call clearmatches()<CR>:noh<CR>
 
 " -----------------------------------------------------------
 " => h: window-resize
@@ -398,7 +398,7 @@ cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " cnoremap ;d <C-u>pwd<CR>
 " Quit all without save
 " cnoremap ;! <C-u>qa!<CR>
-cnoremap ~> <C-u>qa!<CR>
+cnoremap >> <C-u>qa!<CR>
 
 cnoremap <C-A> <Home>
 cnoremap <C-O> <Up>
