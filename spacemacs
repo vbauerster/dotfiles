@@ -65,13 +65,15 @@ This function should only modify configuration layer settings."
      markdown
      neotree
      yaml
-     python
+     ;; python
      ;; (java :variables java-backend 'eclim)
-     java
+     ;; java
      javascript
-     (rust :variables rust-format-on-save t)
+     lsp
      (go :variables
+         go-backend 'lsp
          go-tab-width 4
+         go-format-before-save t
          gofmt-command "goimports"
          go-use-gometalinter t
          godoc-at-point-function 'godoc-gogetdoc)
