@@ -395,7 +395,7 @@
   " spell check off
   " nnoremap <Leader>spp :setlocal spell spelllang=<ENTER>
 
-  nnoremap <silent><Leader>sc :call clearmatches()<CR>:noh<CR>
+  nnoremap <silent><Leader>hc :call clearmatches()<CR>:noh<CR>
 
   " -----------------------------------------------------------
   " => Diff3 merge
