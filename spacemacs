@@ -71,11 +71,12 @@ This function should only modify configuration layer settings."
      javascript
      lsp
      (go :variables
-         go-backend 'lsp
+         ;; go-backend 'lsp
          go-tab-width 4
          go-format-before-save t
          gofmt-command "goimports"
          go-use-gometalinter t
+         go-use-test-args "-race -timeout 10s"
          godoc-at-point-function 'godoc-gogetdoc)
      protobuf
      docker
@@ -516,7 +517,7 @@ before packages are loaded."
   (spacemacs/set-leader-keys
     "." 'spacemacs/layouts-transient-state/body
     "+" 'spacemacs/workspaces-transient-state/body
-    "l" nil
+    ;; "l" nil
     "]" 'evil-window-next
     "[" 'evil-window-prev
     ;; "}" 'eyebrowse-next-window-config
@@ -583,7 +584,9 @@ before packages are loaded."
    scroll-margin 0
    scroll-conservatively 0
    ;; flycheck
-   flycheck-gometalinter-deadline "15s"
+   ;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
+   flycheck-gometalinter-vendor t
+   flycheck-gometalinter-deadline "12s"
    flycheck-gometalinter-disable-all t
    flycheck-gometalinter-enable-linters '("errcheck" "megacheck")
    ;; flycheck-indication-mode nil
@@ -607,7 +610,15 @@ before packages are loaded."
   ;; (push 'term-mode evil-escape-excluded-major-modes)
   ;; (evil-define-key 'emacs term-raw-map (kbd "C-c") 'term-send-raw)
 
-  (add-hook 'go-mode-hook 'go-guru-hl-identifier-mode)
+  ;; (add-hook 'go-mode-hook 'go-guru-hl-identifier-mode)
+  (add-hook 'go-mode-hook (lambda ()
+                            (go-guru-hl-identifier-mode)
+                            (define-prefix-command 'go-lsp-shortcuts)
+                            (define-key go-lsp-shortcuts (kbd "i") 'lsp-ui-peek-find-implementation)
+                            (define-key go-lsp-shortcuts (kbd "s") 'lsp-ui-peek-find-workspace-symbol)
+                            (define-key go-lsp-shortcuts (kbd "r") 'lsp-ui-peek-find-references)
+                            (define-key go-mode-map (kbd "C-c C-f") 'go-lsp-shortcuts)
+                            (define-key go-mode-map (kbd "C-c C-c") 'go-goto-map)))
 
   ;; (setq eclim-eclipse-dirs "~/eclipse/java-oxygen/Eclipse.app/Contents/Eclipse"
   ;;       ;; eclimd-executable "~/.p2/pool/plugins/org.eclim_2.7.2/bin/eclimd"
