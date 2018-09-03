@@ -1,7 +1,7 @@
 {
     "title": "Caps hold layer, if alone Esc",
     "rules": [{
-            "description": "Caps Hyper [quote, m, u, r, b, f]",
+            "description": "Caps Hyper [m, u, r, b, f]",
             "manipulators": [{
                     "type": "basic",
                     "from": {
@@ -28,26 +28,6 @@
                             "name": "caps_hold_mode",
                             "value": 0
                         }
-                    }]
-                },
-                {
-                    "type": "basic",
-                    "from": {
-                        "key_code": "quote"
-                    },
-                    "to": [{
-                        "key_code": "quote",
-                        "modifiers": [
-                            "left_shift",
-                            "left_command",
-                            "left_control",
-                            "left_option"
-                        ]
-                    }],
-                    "conditions": [{
-                        "type": "variable_if",
-                        "name": "caps_hold_mode",
-                        "value": 1
                     }]
                 },
                 {
@@ -323,8 +303,22 @@
             ]
         },
         {
-            "description": "Caps hold [arrows dvorak(jkl;)]",
+            "description": "Caps hold [tab=(h), arrows=(jkl;), quote=(enter)]",
             "manipulators": [{
+                    "type": "basic",
+                    "from": {
+                        "key_code": "h"
+                    },
+                    "to": [{
+                        "key_code": "tab"
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
                     "type": "basic",
                     "from": {
                         "key_code": "j"
@@ -379,18 +373,32 @@
                         "name": "caps_hold_mode",
                         "value": 1
                     }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "quote"
+                    },
+                    "to": [{
+                        "key_code": "return_or_enter"
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
                 }
             ]
         },
         {
-            "description": "Caps hold [spacebar:enter]",
+            "description": "Caps hold [spacebar:backslash]",
             "manipulators": [{
                     "type": "basic",
                     "from": {
                         "key_code": "spacebar"
                     },
                     "to": [{
-                        "key_code": "keypad_enter"
+                        "key_code": "backslash"
                     }],
                     "conditions": [{
                         "type": "variable_if",

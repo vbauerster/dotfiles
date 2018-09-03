@@ -15,7 +15,35 @@
                 },
                 "rules": [
                     {
-                        "description": "Caps Hyper [quote, m, u, r, b, f]",
+                        "description": "Caps HyperNoCmd [comma]",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_hold_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "comma"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "comma",
+                                        "modifiers": [
+                                            "left_shift",
+                                            "left_control",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Caps Hyper [m, u, r, b, f]",
                         "manipulators": [
                             {
                                 "from": {
@@ -47,30 +75,6 @@
                                 "to_if_alone": [
                                     {
                                         "key_code": "escape"
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_hold_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "quote"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "quote",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "left_command",
-                                            "left_control",
-                                            "left_option"
-                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -198,7 +202,7 @@
                         ]
                     },
                     {
-                        "description": "Caps HyperNoCmd [comma]",
+                        "description": "Caps hold [tab=(h), arrows=(jkl;), quote=(enter)]",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -209,48 +213,15 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "comma"
+                                    "key_code": "h"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "comma",
-                                        "modifiers": [
-                                            "left_shift",
-                                            "left_control",
-                                            "left_option"
-                                        ]
+                                        "key_code": "tab"
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Caps hold [spacebar:enter]",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "caps_hold_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "spacebar"
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "keypad_enter"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Caps hold [arrows dvorak(jkl;)]",
-                        "manipulators": [
+                            },
                             {
                                 "conditions": [
                                     {
@@ -319,6 +290,47 @@
                                 "to": [
                                     {
                                         "key_code": "right_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_hold_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "quote"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "return_or_enter"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Caps hold [spacebar:backslash]",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "caps_hold_mode",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "spacebar"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "backslash"
                                     }
                                 ],
                                 "type": "basic"
@@ -752,6 +764,32 @@
                             }
                         }
                     ]
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 2311,
+                        "vendor_id": 7847
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": []
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 780,
+                        "vendor_id": 3690
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": []
                 }
             ],
             "fn_function_keys": [
