@@ -499,7 +499,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
    evil-escape-key-sequence ",."
    select-enable-clipboard nil
    ;; make-backup-files nil
-   shell-default-term-shell "/usr/local/bin/zsh"
+   ;; shell-default-term-shell "/usr/local/bin/zsh"
    )
   )
 
@@ -520,9 +520,7 @@ before packages are loaded."
   (spacemacs/set-leader-keys
     "." 'spacemacs/layouts-transient-state/body
     "+" 'spacemacs/workspaces-transient-state/body
-    ;; "l" nil
-    "]" 'evil-window-next
-    "[" 'evil-window-prev
+    "l" nil
     ;; "}" 'eyebrowse-next-window-config
     ;; "{" 'eyebrowse-prev-window-config
     "$" 'eyebrowse-last-window-config
@@ -578,6 +576,7 @@ before packages are loaded."
   ;; (setq evil-move-cursor-back nil)
   (with-eval-after-load 'company
     ;; "C-d" opens short description help window
+    ;; "M-h" opens short description popup
     ;; (define-key company-active-map (kbd "C-n") 'company-select-next)
     ;; (define-key company-active-map (kbd "C-h") 'company-select-previous)
     (define-key company-active-map (kbd "C-h") 'company-complete-selection)
