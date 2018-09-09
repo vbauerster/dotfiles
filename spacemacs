@@ -84,9 +84,11 @@ This function should only modify configuration layer settings."
      dash
      semantic
      (ranger :variables
-             ;; ranger-max-preview-size 4
              ranger-show-preview t
-             ranger-show-literal t)
+             ranger-show-hidden t
+             ranger-cleanup-eagerly t
+             ranger-cleanup-on-disable t
+             ranger-ignored-extensions '("mkv" "flv" "iso" "mp4"))
      (shell :variables
             shell-default-shell 'eshell
             shell-default-height 30
