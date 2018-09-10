@@ -525,7 +525,7 @@ before packages are loaded."
     "l" nil
     ;; "}" 'eyebrowse-next-window-config
     ;; "{" 'eyebrowse-prev-window-config
-    "$" 'eyebrowse-last-window-config
+    ;; "$" 'eyebrowse-last-window-config
     "-" 'spacemacs/helm-jump-in-buffer
     "wu" 'evil-window-right
     "wU" 'evil-window-move-far-right
@@ -554,6 +554,7 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd "s") 'avy-goto-char-2)
   (define-key evil-normal-state-map (kbd "g}") (kbd "gt"))
   (define-key evil-normal-state-map (kbd "g{") (kbd "gT"))
+  (define-key evil-normal-state-map (kbd "g TAB") 'eyebrowse-last-window-config)
   ;; (define-key evil-normal-state-map (kbd "C-k") (kbd "4gk"))
   ;; (define-key evil-normal-state-map (kbd "C-j") (kbd "4gj"))
   ;; (define-key evil-normal-state-map "\\" 'evil-repeat-find-char-reverse)
