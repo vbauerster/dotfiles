@@ -522,11 +522,8 @@ before packages are loaded."
   ;; evil-leader/set-key = spacemacs/set-leader-keys
   (spacemacs/set-leader-keys
     "." 'spacemacs/layouts-transient-state/body
-    "+" 'spacemacs/workspaces-transient-state/body
+    "," 'spacemacs/workspaces-transient-state/body
     "l" nil
-    ;; "}" 'eyebrowse-next-window-config
-    ;; "{" 'eyebrowse-prev-window-config
-    ;; "$" 'eyebrowse-last-window-config
     "-" 'spacemacs/helm-jump-in-buffer
     "wu" 'evil-window-right
     "wU" 'evil-window-move-far-right
