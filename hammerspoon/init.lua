@@ -27,10 +27,9 @@
 -- 34 = c
 hs.hotkey.bind({"ctrl"}, ".", function() hs.eventtap.keyStroke({"cmd"}, 47) end)
 hs.hotkey.bind({"ctrl"}, ",", function() hs.eventtap.keyStroke({"cmd"}, 34) end)
-hs.hotkey.bind({"ctrl"}, ";", function() hs.eventtap.keyStroke({"cmd"}, 11) end)
-hs.hotkey.bind({"ctrl", "alt"}, ".", function() hs.eventtap.keyStroke({"cmd", "alt"}, 47) end)
-hs.hotkey.bind({"ctrl", "shift"}, ",", function() hs.eventtap.keyStroke({"cmd"}, 44) end)
-hs.hotkey.bind({"ctrl", "shift"}, ".", function() hs.eventtap.keyStroke({"shift", "cmd"}, 44) end)
+hs.hotkey.bind({"ctrl"}, ";", function() hs.eventtap.keyStroke({"cmd"}, 44) end)
+hs.hotkey.bind({"ctrl", "shift"}, ".", function() hs.eventtap.keyStroke({"cmd", "alt"}, 47) end)
+hs.hotkey.bind({"ctrl", "shift"}, ",", function() hs.eventtap.keyStroke({"cmd"}, 11) end)
 
 require 'window-management'
 require 'numpad'
