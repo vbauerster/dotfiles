@@ -63,7 +63,8 @@ This function should only modify configuration layer settings."
                      spell-checking-enable-by-default nil)
      html
      markdown
-     neotree
+     ;; neotree
+     treemacs
      yaml
      ;; python
      ;; (java :variables java-backend 'eclim)
