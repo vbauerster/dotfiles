@@ -85,6 +85,8 @@ This function should only modify configuration layer settings."
      dash
      semantic
      (ranger :variables
+             ;; zi to toggle show-literal
+             ranger-show-literal nil
              ranger-show-preview t
              ranger-show-hidden t
              ranger-cleanup-eagerly t
