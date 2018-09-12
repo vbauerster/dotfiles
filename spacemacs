@@ -527,6 +527,7 @@ before packages are loaded."
     "," 'spacemacs/workspaces-transient-state/body
     "l" nil
     "-" 'spacemacs/helm-jump-in-buffer
+    "wa" 'ace-window
     "wu" 'evil-window-right
     "wU" 'evil-window-move-far-right
     "wl" 'winner-undo
