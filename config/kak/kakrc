@@ -1,9 +1,13 @@
 ## Sources.
 # source "%val{config}/plugins/kakoune-buffers/buffers.kak"
 source "%val{config}/plugins/kakoune-find/find.kak"
-# source "%val{config}/plugins/kakoune-phantom-selection/phantom-selection.kak"
+source "%val{config}/plugins/kakoune-phantom-selection/phantom-selection.kak"
 source "%val{config}/plugins/kakoune-mark/mark.kak"
 source "%val{config}/plugins/kakoune-filetree/filetree.kak"
+# source "%val{config}/plugins/kakoune-marks/marks.kak"
+# source "%val{config}/plugins/kakoune-easymotion/easymotion.kak"
+# source "%val{config}/plugins/kakoune-registers/registers.kak"
+# source "%val{config}/plugins/volatile-highlighting.kak/rc/volatile-highlighting.kak"
 
 source "%val{config}/scripts/fzf.kak"
 source "%val{config}/scripts/bc.kak"
@@ -15,9 +19,10 @@ set global tabstop 4
 set global indentwidth 4
 # set global idle_timeout 50
 # set global scrolloff 1,0
-# set global BOM none
 # set global ui_options ncurses_status_on_top=true
 # set global grepcmd 'rg --column'
+
+colorscheme github-custom
 
 # enable kak-lsp
 # eval %sh{kak-lsp --kakoune -s $kak_session}
@@ -25,19 +30,17 @@ set global indentwidth 4
 
 # hook global WinCreate ^[^*]+$ %{
 hook global WinCreate .* %{
-  addhl window/wrap wrap
-  addhl window/number-lines number-lines -hlcursor
-  # addhl window/show-whitespaces show-whitespaces -tab '›' -tabpad '⋅' -lf ' ' -spc ' ' -nbsp '⍽'
-  addhl window/show-whitespaces show-whitespaces -tab '›' -tabpad '⋅' -spc ' ' -nbsp '⍽'
-  addhl window/show-matching show-matching
-  addhl window/VisibleWords regex \b(?:FIXME|TODO|XXX)\b 0:default+rb
+    addhl window/wrap wrap
+    addhl window/number-lines number-lines -hlcursor
+    # addhl window/show-whitespaces show-whitespaces -tab '›' -tabpad '⋅' -lf ' ' -spc ' ' -nbsp '⍽'
+    addhl window/show-whitespaces show-whitespaces -tab '›' -tabpad '⋅' -spc ' ' -nbsp '⍽'
+    addhl window/show-matching show-matching
+    addhl window/VisibleWords regex \b(?:FIXME|TODO|XXX)\b 0:default+rb
 
-  # smarttab-enable
-  tab-completion-enable
-  show-trailing-whitespace-enable; face window TrailingWhitespace default,red
-  # search-highlighting-enable; face window Search +bi
-  search-highlighting-enable; face window Search default,rgb:EDF97D+bi
-  # volatile-highlighting-enable; face window Volatile +bi
+    # smarttab-enable
+    tab-completion-enable
+    show-trailing-whitespace-enable; face window TrailingWhitespace default,red
+    search-highlighting-enable; face window Search default,rgb:EDF97D+bi
 }
 
 ## File types.
@@ -45,8 +48,8 @@ def filetype-hook -params 2 %{ hook global WinSetOption "filetype=(%arg{1})" %ar
 def go-format-use-goimports %{ go-format -use-goimports }
 
 filetype-hook man %{
-  rmhl window/number-lines
-  set window scrolloff 1000,0
+    rmhl window/number-lines
+    set window scrolloff 1000,0
 }
 filetype-hook go %{
     go-enable-autocomplete
@@ -69,21 +72,21 @@ hook global BufWritePost .*\.go %{ format }
 
 # Highlight any files whose names start with "zsh" as sh
 hook global BufCreate (.*/)?\.?zsh.* %{
-  set-option buffer filetype sh
+    set-option buffer filetype sh
 }
 
 # Highlight files ending in .conf as ini
 # (Will probably be close enough)
 hook global BufCreate .*\.conf %{
-  set-option buffer filetype ini
+    set-option buffer filetype ini
 }
 
 # escape hatch
 # https://github.com/mawww/kakoune/wiki/Avoid-the-escape-key
 hook global InsertChar \. %{ try %{
-  exec -draft hH <a-k>,\.<ret> d
-  exec <esc>
-  #write
+    exec -draft hH <a-k>,\.<ret> d
+    exec <esc>
+    #write
 }}
 
 ## Maps.
@@ -116,6 +119,12 @@ map global normal = :format<ret> -docstring 'format buffer'
 map global normal '#' :comment-line<ret> -docstring 'comment line'
 map global normal '<a-#>' :comment-block<ret> -docstring 'comment block'
 
+def -hidden slice-by-camel %{
+  exec s[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
+}
+
+map global normal <c-w> :slice-by-camel<ret>
+
 # Insert mode
 #map global insert <c-s> <c-o>    ; # silent: stop completion
 #map global insert <c-c> <c-x>    ; # complete here
@@ -124,36 +133,9 @@ map global normal '<a-#>' :comment-block<ret> -docstring 'comment block'
 #map global insert <c-y> '<c-r>"' ; # paste from normal yank register, readline key
 map global insert <c-y> '<a-;>!pbpaste<ret>'
 
-# by lenormf, see https://github.com/mawww/kakoune/issues/1192
-# decl -hidden range-specs show_matching_range
-#
-# hook global -group kakrc InsertChar [[(<{}>)\]] %{ eval -draft %{
-#     try %{
-#         exec -no-hooks <esc>\;hm<a-k>..<ret>\;
-#         set window show_matching_range "%val{timestamp}:%val{selection_desc}|MatchingChar"
-#     }
-#
-#     hook window -group once-matching InsertChar [^[(<{}>)\]] %{
-#         set window show_matching_range ""
-#         remove-hooks window once-matching
-#     }
-#
-#     hook window -group once-matching InsertEnd .* %{
-#         set window show_matching_range ""
-#         remove-hooks window once-matching
-#     }
-# } }
-#
-# hook global -group kakrc InsertEnd .* %{
-#     set buffer show_matching_range ""
-# }
-#
-# hook global -group kakrc WinCreate .* %{
-#     addhl window ranges show_matching_range
-# }
-
 map global user g       -docstring 'git'                     ': enter-user-mode git<ret>'
 map global user *       -docstring 'sysclipboard'            ': enter-user-mode sysclipboard<ret>'
+map global user s       -docstring 'phantom sel'             ': enter-user-mode phantom-sel<ret>'
 map global user <plus>  -docstring 'switch to [+] buffer'    ': switch-to-modified-buffer<ret>'
 # Format using fmt
 map -docstring format global user q '|fmt -w 80<ret>: echo -markup {green}[sel] | fmt -w 80<ret>'
@@ -162,32 +144,23 @@ map -docstring format global user q '|fmt -w 80<ret>: echo -markup {green}[sel] 
 map global user m :mark-word<ret> -docstring 'mark word'
 map global user M :mark-clear<ret> -docstring 'mark clear'
 
-# select all occurrences in this buffer
-map global user s '*%s<c-/><ret>' -docstring 'select all'
 map global user k ':edit ~/.config/kak/kakrc<ret>' -docstring 'edit kakrc'
 #map global user c <a-s>:comment-line<ret> -docstring 'comment line'
 
 map global user R ':e!<ret>' -docstring 'Reload buffer'
 
-# map global user b       -docstring 'buffers…'               ': enter-buffers-mode<ret>'
-# map global user B       -docstring 'buffers (lock)…'        ': enter-user-mode -lock buffers<ret>'
+declare-user-mode phantom-sel
+map global phantom-sel s '*%s<c-/><ret>' -docstring 'select all'
+map global phantom-sel a ': phantom-sel-add-selection<ret>' -docstring 'phantom add-selection'
+map global phantom-sel c ': phantom-sel-select-all; phantom-sel-clear<ret>' -docstring 'phantom restore clear'
+map global phantom-sel n ': phantom-sel-iterate-next<ret>' -docstring 'phantom next'
+map global phantom-sel p ': phantom-sel-iterate-prev<ret>' -docstring 'phantom next'
 
 declare-user-mode sysclipboard
-# map global sysclipboard y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank'
-# map global sysclipboard p '!pbpaste<ret>' -docstring 'paste'
 map global sysclipboard i ':clipboard-import<ret>' -docstring 'import'
 map global sysclipboard e ':clipboard-export<ret>' -docstring 'export'
-
-declare-user-mode git
-map global git b ': git-toggle-blame<ret>'       -docstring 'blame (toggle)'
-map global git l ': git log<ret>'                -docstring 'log'
-map global git c ': git commit<ret>'             -docstring 'commit'
-map global git d ': git diff<ret>'               -docstring 'diff'
-map global git s ': git status<ret>'             -docstring 'status'
-map global git h ': git show-diff<ret>'          -docstring 'show diff'
-map global git H ': git-hide-diff<ret>'          -docstring 'hide diff'
-map global git w ': git-show-blamed-commit<ret>' -docstring 'show blamed commit'
-map global git L ': git-log-lines<ret>'          -docstring 'log blame'
+# map global sysclipboard y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank'
+# map global sysclipboard p '!pbpaste<ret>' -docstring 'paste'
 
 # https://github.com/alyssais/dotfiles/blob/master/.config/kak/kakrc#L30-L38
 define-command -docstring "import from the system clipboard" clipboard-import %{
@@ -235,6 +208,46 @@ def git-toggle-blame %{
 }
 def git-hide-diff %{ rmhl window/git-diff }
 
+declare-user-mode git
+map global git b ': git-toggle-blame<ret>'       -docstring 'blame (toggle)'
+map global git l ': git log<ret>'                -docstring 'log'
+map global git c ': git commit<ret>'             -docstring 'commit'
+map global git d ': git diff<ret>'               -docstring 'diff'
+map global git s ': git status<ret>'             -docstring 'status'
+map global git h ': git show-diff<ret>'          -docstring 'show diff'
+map global git H ': git-hide-diff<ret>'          -docstring 'hide diff'
+map global git w ': git-show-blamed-commit<ret>' -docstring 'show blamed commit'
+map global git L ': git-log-lines<ret>'          -docstring 'log blame'
+
+# Tab completion.
+def tab-completion-enable %{
+  hook -group tab-completion window InsertCompletionShow .* %{
+    try %{
+      exec -draft 'h<a-K>\s<ret>'
+      map window insert <tab> <c-n>
+      map window insert <s-tab> <c-p>
+    }
+  }
+  hook -group tab-completion window InsertCompletionHide .* %{
+    unmap window insert <tab> <c-n>
+    unmap window insert <s-tab> <c-p>
+  }
+}
+def tab-completion-disable %{ rmhooks window tab-completion }
+
+# smarttab.kak?
+# Emulate expandtab smarttab, kind of.
+# Due to #2122 this can only be done as a hook, not a map.
+def smarttab-enable %{
+  hook -group smarttab window InsertChar \t %{ exec -draft -itersel "h%opt{indentwidth}@" }
+  hook -group smarttab window InsertDelete ' ' %{
+    eval -draft -itersel %{ try %{
+      exec 'hGh' "s\A((.{%opt{indentwidth}})*[^ ]*) *\z<ret>" '"1R'
+    }}
+  }
+}
+def smarttab-disable %{ rmhooks window smarttab }
+
 # Highlight trailing whitespace in normal mode, with the TrailingWhitespace face.
 # What I really want is to only not highlight trailing whitespace as I'm
 # inserting it, but that doesn't seem possible right now.
@@ -264,20 +277,30 @@ def search-highlighting-disable %{
   rmhooks window search-highlighting
 }
 
-# Tab completion.
-def tab-completion-enable %{
-  hook -group tab-completion window InsertCompletionShow .* %{
-    try %{
-      exec -draft 'h<a-K>\s<ret>'
-      map window insert <tab> <c-n>
-      map window insert <s-tab> <c-p>
-    }
-  }
-  hook -group tab-completion window InsertCompletionHide .* %{
-    unmap window insert <tab> <c-n>
-    unmap window insert <s-tab> <c-p>
-  }
-}
-def tab-completion-disable %{ rmhooks window tab-completion }
-
-colorscheme github-custom
+# by lenormf, see https://github.com/mawww/kakoune/issues/1192
+# decl -hidden range-specs show_matching_range
+#
+# hook global -group kakrc InsertChar [[(<{}>)\]] %{ eval -draft %{
+#     try %{
+#         exec -no-hooks <esc>\;hm<a-k>..<ret>\;
+#         set window show_matching_range "%val{timestamp}:%val{selection_desc}|MatchingChar"
+#     }
+#
+#     hook window -group once-matching InsertChar [^[(<{}>)\]] %{
+#         set window show_matching_range ""
+#         remove-hooks window once-matching
+#     }
+#
+#     hook window -group once-matching InsertEnd .* %{
+#         set window show_matching_range ""
+#         remove-hooks window once-matching
+#     }
+# } }
+#
+# hook global -group kakrc InsertEnd .* %{
+#     set buffer show_matching_range ""
+# }
+#
+# hook global -group kakrc WinCreate .* %{
+#     addhl window ranges show_matching_range
+# }
