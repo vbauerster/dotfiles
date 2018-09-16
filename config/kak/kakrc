@@ -1,6 +1,6 @@
 ## Sources.
 # source "%val{config}/plugins/kakoune-buffers/buffers.kak"
-# source "%val{config}/plugins/kakoune-find/find.kak"
+source "%val{config}/plugins/kakoune-find/find.kak"
 # source "%val{config}/plugins/kakoune-phantom-selection/phantom-selection.kak"
 source "%val{config}/plugins/kakoune-mark/mark.kak"
 source "%val{config}/plugins/kakoune-filetree/filetree.kak"
@@ -27,14 +27,16 @@ set global indentwidth 4
 hook global WinCreate .* %{
   addhl window/wrap wrap
   addhl window/number-lines number-lines -hlcursor
-  addhl window/show-whitespaces show-whitespaces -tab '›' -tabpad '⋅' -lf ' ' -spc ' ' -nbsp '⍽'
+  # addhl window/show-whitespaces show-whitespaces -tab '›' -tabpad '⋅' -lf ' ' -spc ' ' -nbsp '⍽'
+  addhl window/show-whitespaces show-whitespaces -tab '›' -tabpad '⋅' -spc ' ' -nbsp '⍽'
   addhl window/show-matching show-matching
   addhl window/VisibleWords regex \b(?:FIXME|TODO|XXX)\b 0:default+rb
 
   # smarttab-enable
   tab-completion-enable
-  show-trailing-whitespace-enable; face window TrailingWhitespace default,magenta
-  search-highlighting-enable; face window Search +bi
+  show-trailing-whitespace-enable; face window TrailingWhitespace default,red
+  # search-highlighting-enable; face window Search +bi
+  search-highlighting-enable; face window Search default,rgb:EDF97D+bi
   # volatile-highlighting-enable; face window Volatile +bi
 }
 
@@ -87,6 +89,10 @@ hook global InsertChar \. %{ try %{
 ## Maps.
 map global normal <%> '<c-s>%' # Save position before %
 map global normal <x> <a-x>
+map global normal <a-x> gi<a-l>
+
+# save on pressing enter
+map global normal <ret> :w<ret>
 
 # Split and select
 # map global normal -- - s
@@ -109,20 +115,6 @@ map global normal = :format<ret> -docstring 'format buffer'
 
 map global normal '#' :comment-line<ret> -docstring 'comment line'
 map global normal '<a-#>' :comment-block<ret> -docstring 'comment block'
-
-# https://github.com/alyssais/dotfiles/blob/master/.config/kak/kakrc#L30-L38
-# define-command -docstring "import from the system clipboard" clipboard-import %{
-#   set-register dquote "%sh{pbpaste}"
-#   echo -markup "{Information}imported system clipboard to register \""
-# }
-#
-# define-command -docstring "export to the system clipboard" clipboard-export %{
-#   nop %sh{ printf "%s" "$kak_reg_dquote" | pbcopy }
-#   echo -markup "{Information}exported register \" to system clipboard"
-# }
-#
-# map global normal <a-Y> :clipboard-import<ret>
-# map global normal <a-y> :clipboard-export<ret>
 
 # Insert mode
 #map global insert <c-s> <c-o>    ; # silent: stop completion
@@ -160,19 +152,6 @@ map global insert <c-y> '<a-;>!pbpaste<ret>'
 #     addhl window ranges show_matching_range
 # }
 
-def switch-to-modified-buffer %{
-  eval -save-regs a %{
-    reg a ''
-    try %{
-      eval -buffer * %{
-        eval %sh{[ "$kak_modified" = true ] && echo "reg a %{$kak_bufname}; fail"}
-      }
-    }
-    eval %sh{[ -z "$kak_main_reg_a" ] && echo "fail 'No modified buffers!'"}
-    buffer %reg{a}
-  }
-}
-
 map global user g       -docstring 'git'                     ': enter-user-mode git<ret>'
 map global user *       -docstring 'sysclipboard'            ': enter-user-mode sysclipboard<ret>'
 map global user <plus>  -docstring 'switch to [+] buffer'    ': switch-to-modified-buffer<ret>'
@@ -184,7 +163,7 @@ map global user m :mark-word<ret> -docstring 'mark word'
 map global user M :mark-clear<ret> -docstring 'mark clear'
 
 # select all occurrences in this buffer
-map global user a '*%s<c-/><ret>' -docstring 'select all'
+map global user s '*%s<c-/><ret>' -docstring 'select all'
 map global user k ':edit ~/.config/kak/kakrc<ret>' -docstring 'edit kakrc'
 #map global user c <a-s>:comment-line<ret> -docstring 'comment line'
 
@@ -194,8 +173,10 @@ map global user R ':e!<ret>' -docstring 'Reload buffer'
 # map global user B       -docstring 'buffers (lock)…'        ': enter-user-mode -lock buffers<ret>'
 
 declare-user-mode sysclipboard
-map global sysclipboard y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank'
-map global sysclipboard p '!pbpaste<ret>' -docstring 'paste'
+# map global sysclipboard y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank'
+# map global sysclipboard p '!pbpaste<ret>' -docstring 'paste'
+map global sysclipboard i ':clipboard-import<ret>' -docstring 'import'
+map global sysclipboard e ':clipboard-export<ret>' -docstring 'export'
 
 declare-user-mode git
 map global git b ': git-toggle-blame<ret>'       -docstring 'blame (toggle)'
@@ -208,7 +189,30 @@ map global git H ': git-hide-diff<ret>'          -docstring 'hide diff'
 map global git w ': git-show-blamed-commit<ret>' -docstring 'show blamed commit'
 map global git L ': git-log-lines<ret>'          -docstring 'log blame'
 
-## More:
+# https://github.com/alyssais/dotfiles/blob/master/.config/kak/kakrc#L30-L38
+define-command -docstring "import from the system clipboard" clipboard-import %{
+  set-register dquote %sh{pbpaste}
+  echo -markup "{Information}imported system clipboard to register """
+}
+
+define-command -docstring "export to the system clipboard" clipboard-export %{
+  nop %sh{ printf "%s" "$kak_main_reg_dquote" | pbcopy }
+  echo -markup "{Information}exported register "" to system clipboard"
+}
+
+define-command switch-to-modified-buffer %{
+  eval -save-regs a %{
+    reg a ''
+    try %{
+      eval -buffer * %{
+        eval %sh{[ "$kak_modified" = true ] && echo "reg a %{$kak_bufname}; fail"}
+      }
+    }
+    eval %sh{[ -z "$kak_main_reg_a" ] && echo "fail 'No modified buffers!'"}
+    buffer %reg{a}
+  }
+}
+
 # Git extras.
 def git-show-blamed-commit %{
   git show %sh{git blame -L "$kak_cursor_line,$kak_cursor_line" "$kak_buffile" | awk '{print $1}'}
@@ -249,7 +253,6 @@ def show-trailing-whitespace-disable %{
 face global TrailingWhitespace ''
 
 # search-highlighting.kak, simplified
-face global Search white,yellow
 def search-highlighting-enable %{
   hook window -group search-highlighting NormalKey [/?*nN]|<a-[/?*nN]> %{ try %{
     addhl window/SearchHighlighting dynregex '%reg{/}' 0:Search
