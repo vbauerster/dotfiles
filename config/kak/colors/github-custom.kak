@@ -39,11 +39,11 @@ face global SecondaryCursorEol rgb:DBFFDB,yellow
 face global LineNumbers rgb:A0A0A0,rgb:ECECEC
 face global LineNumberCursor rgb:434343,rgb:DDDDDD
 face global MenuForeground rgb:F0A0C0,magenta
-face global MenuBackground black,rgb:C2BFA5
+face global MenuBackground rgb:434343,rgb:C2DDA5
 face global Information rgb:F8F8FF,rgb:4078C0
 face global Error rgb:F8F8FF,rgb:BD2C00
 face global StatusLine rgb:434343,rgb:DDDDDD
-face global StatusCursor rgb:DDDDDD,black
+face global StatusCursor rgb:DDDDDD,rgb:434343
 face global Prompt rgb:F8F8FF,rgb:4078C0
 face global MatchingChar rgb:FF9933,default+b
 # face global Search default,default+u
