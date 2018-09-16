@@ -13,7 +13,7 @@ face global string rgb:183691
 face global keyword rgb:A71D5D+b
 face global operator yellow
 face global attribute rgb:A71D5D
-face global comment rgb:AAAAAA+i
+face global comment rgb:A0A0A0+i
 face global meta rgb:183691
 face global builtin default+b
 
@@ -47,6 +47,6 @@ face global StatusCursor rgb:DDDDDD,black
 face global Prompt rgb:F8F8FF,rgb:4078C0
 face global MatchingChar rgb:FF9933,default+b
 # face global Search default,default+u
-face global Whitespace rgb:AAAAAA,default
+face global Whitespace rgb:DDDDDD,default
 face global BufferPadding rgb:A0A0A0,rgb:F8F8FF
 face global MenuInfo rgb:FFFFFF,default+i
