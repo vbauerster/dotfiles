@@ -604,13 +604,15 @@ before packages are loaded."
    ;; flycheck
    ;; skips 'vendor' directories and sets GO15VENDOREXPERIMENT=1
    flycheck-gometalinter-vendor t
-   flycheck-gometalinter-deadline "12s"
+   flycheck-gometalinter-deadline "14s"
    flycheck-gometalinter-disable-all t
    flycheck-gometalinter-enable-linters '("errcheck" "megacheck")
    ;; flycheck-indication-mode nil
    flycheck-indication-mode 'right-fringe
    ;; powerline
    powerline-default-separator 'alternate
+   ;; magit
+   magit-repository-directories '("~/go/src")
    )
 
   (with-eval-after-load 'projectile
