@@ -1,6 +1,7 @@
 -- local log = hs.logger.new("numpad", "info")
 
-local modalKey = hs.hotkey.modal.new({'ctrl', 'alt', 'cmd'}, 'm', 'Npad mode enter')
+local modalKey = hs.hotkey.modal.new({'ctrl', 'alt', 'cmd'}, 'n', 'Npad mode enter')
+modalKey:bind({}, 'escape', function() modalKey:exit() end)
 modalKey:bind({}, 'q', function() modalKey:exit() end)
 modalKey:bind({}, 'j', function() modalKey:exit() hs.eventtap.keyStroke({}, 'j') end)
 modalKey:bind({}, 'k', function() modalKey:exit() hs.eventtap.keyStroke({}, 'k') end)
