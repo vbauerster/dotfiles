@@ -163,12 +163,15 @@ if [ -n "$TMUX_PANE" ]; then
   fzf_tmux_words() {
     tmuxwords.rb --all --scroll 500 --min 5 | fzf-down --multi | paste -sd" " -
   }
-
-  fzf-tmux-words-widget() LBUFFER+=$(fzf_tmux_words | join-lines)
+  fzf-tmux-words-widget() {
+    LBUFFER+=$(fzf_tmux_words)
+    zle reset-prompt
+  }
   zle -N fzf-tmux-words-widget
-  bindkey '^T' undefined-key
-  bindkey '^Tt' fzf-file-widget
-  bindkey '^Tw' fzf-tmux-words-widget
+  bindkey '^[w' fzf-tmux-words-widget
+  # bindkey '^T' undefined-key
+  # bindkey '^Tt' fzf-file-widget
+  # bindkey '^Tw' fzf-tmux-words-widget
 
   # tmps - switch pane (@george-b)
   tmps() {
