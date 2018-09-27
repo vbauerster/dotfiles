@@ -32,9 +32,9 @@ face global list yellow
 # face global Default rgb:121213,rgb:F8F8FF
 face global PrimarySelection default,rgb:A6F3A6
 face global SecondarySelection default,rgb:DBFFDB
-face global PrimaryCursor white,rgb:FF9933+b
+face global PrimaryCursor rgb:FFFFFF,rgb:FF9933
 face global SecondaryCursor rgb:DBFFDB,rgb:888888
-face global PrimaryCursorEol white,red+b
+face global PrimaryCursorEol rgb:FFFFFF,red
 face global SecondaryCursorEol rgb:DBFFDB,yellow
 face global LineNumbers rgb:A0A0A0,rgb:ECECEC
 face global LineNumberCursor rgb:434343,rgb:DDDDDD
