@@ -8,12 +8,11 @@ hs.loadSpoon("MiroWindowsManager")
 -- spoon.MiroWindowsManager.sizes = { 6/5, 4/3, 3/2, 2/1, 3/1, 4/1, 6/1 }
 spoon.MiroWindowsManager.fullScreenSizes = {1, 6/5, 4/3, 2}
 spoon.MiroWindowsManager:bindHotkeys({
-  -- diamond
-  up = {{}, 'c'},
-  right = {{}, 'n'},
-  down = {{}, 'w'},
+  up = {{}, 'i'},
+  right = {{}, 'u'},
+  down = {{}, 'd'},
   left = {{}, 'h'},
-  fullscreen = {{}, 't'},
+  fullscreen = {{}, 'x'},
   middle ={{}, 'm'}
 })
 
