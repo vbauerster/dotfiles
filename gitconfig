@@ -8,11 +8,12 @@
 
 # https://hackernoon.com/lesser-known-git-commands-151a1918a60
 [alias]
-    ls = ls-files
+    ua = ls-files
     co = checkout
-    ci = commit
+    ci = commit -v
     st = status --short --branch
-	pp = pull
+    stt = status --branch
+    pp = pull
     bb = branch -v
     bba = branch -av
     bbh = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
