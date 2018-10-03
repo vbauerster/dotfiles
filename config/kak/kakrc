@@ -1,15 +1,18 @@
 ## Sources.
-# source "%val{config}/plugins/kakoune-buffers/buffers.kak"
+source "%val{config}/plugins/kakoune-buffers/buffers.kak"
 source "%val{config}/plugins/kakoune-find/find.kak"
 source "%val{config}/plugins/kakoune-phantom-selection/phantom-selection.kak"
 source "%val{config}/plugins/kakoune-mark/mark.kak"
 source "%val{config}/plugins/kakoune-filetree/filetree.kak"
+source "%val{config}/plugins/fzf.kak/rc/fzf.kak"
+# source "%val{config}/plugins/kakoune-edit-or-dir/edit-or-dir.kak"
+# source "%val{config}/plugins/auto-pairs.kak/rc/auto-pairs.kak"
 # source "%val{config}/plugins/kakoune-marks/marks.kak"
 # source "%val{config}/plugins/kakoune-easymotion/easymotion.kak"
 # source "%val{config}/plugins/kakoune-registers/registers.kak"
 # source "%val{config}/plugins/volatile-highlighting.kak/rc/volatile-highlighting.kak"
 
-source "%val{config}/scripts/fzf.kak"
+# source "%val{config}/scripts/fzf.kak"
 source "%val{config}/scripts/bc.kak"
 source "%val{config}/scripts/colorscheme-browser.kak"
 
@@ -20,12 +23,12 @@ set global indentwidth 4
 # set global idle_timeout 50
 # set global scrolloff 1,0
 # set global ui_options ncurses_status_on_top=true
-# set global grepcmd 'rg --column'
+set global grepcmd 'rg --column'
 
 colorscheme github-custom
 
 # enable kak-lsp
-# eval %sh{kak-lsp --kakoune -s $kak_session}
+eval %sh{kak-lsp --kakoune -s $kak_session}
 # nop %sh{ (kak-lsp -s $kak_session -vvv ) > /tmp/kak-lsp.log 2>&1 < /dev/null & }
 
 # hook global WinCreate ^[^*]+$ %{
@@ -43,6 +46,8 @@ hook global WinCreate .* %{
     search-highlighting-enable; face window Search default,rgb:EDF97D+bi
 }
 
+hook global WinDisplay .* info-buffers
+
 ## File types.
 def filetype-hook -params 2 %{ hook global WinSetOption "filetype=(%arg{1})" %arg{2} }
 def go-format-use-goimports %{ go-format -use-goimports }
@@ -51,13 +56,28 @@ filetype-hook man %{
     rmhl window/number-lines
     set window scrolloff 1000,0
 }
+declare-user-mode help-and-hovers
+# declare-user-mode gotodef
 filetype-hook go %{
+    # set window aligntab true
+    set window indentwidth 0
+    # set window lsp_auto_highlight_references true
+    lsp-auto-signature-help-enable
     go-enable-autocomplete
     alias window format go-format-use-goimports
     alias window jump-to-definition go-jump
     # set buffer lintcmd '(gometalinter | grep -v "::\w")  <'
-    map global goto d '<esc>:go-jump<ret>' -docstring 'go-jump'
-    map global goto h '<esc>:go-doc-info<ret>' -docstring 'go-doc-info'
+    map global goto u '<esc>: go-jump<ret>' -docstring 'go-jump'
+    # map global goto h '<esc>:go-doc-info<ret>' -docstring 'go-doc-info'
+    # map global goto l '<esc>:lsp-hover<ret>' -docstring 'lsp-hover'
+    map global help-and-hovers d ': go-doc-info<ret>' -docstring 'go-doc-info'
+    map global help-and-hovers h ': lsp-hover<ret>' -docstring 'lsp-hover'
+    map global help-and-hovers i ': lsp-signature-help<ret>' -docstring 'lsp-signature-help'
+    map global help-and-hovers r ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
+    map global user h '<esc>: enter-user-mode help-and-hovers<ret>' -docstring 'help and hovers'
+    # map global gotodef d '<esc>:lsp-definition<ret>' -docstring 'lsp-definition'
+    # map global gotodef j '<esc>:go-jump<ret>' -docstring 'go-jump'
+    # map global goto d '<esc>:enter-user-mode gotodef<ret>' -docstring 'gotodef mode'
 }
 filetype-hook c|cpp %{
     clang-enable-autocomplete; clang-enable-diagnostics
@@ -90,24 +110,38 @@ hook global InsertChar \. %{ try %{
 }}
 
 ## Maps.
+map global normal <,> ': enter-user-mode buffers<ret>'
 map global normal <%> '<c-s>%' # Save position before %
 map global normal <x> <a-x>
 map global normal <a-x> gi<a-l>
+# map global normal u l
+# map global normal U L
+# map global normal l u
+# map global normal L U
+# map global goto u l -docstring 'lide end'
+map global normal <minus> ': filetree<ret>'
 
-# save on pressing enter
-map global normal <ret> :w<ret>
+# Mark.kak
+map global user m ': mark-word<ret>' -docstring 'mark word'
+map global user M ': mark-clear<ret>' -docstring 'mark clear'
 
-# Split and select
-# map global normal -- - s
-# map global normal L S
-# map global normal l <A-s>
+# fzf.kak
+# set-option global fzf_file_command 'fd --type f --follow'
+set-option global fzf_file_command 'fd'
+set-option global fzf_tmux_height 22
+map global normal <c-p> ': fzf-mode<ret>'
+
+# map global normal <ret> :w<ret>
+map global user <s> ': w<ret>' -docstring 'save'
 
 # https://github.com/mawww/kakoune/issues/1791
 map global object q Q -docstring 'double quote string'
 map global object Q q -docstring 'single quote string'
+map global view u t -docstring 'same as t'
 
 # space is my leader
-# map global normal <space> , -docstring 'leader'
+map global user <space> <space> -docstring 'remove selections except main'
+map global normal <space> ,
 # map global normal <backspace> <space> -docstring 'remove all sels except main'
 # map global normal <a-backspace> <a-space> -docstring 'remove main sel'
 
@@ -123,7 +157,7 @@ def -hidden slice-by-camel %{
   exec s[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
 }
 
-map global normal <c-w> :slice-by-camel<ret>
+map global normal <c-w> ': slice-by-camel<ret>'
 
 # Insert mode
 #map global insert <c-s> <c-o>    ; # silent: stop completion
@@ -132,35 +166,30 @@ map global normal <c-w> :slice-by-camel<ret>
 #map global insert <c-c> <a-\;>   ; # execute one normal kak command
 #map global insert <c-y> '<c-r>"' ; # paste from normal yank register, readline key
 map global insert <c-y> '<a-;>!pbpaste<ret>'
+# map global sysclipboard y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank'
+# map global sysclipboard p '!pbpaste<ret>' -docstring 'paste'
+
+# user maps
+map global user S '*%s<c-/><ret>' -docstring 'select all'
+map global user R ':e!<ret>' -docstring 'Reload buffer'
 
 map global user g       -docstring 'git'                     ': enter-user-mode git<ret>'
 map global user *       -docstring 'sysclipboard'            ': enter-user-mode sysclipboard<ret>'
-map global user s       -docstring 'phantom sel'             ': enter-user-mode phantom-sel<ret>'
 map global user <plus>  -docstring 'switch to [+] buffer'    ': switch-to-modified-buffer<ret>'
 # Format using fmt
 map -docstring format global user q '|fmt -w 80<ret>: echo -markup {green}[sel] | fmt -w 80<ret>'
 
-# Mark.kak
-map global user m :mark-word<ret> -docstring 'mark word'
-map global user M :mark-clear<ret> -docstring 'mark clear'
-
-map global user k ':edit ~/.config/kak/kakrc<ret>' -docstring 'edit kakrc'
+# map global user k ':edit-kakrc<ret>' -docstring 'edit kakrc'
 #map global user c <a-s>:comment-line<ret> -docstring 'comment line'
 
-map global user R ':e!<ret>' -docstring 'Reload buffer'
-
-declare-user-mode phantom-sel
-map global phantom-sel s '*%s<c-/><ret>' -docstring 'select all'
-map global phantom-sel a ': phantom-sel-add-selection<ret>' -docstring 'phantom add-selection'
-map global phantom-sel c ': phantom-sel-select-all; phantom-sel-clear<ret>' -docstring 'phantom restore clear'
-map global phantom-sel n ': phantom-sel-iterate-next<ret>' -docstring 'phantom next'
-map global phantom-sel p ': phantom-sel-iterate-prev<ret>' -docstring 'phantom next'
+map global normal <backspace>     ": phantom-sel-add-selection<ret>"
+map global normal <a-backspace>   ": phantom-sel-select-all; phantom-sel-clear<ret>"
+map global user <}>               ": phantom-sel-iterate-next<ret>" -docstring 'phantom-sel n'
+map global user <{>               ": phantom-sel-iterate-prev<ret>" -docstring 'phantom-sel p'
 
 declare-user-mode sysclipboard
 map global sysclipboard i ':clipboard-import<ret>' -docstring 'import'
 map global sysclipboard e ':clipboard-export<ret>' -docstring 'export'
-# map global sysclipboard y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank'
-# map global sysclipboard p '!pbpaste<ret>' -docstring 'paste'
 
 # https://github.com/alyssais/dotfiles/blob/master/.config/kak/kakrc#L30-L38
 define-command -docstring "import from the system clipboard" clipboard-import %{
