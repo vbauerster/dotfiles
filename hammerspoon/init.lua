@@ -18,11 +18,15 @@ spoon.MiroWindowsManager:bindHotkeys({
 
 -- Dvorak copy/paste
 -- hs.inspect(hs.keycodes.map)
-hs.hotkey.bind({'ctrl'}, '.', function() hs.eventtap.keyStroke({'cmd'}, 'v') end)
-hs.hotkey.bind({'ctrl'}, ',', function() hs.eventtap.keyStroke({'cmd'}, 'c') end)
-hs.hotkey.bind({'ctrl'}, ';', function() hs.eventtap.keyStroke({'cmd'}, 'z') end)
-hs.hotkey.bind({'ctrl', 'shift'}, '.', function() hs.eventtap.keyStroke({'cmd', 'alt'}, 'v') end)
-hs.hotkey.bind({'ctrl', 'shift'}, ',', function() hs.eventtap.keyStroke({'cmd'}, 'x') end)
+-- 44 = z
+-- 47 = v
+-- 11 = x
+-- 34 = c
+hs.hotkey.bind({'ctrl'}, '.', function() hs.eventtap.keyStroke({'cmd'}, 47) end)
+hs.hotkey.bind({'ctrl'}, ',', function() hs.eventtap.keyStroke({'cmd'}, 34) end)
+hs.hotkey.bind({'ctrl'}, ';', function() hs.eventtap.keyStroke({'cmd'}, 44) end)
+hs.hotkey.bind({'ctrl', 'shift'}, '.', function() hs.eventtap.keyStroke({'cmd', 'alt'}, 47) end)
+hs.hotkey.bind({'ctrl', 'shift'}, ',', function() hs.eventtap.keyStroke({'cmd'}, 11) end)
 
 require 'numpad'
 require 'reload-config'
