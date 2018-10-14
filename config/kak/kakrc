@@ -30,6 +30,7 @@ colorscheme github-custom
 # enable kak-lsp
 eval %sh{kak-lsp --kakoune -s $kak_session}
 # nop %sh{ (kak-lsp -s $kak_session -vvv ) > /tmp/kak-lsp.log 2>&1 < /dev/null & }
+map global normal <l> ': enter-user-mode lsp<ret>' -docstring 'lsp'
 
 # hook global WinCreate ^[^*]+$ %{
 hook global WinCreate .* %{
@@ -56,28 +57,31 @@ filetype-hook man %{
     rmhl window/number-lines
     set window scrolloff 1000,0
 }
+
 declare-user-mode help-and-hovers
+map global help-and-hovers m ': mark-word<ret>' -docstring 'mark word'
+map global help-and-hovers c ': mark-clear<ret>' -docstring 'mark clear'
+
 # declare-user-mode gotodef
 filetype-hook go %{
-    # set window aligntab true
+    set window matching_pairs '(' ')' '{' '}' '[' ']'
     set window indentwidth 0
-    # set window lsp_auto_highlight_references true
+    set window lsp_auto_highlight_references true
     lsp-auto-signature-help-enable
-    go-enable-autocomplete
+    # go-enable-autocomplete
     alias window format go-format-use-goimports
     alias window jump-to-definition go-jump
     # set buffer lintcmd '(gometalinter | grep -v "::\w")  <'
-    map global goto u '<esc>: go-jump<ret>' -docstring 'go-jump'
-    # map global goto h '<esc>:go-doc-info<ret>' -docstring 'go-doc-info'
-    # map global goto l '<esc>:lsp-hover<ret>' -docstring 'lsp-hover'
+    # map global goto u '<esc>: go-jump<ret>' -docstring 'go-jump'
+    # map global goto h '<esc>: go-doc-info<ret>' -docstring 'go-doc-info'
     map global help-and-hovers d ': go-doc-info<ret>' -docstring 'go-doc-info'
     map global help-and-hovers h ': lsp-hover<ret>' -docstring 'lsp-hover'
     map global help-and-hovers i ': lsp-signature-help<ret>' -docstring 'lsp-signature-help'
     map global help-and-hovers r ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
-    map global user h '<esc>: enter-user-mode help-and-hovers<ret>' -docstring 'help and hovers'
+    map global user h ': enter-user-mode help-and-hovers<ret>' -docstring 'help and hovers'
     # map global gotodef d '<esc>:lsp-definition<ret>' -docstring 'lsp-definition'
     # map global gotodef j '<esc>:go-jump<ret>' -docstring 'go-jump'
-    # map global goto d '<esc>:enter-user-mode gotodef<ret>' -docstring 'gotodef mode'
+    # map global goto d '<esc>: enter-user-mode gotodef<ret>' -docstring 'gotodef mode'
 }
 filetype-hook c|cpp %{
     clang-enable-autocomplete; clang-enable-diagnostics
@@ -110,29 +114,42 @@ hook global InsertChar \. %{ try %{
 }}
 
 ## Maps.
+map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'switch to [+] buffer'
+# map global goto <tab> <a> -docstring 'last buffer'
+# map global goto <a> <h> -docstring 'line begin'
+# map global goto <e> <l> -docstring 'line end'
+
 map global normal <,> ': enter-user-mode buffers<ret>'
 map global normal <%> '<c-s>%' # Save position before %
 map global normal <x> <a-x>
-map global normal <a-x> gi<a-l>
-# map global normal u l
-# map global normal U L
-# map global normal l u
-# map global normal L U
-# map global goto u l -docstring 'lide end'
-map global normal <minus> ': filetree<ret>'
+map global normal <a-x> <a-X>
+map global normal <u> <l>
+map global normal <U> <L>
+map global normal <minus> <u>
+map global normal <a-minus> <a-u>
+map global normal <plus> <U>
+map global normal <a-plus> <a-U>
+map global normal <a-u> <a-l>
+map global normal <a-U> <a-L>
+map global goto <u> <l> -docstring 'lide end'
+
+map global normal <c-i> <c-i>vv
+map global normal <c-o> <c-o>vv
+
+map global user <e> ': filetree<ret>' -docstring 'filetree'
 
 # Mark.kak
-map global user m ': mark-word<ret>' -docstring 'mark word'
-map global user M ': mark-clear<ret>' -docstring 'mark clear'
+# map global user m ': mark-word<ret>' -docstring 'mark word'
+# map global user M ': mark-clear<ret>' -docstring 'mark clear'
 
 # fzf.kak
 # set-option global fzf_file_command 'fd --type f --follow'
 set-option global fzf_file_command 'fd'
 set-option global fzf_tmux_height 22
-map global normal <c-p> ': fzf-mode<ret>'
+map global user <p> ': fzf-mode<ret>' -docstring 'fzf-mode'
 
 # map global normal <ret> :w<ret>
-map global user <s> ': w<ret>' -docstring 'save'
+map global normal <F2> ': w<ret>' -docstring 'save'
 
 # https://github.com/mawww/kakoune/issues/1791
 map global object q Q -docstring 'double quote string'
@@ -175,17 +192,16 @@ map global user R ':e!<ret>' -docstring 'Reload buffer'
 
 map global user g       -docstring 'git'                     ': enter-user-mode git<ret>'
 map global user *       -docstring 'sysclipboard'            ': enter-user-mode sysclipboard<ret>'
-map global user <plus>  -docstring 'switch to [+] buffer'    ': switch-to-modified-buffer<ret>'
 # Format using fmt
 map -docstring format global user q '|fmt -w 80<ret>: echo -markup {green}[sel] | fmt -w 80<ret>'
 
 # map global user k ':edit-kakrc<ret>' -docstring 'edit kakrc'
 #map global user c <a-s>:comment-line<ret> -docstring 'comment line'
 
-map global normal <backspace>     ": phantom-sel-add-selection<ret>"
-map global normal <a-backspace>   ": phantom-sel-select-all; phantom-sel-clear<ret>"
-map global user <}>               ": phantom-sel-iterate-next<ret>" -docstring 'phantom-sel n'
-map global user <{>               ": phantom-sel-iterate-prev<ret>" -docstring 'phantom-sel p'
+map global user <plus>     ": phantom-sel-add-selection<ret>" -docstring 'phantom-sel add'
+map global user <minus>    ": phantom-sel-select-all; phantom-sel-clear<ret>" -docstring 'phantom-sel clear'
+map global user <}>        ": phantom-sel-iterate-next<ret>" -docstring 'phantom-sel n'
+map global user <{>        ": phantom-sel-iterate-prev<ret>" -docstring 'phantom-sel p'
 
 declare-user-mode sysclipboard
 map global sysclipboard i ':clipboard-import<ret>' -docstring 'import'
