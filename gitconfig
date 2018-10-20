@@ -1,11 +1,10 @@
 [user]
-    name = Vladimir Bauer
-    email = vbauerster@gmail.com
+	name = Vladimir Bauer
+	email = vbauerster@gmail.com
 [color]
     ui = auto
 [push]
     default = current
-
 # https://hackernoon.com/lesser-known-git-commands-151a1918a60
 [alias]
     ua = ls-files
@@ -33,7 +32,7 @@
 [credential]
     helper = osxkeychain
 [core]
-    excludesfile = /Users/vbauer/.gitignore
+	excludesfile = /Users/vbauer/.gitignore
     editor = nvim
 [filter "lfs"]
     clean = git-lfs clean %f
@@ -42,13 +41,13 @@
 [github]
     user = vbauerster
 [difftool "sourcetree"]
-	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$LOCAL\" \"$REMOTE\"
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [diff]
     tool = sourcetree
     compactionHeuristic = true
 [mergetool "sourcetree"]
-	cmd = /Applications/kdiff3.app/Contents/MacOS/kdiff3 \"$BASE\" \"$LOCAL\" \"$REMOTE\" -o \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [mergetool "nvimdiff"]
     cmd = nvim -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
@@ -56,8 +55,8 @@
     cmd = $HOME/bin/gitmerge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [merge]
     tool = gitmerge
-[commit]
-    template = /Users/vbauer/.stCommitMsg
 [color "diff"]
     old = red dim
     new = green italic
+[commit]
+	template = /Users/vbauer/.stCommitMsg
