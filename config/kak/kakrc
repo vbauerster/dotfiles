@@ -30,7 +30,8 @@ colorscheme github-custom
 # enable kak-lsp
 eval %sh{kak-lsp --kakoune -s $kak_session}
 # nop %sh{ (kak-lsp -s $kak_session -vvv ) > /tmp/kak-lsp.log 2>&1 < /dev/null & }
-map global normal <l> ': enter-user-mode lsp<ret>' -docstring 'lsp'
+# map global normal <minus> ': enter-user-mode lsp<ret>' -docstring 'lsp'
+map global user <a> ': enter-user-mode lsp<ret>' -docstring 'lsp mode'
 
 # hook global WinCreate ^[^*]+$ %{
 hook global WinCreate .* %{
@@ -66,7 +67,7 @@ map global help-and-hovers c ': mark-clear<ret>' -docstring 'mark clear'
 filetype-hook go %{
     set window matching_pairs '(' ')' '{' '}' '[' ']'
     set window indentwidth 0
-    set window lsp_auto_highlight_references true
+    # set window lsp_auto_highlight_references true
     lsp-auto-signature-help-enable
     # go-enable-autocomplete
     alias window format go-format-use-goimports
@@ -74,15 +75,17 @@ filetype-hook go %{
     # set buffer lintcmd '(gometalinter | grep -v "::\w")  <'
     # map global goto u '<esc>: go-jump<ret>' -docstring 'go-jump'
     # map global goto h '<esc>: go-doc-info<ret>' -docstring 'go-doc-info'
-    map global help-and-hovers d ': go-doc-info<ret>' -docstring 'go-doc-info'
-    map global help-and-hovers h ': lsp-hover<ret>' -docstring 'lsp-hover'
-    map global help-and-hovers i ': lsp-signature-help<ret>' -docstring 'lsp-signature-help'
-    map global help-and-hovers r ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
-    map global user h ': enter-user-mode help-and-hovers<ret>' -docstring 'help and hovers'
+    map global help-and-hovers <d> ': go-doc-info<ret>' -docstring 'go-doc-info'
+    map global help-and-hovers <h> ': lsp-hover<ret>' -docstring 'lsp-hover'
+    map global help-and-hovers <i> ': lsp-signature-help<ret>' -docstring 'lsp-signature-help'
+    map global help-and-hovers <r> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
+    map global user <h> ': enter-user-mode help-and-hovers<ret>' -docstring 'help and hovers'
     # map global gotodef d '<esc>:lsp-definition<ret>' -docstring 'lsp-definition'
     # map global gotodef j '<esc>:go-jump<ret>' -docstring 'go-jump'
     # map global goto d '<esc>: enter-user-mode gotodef<ret>' -docstring 'gotodef mode'
+    map global lsp <plus> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
 }
+
 filetype-hook c|cpp %{
     clang-enable-autocomplete; clang-enable-diagnostics
     alias window lint clang-parse
@@ -123,15 +126,6 @@ map global normal <,> ': enter-user-mode buffers<ret>'
 map global normal <%> '<c-s>%' # Save position before %
 map global normal <x> <a-x>
 map global normal <a-x> <a-X>
-map global normal <u> <l>
-map global normal <U> <L>
-map global normal <minus> <u>
-map global normal <a-minus> <a-u>
-map global normal <plus> <U>
-map global normal <a-plus> <a-U>
-map global normal <a-u> <a-l>
-map global normal <a-U> <a-L>
-map global goto <u> <l> -docstring 'lide end'
 
 map global normal <c-i> <c-i>vv
 map global normal <c-o> <c-o>vv
@@ -144,8 +138,11 @@ map global user <e> ': filetree<ret>' -docstring 'filetree'
 
 # fzf.kak
 # set-option global fzf_file_command 'fd --type f --follow'
+set-option global fzf_preview true
+# set-option global fzf_highlighter 'bat'
 set-option global fzf_file_command 'fd'
-set-option global fzf_tmux_height 22
+set-option global fzf_cd_command 'blsd'
+# set-option global fzf_tmux_height 24
 map global user <p> ': fzf-mode<ret>' -docstring 'fzf-mode'
 
 # map global normal <ret> :w<ret>
@@ -174,7 +171,8 @@ def -hidden slice-by-camel %{
   exec s[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
 }
 
-map global normal <c-w> ': slice-by-camel<ret>'
+# <a-_> merge contiguous selections together (works across lines as well)
+map global normal <a-minus> ': slice-by-camel<ret>'
 
 # Insert mode
 #map global insert <c-s> <c-o>    ; # silent: stop completion
