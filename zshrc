@@ -16,25 +16,27 @@ export BACKGROUND="light"
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
 # http://zsh.sourceforge.net/Guide/zshguide04.html
 # http://www.geekmind.net/2011/01/shortcuts-to-improve-your-bash-zsh.html
-export DOTFILES=$HOME/dotfiles
+export DOTFILES="$HOME/dotfiles"
 
 # Golang
-# export GOPATH=$HOME/go
-# if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
-#   export PATH=$GOPATH/bin:$PATH
-# fi
+export GOPATH="$HOME/go"
+if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
+  export PATH="$PATH:$GOPATH/bin"
+fi
+
+if [[ ! "$PATH" == *$HOME/.cargo/bin* ]]; then
+    export PATH="$PATH:$HOME/.cargo/bin"
+fi
 
 # export GEMPATH=$HOME/.gem/ruby/2.0.0
 # if [[ ! "$PATH" == *$GEMPATH/bin* ]]; then
 #   export PATH=$GEMPATH/bin:$PATH
 # fi
 
-# Node Version Manager
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -f "$HOME/.rgrc" ] && export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
 # fzf (https://github.com/junegunn/fzf)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
 # export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git --ignore vendor -g ""'
 # export FZF_DEFAULT_COMMAND="rg -uu -g '!vendor' -g '!.git' --files"
@@ -60,7 +62,7 @@ command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | he
 
 # check for user bin directory and add to path
 if [[ ! "$PATH" == *$HOME/bin* && -d $HOME/bin ]]; then
-    export PATH=$HOME/bin:$PATH
+    export PATH="$PATH:$HOME/bin"
 fi
 
 # history settings
@@ -125,4 +127,4 @@ bindkey -s '^x9' '192.168.0.'
 bindkey -s '^x_' '/dev/null'
 
 # Source aliases
-[ -f ~/.aliases ] && source ~/.aliases
+[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
