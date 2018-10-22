@@ -20,18 +20,19 @@ source "%val{config}/scripts/colorscheme-browser.kak"
 set global ui_options ncurses_assistant=off
 set global tabstop 4
 set global indentwidth 4
-# set global idle_timeout 50
-# set global scrolloff 1,0
+# keep space around cursor
+set global scrolloff 10,10
 # set global ui_options ncurses_status_on_top=true
-set global grepcmd 'rg --column'
+# set global grepcmd 'rg --column'
+set global grepcmd 'rg --column --with-filename'
 
 colorscheme github-custom
 
 # enable kak-lsp
-eval %sh{kak-lsp --kakoune -s $kak_session}
+# eval %sh{kak-lsp --kakoune -s $kak_session}
 # nop %sh{ (kak-lsp -s $kak_session -vvv ) > /tmp/kak-lsp.log 2>&1 < /dev/null & }
 # map global normal <minus> ': enter-user-mode lsp<ret>' -docstring 'lsp'
-map global user <a> ': enter-user-mode lsp<ret>' -docstring 'lsp mode'
+# map global user a ': enter-user-mode lsp<ret>' -docstring 'lsp mode'
 
 # hook global WinCreate ^[^*]+$ %{
 hook global WinCreate .* %{
@@ -52,7 +53,6 @@ hook global WinDisplay .* info-buffers
 
 ## File types.
 def filetype-hook -params 2 %{ hook global WinSetOption "filetype=(%arg{1})" %arg{2} }
-def go-format-use-goimports %{ go-format -use-goimports }
 
 filetype-hook man %{
     rmhl window/number-lines
@@ -62,40 +62,57 @@ filetype-hook man %{
 declare-user-mode help-and-hovers
 map global help-and-hovers m ': mark-word<ret>' -docstring 'mark word'
 map global help-and-hovers c ': mark-clear<ret>' -docstring 'mark clear'
+map global user h ': enter-user-mode help-and-hovers<ret>' -docstring 'help and hovers'
 
-# declare-user-mode gotodef
+#spell
+map global help-and-hovers s ': spell-replace<ret>' -docstring 'spell replace'
+declare-option str language en-GB
+filetype-hook latex|markdown|git-commit %{
+    hook window BufWritePost .* %{
+        spell %opt{language}
+    }
+}
+
 filetype-hook go %{
     set window matching_pairs '(' ')' '{' '}' '[' ']'
     set window indentwidth 0
-    # set window lsp_auto_highlight_references true
-    lsp-auto-signature-help-enable
-    # go-enable-autocomplete
-    alias window format go-format-use-goimports
+    set buffer formatcmd goimports
+    hook window BufWritePost .*\.go %{ format }
+    # alias window format go-format-use-goimports
     alias window jump-to-definition go-jump
     # set buffer lintcmd '(gometalinter | grep -v "::\w")  <'
-    # map global goto u '<esc>: go-jump<ret>' -docstring 'go-jump'
-    # map global goto h '<esc>: go-doc-info<ret>' -docstring 'go-doc-info'
-    map global help-and-hovers <d> ': go-doc-info<ret>' -docstring 'go-doc-info'
-    map global help-and-hovers <h> ': lsp-hover<ret>' -docstring 'lsp-hover'
-    map global help-and-hovers <i> ': lsp-signature-help<ret>' -docstring 'lsp-signature-help'
-    map global help-and-hovers <r> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
-    map global user <h> ': enter-user-mode help-and-hovers<ret>' -docstring 'help and hovers'
-    # map global gotodef d '<esc>:lsp-definition<ret>' -docstring 'lsp-definition'
-    # map global gotodef j '<esc>:go-jump<ret>' -docstring 'go-jump'
+    map global goto u '<esc>: go-jump<ret>' -docstring 'go-jump'
+    map global help-and-hovers d ': go-doc-info<ret>' -docstring 'go-doc-info'
+    # map global help-and-hovers h ': lsp-hover<ret>' -docstring 'lsp-hover'
+    # map global help-and-hovers i ': lsp-signature-help<ret>' -docstring 'lsp-signature-help'
+    # map global help-and-hovers r ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
     # map global goto d '<esc>: enter-user-mode gotodef<ret>' -docstring 'gotodef mode'
-    map global lsp <plus> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
+    # map global lsp <plus> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
+    # set window lsp_auto_highlight_references true
+    # lsp-auto-signature-help-enable
+    go-enable-autocomplete
 }
+
+# hook global BufWritePost .*\.go %{ format }
 
 filetype-hook c|cpp %{
     clang-enable-autocomplete; clang-enable-diagnostics
     alias window lint clang-parse
     alias window lint-next-error clang-diagnostics-next
+    map window object ';' '/\*,\*/<ret>'
 }
+
+filetype-hook rust %{
+    set buffer formatcmd rustfmt
+}
+
 # filetype-hook markdown %{
 #     set window static_words %sh{tr '\n' ':' < /usr/share/dict/words}
 # }
 
-hook global BufWritePost .*\.go %{ format }
+filetype-hook json %{
+    set buffer formatcmd 'jq .'
+}
 
 # Highlight any files whose names start with "zsh" as sh
 hook global BufCreate (.*/)?\.?zsh.* %{
@@ -118,23 +135,25 @@ hook global InsertChar \. %{ try %{
 
 ## Maps.
 map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'switch to [+] buffer'
-# map global goto <tab> <a> -docstring 'last buffer'
-# map global goto <a> <h> -docstring 'line begin'
-# map global goto <e> <l> -docstring 'line end'
+
+map global normal <'> <">
+map global normal <"> <'>
+map global normal <*>   ': select-word-better<ret>*'
+map global normal <0>   ': select-WORD-better<ret>*'
 
 map global normal <,> ': enter-user-mode buffers<ret>'
+map global normal <a-,> ': enter-user-mode -lock buffers<ret>'
 map global normal <%> '<c-s>%' # Save position before %
-map global normal <x> <a-x>
-map global normal <a-x> <a-X>
+# map global normal <x> <a-x>
+# map global normal <a-x> <a-X>
 
-map global normal <c-i> <c-i>vv
-map global normal <c-o> <c-o>vv
+map global normal <minus> ': shrink-selection<ret>'
+map global normal <plus> ': enlarge-selection<ret>'
 
-map global user <e> ': filetree<ret>' -docstring 'filetree'
+# map global normal <c-o> '<c-o>vv'
+# map global normal <c-i> '<c-i>vv'
 
-# Mark.kak
-# map global user m ': mark-word<ret>' -docstring 'mark word'
-# map global user M ': mark-clear<ret>' -docstring 'mark clear'
+map global user e ': filetree<ret>' -docstring 'filetree'
 
 # fzf.kak
 # set-option global fzf_file_command 'fd --type f --follow'
@@ -143,7 +162,7 @@ set-option global fzf_preview true
 set-option global fzf_file_command 'fd'
 set-option global fzf_cd_command 'blsd'
 # set-option global fzf_tmux_height 24
-map global user <p> ': fzf-mode<ret>' -docstring 'fzf-mode'
+map global user p ': fzf-mode<ret>' -docstring 'fzf-mode'
 
 # map global normal <ret> :w<ret>
 map global normal <F2> ': w<ret>' -docstring 'save'
@@ -167,13 +186,6 @@ map global normal = :format<ret> -docstring 'format buffer'
 map global normal '#' :comment-line<ret> -docstring 'comment line'
 map global normal '<a-#>' :comment-block<ret> -docstring 'comment block'
 
-def -hidden slice-by-camel %{
-  exec s[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
-}
-
-# <a-_> merge contiguous selections together (works across lines as well)
-map global normal <a-minus> ': slice-by-camel<ret>'
-
 # Insert mode
 #map global insert <c-s> <c-o>    ; # silent: stop completion
 #map global insert <c-c> <c-x>    ; # complete here
@@ -188,23 +200,19 @@ map global insert <c-y> '<a-;>!pbpaste<ret>'
 map global user S '*%s<c-/><ret>' -docstring 'select all'
 map global user R ':e!<ret>' -docstring 'Reload buffer'
 
-map global user g       -docstring 'git'                     ': enter-user-mode git<ret>'
-map global user *       -docstring 'sysclipboard'            ': enter-user-mode sysclipboard<ret>'
-# Format using fmt
-map -docstring format global user q '|fmt -w 80<ret>: echo -markup {green}[sel] | fmt -w 80<ret>'
-
-# map global user k ':edit-kakrc<ret>' -docstring 'edit kakrc'
-#map global user c <a-s>:comment-line<ret> -docstring 'comment line'
-
-map global user <plus>     ": phantom-sel-add-selection<ret>" -docstring 'phantom-sel add'
-map global user <minus>    ": phantom-sel-select-all; phantom-sel-clear<ret>" -docstring 'phantom-sel clear'
-map global user <}>        ": phantom-sel-iterate-next<ret>" -docstring 'phantom-sel n'
-map global user <{>        ": phantom-sel-iterate-prev<ret>" -docstring 'phantom-sel p'
+declare-user-mode phantom
+map global phantom <plus>     ': phantom-sel-add-selection<ret>' -docstring 'phantom-sel add'
+map global phantom <minus>    ': phantom-sel-select-all; phantom-sel-clear<ret>' -docstring 'phantom-sel clear all'
+map global phantom <)>        ': phantom-sel-iterate-next<ret>' -docstring 'phantom-sel n'
+map global phantom <(>        ': phantom-sel-iterate-prev<ret>' -docstring 'phantom-sel p'
+map global normal <c-g>       ': enter-user-mode phantom<ret>'
 
 declare-user-mode sysclipboard
 map global sysclipboard i ':clipboard-import<ret>' -docstring 'import'
 map global sysclipboard e ':clipboard-export<ret>' -docstring 'export'
+map global user * ': enter-user-mode sysclipboard<ret>' -docstring 'sysclipboard mode'
 
+## Defs.
 # https://github.com/alyssais/dotfiles/blob/master/.config/kak/kakrc#L30-L38
 define-command -docstring "import from the system clipboard" clipboard-import %{
   set-register dquote %sh{pbpaste}
@@ -216,7 +224,55 @@ define-command -docstring "export to the system clipboard" clipboard-export %{
   echo -markup "{Information}exported register "" to system clipboard"
 }
 
-define-command switch-to-modified-buffer %{
+# Sort of a replacement for gq.
+# def format-text %{ exec '|fmt<ret>' }
+# map global user q '|fmt -w 80<ret>: echo -markup {green}[sel] | fmt -w 80<ret>' -docstring 'format'
+def format-text %{ exec '|par -w%opt{autowrap_column}<a-!><ret>' }
+
+def -hidden slice-by-camel %{
+  exec s[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
+}
+# <a-_> merge contiguous selections together (works across lines as well)
+map global normal <a-minus> ': slice-by-camel<ret>'
+
+def enlarge-selection %{
+  exec '<a-:>L<a-;>H<a-:>'
+}
+def shrink-selection %{
+  exec '<a-:>H<a-;>L<a-:>'
+}
+def selection-length %{
+    eval %sh{ echo "echo ${#kak_selection}" }
+}
+# def selection-length %{echo %sh{echo ${#kak_selection} }}
+
+def del-trailing-whitespace %{
+  try %{
+    eval -draft %{
+      exec '%s\h+$<ret><a-d>'
+      eval -client %val{client} echo -- \
+        %sh{ echo "deleted trailing whitespace on $(echo "$kak_selections_desc" | wc -w) lines" }
+    }
+  } catch %{
+    echo 'no trailing whitespace'
+  }
+}
+
+def select-word-better %{
+  # Note: \w doesn't use extra_word_chars.
+  eval -itersel %{
+    try %{ exec '<a-i>w' } catch %{ exec '<a-l>s\w<ret>) <a-i>w' } catch %{}
+  }
+  exec '<a-k>\w<ret>'
+}
+def select-WORD-better %{
+  eval -itersel %{
+    try %{ exec '<a-i><a-w>' } catch %{ exec '<a-l>s\S<ret>) <a-i><a-w>' } catch %{}
+  }
+  exec '<a-k>\S<ret>'
+}
+
+def switch-to-modified-buffer %{
   eval -save-regs a %{
     reg a ''
     try %{
@@ -229,6 +285,20 @@ define-command switch-to-modified-buffer %{
   }
 }
 
+def -docstring %{switch to the other client's buffer} \
+  other-client-buffer \
+  %{ eval %sh{
+  if [ "$(echo "$kak_client_list" | wc -w)" -ne 2 ]; then
+    echo "fail 'only works with two clients'"
+    exit
+  fi
+  set -- $kak_client_list
+  other_client="$1"
+  [ "$other_client" = "$kak_client" ] && other_client="$2"
+  echo "eval -client '$other_client' 'eval -client ''$kak_client'' \"buffer ''%val{bufname}''\"'"
+}}
+
+## More:
 # Git extras.
 def git-show-blamed-commit %{
   git show %sh{git blame -L "$kak_cursor_line,$kak_cursor_line" "$kak_buffile" | awk '{print $1}'}
@@ -252,31 +322,17 @@ def git-toggle-blame %{
 def git-hide-diff %{ rmhl window/git-diff }
 
 declare-user-mode git
-map global git b ': git-toggle-blame<ret>'       -docstring 'blame (toggle)'
-map global git l ': git log<ret>'                -docstring 'log'
-map global git c ': git commit<ret>'             -docstring 'commit'
-map global git d ': git diff<ret>'               -docstring 'diff'
-map global git s ': git status<ret>'             -docstring 'status'
-map global git h ': git show-diff<ret>'          -docstring 'show diff'
-map global git H ': git-hide-diff<ret>'          -docstring 'hide diff'
-map global git w ': git-show-blamed-commit<ret>' -docstring 'show blamed commit'
-map global git L ': git-log-lines<ret>'          -docstring 'log blame'
+map global git b  ': git-toggle-blame<ret>'       -docstring 'blame (toggle)'
+map global git l  ': git log<ret>'                -docstring 'log'
+map global git c  ': git commit<ret>'             -docstring 'commit'
+map global git d  ': git diff<ret>'               -docstring 'diff'
+map global git s  ': git status<ret>'             -docstring 'status'
+map global git h  ': git show-diff<ret>'          -docstring 'show diff'
+map global git H  ': git-hide-diff<ret>'          -docstring 'hide diff'
+map global git w  ': git-show-blamed-commit<ret>' -docstring 'show blamed commit'
+map global git L  ': git-log-lines<ret>'          -docstring 'log blame'
+map global user g ': enter-user-mode git<ret>'    -docstring 'git mode'
 
-# Tab completion.
-def tab-completion-enable %{
-  hook -group tab-completion window InsertCompletionShow .* %{
-    try %{
-      exec -draft 'h<a-K>\s<ret>'
-      map window insert <tab> <c-n>
-      map window insert <s-tab> <c-p>
-    }
-  }
-  hook -group tab-completion window InsertCompletionHide .* %{
-    unmap window insert <tab> <c-n>
-    unmap window insert <s-tab> <c-p>
-  }
-}
-def tab-completion-disable %{ rmhooks window tab-completion }
 
 # smarttab.kak?
 # Emulate expandtab smarttab, kind of.
@@ -290,6 +346,7 @@ def smarttab-enable %{
   }
 }
 def smarttab-disable %{ rmhooks window smarttab }
+
 
 # Highlight trailing whitespace in normal mode, with the TrailingWhitespace face.
 # What I really want is to only not highlight trailing whitespace as I'm
@@ -307,6 +364,37 @@ def show-trailing-whitespace-disable %{
   rmhooks window trailing-whitespace
 }
 face global TrailingWhitespace ''
+
+
+# Tab completion.
+def tab-completion-enable %{
+  hook -group tab-completion window InsertCompletionShow .* %{
+    try %{
+      exec -draft 'h<a-K>\s<ret>'
+      map window insert <tab> <c-n>
+      map window insert <s-tab> <c-p>
+    }
+  }
+  hook -group tab-completion window InsertCompletionHide .* %{
+    unmap window insert <tab> <c-n>
+    unmap window insert <s-tab> <c-p>
+  }
+}
+def tab-completion-disable %{ rmhooks window tab-completion }
+
+# Basic autoindent.
+def -hidden basic-autoindent-on-newline %{
+  eval -draft -itersel %{
+    try %{ exec -draft ';K<a-&>' }                      # copy indentation from previous line
+    try %{ exec -draft ';k<a-x><a-k>^\h+$<ret>H<a-d>' } # remove whitespace from autoindent on previous line
+  }
+}
+def basic-autoindent-enable %{
+  hook -group basic-autoindent window InsertChar '\n' basic-autoindent-on-newline
+  hook -group basic-autoindent window WinSetOption 'filetype=.*' basic-autoindent-disable
+}
+def basic-autoindent-disable %{ rmhooks window basic-autoindent }
+
 
 # search-highlighting.kak, simplified
 def search-highlighting-enable %{
