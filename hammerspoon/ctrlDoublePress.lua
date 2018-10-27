@@ -23,7 +23,7 @@ module.timeFrame = 1
 -- what to do when the double tap of ctrl occurs
 module.action = function()
     -- cmd + `
-    hs.eventtap.keyStroke({"ctrl"}, 50)
+    hs.eventtap.keyStroke({"cmd"}, 50)
 end
 
 

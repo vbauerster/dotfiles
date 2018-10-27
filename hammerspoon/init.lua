@@ -30,4 +30,4 @@ hs.hotkey.bind({'ctrl', 'shift'}, ',', function() hs.eventtap.keyStroke({'cmd'},
 
 require 'numpad'
 require 'reload-config'
--- require 'ctrlDoublePress'
+require 'ctrlDoublePress'
