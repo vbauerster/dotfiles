@@ -302,10 +302,10 @@
   nnoremap <Leader><F1> :help <C-r><C-w><CR>
 
   " Save in normal mode
-  nnoremap <Leader><F2> :up<CR>
+  nnoremap <F2> :up<CR>
 
   " Buffer reload
-  nnoremap <Leader><F5> :e!<CR>
+  " nnoremap <Leader><F5> :e!<CR>
 
   " Read :help ctrl-w_w
   " Read :help wincmd
