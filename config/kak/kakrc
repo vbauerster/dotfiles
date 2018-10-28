@@ -29,10 +29,9 @@ set global grepcmd 'rg --column --with-filename'
 colorscheme github-custom
 
 # enable kak-lsp
-# eval %sh{kak-lsp --kakoune -s $kak_session}
+eval %sh{kak-lsp --kakoune -s $kak_session}
 # nop %sh{ (kak-lsp -s $kak_session -vvv ) > /tmp/kak-lsp.log 2>&1 < /dev/null & }
-# map global normal <minus> ': enter-user-mode lsp<ret>' -docstring 'lsp'
-# map global user a ': enter-user-mode lsp<ret>' -docstring 'lsp mode'
+map global user a ': enter-user-mode lsp<ret>' -docstring 'lsp mode'
 
 # hook global WinCreate ^[^*]+$ %{
 hook global WinCreate .* %{
@@ -76,8 +75,9 @@ filetype-hook latex|markdown|git-commit %{
 filetype-hook go %{
     set window matching_pairs '(' ')' '{' '}' '[' ']'
     set window indentwidth 0
-    set buffer formatcmd goimports
-    hook window BufWritePost .*\.go %{ format }
+    set buffer formatcmd goreturns
+    hook buffer BufWritePre .*\.go %{ format }
+    # hook window BufWritePost .*\.go %{ format }
     # alias window format go-format-use-goimports
     alias window jump-to-definition go-jump
     # set buffer lintcmd '(gometalinter | grep -v "::\w")  <'
@@ -89,8 +89,8 @@ filetype-hook go %{
     # map global goto d '<esc>: enter-user-mode gotodef<ret>' -docstring 'gotodef mode'
     # map global lsp <plus> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
     # set window lsp_auto_highlight_references true
-    # lsp-auto-signature-help-enable
-    go-enable-autocomplete
+    lsp-auto-signature-help-enable
+    # go-enable-autocomplete
 }
 
 # hook global BufWritePost .*\.go %{ format }
@@ -138,8 +138,8 @@ map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'swit
 
 map global normal <'> <">
 map global normal <"> <'>
-map global normal <*>   ': select-word-better<ret>*'
-map global normal <0>   ': select-WORD-better<ret>*'
+map global normal <0>   ': select-word-better<ret>*'
+# map global normal <a-*> ': select-WORD-better<ret>*'
 
 map global normal <,> ': enter-user-mode buffers<ret>'
 map global normal <a-,> ': enter-user-mode -lock buffers<ret>'
