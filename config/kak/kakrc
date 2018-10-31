@@ -135,10 +135,14 @@ hook global InsertChar \. %{ try %{
 }}
 
 ## Maps.
+# space is my leader
+map global normal <space> ,
+map global user <space> <space> -docstring 'remove selections except main'
+
 map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'switch to [+] buffer'
 
 map global normal <'> <">
-map global normal <"> <'>
+# map global normal <"> <'>
 map global normal <0>   ': select-word-better<ret>*'
 # map global normal <a-*> ': select-WORD-better<ret>*'
 
@@ -172,12 +176,6 @@ map global normal <F2> ': w<ret>' -docstring 'save'
 map global object q Q -docstring 'double quote string'
 map global object Q q -docstring 'single quote string'
 map global view u t -docstring 'same as t'
-
-# space is my leader
-map global user <space> <space> -docstring 'remove selections except main'
-map global normal <space> ,
-# map global normal <backspace> <space> -docstring 'remove all sels except main'
-# map global normal <a-backspace> <a-space> -docstring 'remove main sel'
 
 # vim old habits
 map global normal D '<a-l>d' -docstring 'delete to end of line'
