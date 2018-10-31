@@ -206,10 +206,13 @@ map global phantom <)>        ': phantom-sel-iterate-next<ret>' -docstring 'phan
 map global phantom <(>        ': phantom-sel-iterate-prev<ret>' -docstring 'phantom-sel p'
 map global normal <c-g>       ': enter-user-mode phantom<ret>'
 
-declare-user-mode sysclipboard
-map global sysclipboard i ':clipboard-import<ret>' -docstring 'import'
-map global sysclipboard e ':clipboard-export<ret>' -docstring 'export'
-map global user * ': enter-user-mode sysclipboard<ret>' -docstring 'sysclipboard mode'
+# declare-user-mode sysclipboard
+# map global sysclipboard i ': clipboard-import<ret>' -docstring 'import'
+# map global sysclipboard e ': clipboard-export<ret>' -docstring 'export'
+# map global user * ': enter-user-mode sysclipboard<ret>' -docstring 'sysclipboard mode'
+
+map global user <lt> ': clipboard-import<ret>' -docstring 'sysclipboard import'
+map global user <gt> ': clipboard-export<ret>' -docstring 'sysclipboard export'
 
 ## Defs.
 # https://github.com/alyssais/dotfiles/blob/master/.config/kak/kakrc#L30-L38
