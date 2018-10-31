@@ -110,8 +110,9 @@ filetype-hook rust %{
 #     set window static_words %sh{tr '\n' ':' < /usr/share/dict/words}
 # }
 
-filetype-hook json %{
-    set buffer formatcmd 'jq .'
+filetype-hook json|js %{
+    # set buffer formatcmd 'jq .'
+    set buffer formatcmd 'js-beautify -a -j -B --good-stuff'
 }
 
 # Highlight any files whose names start with "zsh" as sh
