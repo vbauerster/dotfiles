@@ -17,12 +17,12 @@ source "%val{config}/scripts/bc.kak"
 source "%val{config}/scripts/colorscheme-browser.kak"
 
 ## General settings.
-set global ui_options ncurses_assistant=off
+# set global ui_options ncurses_assistant=off
+set global ui_options ncurses_status_on_top=true ncurses_assistant=off
 set global tabstop 4
 set global indentwidth 4
 # keep space around cursor
 set global scrolloff 10,10
-# set global ui_options ncurses_status_on_top=true
 # set global grepcmd 'rg --column'
 set global grepcmd 'rg --column --with-filename'
 
