@@ -143,7 +143,7 @@ map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'swit
 
 map global normal <'> <">
 # map global normal <"> <'>
-map global normal <0>   ': select-word-better<ret>*'
+map global normal <a-0>   ': select-word-better<ret>*'
 # map global normal <a-*> ': select-WORD-better<ret>*'
 
 map global normal <,> ': enter-user-mode buffers<ret>'
