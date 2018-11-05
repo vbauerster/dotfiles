@@ -6,7 +6,7 @@ source "%val{config}/plugins/kakoune-phantom-selection/phantom-selection.kak"
 source "%val{config}/plugins/kakoune-mark/mark.kak"
 source "%val{config}/plugins/kakoune-filetree/filetree.kak"
 source "%val{config}/plugins/fzf.kak/rc/fzf.kak"
-# source "%val{config}/plugins/kakoune-edit-or-dir/rc/edit-or-dir.kak"
+source "%val{config}/plugins/kakoune-edit-or-dir/rc/edit-or-dir.kak"
 # source "%val{config}/plugins/auto-pairs.kak/rc/auto-pairs.kak"
 # source "%val{config}/plugins/kakoune-marks/marks.kak"
 # source "%val{config}/plugins/kakoune-easymotion/easymotion.kak"
@@ -136,6 +136,8 @@ hook global InsertChar \. %{ try %{
 }}
 
 ## Maps.
+unalias global e edit
+alias global e edit-or-dir
 alias global u enter-user-mode
 # space is my leader
 map global normal <space> ,
