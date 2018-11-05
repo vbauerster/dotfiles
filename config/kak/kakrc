@@ -141,8 +141,9 @@ alias global u enter-user-mode
 map global normal <space> ,
 map global user <space> <space> -docstring 'remove selections except main'
 
+map global goto ';' '.' -docstring 'last buffer change'
+map global goto '.' '<esc>: change-directory-current-buffer<ret>' -docstring 'current buffer dir'
 map global goto p '<esc>: cd ..;print-working-directory<ret>' -docstring 'parent dir'
-map global goto <minus> '<esc>: change-directory-current-buffer<ret>' -docstring 'current buffer dir'
 map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'switch to [+] buffer'
 
 map global normal <'> <">
