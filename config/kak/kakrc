@@ -93,8 +93,6 @@ filetype-hook go %{
     # go-enable-autocomplete
 }
 
-# hook global BufWritePost .*\.go %{ format }
-
 filetype-hook c|cpp %{
     clang-enable-autocomplete; clang-enable-diagnostics
     alias window lint clang-parse
