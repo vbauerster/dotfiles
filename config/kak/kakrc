@@ -150,7 +150,7 @@ map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'swit
 
 map global normal <'> <">
 # map global normal <"> <'>
-map global normal <0>   ': zero "select-word-better"<ret>'
+map global normal <0>   ': zero select-word-better<ret>'
 map global normal <a-0> ': select-WORD-better<ret>'
 define-command -hidden -params 1 zero %{
    evaluate-commands %sh{
