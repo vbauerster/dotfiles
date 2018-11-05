@@ -1,20 +1,21 @@
 ## Sources.
 source "%val{config}/plugins/kakoune-buffers/buffers.kak"
+source "%val{config}/plugins/kakoune-cd/cd.kak"
 source "%val{config}/plugins/kakoune-find/find.kak"
 source "%val{config}/plugins/kakoune-phantom-selection/phantom-selection.kak"
 source "%val{config}/plugins/kakoune-mark/mark.kak"
 source "%val{config}/plugins/kakoune-filetree/filetree.kak"
 source "%val{config}/plugins/fzf.kak/rc/fzf.kak"
-# source "%val{config}/plugins/kakoune-edit-or-dir/edit-or-dir.kak"
+# source "%val{config}/plugins/kakoune-edit-or-dir/rc/edit-or-dir.kak"
 # source "%val{config}/plugins/auto-pairs.kak/rc/auto-pairs.kak"
 # source "%val{config}/plugins/kakoune-marks/marks.kak"
 # source "%val{config}/plugins/kakoune-easymotion/easymotion.kak"
 # source "%val{config}/plugins/kakoune-registers/registers.kak"
 # source "%val{config}/plugins/volatile-highlighting.kak/rc/volatile-highlighting.kak"
 
-# source "%val{config}/scripts/fzf.kak"
 source "%val{config}/scripts/bc.kak"
 source "%val{config}/scripts/colorscheme-browser.kak"
+# source "%val{config}/scripts/fzf.kak"
 
 ## General settings.
 # set global ui_options ncurses_assistant=off
@@ -61,6 +62,7 @@ filetype-hook man %{
 declare-user-mode help-and-hovers
 map global help-and-hovers m ': mark-word<ret>' -docstring 'mark word'
 map global help-and-hovers c ': mark-clear<ret>' -docstring 'mark clear'
+map global help-and-hovers p ': print-working-directory<ret>' -docstring 'print working dir'
 map global user h ': enter-user-mode help-and-hovers<ret>' -docstring 'help and hovers'
 
 #spell
@@ -87,7 +89,8 @@ filetype-hook go %{
     # map global help-and-hovers i ': lsp-signature-help<ret>' -docstring 'lsp-signature-help'
     # map global help-and-hovers r ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
     # map global goto d '<esc>: enter-user-mode gotodef<ret>' -docstring 'gotodef mode'
-    # map global lsp <plus> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
+    unmap global lsp &
+    map global lsp <*> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
     # set window lsp_auto_highlight_references true
     lsp-auto-signature-help-enable
     # go-enable-autocomplete
@@ -138,12 +141,23 @@ alias global u enter-user-mode
 map global normal <space> ,
 map global user <space> <space> -docstring 'remove selections except main'
 
+map global goto p '<esc>: cd ..;print-working-directory<ret>' -docstring 'parent dir'
+map global goto <minus> '<esc>: change-directory-current-buffer<ret>' -docstring 'current buffer dir'
 map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'switch to [+] buffer'
 
 map global normal <'> <">
 # map global normal <"> <'>
-map global normal <a-0>   ': select-word-better<ret>*'
-# map global normal <a-*> ': select-WORD-better<ret>*'
+map global normal <0>   ': zero "select-word-better"<ret>'
+map global normal <a-0> ': select-WORD-better<ret>'
+define-command -hidden -params 1 zero %{
+   evaluate-commands %sh{
+        if [ $kak_count = 0 ]; then
+            echo "$1"
+        else
+            echo "exec ${kak_count}0"
+        fi
+    }
+}
 
 map global normal <,> ': enter-user-mode buffers<ret>'
 map global normal <a-,> ': enter-user-mode -lock buffers<ret>'
