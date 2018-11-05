@@ -7,14 +7,15 @@ source "%val{config}/plugins/kakoune-mark/mark.kak"
 source "%val{config}/plugins/kakoune-filetree/filetree.kak"
 source "%val{config}/plugins/fzf.kak/rc/fzf.kak"
 source "%val{config}/plugins/kakoune-edit-or-dir/rc/edit-or-dir.kak"
+source "%val{config}/plugins/kakoune-inc-dec/inc-dec.kak"
 # source "%val{config}/plugins/auto-pairs.kak/rc/auto-pairs.kak"
 # source "%val{config}/plugins/kakoune-marks/marks.kak"
 # source "%val{config}/plugins/kakoune-easymotion/easymotion.kak"
 # source "%val{config}/plugins/kakoune-registers/registers.kak"
 # source "%val{config}/plugins/volatile-highlighting.kak/rc/volatile-highlighting.kak"
 
-source "%val{config}/scripts/bc.kak"
 source "%val{config}/scripts/colorscheme-browser.kak"
+# source "%val{config}/scripts/bc.kak"
 # source "%val{config}/scripts/fzf.kak"
 
 ## General settings.
@@ -162,6 +163,9 @@ define-command -hidden -params 1 zero %{
         fi
     }
 }
+
+map global normal <c-a> ': inc-dec-modify-numbers + %val{count}<ret>'
+map global normal <c-x> ': inc-dec-modify-numbers - %val{count}<ret>'
 
 map global normal <,> ': enter-user-mode buffers<ret>'
 map global normal <a-,> ': enter-user-mode -lock buffers<ret>'
