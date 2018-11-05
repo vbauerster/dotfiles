@@ -133,6 +133,7 @@ hook global InsertChar \. %{ try %{
 }}
 
 ## Maps.
+alias global u enter-user-mode
 # space is my leader
 map global normal <space> ,
 map global user <space> <space> -docstring 'remove selections except main'
