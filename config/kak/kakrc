@@ -25,7 +25,6 @@ set global tabstop 4
 set global indentwidth 4
 # keep space around cursor
 set global scrolloff 8,8
-# set global grepcmd 'rg --column'
 set global grepcmd 'rg --column --with-filename'
 
 colorscheme github-custom
