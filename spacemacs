@@ -98,10 +98,10 @@ This function should only modify configuration layer settings."
             shell-default-height 30
             shell-default-position 'bottom)
      shell-scripts
-     (c-c++ :variables
-            c-c++-enable-clang-support t
-            c-c++-enable-rtags-support t)
      (rust :variables rust-format-on-save t)
+     ;; (c-c++ :variables
+     ;;        c-c++-enable-clang-support t
+     ;;        c-c++-enable-rtags-support t)
      ;; (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
      ;; (keyboard-layout :variables kl-layout 'dvorak)
      )
