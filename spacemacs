@@ -43,6 +43,7 @@ This function should only modify configuration layer settings."
      helm
      emacs-lisp
      org
+     multiple-cursors
      (git :variables
           git-magit-status-fullscreen t)
      (version-control :variables
