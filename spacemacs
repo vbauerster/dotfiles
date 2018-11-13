@@ -522,6 +522,11 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; https://superuser.com/questions/440294/send-command-to-terminal-from-emacs/446066
+  (defun es-send-via-tmux (command)
+    (message (concat "running: " command))
+    (call-process "/usr/local/bin/tmux" nil nil nil "send-keys" "-t 1" command "C-m")
+    )
   ;; evil-leader/set-key = spacemacs/set-leader-keys
   (spacemacs/set-leader-keys
     "." 'spacemacs/layouts-transient-state/body
@@ -540,6 +545,8 @@ before packages are loaded."
     "jh" 'avy-goto-word-or-subword-1
     "rh" 'helm-resume
     "r'" 'evil-show-marks
+    ;; https://stackoverflow.com/questions/1250846/wrong-type-argument-commandp-error-when-binding-a-lambda-to-a-key#1250852
+    "bk" (lambda () (interactive) (es-send-via-tmux (concat "kak " buffer-file-name)))
     ;; SPC o reserved for user space
     "os" 'just-one-space
     "oc" 'evil-mc-mode
