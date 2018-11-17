@@ -7,17 +7,17 @@ modalKey:bind({}, 'j', function() modalKey:exit() hs.eventtap.keyStroke({}, 'j')
 modalKey:bind({}, 'k', function() modalKey:exit() hs.eventtap.keyStroke({}, 'k') end)
 modalKey:bind({}, 'g', function() modalKey:exit() hs.eventtap.keyStroke({}, 'g') end)
 
-local exit_timer = hs.timer.delayed.new(5, function()
+local exitTimer = hs.timer.delayed.new(5, function()
 	-- log.i("timer fired")
 	modalKey:exit()
 end)
 
 function modalKey:entered()
-	exit_timer:start()
+	exitTimer:start()
 end
 
 function modalKey:exited()
-	exit_timer:stop()
+	exitTimer:stop()
 	hs.alert.show('Npad mode quit', 0.5)
 end
 
@@ -39,7 +39,7 @@ npad[41] = 'pad8'
 for k, v in pairs(npad) do
 	modalKey:bind({}, k, function()
 		-- Pressed:
-		exit_timer:start()
+		exitTimer:start()
 		hs.eventtap.event.newKeyEvent({}, v, true):post()
 	end, function()
 		-- Released:

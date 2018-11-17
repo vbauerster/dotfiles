@@ -28,13 +28,28 @@ local modalKey = hs.hotkey.modal.new({'ctrl', 'alt', 'cmd'}, 'w', 'WM mode enter
 modalKey:bind({}, 'escape', function() modalKey:exit() end)
 modalKey:bind({}, 'q', function() modalKey:exit() end)
 
+local exitTimer = hs.timer.delayed.new(5, function()
+	modalKey:exit()
+end)
+
+function modalKey:entered()
+    exitTimer:start()
+end
+
 function modalKey:exited()
+    exitTimer:stop()
     hs.alert.show('WM mode quit', 0.5)
 end
 
 -- Move a window between monitors
-modalKey:bind({}, '[', function() hs.window.focusedWindow():moveOneScreenWest() end)
-modalKey:bind({}, ']', function() hs.window.focusedWindow():moveOneScreenEast() end)
+modalKey:bind({}, '[', function()
+    exitTimer:start()
+    hs.window.focusedWindow():moveOneScreenWest()
+end)
+modalKey:bind({}, ']', function()
+    exitTimer:start()
+    hs.window.focusedWindow():moveOneScreenEast()
+end)
 
 local obj={}
 obj.__index = obj
@@ -194,6 +209,7 @@ function obj:bindHotkeys(mapping)
   print("Bind Hotkeys for Miro's Windows Manager")
 
   modalKey:bind(mapping.down[1], mapping.down[2], function ()
+    exitTimer:start()
     self._pressed.down = true
     if self._pressed.up then 
       self:_fullDimension('h')
@@ -208,6 +224,7 @@ function obj:bindHotkeys(mapping)
   end)
 
   modalKey:bind(mapping.right[1], mapping.right[2], function ()
+    exitTimer:start()
     self._pressed.right = true
     if self._pressed.left then 
       self:_fullDimension('w')
@@ -222,6 +239,7 @@ function obj:bindHotkeys(mapping)
   end)
 
   modalKey:bind(mapping.left[1], mapping.left[2], function ()
+    exitTimer:start()
     self._pressed.left = true
     if self._pressed.right then 
       self:_fullDimension('w')
@@ -236,6 +254,7 @@ function obj:bindHotkeys(mapping)
   end)
 
   modalKey:bind(mapping.up[1], mapping.up[2], function ()
+    exitTimer:start()
     self._pressed.up = true
     if self._pressed.down then 
         self:_fullDimension('h')
@@ -250,10 +269,12 @@ function obj:bindHotkeys(mapping)
   end)
 
   modalKey:bind(mapping.fullscreen[1], mapping.fullscreen[2], function ()
+    exitTimer:start()
     self:_nextFullScreenStep()
   end)
 
   modalKey:bind(mapping.middle[1], mapping.middle[2], function ()
+    exitTimer:start()
     self:_push(0.05, 0, 0.9, 1)
   end)
 
