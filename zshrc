@@ -36,7 +36,7 @@ fi
 [ -f "$HOME/.rgrc" ] && export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
 # fzf (https://github.com/junegunn/fzf)
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git --ignore vendor -g ""'
 # export FZF_DEFAULT_COMMAND="rg -uu -g '!vendor' -g '!.git' --files"
