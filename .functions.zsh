@@ -280,18 +280,6 @@ Fkeys() {
   printf "%-5s%5s\n" "key" "value"; infocmp -1  | awk -F= '/kf/ { key=$1; sub("kf", "", key); printf("%-5d %s\n", key, $2) }'  | sort -n
 }
 
-unalias e
-e() {
-  local session="Session.vim"
-  if [ $# -gt 0 ]; then
-    nvim $@
-  elif [ -e $session ]; then
-    nvim -S $session
-  else
-    nvim
-  fi
-}
-
 csi() {
   echo -en "\x1b[$*"
 }
@@ -301,6 +289,20 @@ csi() {
     cd "$@"
 }
 
+# Go up an abritrary number of directories
+# Use with 'up' or 'up 5' to go up N directories
+up() {
+    if [[ "$#" < 1 ]] ; then
+        cd ..
+    else
+        CDSTR=""
+        for i in {1..$1} ; do
+            CDSTR="../$CDSTR"
+        done
+        cd $CDSTR
+    fi
+}
+
 # http://artkoshelev.github.io/posts/sed-for-configs
 catconf() {
     cat "$@" | sed '/ *#/d; /^ *$/d'
@@ -308,22 +310,33 @@ catconf() {
 
 # Tmux tile
 # --------------------------------------------------------------------
+# tt() {
+#   if [ $# -lt 1 ]; then
+#     echo 'usage: tt <commands...>'
+#     return 1
+#   fi
+# 
+#   local head="$1"
+#   local tail='echo -n Press enter to finish.; read'
+# 
+#   while [ $# -gt 1 ]; do
+#     shift
+#     tmux split-window "$SHELL -ci \"$1; $tail\""
+#     tmux select-layout tiled > /dev/null
+#   done
+# 
+#   tmux set-window-option synchronize-panes on > /dev/null
+#   $SHELL -ci "$head; $tail"
+# }
 
-tt() {
-  if [ $# -lt 1 ]; then
-    echo 'usage: tt <commands...>'
-    return 1
-  fi
-
-  local head="$1"
-  local tail='echo -n Press enter to finish.; read'
-
-  while [ $# -gt 1 ]; do
-    shift
-    tmux split-window "$SHELL -ci \"$1; $tail\""
-    tmux select-layout tiled > /dev/null
-  done
-
-  tmux set-window-option synchronize-panes on > /dev/null
-  $SHELL -ci "$head; $tail"
-}
+# unalias e
+# e() {
+#   local session="Session.vim"
+#   if [ $# -gt 0 ]; then
+#     nvim $@
+#   elif [ -e $session ]; then
+#     nvim -S $session
+#   else
+#     nvim
+#   fi
+# }
