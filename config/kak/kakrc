@@ -23,7 +23,10 @@ plug "andreyorst/fzf.kak" config %{
         fi
     }
 }
-plug "TeddyDD/kakoune-edit-or-dir"
+plug "TeddyDD/kakoune-edit-or-dir" config %{
+    unalias global e edit
+    alias global e edit-or-dir
+}
 plug "occivink/kakoune-phantom-selection" config %{
     declare-user-mode phantom
     map global phantom <plus>     ': phantom-sel-add-selection<ret>' -docstring 'phantom-sel add'
@@ -34,7 +37,7 @@ plug "occivink/kakoune-phantom-selection" config %{
 }
 
 plug "occivink/kakoune-filetree" config %{
-    map global user e ': filetree<ret>' -docstring 'filetree'
+    map global normal <minus> ': filetree<ret>' -docstring 'filetree'
 }
 
 # plug "https://gitlab.com" "fsub/kakoune-mark.git"
@@ -161,8 +164,6 @@ hook global InsertChar \. %{ try %{
 }}
 
 ## Maps.
-unalias global e edit
-alias global e edit-or-dir
 alias global u enter-user-mode
 # space is my leader
 map global normal <space> ,
@@ -173,9 +174,12 @@ map global goto '.' '<esc>: change-directory-current-buffer<ret>' -docstring 'cu
 map global goto p '<esc>: cd ..;print-working-directory<ret>' -docstring 'parent dir'
 map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'switch to [+] buffer'
 
-map global normal <'> <">
+# Save position before %
+map global normal <%> '<c-s>%'
+
+# map global normal <'> <">
 # toggle case
-map global normal <"> <a-`>
+# map global normal <"> <a-`>
 map global normal <0>   ': zero select-word-better<ret>'
 map global normal <a-0> ': select-WORD-better<ret>'
 define-command -hidden -params 1 zero %{
@@ -188,6 +192,8 @@ define-command -hidden -params 1 zero %{
     }
 }
 
+# map global normal <x> <a-x>
+# map global normal <a-x> <a-X>
 # https://github.com/mawww/kakoune/wiki/Selections#how-to-make-x-select-lines-downward-and-x-select-lines-upward
 def -params 1 extend-line-down %{
   exec "<a-:>%arg{1}X"
@@ -200,12 +206,22 @@ def -params 1 extend-line-up %{
   }
   exec '<a-;><a-X>'
 }
-map global normal x ':extend-line-down %val{count}<ret>'
-map global normal X ':extend-line-up %val{count}<ret>'
+map global normal x ': extend-line-down %val{count}<ret>'
+map global normal X ': extend-line-up %val{count}<ret>'
 
-map global normal <%> '<c-s>%' # Save position before %
-# map global normal <x> <a-x>
-# map global normal <a-x> <a-X>
+# https://github.com/mawww/kakoune/wiki/Selections#how-to-make-word-keys-discern-camelcase-or-snake_case-parts
+def -hidden select-prev-word-part %{
+  exec <a-/>[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
+}
+def -hidden select-next-word-part %{
+  exec /[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
+}
+def -hidden extend-prev-word-part %{
+  exec <a-?>[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
+}
+def -hidden extend-next-word-part %{
+  exec ?[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
+}
 
 def enlarge-selection %{
   exec '<a-:>L<a-;>H<a-:>'
@@ -213,8 +229,22 @@ def enlarge-selection %{
 def shrink-selection %{
   exec '<a-:>H<a-;>L<a-:>'
 }
-map global normal <minus> ': shrink-selection<ret>'
-map global normal <plus> ': enlarge-selection<ret>'
+
+def -hidden slice-by-camel %{
+  exec s[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
+}
+# <a-_> merge contiguous selections together (works across lines as well)
+# map global normal <a-minus> ': slice-by-camel<ret>'
+
+declare-user-mode discern
+map global discern <minus> ': shrink-selection<ret>'      -docstring 'shrink selection'
+map global discern <plus>  ': enlarge-selection<ret>'     -docstring 'enlarge selection'
+map global discern w       ': select-next-word-part<ret>' -docstring 'select next word part'
+map global discern W       ': extend-next-word-part<ret>' -docstring 'extend next word part'
+map global discern b       ': select-prev-word-part<ret>' -docstring 'select prev word part'
+map global discern B       ': extend-prev-word-part<ret>' -docstring 'extend prev word part'
+map global discern <'>     ': slice-by-camel<ret>'        -docstring 'slice by word part'
+map global normal <'>      ': enter-user-mode discern<ret>'
 
 # map global normal <c-o> '<c-o>vv'
 # map global normal <c-i> '<c-i>vv'
@@ -273,12 +303,6 @@ define-command -docstring "export to the system clipboard" clipboard-export %{
 # def format-text %{ exec '|fmt<ret>' }
 # map global user q '|fmt -w 80<ret>: echo -markup {green}[sel] | fmt -w 80<ret>' -docstring 'format'
 def format-text %{ exec '|par -w%opt{autowrap_column}<a-!><ret>' }
-
-def -hidden slice-by-camel %{
-  exec s[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
-}
-# <a-_> merge contiguous selections together (works across lines as well)
-map global normal <a-minus> ': slice-by-camel<ret>'
 
 def selection-length %{
     eval %sh{ echo "echo ${#kak_selection}" }
