@@ -188,8 +188,20 @@ define-command -hidden -params 1 zero %{
     }
 }
 
-# map global normal <c-a> ': inc-dec-modify-numbers + %val{count}<ret>'
-# map global normal <c-x> ': inc-dec-modify-numbers - %val{count}<ret>'
+# https://github.com/mawww/kakoune/wiki/Selections#how-to-make-x-select-lines-downward-and-x-select-lines-upward
+def -params 1 extend-line-down %{
+  exec "<a-:>%arg{1}X"
+}
+def -params 1 extend-line-up %{
+  exec "<a-:><a-;>%arg{1}K<a-;>"
+  try %{
+    exec -draft ';<a-K>\n<ret>'
+    exec X
+  }
+  exec '<a-;><a-X>'
+}
+map global normal x ':extend-line-down %val{count}<ret>'
+map global normal X ':extend-line-up %val{count}<ret>'
 
 map global normal <%> '<c-s>%' # Save position before %
 # map global normal <x> <a-x>
