@@ -207,6 +207,12 @@ map global normal <%> '<c-s>%' # Save position before %
 # map global normal <x> <a-x>
 # map global normal <a-x> <a-X>
 
+def enlarge-selection %{
+  exec '<a-:>L<a-;>H<a-:>'
+}
+def shrink-selection %{
+  exec '<a-:>H<a-;>L<a-:>'
+}
 map global normal <minus> ': shrink-selection<ret>'
 map global normal <plus> ': enlarge-selection<ret>'
 
@@ -274,12 +280,6 @@ def -hidden slice-by-camel %{
 # <a-_> merge contiguous selections together (works across lines as well)
 map global normal <a-minus> ': slice-by-camel<ret>'
 
-def enlarge-selection %{
-  exec '<a-:>L<a-;>H<a-:>'
-}
-def shrink-selection %{
-  exec '<a-:>H<a-;>L<a-:>'
-}
 def selection-length %{
     eval %sh{ echo "echo ${#kak_selection}" }
 }
