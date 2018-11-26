@@ -1,22 +1,46 @@
 ## Sources.
-source "%val{config}/plugins/kakoune-buffers/buffers.kak"
-source "%val{config}/plugins/kakoune-cd/cd.kak"
-source "%val{config}/plugins/kakoune-find/find.kak"
-source "%val{config}/plugins/kakoune-phantom-selection/phantom-selection.kak"
-source "%val{config}/plugins/kakoune-mark/mark.kak"
-source "%val{config}/plugins/kakoune-filetree/filetree.kak"
-source "%val{config}/plugins/fzf.kak/rc/fzf.kak"
-source "%val{config}/plugins/kakoune-edit-or-dir/rc/edit-or-dir.kak"
-source "%val{config}/plugins/kakoune-inc-dec/inc-dec.kak"
-# source "%val{config}/plugins/auto-pairs.kak/rc/auto-pairs.kak"
-# source "%val{config}/plugins/kakoune-marks/marks.kak"
-# source "%val{config}/plugins/kakoune-easymotion/easymotion.kak"
-# source "%val{config}/plugins/kakoune-registers/registers.kak"
-# source "%val{config}/plugins/volatile-highlighting.kak/rc/volatile-highlighting.kak"
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+## Plugins
+plug "andreyorst/plug.kak" noload
+plug "delapouite/kakoune-buffers" config %{
+    hook global WinDisplay .* info-buffers
+    map global normal <,> ': enter-user-mode buffers<ret>'
+    map global normal <a-,> ': enter-user-mode -lock buffers<ret>'
+}
+plug "delapouite/kakoune-cd"
+plug "andreyorst/fzf.kak" config %{
+    map global user p ': fzf-mode<ret>' -docstring 'fzf-mode'
+    # set-option global fzf_preview true
+    # set-option global fzf_file_command 'fd --type f --follow'
+    # set-option global fzf_highlighter 'bat'
+    # set-option global fzf_cd_command 'blsd'
+    # set-option global fzf_tmux_height 24
+    # set-option global fzf_preview_width '65%'
+    evaluate-commands %sh{
+        if [ ! -z "$(command -v fd)" ]; then
+            echo "set-option global fzf_file_command 'fd . --no-ignore --type f --follow --hidden'"
+        fi
+    }
+}
+plug "TeddyDD/kakoune-edit-or-dir"
+plug "occivink/kakoune-phantom-selection" config %{
+    declare-user-mode phantom
+    map global phantom <plus>     ': phantom-sel-add-selection<ret>' -docstring 'phantom-sel add'
+    map global phantom <minus>    ': phantom-sel-select-all; phantom-sel-clear<ret>' -docstring 'phantom-sel clear all'
+    map global phantom <)>        ': phantom-sel-iterate-next<ret>' -docstring 'phantom-sel n'
+    map global phantom <(>        ': phantom-sel-iterate-prev<ret>' -docstring 'phantom-sel p'
+    map global normal <c-g>       ': enter-user-mode phantom<ret>'
+}
+
+plug "occivink/kakoune-filetree" config %{
+    map global user e ': filetree<ret>' -docstring 'filetree'
+}
+
+# plug "https://gitlab.com" "fsub/kakoune-mark.git"
 
 source "%val{config}/scripts/colorscheme-browser.kak"
-# source "%val{config}/scripts/bc.kak"
-# source "%val{config}/scripts/fzf.kak"
+source "%val{config}/scripts/bc.kak"
 
 ## General settings.
 # set global ui_options ncurses_assistant=off
@@ -25,7 +49,8 @@ set global tabstop 4
 set global indentwidth 4
 # keep space around cursor
 set global scrolloff 8,8
-set global grepcmd 'rg --column --with-filename'
+# set global grepcmd 'rg --column --with-filename'
+set global grepcmd 'rg --vimgrep'
 
 colorscheme github-custom
 
@@ -48,8 +73,6 @@ hook global WinCreate .* %{
     show-trailing-whitespace-enable; face window TrailingWhitespace default,red
     search-highlighting-enable; face window Search default,rgb:EDF97D+bi
 }
-
-hook global WinDisplay .* info-buffers
 
 ## File types.
 def filetype-hook -params 2 %{ hook global WinSetOption "filetype=(%arg{1})" %arg{2} }
@@ -75,6 +98,8 @@ filetype-hook latex|markdown|git-commit %{
 }
 
 filetype-hook go %{
+    # set window grepcmd "rg --vimgrep -tgo -g'!vendor'"
+    # set window grepcmd "rg --column -tgo -g'!vendor'"
     set window matching_pairs '(' ')' '{' '}' '[' ']'
     set window indentwidth 0
     set buffer formatcmd goreturns
@@ -163,11 +188,9 @@ define-command -hidden -params 1 zero %{
     }
 }
 
-map global normal <c-a> ': inc-dec-modify-numbers + %val{count}<ret>'
-map global normal <c-x> ': inc-dec-modify-numbers - %val{count}<ret>'
+# map global normal <c-a> ': inc-dec-modify-numbers + %val{count}<ret>'
+# map global normal <c-x> ': inc-dec-modify-numbers - %val{count}<ret>'
 
-map global normal <,> ': enter-user-mode buffers<ret>'
-map global normal <a-,> ': enter-user-mode -lock buffers<ret>'
 map global normal <%> '<c-s>%' # Save position before %
 # map global normal <x> <a-x>
 # map global normal <a-x> <a-X>
@@ -177,17 +200,6 @@ map global normal <plus> ': enlarge-selection<ret>'
 
 # map global normal <c-o> '<c-o>vv'
 # map global normal <c-i> '<c-i>vv'
-
-map global user e ': filetree<ret>' -docstring 'filetree'
-
-# fzf.kak
-# set-option global fzf_file_command 'fd --type f --follow'
-set-option global fzf_preview true
-# set-option global fzf_highlighter 'bat'
-set-option global fzf_file_command 'fd'
-set-option global fzf_cd_command 'blsd'
-# set-option global fzf_tmux_height 24
-map global user p ': fzf-mode<ret>' -docstring 'fzf-mode'
 
 # map global normal <ret> :w<ret>
 map global normal <F2> ': w<ret>' -docstring 'save'
@@ -218,13 +230,6 @@ map global insert <c-y> '<a-;>!pbpaste<ret>'
 # user maps
 map global user S '*%s<c-/><ret>' -docstring 'select all'
 map global user R ':e!<ret>' -docstring 'Reload buffer'
-
-declare-user-mode phantom
-map global phantom <plus>     ': phantom-sel-add-selection<ret>' -docstring 'phantom-sel add'
-map global phantom <minus>    ': phantom-sel-select-all; phantom-sel-clear<ret>' -docstring 'phantom-sel clear all'
-map global phantom <)>        ': phantom-sel-iterate-next<ret>' -docstring 'phantom-sel n'
-map global phantom <(>        ': phantom-sel-iterate-prev<ret>' -docstring 'phantom-sel p'
-map global normal <c-g>       ': enter-user-mode phantom<ret>'
 
 # declare-user-mode sysclipboard
 # map global sysclipboard i ': clipboard-import<ret>' -docstring 'import'
