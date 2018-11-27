@@ -8,7 +8,10 @@ plug "delapouite/kakoune-buffers" config %{
     map global normal <,> ': enter-user-mode buffers<ret>'
     map global normal <a-,> ': enter-user-mode -lock buffers<ret>'
 }
-plug "delapouite/kakoune-cd"
+plug "delapouite/kakoune-cd" config %{
+    map global goto '.' '<esc>: change-directory-current-buffer<ret>' -docstring 'current buffer dir'
+    map global goto p '<esc>: cd ..;print-working-directory<ret>' -docstring 'parent dir'
+}
 plug "andreyorst/fzf.kak" config %{
     map global user p ': fzf-mode<ret>' -docstring 'fzf-mode'
     # set-option global fzf_preview true
@@ -38,7 +41,8 @@ plug "occivink/kakoune-phantom-selection" config %{
 }
 
 plug "occivink/kakoune-filetree" config %{
-    map global normal <minus> ': filetree<ret>' -docstring 'filetree'
+    map global normal <minus> ': change-directory-current-buffer;filetree<ret>' -docstring 'filetree in current buf dir'
+    # map global normal <minus> ': filetree<ret>' -docstring 'filetree'
 }
 
 # plug "https://gitlab.com" "fsub/kakoune-mark.git"
@@ -87,8 +91,8 @@ filetype-hook man %{
 }
 
 declare-user-mode help-and-hovers
-map global help-and-hovers m ': mark-word<ret>' -docstring 'mark word'
-map global help-and-hovers c ': mark-clear<ret>' -docstring 'mark clear'
+# map global help-and-hovers m ': mark-word<ret>' -docstring 'mark word'
+# map global help-and-hovers c ': mark-clear<ret>' -docstring 'mark clear'
 map global help-and-hovers p ': print-working-directory<ret>' -docstring 'print working dir'
 map global user h ': enter-user-mode help-and-hovers<ret>' -docstring 'help and hovers'
 
@@ -171,8 +175,6 @@ map global normal <space> ,
 map global user <space> <space> -docstring 'remove selections except main'
 
 map global goto ';' '.' -docstring 'last buffer change'
-map global goto '.' '<esc>: change-directory-current-buffer<ret>' -docstring 'current buffer dir'
-map global goto p '<esc>: cd ..;print-working-directory<ret>' -docstring 'parent dir'
 map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'switch to [+] buffer'
 
 # Save position before %
@@ -231,6 +233,28 @@ def shrink-selection %{
   exec '<a-:>H<a-;>L<a-:>'
 }
 
+# https://github.com/mawww/kakoune/wiki/Selections#how-to-convert-between-common-case-conventions
+# foo_bar → fooBar
+# foo-bar → fooBar
+# foo bar → fooBar
+def camelcase %{
+  exec '`s[-_<space>]<ret>d~<a-i>w'
+}
+
+# fooBar → foo_bar
+# foo-bar → foo_bar
+# foo bar → foo_bar
+def snakecase %{
+  exec '<a-:><a-;>s-|[a-z][A-Z]<ret>\;a<space><esc>s[-\s]+<ret>c_<esc><a-i>w`'
+}
+
+# fooBar → foo-bar
+# foo_bar → foo-bar
+# foo bar → foo-bar
+def kebabcase %{
+  exec '<a-:><a-;>s_|[a-z][A-Z]<ret>\;a<space><esc>s[_\s]+<ret>c-<esc><a-i>w`'
+}
+
 def -hidden slice-by-camel %{
   exec s[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
 }
@@ -263,8 +287,8 @@ map global normal D '<a-l>d' -docstring 'delete to end of line'
 map global normal Y '<a-l>y' -docstring 'yank to end of line'
 map global normal = :format<ret> -docstring 'format buffer'
 
-map global normal '#' :comment-line<ret> -docstring 'comment line'
-map global normal '<a-#>' :comment-block<ret> -docstring 'comment block'
+map global normal <#>   ': comment-line<ret>' -docstring 'comment line'
+map global normal <a-#> ': comment-block<ret>' -docstring 'comment block'
 
 # Insert mode
 #map global insert <c-s> <c-o>    ; # silent: stop completion
@@ -277,7 +301,7 @@ map global insert <c-y> '<a-;>!pbpaste<ret>'
 # map global sysclipboard p '!pbpaste<ret>' -docstring 'paste'
 
 # user maps
-map global user S '*%s<c-/><ret>' -docstring 'select all'
+map global user S '*%s<ret>' -docstring 'select all'
 map global user R ':e!<ret>' -docstring 'Reload buffer'
 
 # declare-user-mode sysclipboard
