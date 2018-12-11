@@ -620,7 +620,7 @@ before packages are loaded."
    ;; powerline
    powerline-default-separator 'alternate
    ;; magit
-   magit-repository-directories '("~/go/src")
+   magit-repository-directories '(("~/go/src/" . 2))
    )
 
   (with-eval-after-load 'projectile
