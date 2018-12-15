@@ -56,7 +56,7 @@ set global ui_options ncurses_status_on_top=true ncurses_assistant=off
 set global tabstop 4
 set global indentwidth 4
 # keep space around cursor
-set global scrolloff 8,8
+set global scrolloff 4,4
 # set global grepcmd 'rg --column --with-filename'
 set global grepcmd 'rg --vimgrep'
 
@@ -281,6 +281,10 @@ map global normal <F2> ': w<ret>' -docstring 'save'
 map global object q Q -docstring 'double quote string'
 map global object Q q -docstring 'single quote string'
 map global view u t -docstring 'same as t'
+map global view h hv
+map global view j jv
+map global view k kv
+map global view l lv
 
 # vim old habits
 map global normal D '<a-l>d' -docstring 'delete to end of line'
