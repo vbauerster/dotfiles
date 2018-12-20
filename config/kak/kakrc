@@ -64,8 +64,10 @@ colorscheme github-custom
 
 # enable kak-lsp
 eval %sh{kak-lsp --kakoune -s $kak_session}
+# lsp-enable
 # nop %sh{ (kak-lsp -s $kak_session -vvv ) > /tmp/kak-lsp.log 2>&1 < /dev/null & }
-map global user a ': enter-user-mode lsp<ret>' -docstring 'lsp mode'
+# map global user a ': enter-user-mode lsp<ret>' -docstring 'lsp mode'
+hook global KakEnd .* lsp-exit
 
 # hook global WinCreate ^[^*]+$ %{
 hook global WinCreate .* %{
@@ -106,6 +108,12 @@ filetype-hook latex|markdown|git-commit %{
 }
 
 filetype-hook go %{
+    lsp-enable-window
+    map window user a ': enter-user-mode lsp<ret>' -docstring 'lsp mode'
+    unmap window lsp &
+    map window lsp <*> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
+    lsp-auto-signature-help-enable
+
     # set window grepcmd "rg --vimgrep -tgo -g'!vendor'"
     # set window grepcmd "rg --column -tgo -g'!vendor'"
     set window matching_pairs '(' ')' '{' '}' '[' ']'
@@ -122,10 +130,7 @@ filetype-hook go %{
     # map global help-and-hovers i ': lsp-signature-help<ret>' -docstring 'lsp-signature-help'
     # map global help-and-hovers r ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
     # map global goto d '<esc>: enter-user-mode gotodef<ret>' -docstring 'gotodef mode'
-    unmap global lsp &
-    map global lsp <*> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
     # set window lsp_auto_highlight_references true
-    lsp-auto-signature-help-enable
     # go-enable-autocomplete
 }
 
