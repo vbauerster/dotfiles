@@ -80,7 +80,7 @@ hook global WinCreate .* %{
 
     # smarttab-enable
     tab-completion-enable
-    show-trailing-whitespace-enable; face window TrailingWhitespace default,red
+    # show-trailing-whitespace-enable; face window TrailingWhitespace default,red
     search-highlighting-enable; face window Search default,rgb:EDF97D+bi
 }
 
