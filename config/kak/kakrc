@@ -113,6 +113,7 @@ filetype-hook go %{
     unmap window lsp &
     map window lsp <*> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
     lsp-auto-signature-help-enable
+    # set window lsp_auto_highlight_references true
 
     # set window grepcmd "rg --vimgrep -tgo -g'!vendor'"
     # set window grepcmd "rg --column -tgo -g'!vendor'"
@@ -130,7 +131,6 @@ filetype-hook go %{
     # map global help-and-hovers i ': lsp-signature-help<ret>' -docstring 'lsp-signature-help'
     # map global help-and-hovers r ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
     # map global goto d '<esc>: enter-user-mode gotodef<ret>' -docstring 'gotodef mode'
-    # set window lsp_auto_highlight_references true
     # go-enable-autocomplete
 }
 
@@ -185,7 +185,9 @@ map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'swit
 # Save position before %
 map global normal <%> '<c-s>%'
 
-# map global normal <'> <">
+map global normal <'> <">
+map global normal <"> <q>
+
 # toggle case
 # map global normal <"> <a-`>
 map global normal <0>   ': zero select-word-better<ret>'
@@ -267,14 +269,14 @@ def -hidden slice-by-camel %{
 # map global normal <a-minus> ': slice-by-camel<ret>'
 
 declare-user-mode discern
-map global discern <minus> ': shrink-selection<ret>'      -docstring 'shrink selection'
-map global discern <plus>  ': enlarge-selection<ret>'     -docstring 'enlarge selection'
-map global discern w       ': select-next-word-part<ret>' -docstring 'select next word part'
-map global discern W       ': extend-next-word-part<ret>' -docstring 'extend next word part'
-map global discern b       ': select-prev-word-part<ret>' -docstring 'select prev word part'
-map global discern B       ': extend-prev-word-part<ret>' -docstring 'extend prev word part'
-map global discern <'>     ': slice-by-camel<ret>'        -docstring 'slice by word part'
-map global normal <'>      ': enter-user-mode discern<ret>'
+map global discern <minus> ': shrink-selection;enter-user-mode discern<ret>'  -docstring 'shrink selection'
+map global discern <plus>  ': enlarge-selection;enter-user-mode discern<ret>' -docstring 'enlarge selection'
+map global discern w       ': select-next-word-part<ret>'                     -docstring 'select next word part'
+map global discern W       ': extend-next-word-part<ret>'                     -docstring 'extend next word part'
+map global discern b       ': select-prev-word-part<ret>'                     -docstring 'select prev word part'
+map global discern B       ': extend-prev-word-part<ret>'                     -docstring 'extend prev word part'
+map global discern q       ': slice-by-camel<ret>'                            -docstring 'slice by word part'
+map global normal  q       ': enter-user-mode discern<ret>'
 
 # map global normal <c-o> '<c-o>vv'
 # map global normal <c-i> '<c-i>vv'
