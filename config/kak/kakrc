@@ -175,9 +175,16 @@ hook global InsertChar \. %{ try %{
 
 ## Maps.
 alias global u enter-user-mode
+# map global normal ';' <space>
+map global normal 'q' <space>
+# map global normal <a-\;> <a-space>
+map global normal <a-q> <a-space>
+# map global normal 'Q' <a-space>
+# map global normal <a-space> ';'
 # space is my leader
-map global normal <space> ,
-map global user <space> <space> -docstring 'remove selections except main'
+map global normal <space> ','
+# map global user <space> <space> -docstring 'remove selections except main'
+map global user <space> ':' -docstring 'prompt mode'
 
 map global goto ';' '.' -docstring 'last buffer change'
 map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'switch to [+] buffer'
@@ -269,18 +276,30 @@ def -hidden slice-by-camel %{
 # map global normal <a-minus> ': slice-by-camel<ret>'
 
 declare-user-mode discern
-map global discern <minus> ': shrink-selection;enter-user-mode discern<ret>'  -docstring 'shrink selection'
-map global discern <plus>  ': enlarge-selection;enter-user-mode discern<ret>' -docstring 'enlarge selection'
+# map global discern <minus> ': shrink-selection;enter-user-mode discern<ret>'  -docstring 'shrink selection'
+# map global discern <plus>  ': enlarge-selection;enter-user-mode discern<ret>' -docstring 'enlarge selection'
+map global discern <minus> ': shrink-selection<ret>'  -docstring 'shrink selection'
+map global discern <plus>  ': enlarge-selection<ret>' -docstring 'enlarge selection'
+map global discern <space> ': slice-by-camel<ret>'                            -docstring 'slice by word part'
 map global discern w       ': select-next-word-part<ret>'                     -docstring 'select next word part'
 map global discern W       ': extend-next-word-part<ret>'                     -docstring 'extend next word part'
 map global discern b       ': select-prev-word-part<ret>'                     -docstring 'select prev word part'
 map global discern B       ': extend-prev-word-part<ret>'                     -docstring 'extend prev word part'
-map global discern q       ': slice-by-camel<ret>'                            -docstring 'slice by word part'
-map global discern y       ': <esc>y'                                         -docstring 'yank <esc>'
-map global normal  q       ': enter-user-mode discern<ret>'
+# map global discern y       ': <esc>y'                                         -docstring 'yank <esc>'
+# map global discern y       '<esc>y'                                         -docstring 'yank <esc>'
 
-# map global normal <c-o> '<c-o>vv'
-# map global normal <c-i> '<c-i>vv'
+map global normal  <a-space>       ': enter-user-mode -lock discern<ret>'
+
+declare-user-mode anchor
+map global anchor a '<a-;>;'     -docstring 'reduce to anchor'
+map global anchor c ';'          -docstring 'reduce to cursor'
+map global anchor f '<a-;>'      -docstring 'flip cursor and anchor'
+map global anchor h '<a-:><a-;>' -docstring 'ensure anchor after cursor'
+map global anchor l '<a-:>'      -docstring 'ensure cursor after anchor'
+map global anchor s '<a-S>'      -docstring 'select cursor and anchor'
+map global anchor u 'z'          -docstring 'restore selection'
+
+map global normal ':' 'Z: enter-user-mode -lock anchor<ret>'
 
 # map global normal <ret> :w<ret>
 map global normal <F2> ': w<ret>' -docstring 'save'
