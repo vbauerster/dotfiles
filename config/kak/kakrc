@@ -276,6 +276,7 @@ map global discern W       ': extend-next-word-part<ret>'                     -d
 map global discern b       ': select-prev-word-part<ret>'                     -docstring 'select prev word part'
 map global discern B       ': extend-prev-word-part<ret>'                     -docstring 'extend prev word part'
 map global discern q       ': slice-by-camel<ret>'                            -docstring 'slice by word part'
+map global discern y       ': <esc>y'                                         -docstring 'yank <esc>'
 map global normal  q       ': enter-user-mode discern<ret>'
 
 # map global normal <c-o> '<c-o>vv'
