@@ -278,8 +278,6 @@ def -hidden slice-by-camel %{
 declare-user-mode discern
 # map global discern <minus> ': shrink-selection;enter-user-mode discern<ret>'  -docstring 'shrink selection'
 # map global discern <plus>  ': enlarge-selection;enter-user-mode discern<ret>' -docstring 'enlarge selection'
-map global discern <minus> ': shrink-selection<ret>'  -docstring 'shrink selection'
-map global discern <plus>  ': enlarge-selection<ret>' -docstring 'enlarge selection'
 map global discern <space> ': slice-by-camel<ret>'                            -docstring 'slice by word part'
 map global discern w       ': select-next-word-part<ret>'                     -docstring 'select next word part'
 map global discern W       ': extend-next-word-part<ret>'                     -docstring 'extend next word part'
@@ -291,6 +289,8 @@ map global discern B       ': extend-prev-word-part<ret>'                     -d
 map global normal  <a-space>       ': enter-user-mode -lock discern<ret>'
 
 declare-user-mode anchor
+map global anchor <minus> ': shrink-selection<ret>'  -docstring 'shrink selection'
+map global anchor <plus>  ': enlarge-selection<ret>' -docstring 'enlarge selection'
 map global anchor a '<a-;>;'     -docstring 'reduce to anchor'
 map global anchor c ';'          -docstring 'reduce to cursor'
 map global anchor f '<a-;>'      -docstring 'flip cursor and anchor'
@@ -299,7 +299,17 @@ map global anchor l '<a-:>'      -docstring 'ensure cursor after anchor'
 map global anchor s '<a-S>'      -docstring 'select cursor and anchor'
 map global anchor u 'z'          -docstring 'restore selection'
 
-map global normal ':' 'Z: enter-user-mode -lock anchor<ret>'
+map global normal <plus> 'Z: enter-user-mode -lock anchor<ret>'
+
+declare-user-mode echo
+map global echo o ':echo %opt{}<left>'        -docstring 'opt'
+map global echo O ':echo -debug %opt{}<left>' -docstring 'opt debug'
+map global echo r ':echo %reg{}<left>'        -docstring 'reg'
+map global echo R ':echo -debug %reg{}<left>' -docstring 'reg debug'
+map global echo s ':echo %sh{}<left>'         -docstring 'sh'
+map global echo S ':echo -debug %sh{}<left>'  -docstring 'sh debug'
+map global echo v ':echo %val{}<left>'        -docstring 'val'
+map global echo V ':echo -debug %val{}<left>' -docstring 'val debug'
 
 # map global normal <ret> :w<ret>
 map global normal <F2> ': w<ret>' -docstring 'save'
