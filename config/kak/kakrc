@@ -325,7 +325,6 @@ map global view l lv
 
 # vim old habits
 map global normal D '<a-l>d' -docstring 'delete to end of line'
-map global normal Y '<a-l>y' -docstring 'yank to end of line'
 map global normal = :format<ret> -docstring 'format buffer'
 
 map global normal <#>   ': comment-line<ret>' -docstring 'comment line'
@@ -338,31 +337,32 @@ map global normal <a-#> ': comment-block<ret>' -docstring 'comment block'
 #map global insert <c-c> <a-\;>   ; # execute one normal kak command
 #map global insert <c-y> '<c-r>"' ; # paste from normal yank register, readline key
 map global insert <c-y> '<a-;>!pbpaste<ret>'
-# map global sysclipboard y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank'
-# map global sysclipboard p '!pbpaste<ret>' -docstring 'paste'
 
 # user maps
 map global user S '*%s<ret>' -docstring 'select all'
 map global user R ':e!<ret>' -docstring 'Reload buffer'
 
-# declare-user-mode sysclipboard
-# map global sysclipboard i ': clipboard-import<ret>' -docstring 'import'
-# map global sysclipboard e ': clipboard-export<ret>' -docstring 'export'
-# map global user * ': enter-user-mode sysclipboard<ret>' -docstring 'sysclipboard mode'
-
-map global user <lt> ': clipboard-import<ret>' -docstring 'sysclipboard import'
-map global user <gt> ': clipboard-export<ret>' -docstring 'sysclipboard export'
+declare-user-mode clipboard
+map global clipboard i ': clipboard-import<ret>' -docstring 'import'
+map global clipboard e ': clipboard-export<ret>' -docstring 'export'
+map global clipboard t '<a-|>tmux setb -b kak "$kak_selection"<ret>;: echo -markup {Information}selection sent tmux buffer<ret>' -docstring 'to tmux buffer'
+map global clipboard Y '<a-l>y' -docstring 'yank to end of line'
+# map global clipboard y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank'
+# map global clipboard p '!pbpaste<ret>' -docstring 'paste'
+# map global user <lt> ': clipboard-import<ret>' -docstring 'sysclipboard import'
+# map global user <gt> ': clipboard-export<ret>' -docstring 'sysclipboard export'
+map global normal Y ': enter-user-mode clipboard<ret>' -docstring 'clipboard mode'
 
 ## Defs.
 # https://github.com/alyssais/dotfiles/blob/master/.config/kak/kakrc#L30-L38
 define-command -docstring "import from the system clipboard" clipboard-import %{
   set-register dquote %sh{pbpaste}
-  echo -markup "{Information}imported system clipboard to register """
+  echo -markup "{Information}imported system clipboard to "" register"
 }
 
 define-command -docstring "export to the system clipboard" clipboard-export %{
   nop %sh{ printf "%s" "$kak_main_reg_dquote" | pbcopy }
-  echo -markup "{Information}exported register "" to system clipboard"
+  echo -markup "{Information}exported "" register to system clipboard"
 }
 
 # Sort of a replacement for gq.
