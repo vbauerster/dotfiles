@@ -3,15 +3,18 @@ source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
 ## Plugins
 plug "andreyorst/plug.kak" noload
+
 plug "delapouite/kakoune-buffers" config %{
     hook global WinDisplay .* info-buffers
-    map global normal <,> ': enter-user-mode buffers<ret>'
-    map global normal <a-,> ': enter-user-mode -lock buffers<ret>'
+    map global user b ': enter-user-mode buffers<ret>' -docstring 'buffers'
+    map global user <a-b> ': enter-user-mode -lock buffers<ret>' -docstring 'buffers (lock)'
 }
+
 plug "delapouite/kakoune-cd" config %{
     map global goto '.' '<esc>: change-directory-current-buffer<ret>' -docstring 'current buffer dir'
     map global goto p '<esc>: cd ..;print-working-directory<ret>' -docstring 'parent dir'
 }
+
 plug "andreyorst/fzf.kak" config %{
     map global user p ': fzf-mode<ret>' -docstring 'fzf-mode'
     # set-option global fzf_preview true
@@ -297,9 +300,9 @@ map global anchor f '<a-;>'      -docstring 'flip cursor and anchor'
 map global anchor h '<a-:><a-;>' -docstring 'ensure anchor after cursor'
 map global anchor l '<a-:>'      -docstring 'ensure cursor after anchor'
 map global anchor s '<a-S>'      -docstring 'select cursor and anchor'
-map global anchor u 'z'          -docstring 'restore selection'
 
-map global normal <plus> 'Z: enter-user-mode -lock anchor<ret>'
+map global normal <,> ': enter-user-mode  anchor<ret>'
+map global normal <a-,> ': enter-user-mode -lock anchor<ret>'
 
 declare-user-mode echo
 map global echo o ':echo %opt{}<left>'        -docstring 'opt'
