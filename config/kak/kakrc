@@ -325,6 +325,10 @@ map global echo S ':echo -debug %sh{}<left>'  -docstring 'sh debug'
 map global echo v ':echo %val{}<left>'        -docstring 'val'
 map global echo V ':echo -debug %val{}<left>' -docstring 'val debug'
 
+declare-user-mode search
+map global search / ': exec /<ret>\Q\E<left><left>' -docstring 'regex disabled'
+map global search i '/(?i)'                         -docstring 'case insensitive'
+
 # map global normal <ret> :w<ret>
 map global normal <F2> ': w<ret>' -docstring 'save'
 
