@@ -282,14 +282,14 @@ declare-user-mode discern
 # map global discern <minus> ': shrink-selection;enter-user-mode discern<ret>'  -docstring 'shrink selection'
 # map global discern <plus>  ': enlarge-selection;enter-user-mode discern<ret>' -docstring 'enlarge selection'
 map global discern <space> ': slice-by-camel<ret>'                            -docstring 'slice by word part'
-map global discern w       ': select-next-word-part<ret>'                     -docstring 'select next word part'
-map global discern W       ': extend-next-word-part<ret>'                     -docstring 'extend next word part'
-map global discern b       ': select-prev-word-part<ret>'                     -docstring 'select prev word part'
-map global discern B       ': extend-prev-word-part<ret>'                     -docstring 'extend prev word part'
+map global discern w       ': select-next-word-part;enter-user-mode discern<ret>'                     -docstring 'select next word part'
+map global discern W       ': extend-next-word-part;enter-user-mode discern<ret>'                     -docstring 'extend next word part'
+map global discern b       ': select-prev-word-part;enter-user-mode discern<ret>'                     -docstring 'select prev word part'
+map global discern B       ': extend-prev-word-part;enter-user-mode discern<ret>'                     -docstring 'extend prev word part'
 # map global discern y       ': <esc>y'                                         -docstring 'yank <esc>'
 # map global discern y       '<esc>y'                                         -docstring 'yank <esc>'
 
-map global normal  <a-space>       ': enter-user-mode -lock discern<ret>'
+map global normal  <a-space>       ': enter-user-mode discern<ret>'
 
 declare-user-mode anchor
 map global anchor <minus> ': shrink-selection<ret>'  -docstring 'shrink selection'
