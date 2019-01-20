@@ -42,7 +42,16 @@ plug "occivink/kakoune-phantom-selection" config %{
     map global phantom <minus>    ': phantom-sel-select-all; phantom-sel-clear<ret>' -docstring 'phantom-sel clear all'
     map global phantom <)>        ': phantom-sel-iterate-next<ret>' -docstring 'phantom-sel n'
     map global phantom <(>        ': phantom-sel-iterate-prev<ret>' -docstring 'phantom-sel p'
-    map global normal <c-g>       ': enter-user-mode phantom<ret>'
+    map global normal <plus>      ': enter-user-mode phantom<ret>'
+    map global normal <a-plus>    ': enter-user-mode -lock phantom<ret>'
+
+    # # replace select-onto with phantom-sel stuff; more useful
+    # map global normal f     ': phantom-sel-add-selection<ret>'
+    # map global normal F     ': phantom-sel-select-all; phantom-sel-clear<ret>'
+    # map global normal <a-f> ': phantom-sel-iterate-next<ret>'
+    # map global normal <a-F> ': phantom-sel-iterate-prev<ret>'
+    # map global insert <a-f> '<esc>: phantom-sel-iterate-next<ret>i'
+    # map global insert <a-F> '<esc>: phantom-sel-iterate-prev<ret>i'
 }
 
 plug "alexherbo2/auto-pairs.kak" config %{
