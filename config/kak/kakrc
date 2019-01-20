@@ -30,10 +30,12 @@ plug "andreyorst/fzf.kak" config %{
         fi
     }
 }
+
 plug "TeddyDD/kakoune-edit-or-dir" config %{
     unalias global e edit
     alias global e edit-or-dir
 }
+
 plug "occivink/kakoune-phantom-selection" config %{
     declare-user-mode phantom
     map global phantom <plus>     ': phantom-sel-add-selection<ret>' -docstring 'phantom-sel add'
@@ -43,9 +45,18 @@ plug "occivink/kakoune-phantom-selection" config %{
     map global normal <c-g>       ': enter-user-mode phantom<ret>'
 }
 
+plug "alexherbo2/auto-pairs.kak" config %{
+    hook global WinCreate .* %{
+        auto-pairs-enable
+    }
+}
+
 plug "occivink/kakoune-filetree" config %{
     map global normal <minus> ': change-directory-current-buffer;filetree<ret>' -docstring 'filetree in current buf dir'
     # map global normal <minus> ': filetree<ret>' -docstring 'filetree'
+}
+
+plug "ul/kak-tree" config %{
 }
 
 # plug "https://gitlab.com" "fsub/kakoune-mark.git"
