@@ -67,6 +67,7 @@ plug "ul/kak-tree" config %{
 
 source "%val{config}/scripts/colorscheme-browser.kak"
 source "%val{config}/scripts/bc.kak"
+source "%val{config}/scripts/expand.kak"
 
 ## General settings.
 # set global ui_options ncurses_assistant=off
@@ -189,6 +190,26 @@ hook global InsertChar \. %{ try %{
     exec -draft hH <a-k>,\.<ret> d
     exec <esc>
     #write
+}}
+
+def -hidden text-object-indented-paragraph %{
+    eval -save-regs '^' %{
+        exec -draft -save-regs '' '<a-i>pZ'
+        exec '<a-i>i<a-z>i'
+    }
+}
+try %{ set global expand_commands %{
+    expand-impl %{ exec <a-i>b }
+    expand-impl %{ exec <a-a>b }
+    expand-impl %{ exec <a-i>B }
+    expand-impl %{ exec <a-a>B }
+    expand-impl %{ exec <a-i>r }
+    expand-impl %{ exec <a-a>r }
+    expand-impl %{ exec <a-i>i }
+    expand-impl %{ exec <a-i>i_ }
+    expand-impl %{ text-object-indented-paragraph }
+    expand-impl %{ text-object-indented-paragraph; exec _ }
+    expand-impl %{ exec <a-x>_ }
 }}
 
 ## Maps.
