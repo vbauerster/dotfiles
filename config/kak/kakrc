@@ -143,8 +143,7 @@ filetype-hook go %{
     lsp-auto-signature-help-enable
     # set window lsp_auto_highlight_references true
 
-    # set window grepcmd "rg --vimgrep -tgo -g'!vendor'"
-    # set window grepcmd "rg --column -tgo -g'!vendor'"
+    try %{ set window grepcmd 'rg --column -tgo -g=!vendor' }
     set window matching_pairs '(' ')' '{' '}' '[' ']'
     set window indentwidth 0
     set buffer formatcmd goreturns
