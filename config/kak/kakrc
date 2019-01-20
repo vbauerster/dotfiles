@@ -25,7 +25,6 @@ plug "andreyorst/fzf.kak" config %{
     # set-option global fzf_preview_width '65%'
     evaluate-commands %sh{
         if [ ! -z "$(command -v fd)" ]; then
-            # echo "set-option global fzf_file_command 'fd . --no-ignore --type f --follow --hidden'"
             echo "set-option global fzf_file_command 'fd . --no-ignore --type f --follow'"
         fi
     }
@@ -84,9 +83,11 @@ set global ui_options ncurses_status_on_top=true ncurses_assistant=off
 set global tabstop 4
 set global indentwidth 4
 # keep space around cursor
-set global scrolloff 4,4
+set global scrolloff 2,4
+set global disabled_hooks .*-trim-indent
 # set global grepcmd 'rg --column --with-filename'
-set global grepcmd 'rg --vimgrep'
+# set global grepcmd 'rg --vimgrep'
+try %{ set global grepcmd 'ag --filename --column --ignore tags --ignore build --ignore buildDebug' }
 
 colorscheme github-custom
 
@@ -113,7 +114,7 @@ hook global WinCreate .* %{
 }
 
 ## File types.
-def filetype-hook -params 2 %{ hook global WinSetOption "filetype=(%arg{1})" %arg{2} }
+def -hidden filetype-hook -params 2 %{ hook global WinSetOption "filetype=(%arg{1})" %arg{2} }
 
 filetype-hook man %{
     rmhl window/number-lines
@@ -239,15 +240,21 @@ map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'swit
 # Save position before %
 map global normal <%> '<c-s>%'
 
+map global normal = <a-`> -docstring 'toggle case'
+
 map global normal <'> <">
 map global normal <"> <q>
 
-# toggle case
-# map global normal <"> <a-`>
+# stop c and d from yanking
+# map global normal d <a-d>
+# map global normal c <a-c>
+# map global normal <a-d> ''
+# map global normal <a-c> ''
+
 map global normal <0>   ': zero select-word-better<ret>'
 map global normal <a-0> ': select-WORD-better<ret>'
-define-command -hidden -params 1 zero %{
-   evaluate-commands %sh{
+def -hidden -params 1 zero %{
+   eval %sh{
         if [ $kak_count = 0 ]; then
             echo "$1"
         else
@@ -255,6 +262,23 @@ define-command -hidden -params 1 zero %{
         fi
     }
 }
+
+def -hidden smart-star -params 1 %{
+    try %{
+        exec -draft <a-space>
+        eval -no-hooks -draft -save-regs '"' %{
+            exec -save-regs '' "%arg{1}""""*"
+            edit -scratch *smart-star-temp*
+            exec '<a-P>)<a-space>i|<esc>'
+        }
+        try %{ exec -buffer *smart-star-temp* -save-regs '' "%%H""%val{register}/<c-r>.<ret>" }
+        db *smart-star-temp*
+    } catch %{
+        exec -save-regs '' """%val{register}%arg{1}"
+    }
+}
+map global normal * ': smart-star *<ret>'
+map global normal <a-*> ': smart-star <lt>a-*><ret>'
 
 # map global normal <x> <a-x>
 # map global normal <a-x> <a-X>
@@ -320,30 +344,29 @@ def -hidden slice-by-camel %{
   exec s[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
 }
 # <a-_> merge contiguous selections together (works across lines as well)
-# map global normal <a-minus> ': slice-by-camel<ret>'
 
 declare-user-mode discern
 # map global discern <minus> ': shrink-selection;enter-user-mode discern<ret>'  -docstring 'shrink selection'
 # map global discern <plus>  ': enlarge-selection;enter-user-mode discern<ret>' -docstring 'enlarge selection'
-map global discern <space> ': slice-by-camel<ret>'                            -docstring 'slice by word part'
 map global discern w       ': select-next-word-part;enter-user-mode discern<ret>'                     -docstring 'select next word part'
 map global discern W       ': extend-next-word-part;enter-user-mode discern<ret>'                     -docstring 'extend next word part'
 map global discern b       ': select-prev-word-part;enter-user-mode discern<ret>'                     -docstring 'select prev word part'
 map global discern B       ': extend-prev-word-part;enter-user-mode discern<ret>'                     -docstring 'extend prev word part'
 # map global discern y       ': <esc>y'                                         -docstring 'yank <esc>'
 # map global discern y       '<esc>y'                                         -docstring 'yank <esc>'
-
-map global normal  <a-space>       ': enter-user-mode discern<ret>'
+# map global normal  <a-space>       ': enter-user-mode discern<ret>'
 
 declare-user-mode anchor
+map global anchor <,>     ': slice-by-camel<ret>'    -docstring 'slice by word'
 map global anchor <minus> ': shrink-selection<ret>'  -docstring 'shrink selection'
 map global anchor <plus>  ': enlarge-selection<ret>' -docstring 'enlarge selection'
-map global anchor a '<a-;>;'     -docstring 'reduce to anchor'
-map global anchor c ';'          -docstring 'reduce to cursor'
-map global anchor f '<a-;>'      -docstring 'flip cursor and anchor'
-map global anchor h '<a-:><a-;>' -docstring 'ensure anchor after cursor'
-map global anchor l '<a-:>'      -docstring 'ensure cursor after anchor'
-map global anchor s '<a-S>'      -docstring 'select cursor and anchor'
+map global anchor <space> ': expand<ret>'            -docstring 'smart expand'
+map global anchor a       '<a-;>;'                   -docstring 'reduce to anchor'
+map global anchor c       ';'                        -docstring 'reduce to cursor'
+map global anchor f       '<a-;>'                    -docstring 'flip cursor and anchor'
+map global anchor h       '<a-:><a-;>'               -docstring 'ensure anchor after cursor'
+map global anchor l       '<a-:>'                    -docstring 'ensure cursor after anchor'
+map global anchor s       '<a-S>'                    -docstring 'select cursor and anchor'
 
 map global normal <,> ': enter-user-mode  anchor<ret>'
 map global normal <a-,> ': enter-user-mode -lock anchor<ret>'
@@ -362,6 +385,8 @@ declare-user-mode search
 map global search / ': exec /<ret>\Q\E<left><left>' -docstring 'regex disabled'
 map global search i '/(?i)'                         -docstring 'case insensitive'
 
+map global user / ': enter-user-mode search<ret>'    -docstring 'search mode'
+
 # map global normal <ret> :w<ret>
 map global normal <F2> ': w<ret>' -docstring 'save'
 
@@ -376,7 +401,6 @@ map global view l lv
 
 # vim old habits
 map global normal D '<a-l>d' -docstring 'delete to end of line'
-map global normal = :format<ret> -docstring 'format buffer'
 
 map global normal <#>   ': comment-line<ret>' -docstring 'comment line'
 map global normal <a-#> ': comment-block<ret>' -docstring 'comment block'
@@ -396,7 +420,7 @@ map global user R ':e!<ret>' -docstring 'Reload buffer'
 declare-user-mode clipboard
 map global clipboard i ': clipboard-import<ret>' -docstring 'import'
 map global clipboard e ': clipboard-export<ret>' -docstring 'export'
-map global clipboard t '<a-|>tmux setb -b kak "$kak_selection"<ret>;: echo -markup {Information}selection sent tmux buffer<ret>' -docstring 'to tmux buffer'
+map global clipboard y '<a-|>tmux setb -b kak "$kak_selection"<ret>;: echo -markup {Information}selection sent tmux buffer<ret>' -docstring 'to tmux buffer'
 map global clipboard Y '<a-l>y' -docstring 'yank to end of line'
 # map global clipboard y '<a-|>pbcopy<ret>; :echo "copied selection to system clipboard"<ret>' -docstring 'yank'
 # map global clipboard p '!pbpaste<ret>' -docstring 'paste'
@@ -426,15 +450,15 @@ def selection-length %{
 }
 # def selection-length %{echo %sh{echo ${#kak_selection} }}
 
-def del-trailing-whitespace %{
+def trim-tw -docstring "trim trailing whitespaces" %{
   try %{
     eval -draft %{
       exec '%s\h+$<ret><a-d>'
       eval -client %val{client} echo -- \
-        %sh{ echo "deleted trailing whitespace on $(echo "$kak_selections_desc" | wc -w) lines" }
+        %sh{ echo -markup "{Information}trimmed trailing whitespace on $(echo "$kak_selections_desc" | wc -w) lines" }
     }
   } catch %{
-    echo 'no trailing whitespace'
+    echo -markup "{Information}no trailing whitespace"
   }
 }
 
@@ -588,30 +612,3 @@ def search-highlighting-disable %{
   rmhooks window search-highlighting
 }
 
-# by lenormf, see https://github.com/mawww/kakoune/issues/1192
-# decl -hidden range-specs show_matching_range
-#
-# hook global -group kakrc InsertChar [[(<{}>)\]] %{ eval -draft %{
-#     try %{
-#         exec -no-hooks <esc>\;hm<a-k>..<ret>\;
-#         set window show_matching_range "%val{timestamp}:%val{selection_desc}|MatchingChar"
-#     }
-#
-#     hook window -group once-matching InsertChar [^[(<{}>)\]] %{
-#         set window show_matching_range ""
-#         remove-hooks window once-matching
-#     }
-#
-#     hook window -group once-matching InsertEnd .* %{
-#         set window show_matching_range ""
-#         remove-hooks window once-matching
-#     }
-# } }
-#
-# hook global -group kakrc InsertEnd .* %{
-#     set buffer show_matching_range ""
-# }
-#
-# hook global -group kakrc WinCreate .* %{
-#     addhl window ranges show_matching_range
-# }
