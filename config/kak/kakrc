@@ -223,16 +223,12 @@ try %{ set global expand_commands %{
 
 ## Maps.
 alias global u enter-user-mode
-# map global normal ';' <space>
 map global normal 'q' <space>
-# map global normal <a-\;> <a-space>
 map global normal <a-q> <a-space>
-# map global normal 'Q' <a-space>
-# map global normal <a-space> ';'
 # space is my leader
 map global normal <space> ','
-# map global user <space> <space> -docstring 'remove selections except main'
-map global user <space> ':' -docstring 'prompt mode'
+map global user <space> ':' -docstring 'command prompt'
+map global normal ':' '%' -docstring 'select whole buffer'
 
 map global goto ';' '.' -docstring 'last buffer change'
 map global goto <plus>  '<esc>: switch-to-modified-buffer<ret>' -docstring 'switch to [+] buffer'
