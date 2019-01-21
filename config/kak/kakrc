@@ -69,6 +69,11 @@ plug "occivink/kakoune-filetree" config %{
 }
 
 plug "ul/kak-tree" config %{
+    declare-user-mode syntax-tree
+    map global syntax-tree m ': tree-select-children method_declaration<ret>' -docstring 'methods declaration'
+    map global syntax-tree i ': tree-select-children if_statement<ret>' -docstring 'if statements'
+    map global syntax-tree t ': tree-select-children type_declaration<ret>' -docstring 'type declaration'
+    map global user t ': enter-user-mode syntax-tree<ret>' -docstring 'tree select'
 }
 
 # plug "https://gitlab.com" "fsub/kakoune-mark.git"
