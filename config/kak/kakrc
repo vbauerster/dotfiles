@@ -70,29 +70,61 @@ plug "occivink/kakoune-filetree" config %{
 }
 
 plug "ul/kak-tree" config %{
+    # set global tree_cmd 'kak-tree -c /Users/vbauer/dotfiles/config/kak/kak-tree.toml'
+
     declare-user-mode syntax-tree-children
     map global syntax-tree-children c ': tree-select-children<ret>' -docstring 'children'
-    map global syntax-tree-children b ': tree-select-children block<ret>' -docstring 'block'
-    map global syntax-tree-children g ': tree-select-children go_statement<ret>' -docstring 'go_statement'
-    map global syntax-tree-children m ': tree-select-children method_declaration<ret>' -docstring 'method_declaration'
-    map global syntax-tree-children i ': tree-select-children if_statement<ret>' -docstring 'if_statement'
     map global syntax-tree-children t ': tree-select-children type_declaration<ret>' -docstring 'type_declaration'
-    map global syntax-tree-children u ': tree-select-children parameter_declaration<ret>' -docstring 'parameter_declaration'
+    map global syntax-tree-children m ': tree-select-children method_declaration<ret>' -docstring 'method_declaration'
+    map global syntax-tree-children f ': tree-select-children function_declaration<ret>' -docstring 'function_declaration'
+    map global syntax-tree-children g ': tree-select-children go_statement<ret>' -docstring 'go_statement'
+    map global syntax-tree-children b ': tree-select-children block<ret>' -docstring 'block'
+    map global syntax-tree-children i ': tree-select-children if_statement<ret>' -docstring 'if_statement'
+    map global syntax-tree-children o ': tree-select-children for_statement<ret>' -docstring 'for_statement'
+    map global syntax-tree-children u ': tree-select-children parameter_list<ret>' -docstring 'parameter_list'
+    map global syntax-tree-children r ': tree-select-children return_statement<ret>' -docstring 'return_statement'
     map global syntax-tree-children <backspace> ': enter-user-mode syntax-tree<ret>' -docstring 'back...'
 
     declare-user-mode syntax-tree-parent
     map global syntax-tree-parent p ': tree-select-parent-node<ret>' -docstring 'parent_node'
-    map global syntax-tree-parent b ': tree-select-parent-node block<ret>' -docstring 'block'
-    map global syntax-tree-parent m ': tree-select-parent-node method_declaration<ret>' -docstring 'method_declaration'
-    map global syntax-tree-parent i ': tree-select-parent-node if_statement<ret>' -docstring 'if_statement'
     map global syntax-tree-parent t ': tree-select-parent-node type_declaration<ret>' -docstring 'type_declaration'
-    map global syntax-tree-parent u ': tree-select-parent-node parameter_declaration<ret>' -docstring 'parameter_declaration'
+    map global syntax-tree-parent m ': tree-select-parent-node method_declaration<ret>' -docstring 'method_declaration'
+    map global syntax-tree-parent f ': tree-select-parent-node function_declaration<ret>' -docstring 'function_declaration'
+    map global syntax-tree-parent b ': tree-select-parent-node block<ret>' -docstring 'block'
+    map global syntax-tree-parent u ': tree-select-parent-node parameter_list<ret>' -docstring 'parameter_list'
+    map global syntax-tree-parent r ': tree-select-parent-node return_statement<ret>' -docstring 'return_statement'
     map global syntax-tree-parent <backspace> ': enter-user-mode syntax-tree<ret>' -docstring 'back...'
 
+    declare-user-mode syntax-tree-next
+    map global syntax-tree-next ')' ': tree-select-next-node<ret>' -docstring 'next_node'
+    map global syntax-tree-next t   ': tree-select-next-node type_declaration<ret>' -docstring 'type_declaration'
+    map global syntax-tree-next m   ': tree-select-next-node method_declaration<ret>' -docstring 'method_declaration'
+    map global syntax-tree-next f   ': tree-select-next-node function_declaration<ret>' -docstring 'function_declaration'
+    map global syntax-tree-next b   ': tree-select-next-node block<ret>' -docstring 'block'
+    map global syntax-tree-next i   ': tree-select-next-node if_statement<ret>' -docstring 'if_statement'
+    map global syntax-tree-next o   ': tree-select-next-node for_statement<ret>' -docstring 'for_statement'
+    map global syntax-tree-next u   ': tree-select-next-node parameter_list<ret>' -docstring 'parameter_list'
+    map global syntax-tree-next r   ': tree-select-next-node return_statement<ret>' -docstring 'return_statement'
+    map global syntax-tree-next <backspace> ': enter-user-mode syntax-tree<ret>' -docstring 'back...'
+
+    declare-user-mode syntax-tree-prev
+    map global syntax-tree-prev '(' ': tree-select-previous-node<ret>' -docstring 'previous_node'
+    map global syntax-tree-prev t ': tree-select-previous-node type_declaration<ret>' -docstring 'type_declaration'
+    map global syntax-tree-prev m ': tree-select-previous-node method_declaration<ret>' -docstring 'method_declaration'
+    map global syntax-tree-prev f ': tree-select-previous-node function_declaration<ret>' -docstring 'function_declaration'
+    map global syntax-tree-prev b ': tree-select-previous-node block<ret>' -docstring 'block'
+    map global syntax-tree-prev i ': tree-select-previous-node if_statement<ret>' -docstring 'if_statement'
+    map global syntax-tree-prev o ': tree-select-previous-node for_statement<ret>' -docstring 'for_statement'
+    map global syntax-tree-prev u ': tree-select-previous-node parameter_list<ret>' -docstring 'parameter_list'
+    map global syntax-tree-prev r ': tree-select-previous-node return_statement<ret>' -docstring 'return_statement'
+    map global syntax-tree-prev <backspace> ': enter-user-mode syntax-tree<ret>' -docstring 'back...'
+
     declare-user-mode syntax-tree
+    map global syntax-tree '(' ': enter-user-mode syntax-tree-prev<ret>' -docstring 'previous_node'
+    map global syntax-tree ')' ': enter-user-mode syntax-tree-next<ret>' -docstring 'next_node'
     map global syntax-tree c ': enter-user-mode syntax-tree-children<ret>' -docstring 'children'
-    map global syntax-tree p ': enter-user-mode syntax-tree-parent<ret>' -docstring 'parent'
-    map global syntax-tree s ': tree-node-sexp<ret>' -docstring 'show tree sexp'
+    map global syntax-tree p ': enter-user-mode syntax-tree-parent<ret>' -docstring 'parent_node'
+    map global syntax-tree t ': tree-node-sexp<ret>' -docstring 'tree-node-sexp'
     map global user t ': enter-user-mode syntax-tree<ret>' -docstring 'tree select'
 }
 
