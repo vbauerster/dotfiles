@@ -54,6 +54,7 @@ plug "occivink/kakoune-phantom-selection" config %{
 }
 
 plug "alexherbo2/auto-pairs.kak" config %{
+    set global auto_pairs '(' ')' '{' '}' '[' ']' '"' '"' '''' '''' '`' '`'
     hook global WinCreate .* %{
         auto-pairs-enable
     }
@@ -69,10 +70,29 @@ plug "occivink/kakoune-filetree" config %{
 }
 
 plug "ul/kak-tree" config %{
+    declare-user-mode syntax-tree-children
+    map global syntax-tree-children c ': tree-select-children<ret>' -docstring 'children'
+    map global syntax-tree-children b ': tree-select-children block<ret>' -docstring 'block'
+    map global syntax-tree-children g ': tree-select-children go_statement<ret>' -docstring 'go_statement'
+    map global syntax-tree-children m ': tree-select-children method_declaration<ret>' -docstring 'method_declaration'
+    map global syntax-tree-children i ': tree-select-children if_statement<ret>' -docstring 'if_statement'
+    map global syntax-tree-children t ': tree-select-children type_declaration<ret>' -docstring 'type_declaration'
+    map global syntax-tree-children u ': tree-select-children parameter_declaration<ret>' -docstring 'parameter_declaration'
+    map global syntax-tree-children <backspace> ': enter-user-mode syntax-tree<ret>' -docstring 'back...'
+
+    declare-user-mode syntax-tree-parent
+    map global syntax-tree-parent p ': tree-select-parent-node<ret>' -docstring 'parent_node'
+    map global syntax-tree-parent b ': tree-select-parent-node block<ret>' -docstring 'block'
+    map global syntax-tree-parent m ': tree-select-parent-node method_declaration<ret>' -docstring 'method_declaration'
+    map global syntax-tree-parent i ': tree-select-parent-node if_statement<ret>' -docstring 'if_statement'
+    map global syntax-tree-parent t ': tree-select-parent-node type_declaration<ret>' -docstring 'type_declaration'
+    map global syntax-tree-parent u ': tree-select-parent-node parameter_declaration<ret>' -docstring 'parameter_declaration'
+    map global syntax-tree-parent <backspace> ': enter-user-mode syntax-tree<ret>' -docstring 'back...'
+
     declare-user-mode syntax-tree
-    map global syntax-tree m ': tree-select-children method_declaration<ret>' -docstring 'methods declaration'
-    map global syntax-tree i ': tree-select-children if_statement<ret>' -docstring 'if statements'
-    map global syntax-tree t ': tree-select-children type_declaration<ret>' -docstring 'type declaration'
+    map global syntax-tree c ': enter-user-mode syntax-tree-children<ret>' -docstring 'children'
+    map global syntax-tree p ': enter-user-mode syntax-tree-parent<ret>' -docstring 'parent'
+    map global syntax-tree s ': tree-node-sexp<ret>' -docstring 'show tree sexp'
     map global user t ': enter-user-mode syntax-tree<ret>' -docstring 'tree select'
 }
 
