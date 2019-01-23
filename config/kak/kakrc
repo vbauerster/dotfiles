@@ -54,7 +54,7 @@ plug "occivink/kakoune-phantom-selection" config %{
 }
 
 plug "alexherbo2/auto-pairs.kak" config %{
-    set global auto_pairs '(' ')' '{' '}' '[' ']' '"' '"' '''' '''' '`' '`'
+    # set global auto_pairs '(' ')' '{' '}' '[' ']' '"' '"' '''' '''' '`' '`'
     hook global WinCreate .* %{
         auto-pairs-enable
     }
@@ -203,6 +203,7 @@ filetype-hook go %{
 
     try %{ set window grepcmd 'rg --column -tgo -g=!vendor' }
     set window matching_pairs '(' ')' '{' '}' '[' ']'
+    set window auto_pairs '(' ')' '{' '}' '[' ']' '"' '"' '''' '''' '`' '`'
     set window indentwidth 0
     set buffer formatcmd goreturns
     hook buffer BufWritePre .*\.go %{ format }
