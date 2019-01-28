@@ -187,7 +187,7 @@ map global help-and-hovers p ': print-working-directory<ret>' -docstring 'print 
 map global user h ': enter-user-mode help-and-hovers<ret>' -docstring 'help and hovers'
 
 #spell
-map global help-and-hovers s ': spell-replace<ret>' -docstring 'spell replace'
+map global help-and-hovers s '_: spell-replace<ret>' -docstring 'spell replace'
 declare-option str language en-GB
 filetype-hook latex|markdown|git-commit %{
     hook window BufWritePost .* %{
