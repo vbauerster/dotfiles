@@ -497,9 +497,10 @@ define-command -docstring "export to the system clipboard" clipboard-export %{
 }
 
 # Sort of a replacement for gq.
-# def format-text %{ exec '|fmt<ret>' }
-# map global user q '|fmt -w 80<ret>: echo -markup {green}[sel] | fmt -w 80<ret>' -docstring 'format'
-def format-text %{ exec '|par -w%opt{autowrap_column}<a-!><ret>' }
+# def format-par %{ exec '|par -w%opt{autowrap_column}<a-!><ret>' }
+# def format-text %{ exec '|fmt -w 80<ret>: echo -markup {green}[sel] | fmt -w 80<ret>' }
+def format-text %{ exec '|fmt %opt{autowrap_column}<a-!><ret>' }
+def format-comment %{ exec '<a-s>ght/F<space>dx<a-_>|fmt<a-!><ret><a-s>Px<a-_>' }
 
 def selection-length %{
     eval %sh{ echo "echo ${#kak_selection}" }
