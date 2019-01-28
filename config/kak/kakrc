@@ -471,7 +471,7 @@ map global insert <c-y> '<a-;>!pbpaste<ret>'
 
 # user maps
 map global user S '*%s<ret>' -docstring 'select all'
-map global user R ':e!<ret>' -docstring 'Reload buffer'
+map global user R ': e!<ret>' -docstring 'Reload buffer'
 
 declare-user-mode clipboard
 map global clipboard i ': clipboard-import<ret>' -docstring 'import'
