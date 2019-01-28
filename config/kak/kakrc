@@ -207,7 +207,7 @@ filetype-hook go %{
     set window matching_pairs '(' ')' '{' '}' '[' ']'
     set window auto_pairs '(' ')' '{' '}' '[' ']' '"' '"' '''' '''' '`' '`'
     set window indentwidth 0
-    set buffer formatcmd goreturns
+    set window formatcmd goreturns
     hook buffer BufWritePre .*\.go %{ format }
     # hook window BufWritePost .*\.go %{ format }
     # alias window format go-format-use-goimports
