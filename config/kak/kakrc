@@ -172,9 +172,9 @@ plug "ul/kak-lsp" do %{
         }
     }
 
-    filetype-hook go %{
-        hook window BufWritePre .* %{ lsp-formatting-sync }
-    }
+    # filetype-hook go %{
+    #     hook window BufWritePre .* %{ lsp-formatting-sync }
+    # }
 
     hook global KakEnd .* lsp-exit
 }
@@ -234,7 +234,7 @@ filetype-hook go %{
     set window auto_pairs '(' ')' '{' '}' '[' ']' '"' '"' '''' '''' '`' '`'
     set window indentwidth 0
     set window formatcmd goreturns
-    # hook buffer BufWritePre .*\.go %{ format }
+    hook buffer BufWritePre .* %{ format }
     # hook window BufWritePost .*\.go %{ format }
     alias window jump-to-definition go-jump
     # set buffer lintcmd '(gometalinter | grep -v "::\w")  <'
