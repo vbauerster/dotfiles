@@ -194,7 +194,6 @@ set global indentwidth 4
 set global scrolloff 2,4
 set global disabled_hooks .*-trim-indent
 try %{ set global grepcmd 'ag --filename --column --ignore tags --ignore build --ignore buildDebug' }
-try %{ set global grepcmd 'ag --filename --column --ignore tags --ignore build --ignore buildDebug' }
 
 colorscheme github-custom
 
