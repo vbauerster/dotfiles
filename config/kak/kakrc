@@ -2,7 +2,7 @@
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
 ## filetype-hook shortcut.
-def -hidden filetype-hook -params 2 %{ hook global WinSetOption "filetype=(%arg{1})" %arg{2} }
+define-command -hidden filetype-hook -params 2 %{ hook global WinSetOption "filetype=(%arg{1})" %arg{2} }
 
 ## Plugins
 plug "andreyorst/plug.kak" noload
@@ -281,7 +281,7 @@ hook global InsertChar \. %{ try %{
     #write
 }}
 
-def -hidden text-object-indented-paragraph %{
+define-command -hidden text-object-indented-paragraph %{
     eval -save-regs '^' %{
         exec -draft -save-regs '' '<a-i>pZ'
         exec '<a-i>i<a-z>i'
@@ -329,7 +329,7 @@ map global normal <"> <q>
 
 map global normal <0>   ': zero select-word-better<ret>'
 map global normal <a-0> ': select-WORD-better<ret>'
-def -hidden -params 1 zero %{
+define-command -hidden -params 1 zero %{
    eval %sh{
         if [ $kak_count = 0 ]; then
             echo "$1"
@@ -339,7 +339,7 @@ def -hidden -params 1 zero %{
     }
 }
 
-def -hidden smart-star -params 1 %{
+define-command -hidden smart-star -params 1 %{
     try %{
         exec -draft <a-space>
         eval -no-hooks -draft -save-regs '"' %{
@@ -359,10 +359,10 @@ map global normal <a-*> ': smart-star <lt>a-*><ret>'
 # map global normal <x> <a-x>
 # map global normal <a-x> <a-X>
 # https://github.com/mawww/kakoune/wiki/Selections#how-to-make-x-select-lines-downward-and-x-select-lines-upward
-def -params 1 extend-line-down %{
+define-command -params 1 extend-line-down %{
   exec "<a-:>%arg{1}X"
 }
-def -params 1 extend-line-up %{
+define-command -params 1 extend-line-up %{
   exec "<a-:><a-;>%arg{1}K<a-;>"
   try %{
     exec -draft ';<a-K>\n<ret>'
@@ -374,23 +374,23 @@ map global normal x ': extend-line-down %val{count}<ret>'
 map global normal X ': extend-line-up %val{count}<ret>'
 
 # https://github.com/mawww/kakoune/wiki/Selections#how-to-make-word-keys-discern-camelcase-or-snake_case-parts
-def -hidden select-prev-word-part %{
+define-command -hidden select-prev-word-part %{
   exec <a-/>[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
 }
-def -hidden select-next-word-part %{
+define-command -hidden select-next-word-part %{
   exec /[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
 }
-def -hidden extend-prev-word-part %{
+define-command -hidden extend-prev-word-part %{
   exec <a-?>[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
 }
-def -hidden extend-next-word-part %{
+define-command -hidden extend-next-word-part %{
   exec ?[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
 }
 
-def enlarge-selection %{
+define-command enlarge-selection %{
   exec '<a-:>L<a-;>H<a-:>'
 }
-def shrink-selection %{
+define-command shrink-selection %{
   exec '<a-:>H<a-;>L<a-:>'
 }
 
@@ -398,25 +398,25 @@ def shrink-selection %{
 # foo_bar → fooBar
 # foo-bar → fooBar
 # foo bar → fooBar
-def camelcase %{
+define-command camelcase %{
   exec '`s[-_<space>]<ret>d~<a-i>w'
 }
 
 # fooBar → foo_bar
 # foo-bar → foo_bar
 # foo bar → foo_bar
-def snakecase %{
+define-command snakecase %{
   exec '<a-:><a-;>s-|[a-z][A-Z]<ret>\;a<space><esc>s[-\s]+<ret>c_<esc><a-i>w`'
 }
 
 # fooBar → foo-bar
 # foo_bar → foo-bar
 # foo bar → foo-bar
-def kebabcase %{
+define-command kebabcase %{
   exec '<a-:><a-;>s_|[a-z][A-Z]<ret>\;a<space><esc>s[_\s]+<ret>c-<esc><a-i>w`'
 }
 
-def -hidden slice-by-camel %{
+define-command -hidden slice-by-camel %{
   exec s[A-Z][a-z]+|[A-Z]+|[a-z]+<ret>
 }
 # <a-_> merge contiguous selections together (works across lines as well)
@@ -519,15 +519,15 @@ define-command -docstring "export to the system clipboard" clipboard-export %{
 # Sort of a replacement for gq.
 # def format-par %{ exec '|par -w%opt{autowrap_column}<a-!><ret>' }
 # def format-text %{ exec '|fmt -w 80<ret>: echo -markup {green}[sel] | fmt -w 80<ret>' }
-def format-text %{ exec '|fmt %opt{autowrap_column}<a-!><ret>' }
-def format-comment %{ exec '<a-s>ght/F<space>dx<a-_>|fmt<a-!><ret><a-s>Px<a-_>' }
+define-command format-text %{ exec '|fmt %opt{autowrap_column}<a-!><ret>' }
+define-command format-comment %{ exec '<a-s>ght/F<space>dx<a-_>|fmt<a-!><ret><a-s>Px<a-_>' }
 
-def selection-length %{
+define-command selection-length %{
     eval %sh{ echo "echo ${#kak_selection}" }
 }
 # def selection-length %{echo %sh{echo ${#kak_selection} }}
 
-def trim-tw -docstring "trim trailing whitespaces" %{
+define-command trim-tw -docstring "trim trailing whitespaces" %{
   try %{
     eval -draft %{
       exec '%s\h+$<ret><a-d>'
@@ -539,21 +539,21 @@ def trim-tw -docstring "trim trailing whitespaces" %{
   }
 }
 
-def select-word-better %{
+define-command select-word-better %{
   # Note: \w doesn't use extra_word_chars.
   eval -itersel %{
     try %{ exec '<a-i>w' } catch %{ exec '<a-l>s\w<ret>) <a-i>w' } catch %{}
   }
   exec '<a-k>\w<ret>'
 }
-def select-WORD-better %{
+define-command select-WORD-better %{
   eval -itersel %{
     try %{ exec '<a-i><a-w>' } catch %{ exec '<a-l>s\S<ret>) <a-i><a-w>' } catch %{}
   }
   exec '<a-k>\S<ret>'
 }
 
-def switch-to-modified-buffer %{
+define-command switch-to-modified-buffer %{
   eval -save-regs a %{
     reg a ''
     try %{
@@ -566,7 +566,7 @@ def switch-to-modified-buffer %{
   }
 }
 
-def -docstring %{switch to the other client's buffer} \
+define-command -docstring %{switch to the other client's buffer} \
   other-client-buffer \
   %{ eval %sh{
   if [ "$(echo "$kak_client_list" | wc -w)" -ne 2 ]; then
@@ -581,17 +581,17 @@ def -docstring %{switch to the other client's buffer} \
 
 ## More:
 # Git extras.
-def git-show-blamed-commit %{
+define-command git-show-blamed-commit %{
   git show %sh{git blame -L "$kak_cursor_line,$kak_cursor_line" "$kak_buffile" | awk '{print $1}'}
 }
-def git-log-lines %{
+define-command git-log-lines %{
   git log -L %sh{
     anchor="${kak_selection_desc%,*}"
     anchor_line="${anchor%.*}"
     echo "$anchor_line,$kak_cursor_line:$kak_buffile"
   }
 }
-def git-toggle-blame %{
+define-command git-toggle-blame %{
   try %{
     addhl window/git-blame group
     rmhl window/git-blame
@@ -600,7 +600,7 @@ def git-toggle-blame %{
     git hide-blame
   }
 }
-def git-hide-diff %{ rmhl window/git-diff }
+define-command git-hide-diff %{ rmhl window/git-diff }
 
 declare-user-mode git
 map global git b  ': git-toggle-blame<ret>'       -docstring 'blame (toggle)'
@@ -618,7 +618,7 @@ map global user g ': enter-user-mode git<ret>'    -docstring 'git mode'
 # smarttab.kak?
 # Emulate expandtab smarttab, kind of.
 # Due to #2122 this can only be done as a hook, not a map.
-def smarttab-enable %{
+define-command smarttab-enable %{
   hook -group smarttab window InsertChar \t %{ exec -draft -itersel "h%opt{indentwidth}@" }
   hook -group smarttab window InsertDelete ' ' %{
     eval -draft -itersel %{ try %{
@@ -626,13 +626,13 @@ def smarttab-enable %{
     }}
   }
 }
-def smarttab-disable %{ rmhooks window smarttab }
+define-command smarttab-disable %{ rmhooks window smarttab }
 
 
 # Highlight trailing whitespace in normal mode, with the TrailingWhitespace face.
 # What I really want is to only not highlight trailing whitespace as I'm
 # inserting it, but that doesn't seem possible right now.
-def show-trailing-whitespace-enable %{
+define-command show-trailing-whitespace-enable %{
   addhl window/TrailingWhitespace regex \h+$ 0:TrailingWhitespaceActive
   face window TrailingWhitespaceActive TrailingWhitespace
   hook -group trailing-whitespace window ModeChange 'normal:insert' \
@@ -640,7 +640,7 @@ def show-trailing-whitespace-enable %{
   hook -group trailing-whitespace window ModeChange 'insert:normal' \
     %{ face window TrailingWhitespaceActive TrailingWhitespace }
 }
-def show-trailing-whitespace-disable %{
+define-command show-trailing-whitespace-disable %{
   rmhl window/TrailingWhitespace
   rmhooks window trailing-whitespace
 }
@@ -648,7 +648,7 @@ face global TrailingWhitespace ''
 
 
 # Tab completion.
-def tab-completion-enable %{
+define-command tab-completion-enable %{
   hook -group tab-completion window InsertCompletionShow .* %{
     try %{
       exec -draft 'h<a-K>\s<ret>'
@@ -661,30 +661,30 @@ def tab-completion-enable %{
     unmap window insert <s-tab> <c-p>
   }
 }
-def tab-completion-disable %{ rmhooks window tab-completion }
+define-command tab-completion-disable %{ rmhooks window tab-completion }
 
 # Basic autoindent.
-def -hidden basic-autoindent-on-newline %{
+define-command -hidden basic-autoindent-on-newline %{
   eval -draft -itersel %{
     try %{ exec -draft ';K<a-&>' }                      # copy indentation from previous line
     try %{ exec -draft ';k<a-x><a-k>^\h+$<ret>H<a-d>' } # remove whitespace from autoindent on previous line
   }
 }
-def basic-autoindent-enable %{
+define-command basic-autoindent-enable %{
   hook -group basic-autoindent window InsertChar '\n' basic-autoindent-on-newline
   hook -group basic-autoindent window WinSetOption 'filetype=.*' basic-autoindent-disable
 }
-def basic-autoindent-disable %{ rmhooks window basic-autoindent }
+define-command basic-autoindent-disable %{ rmhooks window basic-autoindent }
 
 
 # search-highlighting.kak, simplified
-def search-highlighting-enable %{
+define-command search-highlighting-enable %{
   hook window -group search-highlighting NormalKey [/?*nN]|<a-[/?*nN]> %{ try %{
     addhl window/SearchHighlighting dynregex '%reg{/}' 0:Search
   }}
   hook window -group search-highlighting NormalKey <esc> %{ rmhl window/SearchHighlighting }
 }
-def search-highlighting-disable %{
+define-command search-highlighting-disable %{
   rmhl window/SearchHighlighting
   rmhooks window search-highlighting
 }
