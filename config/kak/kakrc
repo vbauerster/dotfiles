@@ -26,6 +26,10 @@ plug "andreyorst/fzf.kak" config %{
     # set-option global fzf_cd_command 'blsd'
     # set-option global fzf_tmux_height 24
     # set-option global fzf_preview_width '65%'
+    unmap global fzf v
+    unmap global fzf <a-v>
+    map global fzf g ': fzf-vcs<ret>' -docstring 'edit file from vcs repo'
+    map global fzf <a-g> ': fzf-vcs-mode<ret>' -docstring 'switch to vcs selection mode'
     evaluate-commands %sh{
         if [ ! -z "$(command -v fd)" ]; then
             echo "set-option global fzf_file_command 'fd . --no-ignore --type f --follow'"
