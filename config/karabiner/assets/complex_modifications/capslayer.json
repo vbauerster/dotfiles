@@ -38,9 +38,9 @@
                     "to": [{
                         "key_code": "u",
                         "modifiers": [
-                            "left_command",
-                            "left_control",
-                            "left_option"
+                            "right_command",
+                            "right_control",
+                            "right_option"
                         ]
                     }],
                     "conditions": [{
@@ -57,9 +57,9 @@
                     "to": [{
                         "key_code": "r",
                         "modifiers": [
-                            "left_command",
-                            "left_control",
-                            "left_option"
+                            "right_command",
+                            "right_control",
+                            "right_option"
                         ]
                     }],
                     "conditions": [{
@@ -76,9 +76,9 @@
                     "to": [{
                         "key_code": "l",
                         "modifiers": [
-                            "left_command",
-                            "left_control",
-                            "left_option"
+                            "right_command",
+                            "right_control",
+                            "right_option"
                         ]
                     }],
                     "conditions": [{
@@ -95,9 +95,9 @@
                     "to": [{
                         "key_code": "b",
                         "modifiers": [
-                            "left_command",
-                            "left_control",
-                            "left_option"
+                            "right_command",
+                            "right_control",
+                            "right_option"
                         ]
                     }],
                     "conditions": [{
@@ -114,9 +114,9 @@
                     "to": [{
                         "key_code": "f",
                         "modifiers": [
-                            "left_command",
-                            "left_control",
-                            "left_option"
+                            "right_command",
+                            "right_control",
+                            "right_option"
                         ]
                     }],
                     "conditions": [{
@@ -133,9 +133,9 @@
                     "to": [{
                         "key_code": "comma",
                         "modifiers": [
-                            "left_command",
-                            "left_control",
-                            "left_option"
+                            "right_command",
+                            "right_control",
+                            "right_option"
                         ]
                     }],
                     "conditions": [{
