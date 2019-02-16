@@ -6,6 +6,15 @@ fi
 # use the Dvorak keyboard for the basis for examining spelling mistakes
 setopt DVORAK
 
+# history settings
+setopt EXTENDED_HISTORY    # writes the history file in the *:start:elapsed;command* format
+setopt INC_APPEND_HISTORY  # writes to the history file immediately, not when the shell exits
+setopt HIST_IGNORE_DUPS    # does not record an event that was just recorded again.
+setopt HIST_SAVE_NO_DUPS   # does not write a duplicate event to the history file
+setopt HIST_IGNORE_SPACE   # does not record an event starting with a space
+SAVEHIST=8192
+HISTSIZE=8192              # stores the maximum number of events to save in the internal history
+
 # The time the shell waits, in hundredths of seconds, (default is 40)
 # for another key to be pressed when reading bound multi-character sequences.
 # 100ms for key sequences
@@ -18,24 +27,10 @@ export BACKGROUND="light"
 # http://www.geekmind.net/2011/01/shortcuts-to-improve-your-bash-zsh.html
 export DOTFILES="$HOME/dotfiles"
 
-# Golang
-export GOPATH="$HOME/go"
-if [[ ! "$PATH" == *$GOPATH/bin* ]]; then
-  export PATH="$PATH:$GOPATH/bin"
-fi
-
-if [[ ! "$PATH" == *$HOME/.cargo/bin* ]]; then
-    export PATH="$PATH:$HOME/.cargo/bin"
-fi
-
-# export GEMPATH=$HOME/.gem/ruby/2.0.0
-# if [[ ! "$PATH" == *$GEMPATH/bin* ]]; then
-#   export PATH=$GEMPATH/bin:$PATH
-# fi
-
+# https://github.com/BurntSushi/ripgrep
 [ -f "$HOME/.rgrc" ] && export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
-# fzf (https://github.com/junegunn/fzf)
+# https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git --ignore vendor -g ""'
@@ -65,24 +60,17 @@ if [[ ! "$PATH" == *$HOME/bin* && -d $HOME/bin ]]; then
     export PATH="$PATH:$HOME/bin"
 fi
 
-# history settings
-setopt EXTENDED_HISTORY    # writes the history file in the *:start:elapsed;command* format
-setopt INC_APPEND_HISTORY  # writes to the history file immediately, not when the shell exits
-setopt HIST_IGNORE_DUPS    # does not record an event that was just recorded again.
-setopt HIST_SAVE_NO_DUPS   # does not write a duplicate event to the history file
-setopt HIST_IGNORE_SPACE   # does not record an event starting with a space
-SAVEHIST=8192
-HISTSIZE=8192              # stores the maximum number of events to save in the internal history
-
 # Bindings
 # http://zsh.sourceforge.net/Intro/intro_11.html#SEC11
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
+# bindkey '^A' beginning-of-line
+# bindkey '^E' end-of-line
+# bindkey '^K' kill-line
+# bindkey '^[H' run-help
 # ctrl + enter = accept-and-hold
 bindkey '^[[13;5u' accept-and-hold
 # in vi mode use j/k for history-substring search
-bindkey '^P' history-substring-search-up
-bindkey '^N' history-substring-search-down
+# bindkey '^P' history-substring-search-up
+# bindkey '^N' history-substring-search-down
 bindkey '^[OA' up-line-or-history
 bindkey '^[OB' down-line-or-history
 # shift + tab
@@ -96,7 +84,7 @@ bindkey '^[OB' down-line-or-history
 # in vi mode ? = history-incremental-search-backward
 
 # To view all vicmd bindings: bindkey -M vicmd
-bindkey -M vicmd '^U' vi-kill-line
+# bindkey -M vicmd '^U' vi-kill-line
 
 # fzf bindings
 # to view all: bindkey-all | rg -i fzf
@@ -125,6 +113,8 @@ bindkey -s '^x9' '192.168.0.'
 
 ### ^x_ /dev/null
 bindkey -s '^x_' '/dev/null'
+
+# [ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
 
 # Source aliases
 [ -f "$HOME/.aliases" ] && source "$HOME/.aliases"

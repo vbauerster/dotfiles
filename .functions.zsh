@@ -168,7 +168,7 @@ if [ -n "$TMUX_PANE" ]; then
     zle reset-prompt
   }
   zle -N fzf-tmux-words-widget
-  bindkey '^[w' fzf-tmux-words-widget
+  bindkey '^X^T' fzf-tmux-words-widget
   # bindkey '^T' undefined-key
   # bindkey '^Tt' fzf-file-widget
   # bindkey '^Tw' fzf-tmux-words-widget
