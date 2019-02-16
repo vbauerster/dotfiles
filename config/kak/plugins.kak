@@ -75,7 +75,7 @@ plug "occivink/kakoune-phantom-selection" config %{
 }
 
 plug "alexherbo2/auto-pairs.kak" config %{
-    hook global WinCreate .* %{
+    hook global WinSetOption filetype=(c|cpp|go|rust) %{
         auto-pairs-enable
     }
 }
