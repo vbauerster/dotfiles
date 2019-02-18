@@ -5,6 +5,7 @@ evaluate-commands %sh{
         commands.kak
         common.kak
         languages.kak
+        tmux.kak
     "
 
     for file in $config_files; do
