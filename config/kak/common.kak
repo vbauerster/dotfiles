@@ -40,14 +40,14 @@ hook global InsertChar \. %{ try %{
 alias global u enter-user-mode
 
 ## Maps.
-map -docstring 'space as leader'               global normal '<space>'  ','
-map -docstring 'delete all but main selection' global normal 'q'        '<space>'
-map -docstring 'delete main selection'         global normal '<a-q>'    '<a-space>'
-map -docstring 'toggle case'                   global normal '='        '<a-`>'
-map -docstring 'comment line'                  global normal '#'        ': comment-line<ret>'
-map -docstring 'comment block'                 global normal '<a-#>'    ': comment-block<ret>'
-map -docstring 'save buffer'                   global normal '<F2>'     ': w<ret>'
-map -docstring 'select whole buffer'           global normal ':'        '<c-s>%'
+map -docstring 'space as leader'             global normal '<space>'  ','
+map -docstring 'drop all but main selection' global normal 'q'        '<space>'
+map -docstring 'drop main selection'         global normal '<c-q>'    '<a-space>'
+map -docstring 'toggle case'                 global normal '='        '<a-`>'
+map -docstring 'comment line'                global normal '#'        ': comment-line<ret>'
+map -docstring 'comment block'               global normal '<a-#>'    ': comment-block<ret>'
+map -docstring 'save buffer'                 global normal '<F2>'     ': w<ret>'
+map -docstring 'select whole buffer'         global normal ':'        '<c-s>%'
 
 # https://github.com/mawww/kakoune/wiki/Selections#how-to-make-x-select-lines-downward-and-x-select-lines-upward
 map global normal x ': extend-line-down %val{count}<ret>'
