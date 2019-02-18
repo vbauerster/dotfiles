@@ -154,7 +154,9 @@ map -docstring 'git mode'           global user 'g' ': enter-user-mode git<ret>'
 # <c-o>    ; # silent: stop completion
 # <c-x>    ; # complete here
 # <c-v>    ; # raw insert, use vim binding
-map global insert <c-y> '<a-;>!pbpaste<ret>'
+map global insert '<c-y>' '<a-;>!pbpaste<ret>'
+# https://github.com/mawww/kakoune/issues/2742
+map global insert '<c-c>' '<a-;>'
 
 # https://github.com/mawww/kakoune/wiki/Selections#how-to-make-word-keys-discern-camelcase-or-snake_case-parts
 # define-command -hidden select-prev-word-part %{
