@@ -5,12 +5,13 @@ hook global WinSetOption filetype=(go) %{
     set window auto_pairs '(' ')' '{' '}' '[' ']' '"' '"' '''' '''' '`' '`'
     set window indentwidth 0
     set window formatcmd 'goreturns'
-    hook buffer BufWritePre .* %{ format }
-    # hook window BufWritePost .*\.go %{ format }
-    alias window jump-to-definition go-jump
+    # alias window jump-to-definition go-jump
     # set buffer lintcmd '(gometalinter | grep -v "::\w")  <'
     # map global goto u '<esc>: go-jump<ret>' -docstring 'go-jump'
     # map global help-and-hovers d ': go-doc-info<ret>' -docstring 'go-doc-info'
+
+    hook buffer BufWritePre .* %{ format }
+    # hook window BufWritePost .*\.go %{ format }
 }
 
 hook global WinSetOption filetype=(rust) %{
