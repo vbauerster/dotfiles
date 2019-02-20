@@ -31,3 +31,7 @@ hs.hotkey.bind({'ctrl', 'shift'}, ',', function() hs.eventtap.keyStroke({'cmd'},
 require 'numpad'
 require 'reload-config'
 require 'ctrlDoublePress'
+require 'terminal'
+-- require 'caffeine'
+
+hs.hotkey.bind({'ctrl', 'alt', 'cmd'}, 't', 'toggle terminal', toggleTerminal)
