@@ -103,13 +103,21 @@ map -docstring "search tag in global tags file" global goto ']'      '<esc>: sma
 
 ## System clipboard
 declare-user-mode clipboard
-map -docstring 'yank to tmux buffer'              global clipboard 'Y' '<a-|>tmux setb -b kak "$kak_selection"<ret>'
-map -docstring 'yank to sysclipboard'             global clipboard 'y' '<a-|>pbcopy<ret>'
-map -docstring 'paste (insert) from sysclipboard' global clipboard 'p' '!pbpaste<ret>'
-map -docstring 'paste (append) from sysclipboard' global clipboard 'P' '<a-!>pbpaste<ret>'
-map -docstring 'import from sysclipboard'         global clipboard 'i' ': clipboard-import<ret>'
-map -docstring 'export to sysclipboard'           global clipboard 'e' ': clipboard-export<ret>'
-map -docstring 'clipboard mode'                   global normal    'Y' ': enter-user-mode clipboard<ret>'
+map -docstring 'yank to sysclipboard'                global clipboard 'Y' '<a-|>pbcopy<ret>'
+map -docstring 'paste (insert) from sysclipboard'    global clipboard 'P' '!pbpaste<ret>'
+map -docstring 'paste (append) from sysclipboard'    global clipboard 'p' '<a-!>pbpaste<ret>'
+map -docstring 'replace selection with sysclipboard' global clipboard 'r' '|pbpaste<ret>'
+map -docstring 'import from sysclipboard'            global clipboard 'i' ': clipboard-import<ret>'
+map -docstring 'export to sysclipboard'              global clipboard 'e' ': clipboard-export<ret>'
+map -docstring 'tmux-clipboard menu'                 global clipboard 't' ': enter-user-mode tmux-clipboard<ret>'
+map -docstring 'clipboard mode'                      global normal    'Y' ': enter-user-mode clipboard<ret>'
+
+declare-user-mode tmux-clipboard
+# map -docstring 'yank to tmux buffer'                global tmux-clipboard 'y' '<a-|>tmux setb -b kak "$kak_selection"<ret>'
+map -docstring 'yank to tmux buffer'                global tmux-clipboard 'y' '<a-|>tmux setb "$kak_selection"<ret>'
+map -docstring 'paste (insert) from tmux buffer'    global tmux-clipboard 'P' '!tmux showb<ret>'
+map -docstring 'paste (append) from tmux buffer'    global tmux-clipboard 'p' '<a-!>tmux showb<ret>'
+map -docstring 'replace selection with tmux buffer' global tmux-clipboard 'r' '|tmux showb<ret>'
 
 declare-user-mode anchor
 map -docstring 'slice by word'              global anchor ','       ': slice-by-camel<ret>'
