@@ -36,21 +36,24 @@ export DOTFILES="$HOME/dotfiles"
 # export FZF_DEFAULT_COMMAND='ag --nocolor --hidden --ignore .git --ignore vendor -g ""'
 # export FZF_DEFAULT_COMMAND="rg -uu -g '!vendor' -g '!.git' --files"
 # export FZF_DEFAULT_COMMAND='pt --nocolor --hidden --home-ptignore -U -g ""'
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND='fd --type f --type d --hidden --follow --exclude .git'
-[ -n "$NVIM_LISTEN_ADDRESS" ] && export FZF_DEFAULT_OPTS='--no-height'
+# [ -n "$NVIM_LISTEN_ADDRESS" ] && export FZF_DEFAULT_OPTS='--no-height'
 
-if [ -x ~/.config/nvim/plugged/fzf.vim/bin/preview.rb ]; then
-	export FZF_CTRL_T_OPTS="--preview '~/.config/nvim/plugged/fzf.vim/bin/preview.rb {} | head -200'"
+if [ ! -z "$(command -v fd)" ]; then
+    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+    export FZF_CTRL_T_COMMAND='fd --type f --type d --hidden --follow --exclude .git'
+    # export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 fi
-
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --header 'Press CTRL-Y to copy command into clipboard' --border"
 
 # https://github.com/junegunn/blsd
 command -v blsd > /dev/null && export FZF_ALT_C_COMMAND='blsd $dir'
 # brew install tree
 command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+# if [ -x ~/.config/nvim/plugged/fzf.vim/bin/preview.rb ]; then
+# 	export FZF_CTRL_T_OPTS="--preview '~/.config/nvim/plugged/fzf.vim/bin/preview.rb {} | head -200'"
+# fi
+
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' --header 'Press CTRL-Y to copy command into clipboard' --border"
 
 # Source functions
 [ -f "$DOTFILES/.functions.zsh" ] && source "$DOTFILES/.functions.zsh"
