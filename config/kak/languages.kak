@@ -4,7 +4,7 @@ hook global WinSetOption filetype=(go) %{
     set window matching_pairs '(' ')' '{' '}' '[' ']'
     set window auto_pairs '(' ')' '{' '}' '[' ']' '"' '"' '''' '''' '`' '`'
     set window indentwidth 0
-    set window formatcmd 'goreturns'
+    set window formatcmd 'goimports'
     # alias window jump-to-definition go-jump
     # set buffer lintcmd '(gometalinter | grep -v "::\w")  <'
     # map global goto u '<esc>: go-jump<ret>' -docstring 'go-jump'
