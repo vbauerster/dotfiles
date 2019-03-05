@@ -225,16 +225,18 @@ plug "ul/kak-lsp" do %{
     define-command lsp-restart -docstring 'restart lsp server' %{ lsp-stop; lsp-start }
 
     hook global WinSetOption filetype=(c|cpp|go|rust) %{
+        map -docstring 'LSP mode' window user 'a' ': enter-user-mode lsp<ret>'
         set-option window lsp_auto_highlight_references true
         set-option window lsp_hover_anchor false
         lsp-enable-window
         lsp-auto-signature-help-enable
+        set-face window DiagnosticError default+u
+        set-face window DiagnosticWarning default+u
         # lsp-diagnostic-lines-enable
         # lsp-auto-hover-enable
         # lsp-auto-hover-insert-mode-disable
         # unmap window lsp &
         # map window lsp <*> ': lsp-highlight-references<ret>' -docstring 'lsp-highlight-references'
-        map window user a ': enter-user-mode lsp<ret>' -docstring 'lsp mode'
     }
 
     hook global WinSetOption filetype=(rust) %{
