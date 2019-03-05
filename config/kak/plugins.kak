@@ -39,27 +39,23 @@ plug "andreyorst/smarttab.kak" %{
 }
 
 plug "andreyorst/fzf.kak" config %{
-    map global user p ': fzf-mode<ret>' -docstring 'fzf-mode'
-    # set-option global fzf_highlighter 'bat'
-    # set-option global fzf_tmux_height 24
-    # set-option global fzf_preview_width '65%'
+    map -docstring 'fzf-mode'  global user 'p' ': fzf-mode<ret>'
+    map -docstring 'fzf-ctags' global user 'c' ': enter-user-mode fzf-ctags<ret>'
+    set-option global fzf_preview_width '65%'
     unmap global fzf v
     unmap global fzf <a-v>
     map global fzf g ': fzf-vcs<ret>' -docstring 'edit file from vcs repo'
     map global fzf <a-g> ': fzf-vcs-mode<ret>' -docstring 'switch to vcs selection mode'
     evaluate-commands %sh{
-        if [ ! -z "$(command -v fd)" ]; then
-            echo "set-option global fzf_file_command 'fd . --no-ignore --type f --follow'"
+        if command -v fd > /dev/null; then
+            # echo "set-option global fzf_file_command 'fd . --no-ignore --type f --follow'"
+            echo "set-option global fzf_file_command %{fd . --type f --follow --exclude .git --exclude .svn --exclude TAGS}"
         fi
+        command -v blsd > /dev/null && echo "set-option global fzf_cd_command '(echo .. && blsd)'"
+        command -v bat > /dev/null && echo "set-option global fzf_highlighter bat"
+        command -v tree > /dev/null && echo "set-option global fzf_cd_preview true"
+        # [ ! -z "$(command -v rg)" ] && echo "set-option global fzf_sk_grep_command %{$kak_opt_grepcmd}"
     }
-    evaluate-commands %sh{
-        if [ ! -z "$(command -v blsd)" ]; then
-            echo "set-option global fzf_cd_command '(echo .. && blsd)'"
-        # elif [ "$(uname -s)" = "Darwin" ]; then
-        #     printf 'set-option global fzf_cd_command "%s"' "(echo .. && find -s . \( -path '*/.svn*' -o -path '*/.git*' \) -prune -o -type d -print)"
-        fi
-    }
-    set-option global fzf_cd_preview true
 }
 
 plug "TeddyDD/kakoune-edit-or-dir" config %{
