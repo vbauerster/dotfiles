@@ -87,37 +87,46 @@ plug "occivink/kakoune-snippets" config %{
     set-option -add global snippets_directories "%opt{plug_install_dir}/kakoune-snippet-collection/snippets"
     set-option global snippets_auto_expand false
     map -docstring 'snippets-menu' global user 's' ': snippets-menu<ret>'
-    # map global insert '<tab>' "z<a-;>: snippets-expand-or-jump 'tab'<ret>"
-    map global insert '<ret>' "z<esc>: snippets-expand-or-jump 'ret'<ret>"
-    # map global normal '<tab>' ": snippets-select-next-placeholders<ret>"
+    map -docstring 'snippets-info' global user 'i' ': snippets-info<ret>'
+    map global insert '<tab>' "z<a-;>: snippets-expand-or-jump 'tab'<ret>"
+    map global normal '<tab>' ": snippets-select-next-placeholders<ret>"
 
-    # hook global InsertCompletionShow .* %{
-    #     try %{
-    #         execute-keys -draft 'h<a-K>\h<ret>'
-    #         map window insert '<ret>' "z<a-;>: snippets-expand-or-jump 'ret'<ret>"
-    #     }
-    # }
+    hook global InsertCompletionShow .* %{
+        try %{
+            execute-keys -draft 'h<a-K>\h<ret>'
+            map window insert '<ret>' "z<a-;>: snippets-expand-or-jump 'ret'<ret>"
+        }
+    }
 
-    # hook global InsertCompletionHide .* %{
-    #     unmap window insert '<ret>' "z<a-;>: snippets-expand-or-jump 'ret'<ret>"
-    # }
+    hook global InsertCompletionHide .* %{
+        unmap window insert '<ret>' "z<a-;>: snippets-expand-or-jump 'ret'<ret>"
+    }
 
     define-command snippets-expand-or-jump -params 1 %{
-        # execute-keys <backspace>
-        execute-keys 'hd'
+        execute-keys <backspace>
         try %{
             snippets-expand-trigger %{
                 set-register / "%opt{snippets_triggers_regex}\z"
                 execute-keys 'hGhs<ret>'
             }
+            evaluate-commands %sh{
+                if [ ${#kak_selection} -gt 1 ]; then
+                    echo "execute-keys <esc>"
+                fi
+            }
         } catch %{
             snippets-select-next-placeholders
+            evaluate-commands %sh{
+                if [ ${#kak_selection} -gt 1 ]; then
+                    echo "execute-keys <esc>"
+                fi
+            }
         } catch %sh{
             case $1 in
                 ret|tab)
-                    printf "%s\n" "execute-keys -with-hooks i<$1>" ;;
+                    printf "%s\n" "execute-keys -with-hooks <$1>" ;;
                 *)
-                    printf "%s\n" "execute-keys -with-hooks i$1" ;;
+                    printf "%s\n" "execute-keys -with-hooks $1" ;;
             esac
         }
     }
