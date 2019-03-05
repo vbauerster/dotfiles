@@ -64,21 +64,17 @@ plug "TeddyDD/kakoune-edit-or-dir" config %{
 }
 
 plug "occivink/kakoune-phantom-selection" config %{
-    declare-user-mode phantom
-    map global phantom <plus>     ': phantom-sel-add-selection<ret>' -docstring 'phantom-sel add'
-    map global phantom <minus>    ': phantom-sel-select-all; phantom-sel-clear<ret>' -docstring 'phantom-sel clear all'
-    map global phantom <)>        ': phantom-sel-iterate-next<ret>' -docstring 'phantom-sel n'
-    map global phantom <(>        ': phantom-sel-iterate-prev<ret>' -docstring 'phantom-sel p'
-    map global normal <plus>      ': enter-user-mode phantom<ret>'
-    map global normal <a-plus>    ': enter-user-mode -lock phantom<ret>'
+    # declare-user-mode phantom
+    # map -docstring 'phantom-sel add'       global phantom '<plus>'  ': phantom-sel-add-selection<ret>'
+    # map -docstring 'phantom-sel clear all' global phantom '<minus>' ': phantom-sel-select-all; phantom-sel-clear<ret>'
+    # map -docstring 'phantom-sel n'         global phantom 'n'     ': phantom-sel-iterate-next<ret>'
+    # map -docstring 'phantom-sel p'         global phantom 'p'     ': phantom-sel-iterate-prev<ret>'
+    # map -docstring 'phantom-selection'     global user    'm'       ': enter-user-mode phantom<ret>'
 
-    # # replace select-onto with phantom-sel stuff; more useful
-    # map global normal f     ': phantom-sel-add-selection<ret>'
-    # map global normal F     ': phantom-sel-select-all; phantom-sel-clear<ret>'
-    # map global normal <a-f> ': phantom-sel-iterate-next<ret>'
-    # map global normal <a-F> ': phantom-sel-iterate-prev<ret>'
-    # map global insert <a-f> '<esc>: phantom-sel-iterate-next<ret>i'
-    # map global insert <a-F> '<esc>: phantom-sel-iterate-prev<ret>i'
+    map -docstring 'phantom-sel add'       global user 'm' ': phantom-sel-add-selection<ret>'
+    map -docstring 'phantom-sel clear all' global user 'M' ': phantom-sel-select-all; phantom-sel-clear<ret>'
+    map -docstring 'phantom-sel n'         global user ')' ': phantom-sel-iterate-next<ret>'
+    map -docstring 'phantom-sel p'         global user '(' ': phantom-sel-iterate-prev<ret>'
 }
 
 plug "alexherbo2/auto-pairs.kak" config %{
