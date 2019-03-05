@@ -7,7 +7,18 @@ plug "occivink/kakoune-vertical-selection" config %{
 
 plug "delapouite/kakoune-text-objects"
 
-plug "occivink/kakoune-expand"
+plug "occivink/kakoune-expand" config %{
+    set-option global expand_commands %{
+        expand-impl %{ exec <a-a>b }
+        expand-impl %{ exec <a-a>B }
+        expand-impl %{ exec <a-a>r }
+        expand-impl %{ exec <a-i>i }
+        expand-impl %{ exec <a-i>u }
+        expand-impl %{ exec <a-a>u }
+        expand-impl %{ exec '<a-:><a-;>k<a-K>^$<ret><a-i>i' } # previous indent level (upward)
+        expand-impl %{ exec '<a-:>j<a-K>^$<ret><a-i>i' }      # previous indent level (downward)
+    }
+}
 
 plug "delapouite/kakoune-buffers" config %{
     hook global WinDisplay .* info-buffers
