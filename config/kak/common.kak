@@ -14,7 +14,7 @@ try %{ set global grepcmd 'ag --filename --column --ignore tags --ignore build -
 # }
 
 # Use main client as jumpclient
-# set-option global jumpclient client0
+set-option global jumpclient client0
 
 colorscheme github-custom
 
@@ -49,6 +49,12 @@ map -docstring 'comment block'               global normal '<a-#>'    ': comment
 map -docstring 'save buffer'                 global normal '<F2>'     ': w<ret>'
 map -docstring 'select whole buffer'         global normal ':'        '<c-s>%'
 
+map global normal 'J' '3j'
+map global normal 'K' '3k'
+map global normal '<plus>' 'J'
+map global normal '<minus>' 'K'
+
+
 # https://github.com/mawww/kakoune/wiki/Selections#how-to-make-x-select-lines-downward-and-x-select-lines-upward
 map global normal x ': extend-line-down %val{count}<ret>'
 map global normal X ': extend-line-up %val{count}<ret>'
@@ -65,27 +71,31 @@ map global normal <"> <q>
 # https://github.com/mawww/kakoune/issues/1791
 # map global object q Q -docstring 'double quote string'
 # map global object Q q -docstring 'single quote string'
-map global view u t -docstring 'same as t'
+# map global view u t -docstring 'same as t'
 map global view h hv
 map global view j jv
 map global view k kv
 map global view l lv
 
+## Some User
 map -docstring 'command prompt'    global user '<space>' ':'
 map -docstring 'print working dir' global user '.'       ': print-working-directory<ret>'
 map -docstring 'Reload buffer'     global user 'R'       ': e!<ret>'
 map -docstring 'man'               global user 'k'       ': smart-select word; man-selection-with-count<ret>'
 map -docstring 'selection hull'    global user 'h'       ': hull<ret>'
+map -docstring 'tmux-focus'        global user 'o'       ':tmux-focus '
+map -docstring 'enter-user-mode'   global user 'u'       ':u '
 
-map global normal <0> ': zero select-or-add-cursor<ret>'
-map global normal <*> ': smart-select word<ret>*'
+map global normal '0' ': zero select-or-add-cursor<ret>'
+# map global normal <*> ': smart-select word<ret>*'
+# map global normal '%' ': select-or-add-cursor<ret>'
 
 ## Spell
 declare-user-mode spell
 map -docstring "next error"      global spell 'n' ': spell-next<ret>'
-map -docstring "replace word"    global spell 'r' '_: spell-replace<ret>'
+map -docstring "replace word"    global spell 's' '_: spell-replace<ret>'
 map -docstring "exit spell mode" global spell 'c' ': spell-clear<ret>'
-map -docstring "spell mode"      global user  'S' ': enter-user-mode -lock spell; spell en-US<ret>'
+map -docstring "spell mode"      global user  'S' ': enter-user-mode spell; spell en-US<ret>'
 
 declare-user-mode search
 map -docstring 'regex disabled'   global search '/' ': exec /<ret>\Q\E<left><left>'
@@ -103,7 +113,7 @@ map -docstring "search tag in global tags file" global goto ']'      '<esc>: sma
 
 ## System clipboard
 declare-user-mode clipboard
-map -docstring 'yank to sysclipboard'                global clipboard 'Y' '<a-|>pbcopy<ret>'
+map -docstring 'yank to sysclipboard'                global clipboard 'y' '<a-|>pbcopy<ret>'
 map -docstring 'paste (insert) from sysclipboard'    global clipboard 'P' '!pbpaste<ret>'
 map -docstring 'paste (append) from sysclipboard'    global clipboard 'p' '<a-!>pbpaste<ret>'
 map -docstring 'replace selection with sysclipboard' global clipboard 'r' '|pbpaste<ret>'
