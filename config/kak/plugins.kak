@@ -138,9 +138,11 @@ plug "alexherbo2/distraction-free.kak" config %{
     alias global df distraction-free-toggle
 }
 
+plug "occivink/kakoune-find"
+
 plug "occivink/kakoune-filetree" config %{
-    map global normal <minus> ': change-directory-current-buffer;filetree<ret>' -docstring 'filetree in current buf dir'
-    # map global normal <minus> ': filetree<ret>' -docstring 'filetree'
+    map global normal '<a-minus>' ': change-directory-current-buffer;filetree<ret>' -docstring 'filetree in current buf dir'
+    map global normal '<a-plus>' ': filetree<ret>' -docstring 'filetree'
 }
 
 plug "ul/kak-tree" config %{
