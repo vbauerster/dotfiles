@@ -17,3 +17,6 @@ function toggleTerminal()
     toggleApplication("iTerm")
 end
 
+function toggleDictionary()
+    toggleApplication("Dictionary")
+end
