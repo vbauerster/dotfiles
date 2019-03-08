@@ -19,7 +19,7 @@
                 }
             },
             "to": [{
-                "key_code": "down_arrow",
+                "key_code": "mission_control",
                 "modifiers": [
                     "left_control"
                 ]
@@ -48,15 +48,40 @@
             }]
         }]
     }, {
-        "description": "fj -> lang_switch",
+        "description": "qf -> show_desktop",
         "manipulators": [{
             "type": "basic",
             "from": {
                 "simultaneous": [{
-                        "key_code": "f"
+                        "key_code": "q"
                     },
                     {
+                        "key_code": "f"
+                    }
+                ],
+                "modifiers": {
+                    "optional": [
+                        "any"
+                    ]
+                }
+            },
+            "to": [{
+                "key_code": "mission_control",
+                "modifiers": [
+                    "left_command"
+                ]
+            }]
+        }]
+    }, {
+        "description": "jk -> lang_switch",
+        "manipulators": [{
+            "type": "basic",
+            "from": {
+                "simultaneous": [{
                         "key_code": "j"
+                    },
+                    {
+                        "key_code": "k"
                     }
                 ],
                 "modifiers": {
