@@ -257,8 +257,8 @@ plug "ul/kak-lsp" do %{
     hook global KakEnd .* lsp-exit
 }
 
-# plug "git@gitlab.com:Screwtapello/kakoune-state-save.git"
-# plug "danr/kakoune-easymotion"
+plug "git@gitlab.com:Screwtapello/kakoune-state-save.git" noload
+plug "danr/kakoune-easymotion" noload
 
 plug "andreyorst/tagbar.kak"
 
