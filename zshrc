@@ -47,7 +47,9 @@ fi
 # https://github.com/junegunn/blsd
 command -v blsd > /dev/null && export FZF_ALT_C_COMMAND='blsd $dir'
 # brew install tree
-command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+command -v tree > /dev/null && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -n 200'"
+# brew install bat
+command -v bat > /dev/null && export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=plain {} | head -n 200'"
 
 # if [ -x ~/.config/nvim/plugged/fzf.vim/bin/preview.rb ]; then
 # 	export FZF_CTRL_T_OPTS="--preview '~/.config/nvim/plugged/fzf.vim/bin/preview.rb {} | head -200'"
