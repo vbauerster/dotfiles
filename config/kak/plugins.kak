@@ -1,4 +1,6 @@
-## Plugins
+# source the plugin manager itself
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
 plug "andreyorst/plug.kak" noload
 
 plug "occivink/kakoune-vertical-selection" config %{

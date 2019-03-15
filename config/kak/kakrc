@@ -1,15 +1,18 @@
 evaluate-commands %sh{
     config_files="
-        plugins/plug.kak/rc/plug.kak
-        plugins.kak
-        commands.kak
         common.kak
+        commands.kak
         languages.kak
         tmux.kak
+        plugins.kak
     "
 
     for file in $config_files; do
-        echo "try %{ source '$HOME/.config/kak/$file' } catch %{ echo -debug 'Error sourcing $file' }"
+        printf "%s\n" "try %{
+            source '$HOME/.config/kak/$file'
+        } catch %{
+            try %{ echo -debug \"%val{error}\" } catch { echo -debug 'Error sourcing $file' }
+        }"
     done
 }
 
