@@ -107,7 +107,7 @@ map -docstring 'search mode'      global user   '/' ': enter-user-mode search<re
 map -docstring 'last buffer change'             global goto ';'      '.'
 map -docstring 'switch to [+] buffer'           global goto '<plus>' '<esc>: switch-to-modified-buffer<ret>'
 map -docstring "file non-recursive"             global goto '<a-f>'  '<esc>gf'
-map -docstring "file recursive"                 global goto 'f'      '<esc>: smart-select; search-file %val{selection}<ret>'
+map -docstring "file recursive"                 global goto 'f'      '<esc>: smart-select WORD; search-file %val{selection}<ret>'
 map -docstring "search tag in current file"     global goto '['      '<esc>: smart-select word; symbol<ret>'
 map -docstring "search tag in global tags file" global goto ']'      '<esc>: smart-select word; ctags-search<ret>'
 
