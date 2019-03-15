@@ -91,7 +91,8 @@ plug "occivink/kakoune-snippets" config %{
     map -docstring 'snippets-menu' global user 's' ': snippets-menu<ret>'
     map -docstring 'snippets-info' global user 'i' ': snippets-info<ret>'
     map global insert '<tab>' "z<a-;>: snippets-expand-or-jump 'tab'<ret>"
-    map global normal '<tab>' ": snippets-select-next-placeholders<ret>"
+    # map global normal '<tab>' ": snippets-select-next-placeholders<ret>"
+    map global normal '<tab>' ": snippets-expand-or-jump 'tab'<ret>"
 
     hook global InsertCompletionShow .* %{
         try %{
@@ -124,12 +125,7 @@ plug "occivink/kakoune-snippets" config %{
                 fi
             }
         } catch %sh{
-            case $1 in
-                ret|tab)
-                    printf "%s\n" "execute-keys -with-hooks <$1>" ;;
-                *)
-                    printf "%s\n" "execute-keys -with-hooks $1" ;;
-            esac
+            printf "%s\n" "execute-keys -with-hooks <$1>"
         }
     }
 }
