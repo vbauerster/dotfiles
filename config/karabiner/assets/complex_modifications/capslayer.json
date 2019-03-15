@@ -1,7 +1,7 @@
 {
     "title": "Caps is Hyper{ctrl, alt, cmd}, if alone Esc",
     "rules": [{
-            "description": "Hyper mod ['l', ',', 'u', 'r', 'b', 'f', 'k']",
+            "description": "Hyper mod ['l', ',', 'u', 'r', 'b', 'f', 'h', 'k']",
             "manipulators": [{
                     "type": "basic",
                     "from": {
@@ -132,6 +132,25 @@
                     },
                     "to": [{
                         "key_code": "k",
+                        "modifiers": [
+                            "right_command",
+                            "right_control",
+                            "right_option"
+                        ]
+                    }],
+                    "conditions": [{
+                        "type": "variable_if",
+                        "name": "caps_hold_mode",
+                        "value": 1
+                    }]
+                },
+                {
+                    "type": "basic",
+                    "from": {
+                        "key_code": "h"
+                    },
+                    "to": [{
+                        "key_code": "h",
                         "modifiers": [
                             "right_command",
                             "right_control",
