@@ -210,7 +210,7 @@ plug "ul/kak-tree" config %{
 
 plug "ul/kak-lsp" do %{
     cargo build --release --locked
-    cargo install --force
+    cargo install --force --path .
 } config %{
     set-face global Reference default,rgb:EDF97D
     set-option global lsp_diagnostic_line_error_sign '║'
