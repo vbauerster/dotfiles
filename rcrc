@@ -1,3 +1,3 @@
-EXCLUDES="README.md terminfo karabiner"
-UNDOTTED="Library bin"
+EXCLUDES="README.md exclude karabiner"
+UNDOTTED="bin"
 DOTFILES_DIRS="$HOME/dotfiles $HOME/.zprezto/runcoms"

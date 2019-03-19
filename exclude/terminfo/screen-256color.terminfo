@@ -20,6 +20,9 @@ screen-256color|GNU Screen with 256 colors bce and tmux xterm-keys,
     kIC=\E[2;2~, kLFT=\E[1;2D, kNXT=\E[6;2~, kPRV=\E[5;2~,
     kRIT=\E[1;2C,
 
+# https://superuser.com/questions/891336/fixed-highlighting-in-tmux
+    sgr=\E[0%?%p6%t;1%;%?%p1%t;7%;%?%p2%t;4%;%?%p3%t;7%;%?%p4%t;5%;m%?%p9%t\016%e\017%;,
+
 # smso/rmso(standout)
     smso=\E[7m, rmso=\E[27m,
 
