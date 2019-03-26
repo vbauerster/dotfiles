@@ -253,12 +253,14 @@ plug "ul/kak-lsp" do %{
     hook global KakEnd .* lsp-exit
 }
 
-plug "git@gitlab.com:Screwtapello/kakoune-state-save.git" noload
+plug "https://gitlab.com/Screwtapello/kakoune-state-save.git" noload
 plug "danr/kakoune-easymotion" noload
 
 plug "andreyorst/tagbar.kak"
 
 plug "Delapouite/kakoune-auto-percent"
 
+plug "alexherbo2/bc.kak"
+
 source "%val{config}/scripts/colorscheme-browser.kak"
-source "%val{config}/scripts/bc.kak"
+# source "%val{config}/scripts/bc.kak"
