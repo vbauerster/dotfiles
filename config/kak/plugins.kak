@@ -262,5 +262,11 @@ plug "Delapouite/kakoune-auto-percent"
 
 plug "alexherbo2/bc.kak"
 
+plug "alexherbo2/word-movement.kak" config %{
+    # map -docstring 'word-movement-map' global user 'W' ':word-movement-map next w;word-movement-map previous b'
+    word-movement-map next w
+    word-movement-map previous b
+}
+
 source "%val{config}/scripts/colorscheme-browser.kak"
 # source "%val{config}/scripts/bc.kak"
