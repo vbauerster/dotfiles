@@ -126,6 +126,8 @@ plug "occivink/kakoune-snippets" config %{
             }
         } catch %sh{
             printf "%s\n" "execute-keys -with-hooks <$1>"
+        } catch %{
+            echo -debug "snippets-expand-or-jump:%val{error}"
         }
     }
 }
