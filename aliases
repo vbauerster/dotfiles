@@ -29,8 +29,10 @@ alias fpath='echo $FPATH | tr -s ":" "\n"'
 # http://www.manpagez.com/info/grep/grep-2.5.4/grep_21.php#SEC21 paragraph 7
 alias psg='ps aux | grep $(echo $1 | sed "s/^\(.\)/[\1]/g")'
 
-alias header='curl -I'
+# alias header='curl -I'
+alias c='curl -s --dump-header /dev/stderr'
 alias myip='curl icanhazip.com'
+alias showip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias t2='tree -Fth -L 2 --du |less' #see tree with size up to 2 levels deep
 
 # tmux
@@ -66,11 +68,17 @@ alias pbsort='pbpaste | sort | pbcopy'
 alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
 alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
 # Empty the Trash on all mounted volumes and the main HDD
-alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash'
+# alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash'
 alias pxon='networksetup -setsocksfirewallproxystate "Wi-Fi" on'
 alias pxoff='networksetup -setsocksfirewallproxystate "Wi-Fi" off'
+
+# AirPort Utility
+alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport'
 
 # tcpdump
 alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 alias dnsdump="sudo tcpdump -lvi any 'udp port 53'"
 alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+
+# Convert YouTube link to mp3
+alias ytmp3='youtube-dl --extract-audio --audio-format mp3 --audio-quality 0'
