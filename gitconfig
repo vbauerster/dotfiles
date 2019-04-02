@@ -23,7 +23,7 @@
     stat = log --pretty=format:\"[%h] %ae, %ar: %s\" --stat
     last = cat-file commit HEAD
     ignored = ls-files -o -i --exclude-standard
-    it = !git init && git commit -m “root” --allow-empty
+    ii = !git init && git commit -m “root” --allow-empty
     commend = commit --amend --no-edit
     stsh = stash --keep-index
     staash = stash --include-untracked
