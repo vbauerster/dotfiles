@@ -241,7 +241,7 @@ plug "ul/kak-lsp" do %{
 
     hook global WinSetOption filetype=(rust) %{
         set-option window lsp_server_configuration rust.clippy_preference="on"
-        hook window BufWritePre .* %{
+        hook -group lsp buffer BufWritePre .* %{
             evaluate-commands %sh{
                 test -f rustfmt.toml && printf lsp-formatting-sync
             }
@@ -249,7 +249,7 @@ plug "ul/kak-lsp" do %{
     }
 
     # hook global WinSetOption filetype=(go) %{
-    #     hook window BufWritePre .* %{ lsp-formatting-sync }
+    #     hook -group lsp buffer BufWritePre .* lsp-formatting-sync
     # }
 
     hook global KakEnd .* lsp-exit
