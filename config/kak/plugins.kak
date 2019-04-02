@@ -268,6 +268,7 @@ plug "alexherbo2/word-movement.kak" config %{
     # map -docstring 'word-movement-map' global user 'W' ':word-movement-map next w;word-movement-map previous b'
     word-movement-map next w
     word-movement-map previous b
+    word-movement-map skip e
 }
 
 source "%val{config}/scripts/colorscheme-browser.kak"
