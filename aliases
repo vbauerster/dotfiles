@@ -16,9 +16,6 @@ alias rmm="rm -rf"
 alias q='exit'
 alias md='mkdcd'
 
-# File size
-alias fs="stat -f \"%z bytes\""
-
 # Pretty print the path
 # alias path='echo $PATH | tr -s ":" "\n"'
 alias path='echo -e ${PATH//:/\\n}'
