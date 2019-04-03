@@ -1,12 +1,9 @@
 TPM=~/.tmux/plugins/tpm
 
-if [[ ! -e $TPM ]]; then
+if [ ! -e $TPM ]; then
     mkdir -p $TPM
     git clone "https://github.com/tmux-plugins/tpm" $TPM
 fi
 
-for cfile in ~/.tmux/*.conf; do
-    if [[ -L $cfile ]]; then
-        mv -f $cfile ~/.${cfile##*/}
-    fi
-done
+tmux_cfg=~/.tmux/tmux.conf
+[ -L $tmux_cfg ] && mv -f $tmux_cfg ~/.${tmux_cfg##*/}
