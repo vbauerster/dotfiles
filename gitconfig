@@ -56,7 +56,6 @@
 [merge]
     tool = gitmerge
 [color "diff"]
-    old = red dim
     new = green italic
 [commit]
 	template = /Users/vbauer/.stCommitMsg
